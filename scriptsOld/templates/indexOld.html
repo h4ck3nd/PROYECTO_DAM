@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Login Windows 7</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://wp-s.ru/wallpapers/0/4/310421846990777/escritorio-de-windows-7-imagen-del-cat-logo.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .login-container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .user-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 2px solid #fff;
+    }
+
+    .input-field {
+      width: 250px;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .login-button {
+      padding: 10px 20px;
+      background: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .error-message {
+      color: red;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="user-image">
+    <input type="text" class="input-field" id="username" placeholder="Usuario">
+    <input type="password" class="input-field" id="password" placeholder="Contraseña">
+    <button class="login-button" onclick="validateLogin()">Iniciar sesión</button>
+    <div class="error-message" id="error"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

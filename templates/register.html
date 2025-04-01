@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('https://wp-s.ru/wallpapers/0/4/310421846990777/escritorio-de-windows-7-imagen-del-cat-logo.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+        }
+        .register-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .input-field {
+            width: 250px;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .register-button {
+            padding: 10px 20px;
+            background: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        .success-message {
+            color: green;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h2>Registro</h2>
+
+        <!-- Mostrar los mensajes de error o éxito generales -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="error-message">
+                    {% for category, message in messages %}
+                        {% if category == 'danger' %}
+                            <p>{{ message }}</p>
+                        {% elif category == 'success' %}
+                            <p class="success-message">{{ message }}</p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <form method="POST" action="{{ url_for('register') }}" onsubmit="return validateRegisterForm()">
+            <!-- Campos de formulario con errores debajo de cada uno si corresponde -->
+            <div class="error-container" id="nombre-error"></div>
+            <input type="text" class="input-field" name="nombre" id="nombre" placeholder="Nombre">
+            
+            <div class="error-container" id="apellidos-error"></div>
+            <input type="text" class="input-field" name="apellidos" id="apellidos" placeholder="Apellidos">
+            
+            <div class="error-container" id="email-error"></div>
+            <input type="email" class="input-field" name="email" id="email" placeholder="Correo">
+            
+            <div class="error-container" id="usuario-error"></div>
+            <input type="text" class="input-field" name="usuario" id="usuario" placeholder="Usuario">
+            
+            <div class="error-container" id="password-error"></div>
+            <input type="password" class="input-field" name="password" id="password" placeholder="Contraseña">
+            
+            <div class="error-container" id="confirm_password-error"></div>
+            <input type="password" class="input-field" name="confirm_password" id="confirm_password" placeholder="Repetir Contraseña">
+            
+            <div class="error-container" id="fecha_nacimiento-error"></div>
+            <input type="date" class="input-field" name="fecha_nacimiento" id="fecha_nacimiento" placeholder="Fecha de nacimiento">
+            
+            <button type="submit" class="register-button">Registrarse</button>
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='error-register.js') }}"></script>
+</body>
+</html>
