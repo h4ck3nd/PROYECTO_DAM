@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Seleccionar Usuario</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f0;
+      background: url('{{ url_for('static', filename='img/backgroundWIN10-Update.jpg') }}') no-repeat center center fixed;
+      background-size: cover; /* Imagen de fondo completa */
+      height: 100vh; /* Asegura que el body ocupe toda la ventana */
+      margin: 0; /* Elimina el margen predeterminado */
+    }
+
+    /* Contenedor central de los usuarios */
+    .user-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 50px;
+    }
+
+    /* Estilo de las tarjetas de usuario */
+    .user-card {
+      width: 160px;
+      height: 180px;
+      background: #ffffff;
+      border: 2px solid #6fa3ef; /* Borde azul estilo Windows 7 */
+      border-radius: 8px;
+      margin: 15px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+      text-align: center;
+      padding: 15px;
+      background-color: #e9e9e9; /* Fondo gris suave */
+    }
+
+    /* Estilo de la imagen de perfil */
+    .user-card img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid #a0a0a0; /* Borde de la imagen de perfil */
+      margin-bottom: 10px;
+    }
+
+    /* Nombre de usuario */
+    .user-card p {
+      margin-top: 10px;
+      font-weight: bold;
+      color: #333;
+      font-size: 16px;
+    }
+
+    /* Botón de selección */
+    .select-button {
+      padding: 8px 16px;
+      background-color: #0078d7; /* Azul Windows 7 */
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    /* Efecto hover para el botón */
+    .select-button:hover {
+      background-color: #005fa3; /* Azul más oscuro */
+    }
+
+    /* Botón de registro */
+    .register-button {
+      display: block;
+      width: 200px;
+      padding: 10px;
+      margin: 30px auto;
+      background-color: #28a745; /* Verde de registro */
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s ease;
+    }
+
+    /* Efecto hover para el botón de registro */
+    .register-button:hover {
+      background-color: #218838;
+    }
+
+    /* Estilo de la barra de título superior (simulando Windows 7) */
+    .window-header {
+      background-color: #0078d7;
+      padding: 5px;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+      border-radius: 5px 5px 0 0;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de título superior simulando Windows 7 -->
+  <div class="window-header">Seleccionar Usuario</div>
+
+  <!-- Contenedor de los usuarios -->
+  <div class="user-container">
+    {% for user in users %}
+      <div class="user-card">
+        <img src="{{ url_for('static', filename='img/Profile.png') }}" alt="Imagen Usuario">
+        <p>{{ user.usuario }}</p>
+        <!-- Botón para seleccionar usuario -->
+        <a href="{{ url_for('password_for_user', usuario=user.usuario) }}">
+          <button type="button" class="select-button">Seleccionar</button>
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+
+  <!-- Botón de registro -->
+  <button class="register-button" onclick="window.location.href='/register'">Registrarse</button>
+
+</body>
+</html>
