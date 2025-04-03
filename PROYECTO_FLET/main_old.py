@@ -75,16 +75,6 @@ def update_user_profile(db_conn, user_id, nombre, apellidos, email, usuario):
     db_conn.commit()
     cursor.close()
 
-# Función para actualizar la contraseña
-def update_user_password(db_conn, user_id, new_password):
-    password_hash = generate_password_hash(new_password)
-    cursor = db_conn.cursor()
-    cursor.execute("""
-        UPDATE usuarios SET password_hash = %s WHERE id = %s
-    """, (password_hash, user_id))
-    db_conn.commit()
-    cursor.close()
-
 # Página de Login
 def show_login(page):
     page.clean()
@@ -150,16 +140,8 @@ def show_register(page):
 def show_home(page, user_data):
     page.clean()
 
-    # Información del perfil del usuario
-    profile_info = f"""
-    Bienvenido, {user_data['usuario']}
-    Nombre: {user_data['nombre']}
-    Apellidos: {user_data['apellidos']}
-    Correo Electrónico: {user_data['email']}
-    Cookie: {user_data['cookie']}
-    """
-    welcome_text = ft.Text(profile_info)
-
+    welcome_text = ft.Text(f"Bienvenido, {user_data['usuario']}")
+    
     def go_to_edit_profile(e):
         show_edit_profile(page, user_data["cookie"])
 
@@ -187,44 +169,17 @@ def show_edit_profile(page, user_cookie):
     email_input = ft.TextField(label="Correo Electrónico", value=user_data["email"])
     usuario_input = ft.TextField(label="Nombre de Usuario", value=user_data["usuario"])
 
-    # Campos para cambiar la contraseña
-    current_password_input = ft.TextField(label="Contraseña Actual", password=True)
-    new_password_input = ft.TextField(label="Nueva Contraseña", password=True)
-    confirm_new_password_input = ft.TextField(label="Repetir Nueva Contraseña", password=True)
-
-    def handle_update_profile(e):
+    def handle_update(e):
         conn = connect_db()
         update_user_profile(conn, user_data["id"], nombre_input.value, apellidos_input.value, email_input.value, usuario_input.value)
         conn.close()
         show_home(page, user_data)  # Volver al home con datos actualizados
 
-    def handle_update_password(e):
-        if new_password_input.value != confirm_new_password_input.value:
-            page.add(ft.Text("Las contraseñas no coinciden", color="red"))
-            page.update()
-            return
-
-        conn = connect_db()
-        if not check_password_hash(user_data["password_hash"], current_password_input.value):
-            page.add(ft.Text("Contraseña actual incorrecta", color="red"))
-            page.update()
-            conn.close()
-            return
-
-        update_user_password(conn, user_data["id"], new_password_input.value)
-        conn.close()
-        page.add(ft.Text("Contraseña actualizada con éxito"))
-        page.update()
-
-    save_profile_button = ft.ElevatedButton("Guardar Cambios en Perfil", on_click=handle_update_profile)
-    save_password_button = ft.ElevatedButton("Actualizar Contraseña", on_click=handle_update_password)
-
+    save_button = ft.ElevatedButton("Guardar Cambios", on_click=handle_update)
     back_button = ft.ElevatedButton("Volver", on_click=lambda _: show_home(page, user_data))
 
     page.add(ft.Column([
-        nombre_input, apellidos_input, email_input, usuario_input, 
-        current_password_input, new_password_input, confirm_new_password_input,
-        save_profile_button, save_password_button, back_button
+        nombre_input, apellidos_input, email_input, usuario_input, save_button, back_button
     ], alignment="center"))
 
     page.update()
