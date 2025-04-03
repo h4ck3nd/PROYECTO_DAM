@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscador Web</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #1e1e1e;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+	.profile-image {
+	    width: 40px;
+            height: 40px;
+	}
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: gray;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .search-box {
+            width: 50%;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            font-size: 18px;
+            outline: none;
+        }
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 10px;
+            border-bottom: 1px solid #333;
+        }
+        .nav-menu a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .nav-menu a:hover {
+            color: #8ab4f8;
+        }
+        .results {
+            max-width: 800px;
+            margin: auto;
+            padding: 20px;
+        }
+        .result-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+        .result-icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+        }
+        .result-content {
+            flex: 1;
+        }
+        .result-item a {
+            color: #8ab4f8;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .result-item .url {
+            color: #8d8d8d;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+        .result-item p {
+            font-size: 14px;
+            color: #ccc;
+            margin-top: 5px;
+        }
+        /* PAGINACIÓN */
+        .pagination {
+            text-align: center;
+            padding: 20px;
+            font-size: 20px;
+        }
+        .pagination a {
+            color: #8ab4f8;
+            text-decoration: none;
+            margin: 5px;
+            font-size: 18px;
+        }
+        .pagination a:hover {
+            text-decoration: underline;
+        }
+        .google-logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            letter-spacing: 2px;
+        }
+        .google-logo span {
+            color: #8ab4f8;
+        }
+        /* FOOTER */
+        .footer {
+            background-color: #1e1e1e;
+            padding: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #888;
+        }
+        .footer a {
+            color: #8ab4f8;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para cerrar sesión -->
+ <!-- <a href="{{ url_for('logout') }}">
+    <button>Cerrar sesión</button>
+  </a>-->
+    <header class="header">
+        <a href="{{ url_for('profile') }}">
+	  <img src="{{ url_for('static', filename='img/Profile.png') }}" class="profile-image" alt="Imagen Usuario">
+	  <!--<img src="https://cdn-icons-png.flaticon.com/512/847/847969.png" class="profile-image" alt="Imagen Usuario">-->
+  	  <!--<div class="profile-icon"><div></div></div>-->
+	</a>
+        <div class="logo">Google</div>
+    </header>
+
+    <div class="search-container">
+        <input type="text" class="search-box" placeholder="Buscar en Google...">
+    </div>
+
+    <nav class="nav-menu">
+        <a href="#">Todo</a>
+        <a href="#">Imágenes</a>
+        <a href="#">Videos</a>
+        <a href="#">Noticias</a>
+        <a href="#">Maps</a>
+        <a href="#">Más</a>
+    </nav>
+
+    <div class="results">
+        <!-- ICONOS sacados del dominio -->
+        <!-- Resultados de búsqueda con favicons -->
+        <script>
+            const resultsContainer = document.querySelector('.results');
+            const searchResults = [
+                { url: "https://openwebinars.net", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cómo prevenirlos." },
+                { url: "https://claranet.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales." },
+                { url: "https://0xword.com", title: "Hacking Web Technologies 3ª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detección de vulnerabilidades." },
+                { url: "https://thehackerway.com", title: "Pack Hacking Web", description: "Formación avanzada en hacking contra API REST y aplicaciones web." },
+                { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende técnicas de pentesting y explotación de vulnerabilidades web." },
+                { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafíos reales de hacking web en un entorno seguro." },
+                { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web." },
+                { url: "https://mozilla.org", title: "Guía de Seguridad Web - Mozilla", description: "Buenas prácticas de desarrollo seguro para aplicaciones web." },
+                { url: "https://google.com", title: "Cómo proteger tu sitio web", description: "Consejos básicos de seguridad web para desarrolladores." },
+                { url: "https://wikipedia.org", title: "Historia del hacking", description: "Desde los primeros ataques hasta las amenazas modernas." },
+                { url: "https://github.com", title: "Herramientas de hacking web", description: "Listado de herramientas de código abierto para pentesting web." },
+                { url: "https://cisco.com", title: "Ciberseguridad en la web", description: "Mejores prácticas para asegurar tu sitio y evitar ataques." },
+                { url: "https://kali.org", title: "Kali Linux para pruebas web", description: "Cómo utilizar Kali Linux para testear la seguridad de tu web." },
+                { url: "https://nmap.org", title: "Escaneo de puertos y seguridad", description: "Cómo identificar vulnerabilidades en servidores web." },
+                { url: "https://owasp.org", title: "OWASP Top 10", description: "Las vulnerabilidades web más comunes y cómo evitarlas." }
+            ];
+            
+            searchResults.forEach(result => {
+                resultsContainer.innerHTML += `
+                    <div class="result-item">
+                        <img src="https://www.google.com/s2/favicons?sz=16&domain=${result.url}" class="result-icon" alt="favicon">
+                        <div class="result-content">
+                            <span class="url">${result.url}</span><br>
+                            <a href="#">${result.title}</a>
+                            <p>${result.description}</p>
+                        </div>
+                    </div>
+                `;
+            });
+        </script>
+    </div>
+
+    <!-- PAGINACIÓN -->
+    <div class="pagination">
+        <div class="google-logo">G<span>o</span><span>o</span><span>o</span><span>o</span><span>o</span><span>o</span>gle</div>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">Siguiente</a>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        <p>Los resultados están personalizados - <a href="#">Probar sin personalización</a></p>
+        <p><a href="#">Ayuda</a> • <a href="#">Enviar comentarios</a> • <a href="#">Privacidad</a> • <a href="#">Términos</a></p>
+    </div>
+
+</body>
+</html>

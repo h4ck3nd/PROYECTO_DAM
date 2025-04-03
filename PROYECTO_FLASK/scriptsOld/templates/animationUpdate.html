@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Animación</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f0f0;
+      background: url('{{ url_for('static', filename='img/DesktopWINXP.jpg') }}') no-repeat center center fixed;
+      background-size: cover; /* Esto asegura que la imagen cubra toda la pantalla */
+      height: 100vh; /* Esto asegura que el body cubra toda la altura de la ventana */
+      margin: 0; /* Elimina cualquier margen predeterminado del body */
+    }
+
+    .desktop-icon {
+      position: absolute;
+      bottom: 40px;
+      left: 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .desktop-icon img {
+      width: 64px;
+      height: 64px;
+      cursor: default;
+    }
+
+    .cursor {
+      width: 32px;
+      height: 32px;
+      background: url('https://png.pngtree.com/png-vector/20220513/ourmid/pngtree-3d-vector-arrow-cursor-png-image_4606160.png') no-repeat;
+      background-size: contain;
+      position: absolute;
+      top: 100%;
+      left: -100%;
+      pointer-events: none;
+      z-index: 1000;
+    }
+
+    .browser-window {
+      position: absolute;
+      top: 50px;
+      left: 100px;
+      width: 600px;
+      height: 400px;
+      background: white;
+      border: 2px solid #555;
+      display: none;
+      z-index: 999;
+      box-shadow: 0 0 10px #000;
+    }
+
+    .browser-header {
+      background: #0078d7;
+      color: white;
+      padding: 5px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body onload="startAnimation()">
+
+  <div class="desktop-icon" id="icono-navegador">
+    <img src="https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/como_usar_internet/image/i_03_04_l.png">
+    <div>Navegador</div>
+  </div>
+
+  <div class="cursor" id="cursor"></div>
+
+  <div class="browser-window" id="navegador">
+    <div class="browser-header">Mi Navegador</div>
+    <div style="padding: 20px;">Cargando...</div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
