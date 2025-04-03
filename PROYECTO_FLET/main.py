@@ -4,6 +4,7 @@ import psycopg2
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import datetime
+import re
 
 # Conexión a la base de datos PostgreSQL
 def connect_db():
@@ -28,6 +29,84 @@ def register_user(db_conn, nombre, apellidos, email, usuario, password):
     db_conn.commit()
     cursor.close()
     return user_cookie
+
+# Función para validar el nombre de usuario
+def is_valid_username(usuario):
+    # Solo permite letras, números y guiones bajos
+    pattern = "^[a-zA-Z0-9_]+$"
+    return bool(re.match(pattern, usuario))
+
+# Función para registrar un usuario
+def register_user(db_conn, nombre, apellidos, email, usuario, password):
+    password_hash = generate_password_hash(password)
+    user_cookie = str(uuid.uuid4())  # Generar una cookie única
+
+    cursor = db_conn.cursor()
+    cursor.execute("""
+        INSERT INTO usuarios (nombre, apellidos, email, usuario, password_hash, fecha_nacimiento, estado, fecha_registro, rol, cookie)
+        VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+    """, (nombre, apellidos, email, usuario, password_hash, datetime.now(), True, datetime.now(), "user", user_cookie))
+    db_conn.commit()
+    cursor.close()
+    return user_cookie
+
+# Página de Registro
+def show_register(page):
+    page.clean()
+
+    nombre_input = ft.TextField(label="Nombre")
+    apellidos_input = ft.TextField(label="Apellidos")
+    email_input = ft.TextField(label="Correo Electrónico")
+    usuario_input = ft.TextField(label="Nombre de Usuario")
+    password_input = ft.TextField(label="Contraseña", password=True)
+    confirm_password_input = ft.TextField(label="Repetir Contraseña", password=True)
+
+    def handle_register(e):
+        # Verificar que todos los campos estén completos
+        if password_input.value != confirm_password_input.value:
+            page.add(ft.Text("Las contraseñas no coinciden", color="red"))
+            page.update()
+            return
+
+        if not nombre_input.value or not apellidos_input.value or not email_input.value or not usuario_input.value or not password_input.value:
+            page.add(ft.Text("Por favor, completa todos los campos", color="red"))
+            page.update()
+            return
+
+        # Verificar que el nombre de usuario sea válido
+        if not is_valid_username(usuario_input.value):
+            page.add(ft.Text("El nombre de usuario solo puede contener letras, números y guiones bajos.", color="red"))
+            page.update()
+            return
+
+        # Agregar depuración para verificar los valores antes de registrarse
+        print(f"Intentando registrar: {nombre_input.value}, {apellidos_input.value}, {email_input.value}, {usuario_input.value}")
+
+        conn = connect_db()
+        try:
+            # Registramos el usuario pero no iniciamos sesión automáticamente
+            user_cookie = register_user(conn, nombre_input.value, apellidos_input.value, email_input.value, usuario_input.value, password_input.value)
+            print(f"Usuario registrado con cookie: {user_cookie}")  # Mostrar cookie generada
+
+            # Redirigir al login para que el usuario pueda iniciar sesión
+            show_login(page)
+
+        except Exception as error:
+            print(f"Error al registrar usuario: {error}")  # Imprimir error en la consola
+            page.add(ft.Text(f"Error al registrar usuario: {error}", color="red"))
+            page.update()
+        finally:
+            conn.close()
+
+    register_button = ft.ElevatedButton("Registrarse", on_click=handle_register)
+    go_login_button = ft.TextButton("¿Ya tienes cuenta? Inicia sesión", on_click=lambda _: show_login(page))
+
+    page.add(ft.Column([
+        nombre_input, apellidos_input, email_input, usuario_input, password_input, confirm_password_input,
+        register_button, go_login_button
+    ], alignment="center"))
+
+    page.update()
 
 # Función para verificar login
 def login_user(db_conn, username_or_email, password):
@@ -76,7 +155,6 @@ def get_user_by_cookie(db_conn, user_cookie):
         }
     return None
 
-
 # Función para actualizar el perfil del usuario
 def update_user_profile(db_conn, user_id, nombre, apellidos, email, usuario):
     cursor = db_conn.cursor()
@@ -118,43 +196,6 @@ def show_login(page):
     go_register_button = ft.TextButton("¿No tienes cuenta? Regístrate", on_click=lambda _: show_register(page))
 
     page.add(ft.Column([username_input, password_input, login_button, go_register_button], alignment="center"))
-    page.update()
-
-# Página de Registro
-def show_register(page):
-    page.clean()
-
-    nombre_input = ft.TextField(label="Nombre")
-    apellidos_input = ft.TextField(label="Apellidos")
-    email_input = ft.TextField(label="Correo Electrónico")
-    usuario_input = ft.TextField(label="Nombre de Usuario")
-    password_input = ft.TextField(label="Contraseña", password=True)
-    confirm_password_input = ft.TextField(label="Repetir Contraseña", password=True)
-
-    def handle_register(e):
-        if password_input.value != confirm_password_input.value:
-            page.add(ft.Text("Las contraseñas no coinciden", color="red"))
-            page.update()
-            return
-
-        conn = connect_db()
-        try:
-            user_cookie = register_user(conn, nombre_input.value, apellidos_input.value, email_input.value, usuario_input.value, password_input.value)
-            show_home(page, {"cookie": user_cookie})  # Redirigir al home
-        except Exception as error:
-            page.add(ft.Text(f"Error al registrar usuario: {error}", color="red"))
-            page.update()
-        finally:
-            conn.close()
-
-    register_button = ft.ElevatedButton("Registrarse", on_click=handle_register)
-    go_login_button = ft.TextButton("¿Ya tienes cuenta? Inicia sesión", on_click=lambda _: show_login(page))
-
-    page.add(ft.Column([
-        nombre_input, apellidos_input, email_input, usuario_input, password_input, confirm_password_input,
-        register_button, go_login_button
-    ], alignment="center"))
-
     page.update()
 
 # Página Principal (Home)
