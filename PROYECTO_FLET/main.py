@@ -46,25 +46,36 @@ def login_user(db_conn, username_or_email, password):
             "apellidos": user[2],
             "email": user[3],
             "usuario": user[4],
-            "cookie": user[6]
+            "cookie": user[6],
+            "password_hash": user[5]  # Añadido para verificación de la contraseña
         }
     return None
 
-# Función para obtener datos del usuario
 def get_user_by_cookie(db_conn, user_cookie):
     cursor = db_conn.cursor()
+    print(f"Buscando usuario con cookie: {user_cookie}")
     cursor.execute("""
-        SELECT id, nombre, apellidos, email, usuario FROM usuarios WHERE cookie = %s
+        SELECT id, nombre, apellidos, email, usuario, password_hash, fecha_nacimiento, estado, fecha_registro, rol, cookie 
+        FROM usuarios WHERE cookie = %s
     """, (user_cookie,))
     user = cursor.fetchone()
     cursor.close()
-    return {
-        "id": user[0],
-        "nombre": user[1],
-        "apellidos": user[2],
-        "email": user[3],
-        "usuario": user[4]
-    } if user else None
+
+    # Agregar depuración para ver qué datos estás obteniendo
+    print(f"Datos del usuario recuperados: {user}")
+
+    if user:
+        return {
+            "id": user[0],
+            "nombre": user[1],
+            "apellidos": user[2],
+            "email": user[3],
+            "usuario": user[4],
+            "password_hash": user[5],
+            "cookie": user[10],  # Asegúrate de que la cookie está correctamente extraída
+        }
+    return None
+
 
 # Función para actualizar el perfil del usuario
 def update_user_profile(db_conn, user_id, nombre, apellidos, email, usuario):
@@ -72,6 +83,16 @@ def update_user_profile(db_conn, user_id, nombre, apellidos, email, usuario):
     cursor.execute("""
         UPDATE usuarios SET nombre = %s, apellidos = %s, email = %s, usuario = %s WHERE id = %s
     """, (nombre, apellidos, email, usuario, user_id))
+    db_conn.commit()
+    cursor.close()
+
+# Función para actualizar la contraseña
+def update_user_password(db_conn, user_id, new_password):
+    password_hash = generate_password_hash(new_password)
+    cursor = db_conn.cursor()
+    cursor.execute("""
+        UPDATE usuarios SET password_hash = %s WHERE id = %s
+    """, (password_hash, user_id))
     db_conn.commit()
     cursor.close()
 
@@ -140,8 +161,20 @@ def show_register(page):
 def show_home(page, user_data):
     page.clean()
 
-    welcome_text = ft.Text(f"Bienvenido, {user_data['usuario']}")
-    
+    # Verificar que 'cookie' existe en user_data
+    if 'cookie' in user_data:
+        profile_info = f"""
+        Bienvenido, {user_data['usuario']}
+        Nombre: {user_data['nombre']}
+        Apellidos: {user_data['apellidos']}
+        Correo Electrónico: {user_data['email']}
+        Cookie: {user_data['cookie']}  # Mostrar cookie
+        """
+    else:
+        profile_info = "No se pudo recuperar la cookie del usuario"
+
+    welcome_text = ft.Text(profile_info)
+
     def go_to_edit_profile(e):
         show_edit_profile(page, user_data["cookie"])
 
@@ -169,17 +202,39 @@ def show_edit_profile(page, user_cookie):
     email_input = ft.TextField(label="Correo Electrónico", value=user_data["email"])
     usuario_input = ft.TextField(label="Nombre de Usuario", value=user_data["usuario"])
 
+    # Campos para cambiar la contraseña
+    current_password_input = ft.TextField(label="Contraseña Actual", password=True)
+    new_password_input = ft.TextField(label="Nueva Contraseña", password=True)
+    confirm_new_password_input = ft.TextField(label="Repetir Nueva Contraseña", password=True)
+
     def handle_update(e):
         conn = connect_db()
+
+        # Verificar si se cambió la contraseña
+        if new_password_input.value and new_password_input.value == confirm_new_password_input.value:
+            if not check_password_hash(user_data["password_hash"], current_password_input.value):
+                page.add(ft.Text("Contraseña actual incorrecta", color="red"))
+                page.update()
+                conn.close()
+                return
+            update_user_password(conn, user_data["id"], new_password_input.value)
+
+        # Actualizar datos del perfil
         update_user_profile(conn, user_data["id"], nombre_input.value, apellidos_input.value, email_input.value, usuario_input.value)
         conn.close()
-        show_home(page, user_data)  # Volver al home con datos actualizados
 
-    save_button = ft.ElevatedButton("Guardar Cambios", on_click=handle_update)
+        # Mostrar mensaje de éxito
+        page.add(ft.Text("Perfil actualizado exitosamente"))
+        show_home(page, user_data)  # Volver al home con datos actualizados
+        page.update()
+
+    save_changes_button = ft.ElevatedButton("Guardar Cambios", on_click=handle_update)
     back_button = ft.ElevatedButton("Volver", on_click=lambda _: show_home(page, user_data))
 
     page.add(ft.Column([
-        nombre_input, apellidos_input, email_input, usuario_input, save_button, back_button
+        nombre_input, apellidos_input, email_input, usuario_input, 
+        current_password_input, new_password_input, confirm_new_password_input,
+        save_changes_button, back_button
     ], alignment="center"))
 
     page.update()
