@@ -33,47 +33,14 @@ def register_user(db_conn, nombre, apellidos, email, usuario, password):
 def login_user(db_conn, username_or_email, password):
     cursor = db_conn.cursor()
     cursor.execute("""
-        SELECT id, nombre, apellidos, email, usuario, password_hash, cookie FROM usuarios 
-        WHERE usuario = %s OR email = %s
+        SELECT id, password_hash, cookie FROM usuarios WHERE usuario = %s OR email = %s
     """, (username_or_email, username_or_email))
     user = cursor.fetchone()
     cursor.close()
 
-    if user and check_password_hash(user[5], password):
-        return {
-            "id": user[0],
-            "nombre": user[1],
-            "apellidos": user[2],
-            "email": user[3],
-            "usuario": user[4],
-            "cookie": user[6]
-        }
+    if user and check_password_hash(user[1], password):
+        return user[2]  # Retornar la cookie del usuario si el login es exitoso
     return None
-
-# Función para obtener datos del usuario
-def get_user_by_cookie(db_conn, user_cookie):
-    cursor = db_conn.cursor()
-    cursor.execute("""
-        SELECT id, nombre, apellidos, email, usuario FROM usuarios WHERE cookie = %s
-    """, (user_cookie,))
-    user = cursor.fetchone()
-    cursor.close()
-    return {
-        "id": user[0],
-        "nombre": user[1],
-        "apellidos": user[2],
-        "email": user[3],
-        "usuario": user[4]
-    } if user else None
-
-# Función para actualizar el perfil del usuario
-def update_user_profile(db_conn, user_id, nombre, apellidos, email, usuario):
-    cursor = db_conn.cursor()
-    cursor.execute("""
-        UPDATE usuarios SET nombre = %s, apellidos = %s, email = %s, usuario = %s WHERE id = %s
-    """, (nombre, apellidos, email, usuario, user_id))
-    db_conn.commit()
-    cursor.close()
 
 # Página de Login
 def show_login(page):
@@ -84,11 +51,11 @@ def show_login(page):
     
     def handle_login(e):
         conn = connect_db()
-        user_data = login_user(conn, username_input.value, password_input.value)
+        user_cookie = login_user(conn, username_input.value, password_input.value)
         conn.close()
 
-        if user_data:
-            show_home(page, user_data)
+        if user_cookie:
+            show_home(page, user_cookie)
         else:
             page.add(ft.Text("Usuario o contraseña incorrectos", color="red"))
             page.update()
@@ -119,7 +86,7 @@ def show_register(page):
         conn = connect_db()
         try:
             user_cookie = register_user(conn, nombre_input.value, apellidos_input.value, email_input.value, usuario_input.value, password_input.value)
-            show_home(page, {"cookie": user_cookie})  # Redirigir al home
+            show_home(page, user_cookie)  # Redirigir al home
         except Exception as error:
             page.add(ft.Text(f"Error al registrar usuario: {error}", color="red"))
             page.update()
@@ -137,51 +104,17 @@ def show_register(page):
     page.update()
 
 # Página Principal (Home)
-def show_home(page, user_data):
+def show_home(page, user_cookie):
     page.clean()
 
-    welcome_text = ft.Text(f"Bienvenido, {user_data['usuario']}")
+    welcome_text = ft.Text(f"Bienvenido a la página principal. Cookie de sesión: {user_cookie}")
     
-    def go_to_edit_profile(e):
-        show_edit_profile(page, user_data["cookie"])
+    def logout(e):
+        show_login(page)
 
-    edit_profile_button = ft.ElevatedButton("Editar Perfil", on_click=go_to_edit_profile)
-    logout_button = ft.ElevatedButton("Cerrar sesión", on_click=lambda _: show_login(page))
+    logout_button = ft.ElevatedButton("Cerrar sesión", on_click=logout)
 
-    page.add(ft.Column([welcome_text, edit_profile_button, logout_button], alignment="center"))
-    page.update()
-
-# Página de Edición de Perfil
-def show_edit_profile(page, user_cookie):
-    page.clean()
-    
-    conn = connect_db()
-    user_data = get_user_by_cookie(conn, user_cookie)
-    conn.close()
-
-    if not user_data:
-        page.add(ft.Text("Error al cargar datos del usuario", color="red"))
-        page.update()
-        return
-
-    nombre_input = ft.TextField(label="Nombre", value=user_data["nombre"])
-    apellidos_input = ft.TextField(label="Apellidos", value=user_data["apellidos"])
-    email_input = ft.TextField(label="Correo Electrónico", value=user_data["email"])
-    usuario_input = ft.TextField(label="Nombre de Usuario", value=user_data["usuario"])
-
-    def handle_update(e):
-        conn = connect_db()
-        update_user_profile(conn, user_data["id"], nombre_input.value, apellidos_input.value, email_input.value, usuario_input.value)
-        conn.close()
-        show_home(page, user_data)  # Volver al home con datos actualizados
-
-    save_button = ft.ElevatedButton("Guardar Cambios", on_click=handle_update)
-    back_button = ft.ElevatedButton("Volver", on_click=lambda _: show_home(page, user_data))
-
-    page.add(ft.Column([
-        nombre_input, apellidos_input, email_input, usuario_input, save_button, back_button
-    ], alignment="center"))
-
+    page.add(ft.Column([welcome_text, logout_button], alignment="center"))
     page.update()
 
 # Iniciar la app con la pantalla de login
