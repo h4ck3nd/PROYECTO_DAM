@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('{{ url_for('static', filename='img/backgroundWIN10-Update.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Ventana estilo Windows 7 */
+        .window {
+            background: #e3e3e3;
+            width: 600px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid #a1a1a1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Barra de título estilo Windows 7 */
+        .title-bar {
+            background: linear-gradient(to bottom, #2a64c0, #1d4f91);
+            color: white;
+            padding: 5px 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #15396b;
+        }
+
+        .title-bar-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .title-bar-button {
+            width: 15px;
+            height: 15px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .title-bar-button.close { background: #e81123; }
+        .title-bar-button.minimize { background: #f8d800; }
+        .title-bar-button.maximize { background: #3ea74a; }
+
+        /* Contenedor del contenido */
+        .content {
+            display: flex;
+            padding: 15px;
+        }
+
+        /* Sección del formulario */
+        .register-form {
+            width: 55%;
+            padding: 10px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #a1a1a1;
+            border-radius: 5px;
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+        }
+
+        .register-button {
+            width: 100%;
+            padding: 10px;
+            background: linear-gradient(to bottom, #0078d7, #005fa3);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .register-button:hover {
+            background: linear-gradient(to bottom, #005fa3, #003d75);
+        }
+
+        /* Sección del perfil */
+        .profile-section {
+            width: 45%;
+            text-align: center;
+            background: #d9d9d9;
+            padding: 10px;
+            border-left: 1px solid #a1a1a1;
+        }
+
+        .user-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid white;
+            background: #ccc;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+            margin-bottom: 10px;
+        }
+
+        .profile-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0044cc;
+            text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-message, .success-message {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .error-message { color: red; }
+        .success-message { color: green; }
+
+    </style>
+</head>
+<body>
+    <div class="error-container"></div>
+    <div class="window">
+        <div class="title-bar">
+            <span>Registro de Usuario</span>
+            <div class="title-bar-buttons">
+                <div class="title-bar-button minimize"></div>
+                <div class="title-bar-button maximize"></div>
+                <div class="title-bar-button close" onclick="window.location.href='/select_user'"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <!-- Formulario de registro -->
+            <div class="register-form">
+                <h3>Crear una cuenta</h3>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        <div>
+                            {% for category, message in messages %}
+                                <p class="{{ 'error-message' if category == 'danger' else 'success-message' }}">{{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+
+                <form method="POST" action="{{ url_for('register') }}" id="register-form">
+    			<input type="text" class="input-field" name="nombre" placeholder="Nombre">
+    			<div class="error-message" id="nombre-error"></div>
+
+    			<input type="text" class="input-field" name="apellidos" placeholder="Apellidos">
+    			<div class="error-message" id="apellidos-error"></div>
+
+    			<input type="email" class="input-field" name="email" placeholder="Correo">
+    			<div class="error-message" id="email-error"></div>
+
+    			<input type="text" class="input-field" name="usuario" placeholder="Usuario">
+    			<div class="error-message" id="usuario-error"></div>
+
+    			<input type="password" class="input-field" name="password" placeholder="Contraseña">
+    			<div class="error-message" id="password-error"></div>
+
+    			<input type="password" class="input-field" name="confirm_password" placeholder="Repetir Contraseña">
+    			<div class="error-message" id="confirm_password-error"></div>
+
+    			<input type="date" class="input-field" name="fecha_nacimiento">
+    			<div class="error-message" id="fecha_nacimiento-error"></div>
+
+    			<button type="submit" class="register-button">Registrarse</button>
+		</form>
+
+            </div>
+
+            <!-- Sección del perfil -->
+            <div class="profile-section">
+                <img src="{{ url_for('static', filename='img/Profile.png') }}" class="user-image">
+                <p class="profile-name">Usuario</p>
+                <p>Perfil de usuario</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='error-register.js') }}"></script>
+</body>
+</html>

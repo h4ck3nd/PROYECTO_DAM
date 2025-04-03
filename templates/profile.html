@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de {{ user.usuario }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('{{ url_for('static', filename='img/BackgroundProfile.jpg') }}') no-repeat center center fixed;
+            background-size: cover;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Ventana estilo Windows 7 */
+        .window {
+            background: #e3e3e3;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+            border: 1px solid #a1a1a1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Barra de título */
+        .title-bar {
+            background: linear-gradient(to bottom, #2a64c0, #1d4f91);
+            color: white;
+            padding: 8px 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #15396b;
+        }
+
+        .title-bar-buttons {
+            display: flex;
+            gap: 5px;
+        }
+
+        .title-bar-button {
+            width: 15px;
+            height: 15px;
+            background: #ccc;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .title-bar-button.close { background: #e81123; }
+        .title-bar-button.minimize { background: #f8d800; }
+        .title-bar-button.maximize { background: #3ea74a; }
+
+        /* Contenido */
+        .content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 10px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .username {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 5px;
+            color: #0044cc;
+        }
+
+        .info {
+            font-size: 14px;
+            color: #333;
+            margin: 5px 0;
+        }
+
+        /* Botones estilo Windows 7 */
+        .button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background: linear-gradient(to bottom, #0078d7, #005fa3);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .button:hover {
+            background: linear-gradient(to bottom, #005fa3, #003d75);
+        }
+
+        .logout-button {
+            background: linear-gradient(to bottom, #ff3b30, #c92b21);
+        }
+
+        .logout-button:hover {
+            background: linear-gradient(to bottom, #c92b21, #a5211a);
+        }
+
+        /* Formulario de cambio de contraseña */
+        .change-password {
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #a1a1a1;
+            border-radius: 5px;
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+	
+	.edit-button {
+    	    margin-top: 15px;
+    	    padding: 10px 20px;
+    	    background: #0078D7;
+    	    color: white;
+    	    border: none;
+    	    border-radius: 5px;
+    	    font-size: 16px;
+    	    font-weight: bold;
+    	    cursor: pointer;
+    	    transition: 0.3s;
+	}
+
+	.edit-button:hover {
+    	    background: #005a9e;
+	}
+    </style>
+</head>
+<body>
+
+    <div class="window">
+        <div class="title-bar">
+            <span>Perfil de Usuario</span>
+            <div class="title-bar-buttons">
+                <div class="title-bar-button minimize"></div>
+                <div class="title-bar-button maximize"></div>
+                <div class="title-bar-button close" onclick="window.location.href='/home'"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <img src="{{ url_for('static', filename='img/Profile.png') }}" class="profile-img" alt="Perfil">
+            <p class="username">{{ user.usuario }}</p>
+            <p class="info">Correo: {{ user.email }}</p>
+            <p class="info">Nombre: {{ user.nombre }} {{ user.apellidos }}</p>
+            <p class="info">Último Login: {{ user.ultimo_login.strftime('%d-%m-%Y %H:%M:%S') if user.ultimo_login else 'Nunca ha iniciado sesión' }}</p>
+            <p class="info">Fecha de Registro: {{ user.fecha_registro.strftime('%d-%m-%Y') }}</p>
+
+            <!-- Boton para editar el perfil -->
+            <div class="change-password">
+                <button class="edit-button" onclick="window.location.href='{{ url_for('edit_profile') }}'">
+    			Editar Perfil
+		</button>
+
+            </div>
+
+            <button class="logout-button button" onclick="window.location.href='{{ url_for('logout') }}'">Cerrar sesión</button>
+        </div>
+    </div>
+
+    <script>
+        function validatePassword() {
+            var newPassword = document.getElementById("new_password").value;
+            var confirmPassword = document.getElementById("confirm_password").value;
+            var errorMessage = document.getElementById("password-error");
+
+            if (newPassword !== confirmPassword) {
+                errorMessage.textContent = "Las contraseñas no coinciden.";
+                return false;
+            }
+            errorMessage.textContent = "";
+            return true;
+        }
+    </script>
+
+</body>
+</html>
