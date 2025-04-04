@@ -28,6 +28,19 @@ public class ProductoControlador extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		String opcion = request.getParameter("opcion");
+		
+		if(opcion.equalsIgnoreCase("crearTabla")) {
+			System.out.println("Has pulsado la opcion crearTabla.");
+			ProductoDAO productoDAO = new ProductoDAO();
+			if(productoDAO.createTable()) {
+				System.out.println("Tabla PRODUCTO creada correctamente!!");
+			}
+			
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/index.jsp");
+			requestDispatcher.forward(request, response);
+		}
 	}
 
 	/**
