@@ -18,3 +18,6 @@ CREATE TABLE usuarios (
     rol VARCHAR(10) DEFAULT 'user',
     ultimo_login TIMESTAMP
 );
+
+-- Añadir la columna "Cookie" a la tabla usuarios
+ALTER TABLE usuarios ADD COLUMN cookie VARCHAR(255) UNIQUE;
