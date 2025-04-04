@@ -31,7 +31,8 @@ def generate_token(user_data):
         "user_id": user_data["id"],
         "usuario": user_data["usuario"],
         "email": user_data["email"],
-        "cookie": user_data["cookie"],
+        "nombre": user_data["nombre"],
+        "apellidos": user_data["apellidos"],
         "exp": datetime.utcnow() + timedelta(hours=1)
     }
     return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
