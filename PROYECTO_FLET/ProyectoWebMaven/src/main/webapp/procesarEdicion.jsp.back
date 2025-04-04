@@ -1,0 +1,48 @@
+<%@ page import="java.net.*, java.io.*" %>
+<%
+    String token = request.getParameter("token");
+    String nombre = request.getParameter("nombre");
+    String apellidos = request.getParameter("apellidos");
+    String email = request.getParameter("email");
+    String usuario = request.getParameter("usuario");
+
+    if (token == null || nombre == null || apellidos == null || email == null || usuario == null ||
+        token.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || usuario.isEmpty()) {
+        
+        response.sendRedirect("index.jsp?mensaje=Error: Todos los campos son obligatorios");
+        return;
+    }
+
+    try {
+        URL url = new URL("http://localhost:5000/actualizar-datos");
+        HttpURLConnection con = (HttpURLConnection) url.openConnection();
+        con.setRequestMethod("POST");
+        con.setRequestProperty("Content-Type", "application/json");
+        con.setDoOutput(true);
+
+        String jsonInputString = "{"
+            + "\"token\": \"" + token + "\","
+            + "\"nombre\": \"" + nombre + "\","
+            + "\"apellidos\": \"" + apellidos + "\","
+            + "\"email\": \"" + email + "\","
+            + "\"usuario\": \"" + usuario + "\""
+            + "}";
+
+        try (OutputStream os = con.getOutputStream()) {
+            byte[] input = jsonInputString.getBytes("utf-8");
+            os.write(input, 0, input.length);
+        }
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
+        StringBuilder responseText = new StringBuilder();
+        String responseLine;
+        while ((responseLine = br.readLine()) != null) {
+            responseText.append(responseLine.trim());
+        }
+
+        response.sendRedirect("index.jsp?mensaje=" + responseText.toString());
+
+    } catch (Exception e) {
+        response.sendRedirect("index.jsp?mensaje=Error: " + e.getMessage());
+    }
+%>
