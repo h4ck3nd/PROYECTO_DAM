@@ -6,16 +6,23 @@ public class Producto {
 	
 	private int idProducto;
 	private String nombre;
-	private String marca;
-	private Date fechaProducto;
+	private int cantidad;
+	private double precio;
+	private Date fechaCreacion;
 	private Date fechaActualizacion;
 	
-	public Producto(int idProducto, String nombre, String marca, Date fechaProducto, Date fechaActualizacion) {
+	public Producto() {
+		
+	}
+	
+	public Producto(int idProducto, String nombre, int cantidad, double precio, Date fechaCreacion,
+			Date fechaActualizacion) {
 		super();
 		this.idProducto = idProducto;
 		this.nombre = nombre;
-		this.marca = marca;
-		this.fechaProducto = fechaProducto;
+		this.cantidad = cantidad;
+		this.precio = precio;
+		this.fechaCreacion = fechaCreacion;
 		this.fechaActualizacion = fechaActualizacion;
 	}
 
@@ -35,20 +42,28 @@ public class Producto {
 		this.nombre = nombre;
 	}
 
-	public String getMarca() {
-		return marca;
+	public int getCantidad() {
+		return cantidad;
 	}
 
-	public void setMarca(String marca) {
-		this.marca = marca;
+	public void setCantidad(int cantidad) {
+		this.cantidad = cantidad;
 	}
 
-	public Date getFechaProducto() {
-		return fechaProducto;
+	public double getPrecio() {
+		return precio;
 	}
 
-	public void setFechaProducto(Date fechaProducto) {
-		this.fechaProducto = fechaProducto;
+	public void setPrecio(double precio) {
+		this.precio = precio;
+	}
+
+	public Date getFechaCreacion() {
+		return fechaCreacion;
+	}
+
+	public void setFechaCreacion(Date fechaCreacion) {
+		this.fechaCreacion = fechaCreacion;
 	}
 
 	public Date getFechaActualizacion() {
@@ -61,11 +76,12 @@ public class Producto {
 
 	@Override
 	public String toString() {
-		return "PRODUCTO: " + "\n"
-				+ "\t" + "ID: " + this.idProducto + "\n"
+		return "PRODUCTO: " + "\n" 
+				+ "\t" + "ID:" + this.idProducto + "\n"
 				+ "\t" + "Nombre: " + this.nombre + "\n"
-				+ "\t" + "Marca: " + this.marca + "\n"
-				+ "\t" + "Fecha del Producto: " + this.fechaProducto + "\n"
+				+ "\t" + "Cantidad: " + this.cantidad + "\n"
+				+ "\t" + "Precio: " + this.precio + "\n"
+				+ "\t" + "Fecha de Creacion: " + this.fechaCreacion + "\n"
 				+ "\t" + "Fecha de Actualizacion: " + this.fechaActualizacion + "\n";
 	}
 	
