@@ -1,4 +1,3 @@
-<%@ page import="java.sql.*" %>
 <%@ page import="io.jsonwebtoken.*" %>
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Date" %>
@@ -39,57 +38,35 @@
         out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
         return;
     }
-
 %>
-<!-- HTML para mostrar el formulario de edición del perfil -->
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
-    <style>
-        /* Tu estilo CSS aquí */
-    </style>
 </head>
 <body>
 
-    <div class="window">
-        <div class="title-bar">
-            <span>Editar Perfil</span>
-            <div class="title-bar-buttons">
-                <div class="title-bar-button minimize"></div>
-                <div class="title-bar-button maximize"></div>
-                <div class="title-bar-button close" onclick="window.location.href='/home'"></div>
-            </div>
-        </div>
-
-        <div class="content">
-            <h2>Editar Perfil</h2>
-            <form action="procesarEdicion.jsp" method="post">
-                <!-- Pasamos el token en un campo oculto para la edición -->
-                <input type="hidden" name="token" value="<%= token %>">
-                
-                <label for="nombre">Nombre: </label>
-                <input class="input-field" type="text" name="nombre" value="<%= nombre %>"><br>
-                
-                <label for="apellidos">Apellidos: </label>
-                <input class="input-field" type="text" name="apellidos" value="<%= apellidos %>"><br>
-                
-                <label for="email">Email: </label>
-                <input class="input-field" type="email" name="email" value="<%= email %>"><br>
-                
-                <label for="usuario">Usuario: </label>
-                <input class="input-field" type="text" name="usuario" value="<%= usuario %>"><br>
-                
-                <button class="edit-button" type="submit">Guardar Cambios</button>
-            </form>
-        </div>
-    </div>
+    <h2>Editar Perfil</h2>
+    <form action="procesarEdicion.jsp" method="post">
+        <input type="hidden" name="token" value="<%= token %>">
+        
+        <label for="nombre">Nombre: </label>
+        <input type="text" name="nombre" value="<%= nombre %>"><br>
+        
+        <label for="apellidos">Apellidos: </label>
+        <input type="text" name="apellidos" value="<%= apellidos %>"><br>
+        
+        <label for="email">Email: </label>
+        <input type="email" name="email" value="<%= email %>"><br>
+        
+        <label for="usuario">Usuario: </label>
+        <input type="text" name="usuario" value="<%= usuario %>"><br>
+        
+        <button type="submit">Guardar Cambios</button>
+    </form>
 
 </body>
 </html>
-
-<%
-    // El código ya no necesita interactuar con la base de datos
-%>
