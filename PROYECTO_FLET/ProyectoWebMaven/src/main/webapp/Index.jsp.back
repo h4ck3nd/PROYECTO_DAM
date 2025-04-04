@@ -1,0 +1,43 @@
+<%@ page import="com.auth0.jwt.JWT" %>
+<%@ page import="com.auth0.jwt.algorithms.Algorithm" %>
+<%@ page import="com.auth0.jwt.interfaces.DecodedJWT" %>
+<%@ page import="com.auth0.jwt.interfaces.JWTVerifier" %>
+<%@ page import="com.auth0.jwt.exceptions.JWTVerificationException" %>
+
+<%
+String token = request.getParameter("token");
+String usuario = "Invitado";
+String cookie = "No hay cookie";
+
+if (token != null && !token.isEmpty()) {
+    try {
+        Algorithm algorithm = Algorithm.HMAC256("mi_clave_secreta"); // Debe ser la misma que usaste en Python
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        DecodedJWT jwt = verifier.verify(token);
+
+        usuario = jwt.getClaim("usuario").asString();
+        cookie = jwt.getClaim("cookie").asString();
+
+    } catch (JWTVerificationException exception){
+        usuario = "Token inválido";
+    }
+}
+%>
+<html>
+<head>
+    <title>Página de Inicio</title>
+</head>
+<body>
+    <h1>Bienvenido, <%=usuario%></h1>
+    <h1>HOME INDEX</h1>
+    <a href="ProductoControlador?opcion=crearTabla">Crear tabla PRODUCTO</a><br>
+    <a href="logout.jsp">Cerrar sesión</a><br>
+    <p>Cookie: <%=cookie%></p>
+
+    <!-- Botón para editar perfil -->
+    <form action="editarPerfil.jsp" method="get">
+        <input type="hidden" name="cookie" value="<%=cookie%>">
+        <input type="submit" value="Editar Perfil">
+    </form>
+</body>
+</html>
