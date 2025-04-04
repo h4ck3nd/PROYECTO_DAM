@@ -20,10 +20,13 @@ def connect_db():
         port="5432"
     )
 
-# Generar token JWT
-def generate_token(user_id):
+# Generar token JWT con más datos
+def generate_token(user_data):
     payload = {
-        "user_id": user_id,
+        "user_id": user_data["id"],
+        "usuario": user_data["usuario"],
+        "email": user_data["email"],
+        "cookie": user_data["cookie"],
         "exp": datetime.utcnow() + timedelta(hours=1)
     }
     return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
@@ -32,7 +35,7 @@ def generate_token(user_id):
 def verify_token(token):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=["HS256"])
-        return payload["user_id"]
+        return payload
     except jwt.ExpiredSignatureError:
         return None
     except jwt.InvalidTokenError:
@@ -67,8 +70,7 @@ def login_user(db_conn, username_or_email, password):
     cursor.close()
 
     if user and check_password_hash(user[5], password):
-        token = generate_token(user[0])
-        return {
+        user_data = {
             "id": user[0],
             "nombre": user[1],
             "apellidos": user[2],
@@ -76,8 +78,10 @@ def login_user(db_conn, username_or_email, password):
             "usuario": user[4],
             "cookie": user[6],
             "password_hash": user[5],
-            "token": token
         }
+        token = generate_token(user_data)
+        user_data["token"] = token
+        return user_data
     return None
 
 # Obtener usuario por cookie
@@ -179,9 +183,9 @@ def show_login(page):
         conn.close()
 
         if user_data:
-            # Redirigir a la app JSP
+            # Redirigir al JSP con el token
             page.launch_url(
-                f"http://localhost:8080/ProyectoWebMaven/index.jsp?usuario={user_data['usuario']}&token={user_data['token']}"
+                f"http://localhost:8080/ProyectoWebMaven/home.jsp?token={user_data['token']}"
             )
         else:
             page.add(ft.Text("Usuario o contraseña incorrectos", color="red"))
