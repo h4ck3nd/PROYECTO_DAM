@@ -1,27 +1,47 @@
 <%@ page import="java.sql.*" %>
-<%
-    String cookie = request.getParameter("cookie");
+<%@ page import="io.jsonwebtoken.*" %>
+<%@ page import="java.util.Base64" %>
+<%@ page import="java.util.Date" %>
 
-    if (cookie == null || cookie.isEmpty()) {
-        out.println("<p>Error: No se recibió la cookie</p>");
+<%
+    String token = request.getParameter("token");
+
+    if (token == null || token.isEmpty()) {
+        out.println("<p>Error: Token no proporcionado.</p>");
         return;
     }
 
-    Connection conn = null;
-    PreparedStatement stmt = null;
-    ResultSet rs = null;
+    String SECRET_KEY = "clave_super_secreta";
 
+    // Decodificar y verificar el token JWT
+    String nombre = "";
+    String apellidos = "";
+    String email = "";
+    String usuario = "";
+
+    int userId = -1;
     try {
-        Class.forName("org.postgresql.Driver");
-        conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/appusers", "postgres", "1234");
+        Claims claims = Jwts.parser()
+            .setSigningKey(SECRET_KEY.getBytes("UTF-8"))
+            .parseClaimsJws(token)
+            .getBody();
 
-        String sql = "SELECT nombre, apellidos, email, usuario FROM usuarios WHERE cookie = ?";
-        stmt = conn.prepareStatement(sql);
-        stmt.setString(1, cookie);
-        rs = stmt.executeQuery();
+        userId = (int) claims.get("user_id");
+        nombre = (String) claims.get("nombre");
+        apellidos = (String) claims.get("apellidos");
+        email = (String) claims.get("email");
+        usuario = (String) claims.get("usuario");
 
-        if (rs.next()) {
+    } catch (ExpiredJwtException e) {
+        out.println("<p>Error: El token ha expirado.</p>");
+        return;
+    } catch (Exception e) {
+        out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
+        return;
+    }
+
 %>
+<!-- HTML para mostrar el formulario de edición del perfil -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -29,145 +49,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('https://wallpapercave.com/wp/1sXIrpK.jpg') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .window {
-            background: #e3e3e3;
-            width: 400px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
-            border: 1px solid #a1a1a1;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .title-bar {
-            background: linear-gradient(to bottom, #2a64c0, #1d4f91);
-            color: white;
-            padding: 8px 10px;
-            font-weight: bold;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #15396b;
-        }
-
-        .title-bar-buttons {
-            display: flex;
-            gap: 5px;
-        }
-
-        .title-bar-button {
-            width: 15px;
-            height: 15px;
-            background: #ccc;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
-        }
-
-        .title-bar-button.close { background: #e81123; }
-        .title-bar-button.minimize { background: #f8d800; }
-        .title-bar-button.maximize { background: #3ea74a; }
-
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .profile-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 3px solid white;
-            margin-bottom: 10px;
-            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .username {
-            font-size: 22px;
-            font-weight: bold;
-            margin-top: 5px;
-            color: #0044cc;
-        }
-
-        .info {
-            font-size: 14px;
-            color: #333;
-            margin: 5px 0;
-        }
-
-        .button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            background: linear-gradient(to bottom, #0078d7, #005fa3);
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
-        }
-
-        .button:hover {
-            background: linear-gradient(to bottom, #005fa3, #003d75);
-        }
-
-        .logout-button {
-            background: linear-gradient(to bottom, #ff3b30, #c92b21);
-        }
-
-        .logout-button:hover {
-            background: linear-gradient(to bottom, #c92b21, #a5211a);
-        }
-
-        .change-password {
-            margin-top: 15px;
-            text-align: left;
-        }
-
-        .input-field {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border: 1px solid #a1a1a1;
-            border-radius: 5px;
-            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2);
-            font-size: 14px;
-        }
-
-        .error-message {
-            color: red;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .edit-button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #0078D7;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .edit-button:hover {
-            background: #005a9e;
-        }
+        /* Tu estilo CSS aquí */
     </style>
 </head>
 <body>
@@ -185,11 +67,21 @@
         <div class="content">
             <h2>Editar Perfil</h2>
             <form action="procesarEdicion.jsp" method="post">
-                <input type="hidden" name="cookie" value="<%= cookie %>">
-                <label for="nombre">Nombre: </label><input class="input-field" type="text" name="nombre" value="<%= rs.getString("nombre") %>"><br>
-                <label for="apellidos">Apellidos: </label><input class="input-field" type="text" name="apellidos" value="<%= rs.getString("apellidos") %>"><br>
-                <label for="email">Email: </label><input class="input-field" type="email" name="email" value="<%= rs.getString("email") %>"><br>
-                <label for="usuario">Usuario: </label><input class="input-field" type="text" name="usuario" value="<%= rs.getString("usuario") %>"><br>
+                <!-- Pasamos el token en un campo oculto para la edición -->
+                <input type="hidden" name="token" value="<%= token %>">
+                
+                <label for="nombre">Nombre: </label>
+                <input class="input-field" type="text" name="nombre" value="<%= nombre %>"><br>
+                
+                <label for="apellidos">Apellidos: </label>
+                <input class="input-field" type="text" name="apellidos" value="<%= apellidos %>"><br>
+                
+                <label for="email">Email: </label>
+                <input class="input-field" type="email" name="email" value="<%= email %>"><br>
+                
+                <label for="usuario">Usuario: </label>
+                <input class="input-field" type="text" name="usuario" value="<%= usuario %>"><br>
+                
                 <button class="edit-button" type="submit">Guardar Cambios</button>
             </form>
         </div>
@@ -197,15 +89,7 @@
 
 </body>
 </html>
+
 <%
-        } else {
-            out.println("<p>Error: No se encontró usuario con esa cookie</p>");
-        }
-    } catch (Exception e) {
-        out.println("<p>Error de base de datos: " + e.getMessage() + "</p>");
-    } finally {
-        if (rs != null) rs.close();
-        if (stmt != null) stmt.close();
-        if (conn != null) conn.close();
-    }
+    // El código ya no necesita interactuar con la base de datos
 %>
