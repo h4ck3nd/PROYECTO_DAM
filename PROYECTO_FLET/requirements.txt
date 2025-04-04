@@ -1,4 +1,4 @@
-flask
+flet
 psycopg2-binary
 flask_sqlalchemy
 werkzeug
