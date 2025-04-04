@@ -16,19 +16,20 @@ public class ProductoDAO {
 	private ResultSet resultSet;
 
 	public boolean createTable() {
-		String queryCreate = "CREATE TABLE productos(" 
-				+ "idProducto SERIAL PRIMARY KEY,"
-				+ "nombre VARCHAR(100),"
-				+ "marca VARCHAR(100),"
-				+ "fechaProducto DATE,"
-				+ "fechaActualizacion DATE"
-				+ ");";
+		String queryCreate = "CREATE TABLE producto(" 
+				     + "idProducto serial PRIMARY KEY,"
+				     + "nombre VARCHAR(100),"
+				     + "cantidad int,"
+				     + "precio DECIMAL(5,2),"
+				     + "fechaCreacion DATE,"
+				     + "fechaActualizacion DATE"
+				     + ");";
 		try {
 			sentencia = connection.createStatement();
 			sentencia.executeUpdate(queryCreate);
 			return true;
 		} catch (SQLException e) {
-			System.out.println("Error al crear la tabla productos");
+			System.out.println("Error al crear la tabla producto");
 			e.printStackTrace();
 			return false;
 		}
