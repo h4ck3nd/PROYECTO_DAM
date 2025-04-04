@@ -13,14 +13,14 @@ if (cookie == null) {
 %>
 <html>
 <head>
-<title>Página de Inicio</title>
+<title>PÃ¡gina de Inicio</title>
 </head>
 <body>
 	<h1>
 		Bienvenido,
 		<%=usuario%></h1>
 	<h1>HOME INDEX</h1>
-	<a href="crearTablaProducto?opcion=crearTabla">Craer tabla PRODUCTO</a>
+	<a href="ProductoControlador?opcion=crearTabla">Crear tabla PRODUCTO</a>
 	<br>
 	<a href="logout.jsp">Cerrar sesion</a>
 	<br>
@@ -28,7 +28,7 @@ if (cookie == null) {
 		Cookie:
 		<%=cookie%></p>
 
-	<!-- Botón para editar perfil -->
+	<!-- BotÃ³n para editar perfil -->
 	<form action="editarPerfil.jsp" method="get">
 		<input type="hidden" name="cookie" value="<%=cookie%>"> <input
 			type="submit" value="Editar Perfil">
@@ -36,7 +36,7 @@ if (cookie == null) {
 
 	<script>
         function editProfile() {
-            // Redirige al perfil en la aplicación Flet, pasando la cookie para identificar al usuario
+            // Redirige al perfil en la aplicaciÃ³n Flet, pasando la cookie para identificar al usuario
             window.location.href = "http://localhost:4308/edit_profile?cookie=<%=cookie%>
 		";
 		}
