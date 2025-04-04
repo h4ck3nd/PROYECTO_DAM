@@ -17,15 +17,15 @@
     String apellidos = "";
     String email = "";
     String usuario = "";
-
     int userId = -1;
+
     try {
         Claims claims = Jwts.parser()
             .setSigningKey(SECRET_KEY.getBytes("UTF-8"))
             .parseClaimsJws(token)
             .getBody();
 
-        userId = (int) claims.get("user_id");
+        userId = ((Number) claims.get("user_id")).intValue();  // CORRECCIÓN AQUÍ
         nombre = (String) claims.get("nombre");
         apellidos = (String) claims.get("apellidos");
         email = (String) claims.get("email");
