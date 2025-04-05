@@ -1,4 +1,11 @@
 flet
+flask
+jwt
+PyJWT
 psycopg2-binary
 flask_sqlalchemy
 werkzeug
+uuid
+requests
+datetime
+flask_cors
