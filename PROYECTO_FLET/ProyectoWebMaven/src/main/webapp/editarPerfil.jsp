@@ -25,7 +25,7 @@
             .parseClaimsJws(token)
             .getBody();
 
-        userId = ((Number) claims.get("user_id")).intValue();  // CORRECCI√ìN AQU√ç
+        userId = ((Number) claims.get("user_id")).intValue();  // CORRECCI”N AQUÕ
         nombre = (String) claims.get("nombre");
         apellidos = (String) claims.get("apellidos");
         email = (String) claims.get("email");
@@ -35,7 +35,7 @@
         out.println("<p>Error: El token ha expirado.</p>");
         return;
     } catch (Exception e) {
-        out.println("<p>Error: Token inv√°lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token inv·lido (" + e.getMessage() + ")</p>");
         return;
     }
 %>
@@ -46,66 +46,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Perfil</title>
-    <style>
-    	* {
-          font-family: 'JetBrains Mono', monospace;
-          /*font-family: 'console', monospace;*/
-    	}
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: url('img/BackgroundProfile.jpg') no-repeat center center fixed;
-            background-size: cover;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-
-        .profile-container {
-            width: 400px;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            margin: auto;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-        }
-
-        input {
-            width: 90%;
-            padding: 8px;
-            margin: 10px 0;
-            border-radius: 5px;
-            border: none;
-            font-size: 14px;
-        }
-
-        button {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: #0078D7;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        button:hover {
-            background: #005a9e;
-        }
-
-        .cancel-button {
-            background: #ff4757;
-        }
-
-        .cancel-button:hover {
-            background: #e84118;
-        }
-    </style>
+    <link rel="stylesheet" href="css/editarPerfil.css">
 </head>
 <body>
 	
@@ -126,15 +67,15 @@
 	        <label for="usuario">Usuario: </label>
 	        <input type="text" name="usuario" value="<%= usuario %>"><br>
 	        
-	        <!-- Nuevo campo para la contrase√±a actual -->
-		    <label for="currentPassword">Contrase√±a Actual: </label>
+	        <!-- Nuevo campo para la contraseÒa actual -->
+		    <label for="currentPassword">ContraseÒa Actual: </label>
 		    <input type="password" name="currentPassword"><br>
 		
-		    <!-- Nueva contrase√±a y confirmaci√≥n de nueva contrase√±a -->
-		    <label for="newPassword">Nueva Contrase√±a: </label>
+		    <!-- Nueva contraseÒa y confirmaciÛn de nueva contraseÒa -->
+		    <label for="newPassword">Nueva ContraseÒa: </label>
 		    <input type="password" name="newPassword"><br>
 		
-		    <label for="confirmNewPassword">Confirmar Nueva Contrase√±a: </label>
+		    <label for="confirmNewPassword">Confirmar Nueva ContraseÒa: </label>
 		    <input type="password" name="confirmNewPassword"><br>
 	        
 	        <button type="submit">Guardar Cambios</button>

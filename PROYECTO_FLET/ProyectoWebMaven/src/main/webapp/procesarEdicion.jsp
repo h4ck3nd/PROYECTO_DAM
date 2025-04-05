@@ -9,7 +9,7 @@
     String newPassword = request.getParameter("newPassword");
     String confirmNewPassword = request.getParameter("confirmNewPassword");
 
-    // VerificaciÃ³n de campos
+    // Verificación de campos
     if (token == null || nombre == null || apellidos == null || email == null || usuario == null ||
         token.isEmpty() || nombre.isEmpty() || apellidos.isEmpty() || email.isEmpty() || usuario.isEmpty()) {
         response.sendRedirect("index.jsp?mensaje=Error: Todos los campos son obligatorios");
@@ -17,7 +17,7 @@
     }
 
     if (newPassword != null && !newPassword.isEmpty() && !newPassword.equals(confirmNewPassword)) {
-        response.sendRedirect("editarPerfil.jsp?token=" + token + "&mensaje=Las contraseÃ±as no coinciden");
+        response.sendRedirect("editarPerfil.jsp?token=" + token + "&mensaje=Las contraseñas no coinciden");
         return;
     }
 
@@ -45,7 +45,7 @@
             os.write(input, 0, input.length);
         }
 
-        // DespuÃ©s de enviar la peticiÃ³n
+        // Después de enviar la petición
         BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
         StringBuilder responseText = new StringBuilder();
         String responseLine;

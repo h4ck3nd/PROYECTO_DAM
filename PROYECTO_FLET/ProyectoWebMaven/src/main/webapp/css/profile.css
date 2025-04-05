@@ -1,0 +1,132 @@
+* {
+	font-family: 'JetBrains Mono', monospace;
+	/*font-family: 'console', monospace;*/
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	background: url('../img/BackgroundProfile.jpg') no-repeat center center
+		fixed;
+	background-size: cover;
+	margin: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.window {
+	background: #e3e3e3;
+	width: 400px;
+	border-radius: 10px;
+	box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+	border: 1px solid #a1a1a1;
+	position: relative;
+	overflow: hidden;
+}
+
+.title-bar {
+	background: linear-gradient(to bottom, #2a64c0, #1d4f91);
+	color: white;
+	padding: 8px 10px;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	border-bottom: 1px solid #15396b;
+}
+
+.title-bar-buttons {
+	display: flex;
+	gap: 5px;
+}
+
+.title-bar-button {
+	width: 15px;
+	height: 15px;
+	background: #ccc;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.title-bar-button.close {
+	background: #e81123;
+}
+
+.title-bar-button.minimize {
+	background: #f8d800;
+}
+
+.title-bar-button.maximize {
+	background: #3ea74a;
+}
+
+.content {
+	padding: 20px;
+	text-align: center;
+}
+
+.profile-img {
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: 3px solid white;
+	margin-bottom: 10px;
+	box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.username {
+	font-size: 22px;
+	font-weight: bold;
+	margin-top: 5px;
+	color: #0044cc;
+}
+
+.info {
+	font-size: 14px;
+	color: #333;
+	margin: 5px 0;
+}
+
+.button {
+	width: 100%;
+	padding: 10px;
+	margin-top: 10px;
+	background: linear-gradient(to bottom, #0078d7, #005fa3);
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-weight: bold;
+	cursor: pointer;
+	box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.button:hover {
+	background: linear-gradient(to bottom, #005fa3, #003d75);
+}
+
+.logout-button {
+	background: linear-gradient(to bottom, #ff3b30, #c92b21);
+}
+
+.logout-button:hover {
+	background: linear-gradient(to bottom, #c92b21, #a5211a);
+}
+
+.edit-button {
+	margin-top: 15px;
+	padding: 10px 20px;
+	background: #0078D7;
+	color: white;
+	border: none;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: bold;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.edit-button:hover {
+	background: #005a9e;
+}
