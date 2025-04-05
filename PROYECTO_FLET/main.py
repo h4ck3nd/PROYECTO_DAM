@@ -4,7 +4,6 @@ from flet import Page
 import psycopg2
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
-from datetime import datetime, timedelta
 import re
 import jwt
 from datetime import datetime, timedelta
@@ -150,6 +149,25 @@ def update_user_password(db_conn, user_id, new_password):
     db_conn.commit()
     cursor.close()
 
+
+def update_user_profile_and_password(db_conn, user_id, nombre, apellidos, email, usuario, new_password=None):
+    cursor = db_conn.cursor()
+
+    # Si se ha proporcionado una nueva contraseña, actualizarla
+    if new_password:
+        new_password_hash = generate_password_hash(new_password)
+        cursor.execute("""
+            UPDATE usuarios SET password_hash = %s WHERE id = %s
+        """, (new_password_hash, user_id))
+
+    # Actualizar los otros campos (nombre, apellidos, email, usuario)
+    cursor.execute("""
+        UPDATE usuarios SET nombre = %s, apellidos = %s, email = %s, usuario = %s WHERE id = %s
+    """, (nombre, apellidos, email, usuario, user_id))
+
+    db_conn.commit()
+    cursor.close()
+
 # Función para eliminar la cookie de la base de datos
 def remove_cookie_from_db(cookie_value):
     conn = connect_db()
@@ -220,6 +238,8 @@ def actualizar_datos():
         apellidos = data.get("apellidos")
         email = data.get("email")
         usuario = data.get("usuario")
+        current_password = data.get("currentPassword")
+        new_password = data.get("newPassword")
 
         if not nombre or not apellidos or not email or not usuario:
             return jsonify({"error": "Faltan datos"}), 400
@@ -230,10 +250,19 @@ def actualizar_datos():
             conn.close()
             return jsonify({"error": "Usuario no encontrado"}), 404
 
+        # Verificar la contraseña actual
+        if current_password and not check_password_hash(user["password_hash"], current_password):
+            conn.close()
+            return jsonify({"error": "Contraseña actual incorrecta"}), 400
+
+        # Si se proporciona una nueva contraseña, actualizarla
+        if new_password:
+            update_user_password(conn, user_id, new_password)
+
         update_user_profile(conn, user_id, nombre, apellidos, email, usuario)
         conn.close()
 
-        # Ahora que los datos están actualizados, generamos un nuevo token con los datos actualizados
+        # Generar un nuevo token con los datos actualizados
         new_payload = {
             "user_id": user_id,
             "nombre": nombre,
@@ -249,12 +278,12 @@ def actualizar_datos():
         # Generar el nuevo token
         nuevo_token = jwt.encode(new_payload, SECRET_KEY, algorithm="HS256")
 
-        # Devolvemos el nuevo token en la respuesta
+        # Devolver el nuevo token en la respuesta
         return jsonify({"token": nuevo_token})
 
     except Exception as e:
         # Capturamos el error completo y lo mostramos
-        print(f"Error al procesar la solicitud: {str(e)}")  # Registra el error completo en el log
+        print(f"Error al procesar la solicitud: {str(e)}")
         return jsonify({"error": "Hubo un problema en el servidor", "mensaje": str(e)}), 500
 
 # Habilitar CORS para permitir solicitudes desde cualquier origen
