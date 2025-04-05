@@ -25,7 +25,7 @@
             .parseClaimsJws(token)
             .getBody();
 
-        userId = ((Number) claims.get("user_id")).intValue();  // CORRECCI�N AQU�
+        userId = ((Number) claims.get("user_id")).intValue();  // CORRECCIÓN AQUÍ
         nombre = (String) claims.get("nombre");
         apellidos = (String) claims.get("apellidos");
         email = (String) claims.get("email");
@@ -35,7 +35,7 @@
         out.println("<p>Error: El token ha expirado.</p>");
         return;
     } catch (Exception e) {
-        out.println("<p>Error: Token inv�lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
         return;
     }
 %>
@@ -125,6 +125,17 @@
 	        
 	        <label for="usuario">Usuario: </label>
 	        <input type="text" name="usuario" value="<%= usuario %>"><br>
+	        
+	        <!-- Nuevo campo para la contraseña actual -->
+		    <label for="currentPassword">Contraseña Actual: </label>
+		    <input type="password" name="currentPassword"><br>
+		
+		    <!-- Nueva contraseña y confirmación de nueva contraseña -->
+		    <label for="newPassword">Nueva Contraseña: </label>
+		    <input type="password" name="newPassword"><br>
+		
+		    <label for="confirmNewPassword">Confirmar Nueva Contraseña: </label>
+		    <input type="password" name="confirmNewPassword"><br>
 	        
 	        <button type="submit">Guardar Cambios</button>
 	    </form>
