@@ -285,3 +285,33 @@ body {
 .footer a:hover {
 	text-decoration: underline;
 }
+
+/* TAGS ESTILOS */
+
+.tag {
+	display: inline-block;
+	margin-right: 5px;
+	font-size: 0.8rem;
+	color: rgba(255, 140, 0, 0.8); /* naranja fuerte translúcido */
+	background-color: rgba(255, 140, 0, 0.1); /* fondo naranja muy suave */
+	padding: 2px 6px;
+	border-radius: 6px;
+}
+.tags {
+	margin-top: 5px;
+}
+
+.selected {
+    background-color: rgba(0, 123, 255, 0.5); /* Azul claro y transparente */
+    color: white;  /* Texto en blanco */
+    border-radius: 4px;
+    padding: 5px 10px;
+    display: inline-block;
+}
+
+.unselected {
+    color: white;  /* Texto en blanco */
+    background-color: transparent; /* Sin fondo */
+    padding: 5px 10px;
+    display: inline-block;
+}

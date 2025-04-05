@@ -72,7 +72,7 @@
     <div class="nav-container">
         <nav class="nav-menu">
             <a href="#">Todo</a>
-            <a href="#">Imágenes</a>
+            <a href="#">Imagenes</a>
             <a href="#">Videos</a>
             <a href="#">Noticias</a>
             <a href="#">Maps</a>
@@ -80,60 +80,63 @@
         </nav>
 
         <div class="dropdown-menu" id="dropdown-menu">
-            <div class="dropdown-item">
-                Tipos <i class="fas fa-chevron-down"></i>
-                <div class="submenu-container">
-                    <div class="submenu">
-                        <a href="#">SQL INJECTION</a>
-                        <a href="#">XSS</a>
-                        <a href="#">SSRF</a>
-                        <a href="#">CSRF</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown-item">
-                Dificultad <i class="fas fa-chevron-down"></i>
-                <div class="submenu-container">
-                    <div class="submenu">
-                        <a href="#">Facil</a>
-                        <a href="#">Media</a>
-                        <a href="#">Dificil</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown-item">
-                Recientes <i class="fas fa-chevron-down"></i>
-                <div class="submenu-container">
-                    <div class="submenu">
-                        <a href="#">IDOR</a>
-                        <a href="#">XXE</a>
-                        <a href="#">RFI</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="dropdown-item">
-                Creadores <i class="fas fa-chevron-down"></i>
-                <div class="submenu-container">
-                    <div class="submenu">
-                        <a href="#">Pingüino de Mario</a>
-                        <a href="#">S4vitar</a>
-                        <a href="#">D1se0</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+		    <div class="dropdown-item" id="types-dropdown">
+		        Tipos <i class="fas fa-chevron-down"></i>
+		        <div class="submenu-container">
+		            <div class="submenu">
+		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="xss">XSS</a>
+		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="sql">SQL INJECTION</a>
+		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="bac">BAC</a>
+		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="csrf">CSRF</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="dropdown-item">
+		        Dificultad <i class="fas fa-chevron-down"></i>
+		        <div class="submenu-container">
+		            <div class="submenu">
+		                <a href="#">Facil</a>
+		                <a href="#">Media</a>
+		                <a href="#">Dificil</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="dropdown-item" id="tags-dropdown">
+		        TAGS <i class="fas fa-chevron-down"></i>
+		        <div class="submenu-container">
+		            <div class="submenu">
+		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="ddbb">DDBB</a>
+		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="html">HTML</a>
+		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="xml">XML</a>
+		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="url">URL</a>
+		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="seguridad">SEGURIDAD</a>
+		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="web">WEB</a>
+		            </div>
+		        </div>
+		    </div>
+		
+		    <div class="dropdown-item">
+		        Creadores <i class="fas fa-chevron-down"></i>
+		        <div class="submenu-container">
+		            <div class="submenu">
+		                <a href="#">Pingüino de Mario</a>
+		                <a href="#">S4vitar</a>
+		                <a href="#">D1se0</a>
+		            </div>
+		        </div>
+		    </div>
+		</div>
     </div>
     <nav class="search-bar">
-        <input type="text" class="search-input" placeholder="Buscar en HackEnd">
-        <div class="search-icons">
-            <a href="#"><i class="fas fa-times"></i></a><!-- Ícono de limpiar -->
-            <a href="#"><i class="fas fa-microphone"></i></a> <!-- Ícono de búsqueda por voz -->
-            <a href="#"><i class="fas fa-camera"></i></a> <!-- Ícono de Google Lens -->
-        </div>
-    </nav>
+	    <input type="text" class="search-input" id="liveSearch" placeholder="Buscar en HackEnd">
+	    <div class="search-icons">
+	        <a href="#" id="clearSearch"><i class="fas fa-times"></i></a>
+	        <a href="#"><i class="fas fa-microphone"></i></a>
+	        <a href="#"><i class="fas fa-camera"></i></a>
+	    </div>
+	</nav>
     <div class="results"></div> <!-- Aquí se inyecta el contenido dinámico -->
 
     <!-- PAGINACIÓN -->
@@ -154,6 +157,87 @@
     </div>
 
     <script>
+ // ⬇️ Definimos estos dos globalmente para que estén disponibles en todo el script
+    const resultsContainer = document.querySelector('.results');
+    const searchResults = [
+    	{ url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende técnicas de pentesting y explotación de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso"] },
+    	{ url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafíos reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto"] },
+    	{ url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme"] },
+    	{ url: "https://mozilla.org", title: "Guía de Seguridad Web - Mozilla", description: "Buenas prácticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web"] }
+    ];
+
+    document.addEventListener("DOMContentLoaded", function () {
+	    console.log("DOM completamente cargado");
+
+	    if (!resultsContainer) {
+	        console.error("No se encontró el contenedor .results");
+	        return;
+	    } else {
+	        console.log("Contenedor .results encontrado");
+	    }
+
+	    console.log("Total de resultados:", searchResults.length);
+
+	    searchResults.forEach((result, index) => {
+	        console.log(`Procesando resultado ${index + 1}: ${result.title}`);
+
+	        const resultItem = document.createElement('div');
+	        resultItem.classList.add('result-item');
+
+	        const favicon = document.createElement('img');
+	        favicon.src = result.image;
+	        favicon.onerror = function () {
+	            favicon.src = '../img/default.png';
+	        };
+	        favicon.alt = "favicon";
+	        favicon.classList.add('result-icon');
+
+	        const resultContent = document.createElement('div');
+	        resultContent.classList.add('result-content');
+
+	        const urlSpan = document.createElement('span');
+	        urlSpan.classList.add('url');
+	        urlSpan.textContent = result.url;
+
+	        const titleLink = document.createElement('a');
+	        titleLink.href = result.url;
+	        titleLink.target = "_blank";
+	        titleLink.textContent = result.title;
+
+	        const descriptionParagraph = document.createElement('p');
+	        descriptionParagraph.textContent = result.description;
+
+	        // Crear contenedor de tags debajo de la descripción
+	        const tagsContainer = document.createElement('div');
+	        tagsContainer.classList.add('tags');
+	        
+	        result.tags.forEach(tag => {
+	            const tagSpan = document.createElement('span');
+	            tagSpan.classList.add('tag');
+	            tagSpan.textContent = `#${tag}`;
+	            tagsContainer.appendChild(tagSpan);
+	        });
+
+	        // Añadir todos los elementos
+	        resultContent.appendChild(urlSpan);
+	        resultContent.appendChild(document.createElement('br'));
+	        resultContent.appendChild(titleLink);
+	        resultContent.appendChild(descriptionParagraph);
+	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripción)
+
+	        resultItem.appendChild(favicon);
+	        resultItem.appendChild(resultContent);
+
+	        resultsContainer.appendChild(resultItem);
+	        
+	        searchInput.value = "";
+	        searchInput.dispatchEvent(new Event("input"));
+	    });
+
+	    console.log("Todos los resultados fueron agregados al DOM");
+	});
+
+    
 	// Función para obtener el identificador de la página actual desde la URL
 	function getPageIdentifier() {
 		const urlParams = new URLSearchParams(window.location.search);
