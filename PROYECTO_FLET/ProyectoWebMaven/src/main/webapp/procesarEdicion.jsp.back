@@ -33,6 +33,7 @@
             os.write(input, 0, input.length);
         }
 
+     // Después de enviar la petición a Flask
         BufferedReader br = new BufferedReader(new InputStreamReader(con.getInputStream(), "utf-8"));
         StringBuilder responseText = new StringBuilder();
         String responseLine;
@@ -40,7 +41,18 @@
             responseText.append(responseLine.trim());
         }
 
-        response.sendRedirect("index.jsp?mensaje=" + responseText.toString());
+        // Parsear el JSON para obtener el nuevo token
+        String nuevoToken = "";
+        try {
+            org.json.JSONObject jsonResponse = new org.json.JSONObject(responseText.toString());
+            nuevoToken = jsonResponse.getString("token");
+        } catch (Exception e) {
+            response.sendRedirect("index.jsp?mensaje=Error al leer token");
+            return;
+        }
+
+        // Redirigir al index con el nuevo token
+        response.sendRedirect("index.jsp?token=" + URLEncoder.encode(nuevoToken, "UTF-8"));
 
     } catch (Exception e) {
         response.sendRedirect("index.jsp?mensaje=Error: " + e.getMessage());
