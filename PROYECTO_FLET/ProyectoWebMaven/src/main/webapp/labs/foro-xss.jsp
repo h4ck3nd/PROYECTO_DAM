@@ -1,12 +1,21 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page import="java.util.*" %>
 <%@ page import="javax.servlet.http.*" %>
-
 <%
-    // Obtener comentario desde parámetro GET o POST (reflejado)
+    // Flag que queremos ocultar y capturar
+    String flag = "CTF{XSS_Vulnerable_Flag_1234}"; // Esta es la flag oculta
+
+    // Obtener comentario desde parámetro GET
     String comentario = request.getParameter("comentario");
     if (comentario == null) {
         comentario = "";
+    }
+
+    // Detectar intento de XSS simple
+    boolean mostrarFlag = false;
+    String comentarioLower = comentario.toLowerCase();
+    if (comentarioLower.contains("<script") || comentarioLower.contains("alert(") || comentarioLower.contains("document.")) {
+        mostrarFlag = true;
     }
 %>
 <!DOCTYPE html>
@@ -54,10 +63,15 @@
       border: 1px solid #333;
       border-radius: 6px;
     }
-    .danger {
-      color: red;
+    #link-inocente {
+      display: none; /* Escondemos el link por defecto */
     }
   </style>
+
+  <%-- Solo incluir el archivo JS si se detecta intento XSS --%>
+  <% if (mostrarFlag) { %>
+    <script src="../js/foro-xss.js"></script>
+  <% } %>
 </head>
 <body>
   <div class="header">
@@ -75,8 +89,15 @@
     <% if (!comentario.trim().isEmpty()) { %>
       <div class="comentario">
         <strong>Usuario anónimo dice:</strong><br><br>
-        <!-- XSS reflejado: sin escape -->
+        <!-- Reflejo sin sanitizar -->
         <%= comentario %>
+      </div>
+    <% } %>
+
+    <%-- Enlace oculto con la flag, solo si detectamos intento de XSS --%>
+    <% if (mostrarFlag) { %>
+      <div style="display:none;">
+        <a id="link-inocente" data-flag="<%= flag %>"></a>
       </div>
     <% } %>
   </div>
