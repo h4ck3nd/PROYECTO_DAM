@@ -8,16 +8,29 @@
 <%@ page import="io.jsonwebtoken.ExpiredJwtException" %>
 <%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="javax.servlet.http.Cookie" %>
 
 <%
-    String token = request.getParameter("token");
+    // Buscar el token en las cookies
+    String token = null;
+    Cookie[] cookies = request.getCookies();  // Obtener todas las cookies
 
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())) {
+                token = cookie.getValue();  // Si encontramos la cookie con el nombre "token", obtenemos su valor
+                break;
+            }
+        }
+    }
+
+    // Verificar si el token está presente
     if (token == null || token.isEmpty()) {
         out.println("<p>Error: Token no proporcionado.</p>");
         return;
     }
 
-    String SECRET_KEY = "clave_super_secreta";
+    String SECRET_KEY = "clave_super_secreta";  // La misma clave secreta que usaste para firmar el JWT
 
     String nombre = "";
     String apellidos = "";
@@ -28,11 +41,13 @@
     String cookie = "";
 
     try {
+        // Intentar decodificar el JWT utilizando io.jsonwebtoken (JJWT)
         Claims claims = Jwts.parser()
-            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))
-            .parseClaimsJws(token)
-            .getBody();
+            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))  // Usamos la clave secreta
+            .parseClaimsJws(token)  // Parseamos el token JWT
+            .getBody();  // Extraemos el cuerpo del token (claims)
 
+        // Obtener los valores del token (JWT)
         nombre = (String) claims.get("nombre");
         apellidos = (String) claims.get("apellidos");
         rol = (String) claims.get("rol");
@@ -44,8 +59,11 @@
     } catch (ExpiredJwtException e) {
         out.println("<p>Error: El token ha expirado.</p>");
         return;
-    } catch (Exception e) {
+    } catch (JWTVerificationException e) {
         out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
+        return;
+    } catch (Exception e) {
+        out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
         return;
     }
 %>
@@ -65,7 +83,7 @@
             <div class="title-bar-buttons">
                 <div class="title-bar-button minimize"></div>
                 <div class="title-bar-button maximize"></div>
-                <div class="title-bar-button close" onclick="window.location.href='home_directory/home.jsp?token=<%= token %>&page=0'"></div>
+                <div class="title-bar-button close" onclick="window.location.href='home_directory/home.jsp?page=0'"></div>
             </div>
         </div>
 
@@ -79,11 +97,10 @@
             <p class="info">Último Login: <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesión" %></p>
 
             <form action="editarPerfil.jsp" method="get">
-                <input type="hidden" name="token" value="<%= token %>">
                 <button class="edit-button" type="submit">Editar Perfil</button>
             </form>
 
-            <button class="logout-button button" onclick="window.location.href='logout.jsp?token=<%= token %>'">Cerrar sesión</button>
+            <button class="logout-button button" onclick="window.location.href='logout.jsp'">Cerrar sesión</button>
 
             <p class="info">Cookie: <%= cookie %></p>
             <p class="info">Token: <%= token %></p>

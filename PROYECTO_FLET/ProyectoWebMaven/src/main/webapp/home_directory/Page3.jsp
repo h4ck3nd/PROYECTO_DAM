@@ -8,16 +8,29 @@
 <%@ page import="io.jsonwebtoken.ExpiredJwtException" %>
 <%@ page import="java.nio.charset.StandardCharsets" %>
 <%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="javax.servlet.http.Cookie" %>
 
 <%
-    String token = request.getParameter("token");
+    // Buscar el token en las cookies
+    String token = null;
+    Cookie[] cookies = request.getCookies();  // Obtener todas las cookies
 
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())) {
+                token = cookie.getValue();  // Si encontramos la cookie con el nombre "token", obtenemos su valor
+                break;
+            }
+        }
+    }
+
+    // Verificar si el token está presente
     if (token == null || token.isEmpty()) {
         out.println("<p>Error: Token no proporcionado.</p>");
         return;
     }
 
-    String SECRET_KEY = "clave_super_secreta";
+    String SECRET_KEY = "clave_super_secreta";  // La misma clave secreta que usaste para firmar el JWT
 
     String nombre = "";
     String apellidos = "";
@@ -28,11 +41,13 @@
     String cookie = "";
 
     try {
+        // Intentar decodificar el JWT utilizando io.jsonwebtoken (JJWT)
         Claims claims = Jwts.parser()
-            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))
-            .parseClaimsJws(token)
-            .getBody();
+            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))  // Usamos la clave secreta
+            .parseClaimsJws(token)  // Parseamos el token JWT
+            .getBody();  // Extraemos el cuerpo del token (claims)
 
+        // Obtener los valores del token (JWT)
         nombre = (String) claims.get("nombre");
         apellidos = (String) claims.get("apellidos");
         rol = (String) claims.get("rol");
@@ -44,11 +59,15 @@
     } catch (ExpiredJwtException e) {
         out.println("<p>Error: El token ha expirado.</p>");
         return;
+    } catch (JWTVerificationException e) {
+        out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
+        return;
     } catch (Exception e) {
-        out.println("<p>Error: Token invÃ¡lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
         return;
     }
 %>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -62,7 +81,7 @@
 
     <header class="header">
         <!--<div class="profile-icon"></div>-->
-        <a href="../profile.jsp?token=<%= token %>">
+        <a href="../profile.jsp">
 	  <img src="../img/Profile.png" class="profile-image" alt="Imagen Usuario">
 	   </a>
 	   <img src="../img/hackendLogoUpdateTransparent.png" class="logo-image" alt="Imagen Logo">
@@ -139,31 +158,35 @@
 	</nav>
     <div class="results"></div> <!-- AquÃ­ se inyecta el contenido dinÃ¡mico -->
 
-    <!-- PAGINACIÃN -->
+    <!-- PAGINACIÓN -->
     <div class="pagination">
         <div class="google-logo">G<span>o</span><span>o</span><span>o</span><span>o</span><span>o</span><span>o</span>gle</div>
-        <a href="home.jsp?token=<%= token %>&page=0" class="page-link">1</a>
-        <a href="Page1.jsp?token=<%= token %>&page=1" class="page-link">2</a>
-        <a href="Page2.jsp?token=<%= token %>&page=2" class="page-link">3</a>
-        <a href="Page3.jsp?token=<%= token %>&page=3" class="page-link">4</a>
-        <a href="Page4.jsp?token=<%= token %>&page=4" class="page-link">5</a>
+        <a href="home.jsp?page=0" class="page-link">1</a>
+        <a href="Page1.jsp?page=1" class="page-link">2</a>
+        <a href="Page2.jsp?page=2" class="page-link">3</a>
+        <a href="Page3.jsp?page=3" class="page-link">4</a>
+        <a href="Page4.jsp?page=4" class="page-link">5</a>
         <button class="next" id="nextPageButton">Siguiente</button>
     </div>
 
     <!-- FOOTER -->
     <div class="footer">
-        <p>Los resultados estÃ¡n personalizados - <a href="#">Probar sin personalizaciÃ³n</a></p>
-        <p><a href="#">Ayuda</a> â¢ <a href="#">Enviar comentarios</a> â¢ <a href="#">Privacidad</a> â¢ <a href="#">TÃ©rminos</a></p>
+        <p>Los resultados están personalizados - <a href="#">Probar sin personalización</a></p>
+        <p><a href="#">Ayuda</a> • <a href="#">Enviar comentarios</a> • <a href="#">Privacidad</a> • <a href="#">Términos</a></p>
     </div>
-
-    <script>
- // ⬇️ Definimos estos dos globalmente para que estén disponibles en todo el script
+	
+	<script>
+	// ⬇️ Definimos estos dos globalmente para que estén disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-		{ url: "http://xss.com", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cómo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad"] },
-		{ url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking"] },
-		{ url: "http://csrf.com", title: "Hacking Web Technologies 3ª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detección de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro"] },
-		{ url: "http://bac.com", title: "Pack Hacking Web", description: "Formación avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web"] }
+	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cómo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad"] },
+	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking"] },
+	    { url: "http://csrf.com", title: "Hacking Web Technologies 3ª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detección de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro"] },
+	    { url: "http://bac.com", title: "Pack Hacking Web", description: "Formación avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac"] },
+	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende técnicas de pentesting y explotación de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso"] },
+	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafíos reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto"] },
+	    { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme"] },
+	    { url: "https://mozilla.org", title: "Guía de Seguridad Web - Mozilla", description: "Buenas prácticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web"] }
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
@@ -237,7 +260,6 @@
 	    console.log("Todos los resultados fueron agregados al DOM");
 	});
 
-	
 	// Función para obtener el identificador de la página actual desde la URL
 	function getPageIdentifier() {
 		const urlParams = new URLSearchParams(window.location.search);
@@ -279,26 +301,26 @@
 		// Si estamos en home.jsp, redirige a Page1.jsp
 		if (currentPage === 0) {
 			nextPageNumber = 1;
-			window.location.href = `Page1.jsp?token=<%= token %>&page=1`;
+			window.location.href = `Page1.jsp?page=1`;
 		}
 		// Si estamos en Page1.jsp, redirige a Page2.jsp
 		else if (currentPage === 1) {
 			nextPageNumber = 2;
-			window.location.href = `Page2.jsp?token=<%= token %>&page=2`;
+			window.location.href = `Page2.jsp?page=2`;
 		}
 		// Si estamos en Page2.jsp, redirige a Page3.jsp
 		else if (currentPage === 2) {
 			nextPageNumber = 3;
-			window.location.href = `Page3.jsp?token=<%= token %>&page=3`;
+			window.location.href = `Page3.jsp?page=3`;
 		}
 		// Si estamos en Page3.jsp, redirige a Page4.jsp
 		else if (currentPage === 3) {
 			nextPageNumber = 4;
-			window.location.href = `Page4.jsp?token=<%= token %>&page=4`;
+			window.location.href = `Page4.jsp?page=4`;
 		}
 		// Si estamos en Page4.jsp, redirige a home.jsp
 		else if (currentPage === 4) {
-			window.location.href = `home.jsp?token=<%= token %>&page=0`;
+			window.location.href = `home.jsp?page=0`;
 		}
 	}
 

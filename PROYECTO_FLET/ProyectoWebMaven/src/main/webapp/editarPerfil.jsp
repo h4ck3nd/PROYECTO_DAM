@@ -1,9 +1,22 @@
 <%@ page import="io.jsonwebtoken.*" %>
 <%@ page import="java.util.Base64" %>
 <%@ page import="java.util.Date" %>
+<%@ page import="javax.servlet.http.Cookie" %>
 
 <%
-    String token = request.getParameter("token");
+    String token = null;
+
+    // Buscar el token en las cookies
+    Cookie[] cookies = request.getCookies();  // Obtener todas las cookies
+
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())) {
+                token = cookie.getValue();  // Si encontramos la cookie con el nombre "token", obtenemos su valor
+                break;
+            }
+        }
+    }
 
     if (token == null || token.isEmpty()) {
         out.println("<p>Error: Token no proporcionado.</p>");
@@ -54,7 +67,7 @@
 	    <h2>Editar Perfil</h2>
 	    <form action="procesarEdicion.jsp" method="post">
 	        <input type="hidden" name="token" value="<%= token %>">
-	        
+	         
 	        <label for="nombre">Nombre: </label>
 	        <input type="text" name="nombre" value="<%= nombre %>"><br>
 	        
@@ -66,8 +79,8 @@
 	        
 	        <label for="usuario">Usuario: </label>
 	        <input type="text" name="usuario" value="<%= usuario %>"><br>
-	        
-	        <!-- Nuevo campo para la contraseña actual -->
+	         
+		    <!-- Nuevo campo para la contraseña actual -->
 		    <label for="currentPassword">Contraseña Actual: </label>
 		    <input type="password" name="currentPassword"><br>
 		
@@ -77,7 +90,7 @@
 		
 		    <label for="confirmNewPassword">Confirmar Nueva Contraseña: </label>
 		    <input type="password" name="confirmNewPassword"><br>
-	        
+	         
 	        <button type="submit">Guardar Cambios</button>
 	    </form>
     </div>
