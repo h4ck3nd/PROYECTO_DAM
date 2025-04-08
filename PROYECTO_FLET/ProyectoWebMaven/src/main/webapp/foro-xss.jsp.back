@@ -470,134 +470,211 @@ to {
   // Además, el código implementa medidas de seguridad para evitar ataques XSS y asegura que los comentarios no contengan contenido malicioso.
   // Los comentarios se crean dinámicamente en la página sin necesidad de recargarla, y el contador de "me gusta" se actualiza en tiempo real.
   
+  // `commentForm`: Selecciona el formulario de la página donde los usuarios escriben y envían sus comentarios.
   const commentForm = document.getElementById('comment-form');
+  //`newComment`: Selecciona el campo de texto en el que los usuarios escriben su comentario.
   const newComment = document.getElementById('new-comment');
+  // `forumContainer`: Selecciona el contenedor donde se mostrarán todos los comentarios publicados por los usuarios.
   const forumContainer = document.querySelector('.forum-container');
+  // `popupMessage`: Selecciona el mensaje emergente (popup) que se muestra cuando se detecta un posible ataque XSS o algún error en el comentario.
   const popupMessage = document.getElementById('popup-message');
 
   // Función para detectar XSS (básica)
   function detectarXSS(texto) {
+	  // 1. `regexXSS`: Se define una expresión regular para buscar posibles etiquetas <script> que pueden ser utilizadas en ataques XSS.
     const regexXSS = /<script.*?>.*?<\/script>/gi;
+ // 2. `if (regexXSS.test(texto))`: Se verifica si el texto proporcionado contiene código JavaScript dentro de una etiqueta <script>, lo cual es un posible ataque XSS.
     if (regexXSS.test(texto)) {
+    	// 3. `popupMessage.style.display = 'block';`: Si se detecta un ataque XSS, muestra un mensaje emergente (popup) para advertir al usuario.
       popupMessage.style.display = 'block';
+      // 4. `setTimeout(() => { popupMessage.style.display = 'none'; }, 3000);`: Después de 3 segundos, oculta automáticamente el popup.
       setTimeout(() => { popupMessage.style.display = 'none'; }, 3000);
+   // 5. `throw new Error("XSS detectado");`: Lanza un error con el mensaje "XSS detectado", lo que detiene la ejecución del código en caso de que se detecte un ataque.
       throw new Error("XSS detectado");
     }
   }
 
 //Función para escapar los caracteres especiales
   function escapeHTML(str) {
+	// 1. `str.replace(/[&<>"']/g, function (match) {...})`: Utiliza el método `replace` con una expresión regular que busca los caracteres especiales (&, <, >, ", ') dentro de la cadena `str`.
+	  //    Esta expresión regular reemplaza todos los caracteres especiales por sus representaciones de entidad HTML para prevenir posibles problemas de seguridad (como XSS).
     return str.replace(/[&<>"']/g, function (match) {
+    	// 2. `const escapeChars = {...}`: Se define un objeto `escapeChars` que mapea cada carácter especial a su entidad HTML correspondiente.
       const escapeChars = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#39;'
+        '&': '&amp;', // El símbolo '&' se reemplaza por '&amp;'.
+        '<': '&lt;', // El símbolo '<' se reemplaza por '&lt;'.
+        '>': '&gt;', // El símbolo '>' se reemplaza por '&gt;'.
+        '"': '&quot;',// El símbolo '"' se reemplaza por '&quot;'.
+        "'": '&#39;'// El símbolo "'" se reemplaza por '&#39;'.
       };
+   // 3. `return escapeChars[match];`: Devuelve el valor correspondiente al carácter encontrado (es decir, su entidad HTML) de acuerdo al objeto `escapeChars`.
       return escapeChars[match];
     });
   }
 
 //Función para manejar la creación del comentario
-commentForm.addEventListener('submit', function (e) {
-  e.preventDefault();
-  const text = newComment.value.trim();
+  commentForm.addEventListener('submit', function (e) {
+    
+    // 1. `e.preventDefault();`: Evita que el formulario se envíe de forma tradicional (lo cual recargaría la página). Esto es importante para evitar que la página se recargue al enviar el comentario.
+    e.preventDefault();
+    
+    // 2. `const text = newComment.value.trim();`: Obtiene el texto que el usuario ha escrito en el campo de comentario (`newComment`), y usa `.trim()` para eliminar los espacios al principio y al final del texto.
+    const text = newComment.value.trim();
+    
+    // 3. `console.log('Comentario:', text);`: Imprime el comentario en la consola del navegador para depuración, verificando que el texto ingresado es el correcto.
+    console.log('Comentario:', text);  // Verifica el valor del comentario
 
-  console.log('Comentario:', text);  // Verifica el valor del comentario
+    // 4. `if (text !== "") {...}`: Comprueba si el comentario no está vacío. Si el comentario tiene texto, entra en el bloque `if`, de lo contrario se salta.
+    if (text !== "") {
+      try {
+        
+        // 5. `const commentDiv = document.createElement('section');`: Crea un nuevo elemento `section`, que representará el bloque del comentario en la página.
+        const commentDiv = document.createElement('section');
+        commentDiv.className = 'comment-box';  // Asigna la clase CSS 'comment-box' al bloque para poder estilizarlo.
 
-  if (text !== "") {
-    try {
-      // Crear el comentario y agregarlo al contenedor
-      const commentDiv = document.createElement('section');
-      commentDiv.className = 'comment-box';
+        // 6. Crear la estructura HTML del comentario:
+        const userInfoDiv = document.createElement('div');
+        userInfoDiv.className = 'user-info';  // Div para la información del usuario (avatar, nombre, tiempo).
+        
+        const avatarImg = document.createElement('img');
+        avatarImg.src = "https://i.imgur.com/1X4R6Yt.png";  // Imagen de avatar del usuario.
+        avatarImg.className = 'avatar';  // Asigna la clase CSS 'avatar' para estilizarla.
+        
+        const usernameSpan = document.createElement('span');
+        usernameSpan.className = 'username';  // Clase para el nombre de usuario.
+        usernameSpan.textContent = 'Tú';  // Nombre de usuario fijo por ahora (podría ser dinámico).
+        
+        const timeSpan = document.createElement('span');
+        timeSpan.className = 'time';  // Clase para la visualización del tiempo del comentario.
+        timeSpan.textContent = 'hace pocos segundos';  // Tiempo estático, podría cambiar dinámicamente.
 
-      // Crear la estructura HTML del comentario
-      const userInfoDiv = document.createElement('div');
-      userInfoDiv.className = 'user-info';
-      const avatarImg = document.createElement('img');
-      avatarImg.src = "https://i.imgur.com/1X4R6Yt.png";
-      avatarImg.className = 'avatar';
-      const usernameSpan = document.createElement('span');
-      usernameSpan.className = 'username';
-      usernameSpan.textContent = 'Tú';
-      const timeSpan = document.createElement('span');
-      timeSpan.className = 'time';
-      timeSpan.textContent = 'hace pocos segundos';
+        // 7. Se agregan los elementos de avatar, nombre de usuario y tiempo al `userInfoDiv`.
+        userInfoDiv.appendChild(avatarImg);
+        userInfoDiv.appendChild(usernameSpan);
+        userInfoDiv.appendChild(document.createTextNode(' • '));  // Separador visual.
+        userInfoDiv.appendChild(timeSpan);
 
-      userInfoDiv.appendChild(avatarImg);
-      userInfoDiv.appendChild(usernameSpan);
-      userInfoDiv.appendChild(document.createTextNode(' • '));
-      userInfoDiv.appendChild(timeSpan);
+        // 8. `const commentTextP = document.createElement('p');`: Crea un elemento `p` para contener el texto del comentario.
+        const commentTextP = document.createElement('p');
+        commentTextP.className = 'comment-text';  // Asigna la clase CSS 'comment-text' al bloque de texto.
+        commentTextP.textContent = text;  // Asigna el contenido del comentario al bloque `p` creado.
 
-      const commentTextP = document.createElement('p');
-      commentTextP.className = 'comment-text';
-      commentTextP.textContent = text;  // Usamos textContent para asegurar que el texto se muestre correctamente
+        // 9. Crear las acciones del comentario: botones de "me gusta" y "responder".
+        const commentActionsDiv = document.createElement('div');
+        commentActionsDiv.className = 'comment-actions';  // Clase para las acciones del comentario (botones).
 
-      const commentActionsDiv = document.createElement('div');
-      commentActionsDiv.className = 'comment-actions';
-      const likeButton = document.createElement('button');
-      likeButton.type = 'button';
-      likeButton.innerHTML = '👍 <span class="like-count">0</span>';
-      const replyButton = document.createElement('button');
-      replyButton.type = 'button';
-      replyButton.textContent = 'Responder';
+        const likeButton = document.createElement('button');
+        likeButton.type = 'button';  // Define el botón como un botón estándar, no un botón de envío.
+        likeButton.innerHTML = '👍 <span class="like-count">0</span>';  // Agrega el ícono de "me gusta" con un contador de 0.
 
-      commentActionsDiv.appendChild(likeButton);
-      commentActionsDiv.appendChild(replyButton);
+        const replyButton = document.createElement('button');
+        replyButton.type = 'button';  // Define el botón como un botón estándar, no un botón de envío.
+        replyButton.textContent = 'Responder';  // Agrega el texto "Responder" al botón.
 
-      commentDiv.appendChild(userInfoDiv);
-      commentDiv.appendChild(commentTextP);
-      commentDiv.appendChild(commentActionsDiv);
+        // 10. Se agregan los botones de "me gusta" y "responder" al contenedor de acciones.
+        commentActionsDiv.appendChild(likeButton);
+        commentActionsDiv.appendChild(replyButton);
 
-      forumContainer.appendChild(commentDiv);  // Añadir el comentario al contenedor
-      newComment.value = ""; // Limpiar campo de texto
-    } catch (error) {
-      console.warn("Comentario bloqueado:", error.message);
+        // 11. Se agregan todos los elementos creados al contenedor del comentario (`commentDiv`).
+        commentDiv.appendChild(userInfoDiv);  // Agregar la información del usuario.
+        commentDiv.appendChild(commentTextP);  // Agregar el texto del comentario.
+        commentDiv.appendChild(commentActionsDiv);  // Agregar las acciones (botones).
+
+        // 12. Se agrega el nuevo bloque de comentario a `forumContainer` para que se muestre en la página.
+        forumContainer.appendChild(commentDiv);
+
+        // 13. Limpiar el campo de texto después de que el comentario ha sido enviado.
+        newComment.value = ""; // Limpiar campo de texto
+
+      } catch (error) {
+        // 14. Si ocurre algún error al crear el comentario (por ejemplo, un error de JavaScript), se muestra un mensaje en la consola.
+        console.warn("Comentario bloqueado:", error.message);
+      }
+    } else {
+      // 15. Si el comentario está vacío, se muestra un mensaje de advertencia en la consola.
+      console.warn("El comentario está vacío.");
     }
-  } else {
-    console.warn("El comentario está vacío.");
-  }
-});
+  });
 
-  // Incrementar contador de likes
+//Incrementar contador de likes
   forumContainer.addEventListener('click', function (e) {
+    
+    // 1. `if (e.target.closest('button')) {`: Verifica si el clic fue realizado en un botón (si el objetivo del clic es un botón o un elemento dentro de un botón).
+    //    `e.target` es el elemento donde ocurrió el clic. `closest('button')` busca el primer ancestro que sea un botón (si el clic es dentro de un botón).
     if (e.target.closest('button')) {
+      
+      // 2. `const button = e.target.closest('button');`: Obtiene el botón que fue clickeado (el elemento más cercano de tipo `button`).
       const button = e.target.closest('button');
+      
+      // 3. `const likeSpan = button.querySelector('.like-count');`: Busca dentro del botón el elemento `span` que contiene la clase `like-count`, donde se muestra el número de "me gusta".
       const likeSpan = button.querySelector('.like-count');
+      
+      // 4. `if (likeSpan) {`: Verifica que el `span` con la clase `like-count` exista en el botón (es decir, que el botón sea el de "me gusta" y no otro tipo de botón).
       if (likeSpan) {
+        
+        // 5. `let likeCount = parseInt(likeSpan.textContent);`: Obtiene el número de "me gusta" del `span`, lo convierte de texto a número entero utilizando `parseInt()`.
         let likeCount = parseInt(likeSpan.textContent);
+        
+        // 6. `likeCount++;`: Incrementa el valor de `likeCount` en 1, aumentando el contador de "me gusta".
         likeCount++;
+        
+        // 7. `likeSpan.textContent = likeCount;`: Actualiza el contenido del `span` con el nuevo valor del contador, reflejando el incremento en la interfaz.
         likeSpan.textContent = likeCount;
       }
     }
   });
 
-// Mostrar el popup de solución
-function showPopup() {
-document.getElementById("popup-solution").classList.remove("hidden");
-}
 
-//Cerrar el popup de solución
-function closePopup() {
-document.getElementById("popup-solution").classList.add("hidden");
-}
+//Mostrar el popup de solución
+  function showPopup() {
+    // 1. `document.getElementById("popup-solution").classList.remove("hidden");`: 
+    //    Obtiene el elemento con el ID "popup-solution" (el popup de solución) y elimina la clase "hidden" para hacer que el popup sea visible.
+    document.getElementById("popup-solution").classList.remove("hidden");
+  }
 
-//Agregar la funcionalidad para aumentar el contador de "me gusta"
-document.addEventListener('DOMContentLoaded', () => {
-        const forumContainer = document.querySelector('.forum-container');
+  // Cerrar el popup de solución
+  function closePopup() {
+    // 2. `document.getElementById("popup-solution").classList.add("hidden");`: 
+    //    Obtiene el elemento con el ID "popup-solution" y agrega la clase "hidden", ocultando el popup de solución.
+    document.getElementById("popup-solution").classList.add("hidden");
+  }
 
-        forumContainer.addEventListener('click', function (e) {
-            if (e.target.closest('button')) {
-                const button = e.target.closest('button');
-                const likeSpan = button.querySelector('.like-count');
-                let likeCount = parseInt(likeSpan.textContent);
+  // Agregar la funcionalidad para aumentar el contador de "me gusta"
+  document.addEventListener('DOMContentLoaded', () => {
+    // 3. `const forumContainer = document.querySelector('.forum-container');`: 
+    //    Obtiene el contenedor de los comentarios (el elemento con la clase "forum-container").
+    const forumContainer = document.querySelector('.forum-container');
 
-                likeCount++;
-                likeSpan.textContent = likeCount;
-            }
-        });
+    // 4. `forumContainer.addEventListener('click', function (e) {`: 
+    //    Agrega un "listener" (escuchador de eventos) para detectar los clics dentro del contenedor de los comentarios.
+    forumContainer.addEventListener('click', function (e) {
+      
+      // 5. `if (e.target.closest('button')) {`: 
+      //    Verifica si el clic se realizó dentro de un botón (utilizando `closest` para detectar si el clic ocurrió dentro de un botón).
+      if (e.target.closest('button')) {
+        
+        // 6. `const button = e.target.closest('button');`: 
+        //    Obtiene el botón en el que se hizo clic, utilizando `closest` para asegurarse de que se trata de un botón (ya sea "me gusta" o cualquier otro).
+        const button = e.target.closest('button');
+        
+        // 7. `const likeSpan = button.querySelector('.like-count');`: 
+        //    Dentro del botón, busca el `span` con la clase `like-count`, que contiene el número de "me gusta".
+        const likeSpan = button.querySelector('.like-count');
+        
+        // 8. `let likeCount = parseInt(likeSpan.textContent);`: 
+        //    Extrae el número de "me gusta" desde el contenido del `span` y lo convierte en un número entero utilizando `parseInt()`.
+        let likeCount = parseInt(likeSpan.textContent);
+        
+        // 9. `likeCount++;`: 
+        //    Incrementa el contador de "me gusta" en 1.
+        likeCount++;
+        
+        // 10. `likeSpan.textContent = likeCount;`: 
+        //    Actualiza el contenido del `span` con el nuevo valor del contador de "me gusta".
+        likeSpan.textContent = likeCount;
+      }
     });
+  });
   </script>
 </body>
 </html>
