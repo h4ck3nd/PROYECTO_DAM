@@ -452,4 +452,4 @@ def flet_app(page: Page):
     page.title = "Sistema de Login"
     show_login(page)
 
-ft.app(target=flet_app, view=ft.WEB_BROWSER, port=30050, host="0.0.0.0")
+ft.app(target=flet_app, view=ft.WEB_BROWSER, port=30050)
