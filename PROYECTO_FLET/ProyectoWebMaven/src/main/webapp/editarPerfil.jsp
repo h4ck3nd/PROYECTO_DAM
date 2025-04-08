@@ -1,12 +1,18 @@
-<%@ page import="io.jsonwebtoken.*" %>
-<%@ page import="java.util.Base64" %>
-<%@ page import="java.util.Date" %>
+<%@ page import="com.auth0.jwt.JWT" %>
+<%@ page import="com.auth0.jwt.algorithms.Algorithm" %>
+<%@ page import="com.auth0.jwt.interfaces.DecodedJWT" %>
+<%@ page import="com.auth0.jwt.interfaces.JWTVerifier" %>
+<%@ page import="com.auth0.jwt.exceptions.JWTVerificationException" %>
+<%@ page import="io.jsonwebtoken.Claims" %>
+<%@ page import="io.jsonwebtoken.Jwts" %>
+<%@ page import="io.jsonwebtoken.ExpiredJwtException" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="javax.servlet.http.Cookie" %>
 
 <%
-    String token = null;
-
     // Buscar el token en las cookies
+    String token = null;
     Cookie[] cookies = request.getCookies();  // Obtener todas las cookies
 
     if (cookies != null) {
@@ -18,37 +24,48 @@
         }
     }
 
+    // Verificar si el token est√° presente
     if (token == null || token.isEmpty()) {
-        out.println("<p>Error: Token no proporcionado.</p>");
+        // Si no hay token, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     }
 
-    String SECRET_KEY = "clave_super_secreta";
+    String SECRET_KEY = "clave_super_secreta";  // La misma clave secreta que usaste para firmar el JWT
 
-    // Decodificar y verificar el token JWT
     String nombre = "";
     String apellidos = "";
+    String rol = "";
     String email = "";
+    String ultimoLogin = "";
     String usuario = "";
-    int userId = -1;
+    String cookie = "";
 
     try {
+        // Intentar decodificar el JWT utilizando io.jsonwebtoken (JJWT)
         Claims claims = Jwts.parser()
-            .setSigningKey(SECRET_KEY.getBytes("UTF-8"))
-            .parseClaimsJws(token)
-            .getBody();
+            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))  // Usamos la clave secreta
+            .parseClaimsJws(token)  // Parseamos el token JWT
+            .getBody();  // Extraemos el cuerpo del token (claims)
 
-        userId = ((Number) claims.get("user_id")).intValue();  // CORRECCI”N AQUÕ
+        // Obtener los valores del token (JWT)
         nombre = (String) claims.get("nombre");
         apellidos = (String) claims.get("apellidos");
+        rol = (String) claims.get("rol");
         email = (String) claims.get("email");
+        ultimoLogin = (String) claims.get("ultimo_login");
         usuario = (String) claims.get("usuario");
+        cookie = (String) claims.get("cookie");
 
     } catch (ExpiredJwtException e) {
-        out.println("<p>Error: El token ha expirado.</p>");
+        // Si el token ha expirado, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
+        return;
+    } catch (JWTVerificationException e) {
+        out.println("<p>Error: Token inv√°lido (" + e.getMessage() + ")</p>");
         return;
     } catch (Exception e) {
-        out.println("<p>Error: Token inv·lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
         return;
     }
 %>
@@ -80,15 +97,15 @@
 	        <label for="usuario">Usuario: </label>
 	        <input type="text" name="usuario" value="<%= usuario %>"><br>
 	         
-		    <!-- Nuevo campo para la contraseÒa actual -->
-		    <label for="currentPassword">ContraseÒa Actual: </label>
+		    <!-- Nuevo campo para la contrase√±a actual -->
+		    <label for="currentPassword">Contrase√±a Actual: </label>
 		    <input type="password" name="currentPassword"><br>
 		
-		    <!-- Nueva contraseÒa y confirmaciÛn de nueva contraseÒa -->
-		    <label for="newPassword">Nueva ContraseÒa: </label>
+		    <!-- Nueva contrase√±a y confirmaci√≥n de nueva contrase√±a -->
+		    <label for="newPassword">Nueva Contrase√±a: </label>
 		    <input type="password" name="newPassword"><br>
 		
-		    <label for="confirmNewPassword">Confirmar Nueva ContraseÒa: </label>
+		    <label for="confirmNewPassword">Confirmar Nueva Contrase√±a: </label>
 		    <input type="password" name="confirmNewPassword"><br>
 	         
 	        <button type="submit">Guardar Cambios</button>
