@@ -76,6 +76,14 @@
     <title>Buscador Web</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../css/home.css">
+    <style>
+		.logo-image {
+		  width: 120px;
+		  height: 50px;
+		  position: relative;
+		  top: -10px; /* Ajusta el valor según sea necesario */
+		}
+	</style>
 </head>
 <body>
 
@@ -160,7 +168,7 @@
 
    <!-- PAGINACIÃ“N -->
     <div class="pagination">
-        <div class="google-logo">G<span>o</span><span>o</span><span>o</span><span>o</span><span>o</span><span>o</span>gle</div>
+        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
         <a href="home.jsp?page=0" class="page-link">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>

@@ -76,6 +76,14 @@
     <title>Buscador Web</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="../css/home.css">
+	<style>
+		.logo-image {
+		  width: 120px;
+		  height: 50px;
+		  position: relative;
+		  top: -10px; /* Ajusta el valor seg�n sea necesario */
+		}
+	</style>
 </head>
 <body>
 
@@ -160,7 +168,7 @@
 
     <!-- PAGINACIÓN -->
     <div class="pagination">
-        <div class="google-logo">G<span>o</span><span>o</span><span>o</span><span>o</span><span>o</span><span>o</span>gle</div>
+        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
         <a href="home.jsp?page=0" class="page-link">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>
@@ -179,6 +187,7 @@
 	// ⬇️ Definimos estos dos globalmente para que estén disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
+		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/hackend.png", tags: ["principal", "web", "hackend"] },
 	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cómo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad"] },
 	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking"] },
 	    { url: "http://csrf.com", title: "Hacking Web Technologies 3ª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detección de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro"] },
