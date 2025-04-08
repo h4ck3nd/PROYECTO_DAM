@@ -27,7 +27,7 @@
     // Verificar si el token está presente
     if (token == null || token.isEmpty()) {
         // Si no hay token, redirigir al logout.jsp
-        response.sendRedirect("http://localhost:8080/ProyectoMaven/logout.jsp");
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     }
 
