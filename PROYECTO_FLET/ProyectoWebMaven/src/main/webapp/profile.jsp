@@ -24,9 +24,10 @@
         }
     }
 
-    // Verificar si el token está presente
+    // Verificar si el token estÃ¡ presente
     if (token == null || token.isEmpty()) {
-        out.println("<p>Error: Token no proporcionado.</p>");
+        // Si no hay token, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     }
 
@@ -57,10 +58,11 @@
         cookie = (String) claims.get("cookie");
 
     } catch (ExpiredJwtException e) {
-        out.println("<p>Error: El token ha expirado.</p>");
+        // Si el token ha expirado, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
-        out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token invÃ¡lido (" + e.getMessage() + ")</p>");
         return;
     } catch (Exception e) {
         out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
@@ -94,13 +96,13 @@
             <p class="info">Nombre: <%= nombre %></p>
             <p class="info">Apellido: <%= apellidos %></p>
             <p class="info">Rol: <%= rol %></p>
-            <p class="info">Último Login: <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesión" %></p>
+            <p class="info">Ãšltimo Login: <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesiÃ³n" %></p>
 
             <form action="editarPerfil.jsp" method="get">
                 <button class="edit-button" type="submit">Editar Perfil</button>
             </form>
 
-            <button class="logout-button button" onclick="window.location.href='logout.jsp'">Cerrar sesión</button>
+            <button class="logout-button button" onclick="window.location.href='logout.jsp'">Cerrar sesiÃ³n</button>
 
             <p class="info">Cookie: <%= cookie %></p>
             <p class="info">Token: <%= token %></p>
