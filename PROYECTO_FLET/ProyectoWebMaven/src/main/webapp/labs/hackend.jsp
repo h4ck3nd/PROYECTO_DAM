@@ -1,9 +1,80 @@
+<%@ page import="com.auth0.jwt.JWT" %>
+<%@ page import="com.auth0.jwt.algorithms.Algorithm" %>
+<%@ page import="com.auth0.jwt.interfaces.DecodedJWT" %>
+<%@ page import="com.auth0.jwt.interfaces.JWTVerifier" %>
+<%@ page import="com.auth0.jwt.exceptions.JWTVerificationException" %>
+<%@ page import="io.jsonwebtoken.Claims" %>
+<%@ page import="io.jsonwebtoken.Jwts" %>
+<%@ page import="io.jsonwebtoken.ExpiredJwtException" %>
+<%@ page import="java.nio.charset.StandardCharsets" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="javax.servlet.http.Cookie" %>
+
+<%
+    // Buscar el token en las cookies
+    String token = null;
+    Cookie[] cookies = request.getCookies();  // Obtener todas las cookies
+
+    if (cookies != null) {
+        for (Cookie cookie : cookies) {
+            if ("token".equals(cookie.getName())) {
+                token = cookie.getValue();  // Si encontramos la cookie con el nombre "token", obtenemos su valor
+                break;
+            }
+        }
+    }
+
+    // Verificar si el token estÃ¡ presente
+    if (token == null || token.isEmpty()) {
+        // Si no hay token, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
+        return;
+    }
+
+    String SECRET_KEY = "clave_super_secreta";  // La misma clave secreta que usaste para firmar el JWT
+
+    String nombre = "";
+    String apellidos = "";
+    String rol = "";
+    String email = "";
+    String ultimoLogin = "";
+    String usuario = "";
+    String cookie = "";
+
+    try {
+        // Intentar decodificar el JWT utilizando io.jsonwebtoken (JJWT)
+        Claims claims = Jwts.parser()
+            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))  // Usamos la clave secreta
+            .parseClaimsJws(token)  // Parseamos el token JWT
+            .getBody();  // Extraemos el cuerpo del token (claims)
+
+        // Obtener los valores del token (JWT)
+        nombre = (String) claims.get("nombre");
+        apellidos = (String) claims.get("apellidos");
+        rol = (String) claims.get("rol");
+        email = (String) claims.get("email");
+        ultimoLogin = (String) claims.get("ultimo_login");
+        usuario = (String) claims.get("usuario");
+        cookie = (String) claims.get("cookie");
+
+    } catch (ExpiredJwtException e) {
+        // Si el token ha expirado, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
+        return;
+    } catch (JWTVerificationException e) {
+        out.println("<p>Error: Token invÃ¡lido (" + e.getMessage() + ")</p>");
+        return;
+    } catch (Exception e) {
+        out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>HACKEND - Aprende Hacking Ético</title>
+  <title>HACKEND - Aprende Hacking Ã‰tico</title>
   <style>
     * {
   margin: 0;
@@ -184,22 +255,22 @@ footer {
     <header class="hero">
       <div class="hero-content">
         <h1>HACKEND</h1>
-        <p>Domina el Hacking Web Ético desde cero hasta experto en entornos CTF controlados.</p>
+        <p>Domina el Hacking Web Ã‰tico desde cero hasta experto en entornos CTF controlados.</p>
         <a href="#cursos" class="btn-cta">Ver Cursos</a>
       </div>
     </header>
   
     <section class="about" id="about">
-      <h2>¿Qué es el Hacking Web Ético?</h2>
-      <p>El hacking ético web consiste en identificar y solucionar vulnerabilidades en aplicaciones web de forma legal y responsable. Aprenderás técnicas utilizadas por profesionales para fortalecer la seguridad de los sistemas.</p>
+      <h2>Â¿QuÃ© es el Hacking Web Ã‰tico?</h2>
+      <p>El hacking Ã©tico web consiste en identificar y solucionar vulnerabilidades en aplicaciones web de forma legal y responsable. AprenderÃ¡s tÃ©cnicas utilizadas por profesionales para fortalecer la seguridad de los sistemas.</p>
     </section>
   
     <section class="benefits" id="benefits">
-      <h2>¿Por qué aprender Hacking Web Ético?</h2>
+      <h2>Â¿Por quÃ© aprender Hacking Web Ã‰tico?</h2>
       <ul>
         <li>Alta demanda laboral en ciberseguridad.</li>
-        <li>Desarrollo de habilidades técnicas avanzadas.</li>
-        <li>Contribución a un internet más seguro.</li>
+        <li>Desarrollo de habilidades tÃ©cnicas avanzadas.</li>
+        <li>ContribuciÃ³n a un internet mÃ¡s seguro.</li>
         <li>Oportunidades de carrera como pentester o analista de seguridad.</li>
       </ul>
     </section>
@@ -208,16 +279,16 @@ footer {
       <h2>Nuestros Cursos</h2>
       <div class="course-grid">
         <div class="course-card">
-          <h3>Introducción al Hacking Web</h3>
-          <p>Curso para principiantes donde aprenderás los fundamentos del hacking web y las herramientas básicas.</p>
+          <h3>IntroducciÃ³n al Hacking Web</h3>
+          <p>Curso para principiantes donde aprenderÃ¡s los fundamentos del hacking web y las herramientas bÃ¡sicas.</p>
         </div>
         <div class="course-card">
           <h3>Hacking Web Intermedio</h3>
-          <p>Profundiza en técnicas como inyecciones SQL, XSS avanzado y explotación de vulnerabilidades complejas.</p>
+          <p>Profundiza en tÃ©cnicas como inyecciones SQL, XSS avanzado y explotaciÃ³n de vulnerabilidades complejas.</p>
         </div>
         <div class="course-card">
           <h3>Hacking Web Avanzado</h3>
-          <p>Enfrenta desafíos reales en entornos CTF diseñados para simular escenarios del mundo real.</p>
+          <p>Enfrenta desafÃ­os reales en entornos CTF diseÃ±ados para simular escenarios del mundo real.</p>
         </div>
       </div>
     </section>
@@ -227,11 +298,11 @@ footer {
       <div class="lab-grid">
         <div class="lab-card">
           <h3>CTF para Principiantes</h3>
-          <p>Practica con retos básicos para familiarizarte con el entorno y las técnicas esenciales.</p>
+          <p>Practica con retos bÃ¡sicos para familiarizarte con el entorno y las tÃ©cnicas esenciales.</p>
         </div>
         <div class="lab-card">
           <h3>CTF Intermedio</h3>
-          <p>Desafíos de dificultad media que pondrán a prueba tus conocimientos adquiridos.</p>
+          <p>DesafÃ­os de dificultad media que pondrÃ¡n a prueba tus conocimientos adquiridos.</p>
         </div>
         <div class="lab-card">
           <h3>CTF Avanzado</h3>
@@ -243,35 +314,35 @@ footer {
     <section class="testimonials" id="testimonios">
       <h2>Testimonios</h2>
       <div class="testimonial">
-        <p>"Gracias a CyberHack Lab, ahora trabajo como analista de seguridad en una empresa líder."</p>
-        <h4>- Juan Pérez</h4>
+        <p>"Gracias a CyberHack Lab, ahora trabajo como analista de seguridad en una empresa lÃ­der."</p>
+        <h4>- Juan PÃ©rez</h4>
       </div>
       <div class="testimonial">
-        <p>"Los laboratorios CTF me ayudaron a mejorar mis habilidades prácticas de manera significativa."</p>
-        <h4>- María Gómez</h4>
+        <p>"Los laboratorios CTF me ayudaron a mejorar mis habilidades prÃ¡cticas de manera significativa."</p>
+        <h4>- MarÃ­a GÃ³mez</h4>
       </div>
     </section>
   
     <section class="faq" id="faq">
       <h2>Preguntas Frecuentes</h2>
       <div class="faq-item">
-        <button class="faq-question">¿Necesito experiencia previa?</button>
+        <button class="faq-question">Â¿Necesito experiencia previa?</button>
         <div class="faq-answer">No, ofrecemos cursos desde nivel principiante hasta avanzado.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">¿Qué herramientas utilizaré?</button>
-        <div class="faq-answer">Usarás herramientas como Burp Suite, SQLmap y navegadores con extensiones especializadas.</div>
+        <button class="faq-question">Â¿QuÃ© herramientas utilizarÃ©?</button>
+        <div class="faq-answer">UsarÃ¡s herramientas como Burp Suite, SQLmap y navegadores con extensiones especializadas.</div>
       </div>
       <div class="faq-item">
-        <button class="faq-question">¿Los laboratorios son seguros?</button>
-        <div class="faq-answer">Sí, están diseñados en entornos controlados para garantizar una práctica segura.</div>
+        <button class="faq-question">Â¿Los laboratorios son seguros?</button>
+        <div class="faq-answer">SÃ­, estÃ¡n diseÃ±ados en entornos controlados para garantizar una prÃ¡ctica segura.</div>
       </div>
     </section>
   
     <section class="cta-final">
-        <h2>Tu viaje en el hacking web comienza aquí</h2>
-        <p>No necesitas experiencia previa. Solo curiosidad, ganas de aprender y pasión por descubrir lo que otros ocultan. Únete ahora a nuestros laboratorios y conviértete en parte de la élite cibernética.</p>
-        <p><strong>Haz clic en "Iniciar Curso" y comienza tu transformación hoy.</strong></p>
+        <h2>Tu viaje en el hacking web comienza aquÃ­</h2>
+        <p>No necesitas experiencia previa. Solo curiosidad, ganas de aprender y pasiÃ³n por descubrir lo que otros ocultan. Ãšnete ahora a nuestros laboratorios y conviÃ©rtete en parte de la Ã©lite cibernÃ©tica.</p>
+        <p><strong>Haz clic en "Iniciar Curso" y comienza tu transformaciÃ³n hoy.</strong></p>
         <a href="http://localhost:30050/" class="btn-cta">Iniciar Curso</a>
       </section>
       <br><br>
