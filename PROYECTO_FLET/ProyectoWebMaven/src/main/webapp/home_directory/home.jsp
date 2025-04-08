@@ -27,7 +27,7 @@
     // Verificar si el token está presente
     if (token == null || token.isEmpty()) {
         // Si no hay token, redirigir al logout.jsp
-        response.sendRedirect("http://localhost:8080/ProyectoMaven/logout.jsp");
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     }
 
@@ -59,7 +59,7 @@
 
     } catch (ExpiredJwtException e) {
         // Si el token ha expirado, redirigir al logout.jsp
-        response.sendRedirect("http://localhost:8080/ProyectoMaven/logout.jsp");
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
         out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
