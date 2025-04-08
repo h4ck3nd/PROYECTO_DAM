@@ -24,9 +24,10 @@
         }
     }
 
-    // Verificar si el token est· presente
+    // Verificar si el token est√° presente
     if (token == null || token.isEmpty()) {
-        out.println("<p>Error: Token no proporcionado.</p>");
+        // Si no hay token, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     }
 
@@ -57,10 +58,11 @@
         cookie = (String) claims.get("cookie");
 
     } catch (ExpiredJwtException e) {
-        out.println("<p>Error: El token ha expirado.</p>");
+        // Si el token ha expirado, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
-        out.println("<p>Error: Token inv·lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token inv√°lido (" + e.getMessage() + ")</p>");
         return;
     } catch (Exception e) {
         out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
@@ -71,9 +73,9 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>AnimaciÛn</title>
+<title>Animaci√≥n</title>
 <link rel="stylesheet" href="css/animation.css">
-<!-- Redirigir autom·ticamente despuÈs de 4 segundos -->
+<!-- Redirigir autom√°ticamente despu√©s de 4 segundos -->
 <meta http-equiv="refresh" content="4; url=home_directory/home.jsp">
 </head>
 <body>
