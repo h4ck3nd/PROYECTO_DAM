@@ -26,7 +26,8 @@
 
     // Verificar si el token está presente
     if (token == null || token.isEmpty()) {
-        out.println("<p>Error: Token no proporcionado.</p>");
+        // Si no hay token, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoMaven/logout.jsp");
         return;
     }
 
@@ -57,7 +58,8 @@
         cookie = (String) claims.get("cookie");
 
     } catch (ExpiredJwtException e) {
-        out.println("<p>Error: El token ha expirado.</p>");
+        // Si el token ha expirado, redirigir al logout.jsp
+        response.sendRedirect("http://localhost:8080/ProyectoMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
         out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
@@ -81,7 +83,7 @@
 		  width: 120px;
 		  height: 50px;
 		  position: relative;
-		  top: -10px; /* Ajusta el valor seg�n sea necesario */
+		  top: -10px; /* Ajusta el valor según sea necesario */
 		}
 	</style>
 </head>
@@ -148,7 +150,7 @@
 		        Creadores <i class="fas fa-chevron-down"></i>
 		        <div class="submenu-container">
 		            <div class="submenu">
-		                <a href="#">Pingüino de Mario</a>
+		                <a href="#">PingÃ¼ino de Mario</a>
 		                <a href="#">S4vitar</a>
 		                <a href="#">D1se0</a>
 		            </div>
@@ -164,9 +166,9 @@
 	        <a href="#"><i class="fas fa-camera"></i></a>
 	    </div>
 	</nav>
-    <div class="results"></div> <!-- Aquí se inyecta el contenido dinámico -->
+    <div class="results"></div> <!-- AquÃ­ se inyecta el contenido dinÃ¡mico -->
 
-   <!-- PAGINACIÓN -->
+   <!-- PAGINACIÃ“N -->
     <div class="pagination">
         <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
         <a href="home.jsp?page=0" class="page-link">1</a>
@@ -179,29 +181,29 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <p>Los resultados están personalizados - <a href="#">Probar sin personalización</a></p>
-        <p><a href="#">Ayuda</a> • <a href="#">Enviar comentarios</a> • <a href="#">Privacidad</a> • <a href="#">Términos</a></p>
+        <p>Los resultados estÃ¡n personalizados - <a href="#">Probar sin personalizaciÃ³n</a></p>
+        <p><a href="#">Ayuda</a> â€¢ <a href="#">Enviar comentarios</a> â€¢ <a href="#">Privacidad</a> â€¢ <a href="#">TÃ©rminos</a></p>
     </div>
 	
 	<script>
-	// ⬇️ Definimos estos dos globalmente para que estén disponibles en todo el script
+	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cómo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad"] },
+	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cÃ³mo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad"] },
 	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking"] },
-	    { url: "http://csrf.com", title: "Hacking Web Technologies 3ª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detección de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro"] },
-	    { url: "http://bac.com", title: "Pack Hacking Web", description: "Formación avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac"] },
-	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende técnicas de pentesting y explotación de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso"] },
-	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafíos reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto"] },
+	    { url: "http://csrf.com", title: "Hacking Web Technologies 3Âª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detecciÃ³n de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro"] },
+	    { url: "http://bac.com", title: "Pack Hacking Web", description: "FormaciÃ³n avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac"] },
+	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende tÃ©cnicas de pentesting y explotaciÃ³n de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso"] },
+	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafÃ­os reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto"] },
 	    { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme"] },
-	    { url: "https://mozilla.org", title: "Guía de Seguridad Web - Mozilla", description: "Buenas prácticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web"] }
+	    { url: "https://mozilla.org", title: "GuÃ­a de Seguridad Web - Mozilla", description: "Buenas prÃ¡cticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web"] }
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
 	    console.log("DOM completamente cargado");
 
 	    if (!resultsContainer) {
-	        console.error("No se encontró el contenedor .results");
+	        console.error("No se encontrÃ³ el contenedor .results");
 	        return;
 	    } else {
 	        console.log("Contenedor .results encontrado");
@@ -238,7 +240,7 @@
 	        const descriptionParagraph = document.createElement('p');
 	        descriptionParagraph.textContent = result.description;
 
-	        // Crear contenedor de tags debajo de la descripción
+	        // Crear contenedor de tags debajo de la descripciÃ³n
 	        const tagsContainer = document.createElement('div');
 	        tagsContainer.classList.add('tags');
 	        
@@ -249,12 +251,12 @@
 	            tagsContainer.appendChild(tagSpan);
 	        });
 
-	        // Añadir todos los elementos
+	        // AÃ±adir todos los elementos
 	        resultContent.appendChild(urlSpan);
 	        resultContent.appendChild(document.createElement('br'));
 	        resultContent.appendChild(titleLink);
 	        resultContent.appendChild(descriptionParagraph);
-	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripción)
+	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripciÃ³n)
 
 	        resultItem.appendChild(favicon);
 	        resultItem.appendChild(resultContent);
@@ -268,29 +270,29 @@
 	    console.log("Todos los resultados fueron agregados al DOM");
 	});
 
-	// Función para obtener el identificador de la página actual desde la URL
+	// FunciÃ³n para obtener el identificador de la pÃ¡gina actual desde la URL
 	function getPageIdentifier() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const pageParam = urlParams.get('page');
-		// Si no existe el parámetro 'page', asumimos que estamos en home.jsp y comenzamos desde la página 1
+		// Si no existe el parÃ¡metro 'page', asumimos que estamos en home.jsp y comenzamos desde la pÃ¡gina 1
 		return pageParam ? parseInt(pageParam) : 'home';
 	}
 
-	// Función para actualizar el estilo del número de página activo
+	// FunciÃ³n para actualizar el estilo del nÃºmero de pÃ¡gina activo
 	function highlightCurrentPage() {
 		const currentPage = getPageIdentifier();
 		const pageLinks = document.querySelectorAll(".pagination a");
 
-		// Resaltar el número de página activo con subrayado
+		// Resaltar el nÃºmero de pÃ¡gina activo con subrayado
 		pageLinks.forEach(link => {
 			if (parseInt(link.textContent) === currentPage) {
-				link.classList.add("active-page"); // Añade la clase de subrayado
+				link.classList.add("active-page"); // AÃ±ade la clase de subrayado
 			} else {
 				link.classList.remove("active-page");
 			}
 		});
 
-		// Cambiar solo la letra "O" correspondiente a la página activa
+		// Cambiar solo la letra "O" correspondiente a la pÃ¡gina activa
 		const logoSpans = document.querySelectorAll(".google-logo span");
 		logoSpans.forEach((span, index) => {
 			if (index + 1 === currentPage) {
@@ -301,7 +303,7 @@
 		});
 	}
 
-	// Función para redirigir a la siguiente página
+	// FunciÃ³n para redirigir a la siguiente pÃ¡gina
 	function nextPage() {
 		const currentPage = getPageIdentifier();
 		let nextPageNumber;
@@ -332,11 +334,11 @@
 		}
 	}
 
-	// Llamar a la función al cargar la página para resaltar la letra correspondiente
+	// Llamar a la funciÃ³n al cargar la pÃ¡gina para resaltar la letra correspondiente
 	document.addEventListener("DOMContentLoaded", function() {
 		highlightCurrentPage();
 
-		// Añadir un manejador de eventos para el botón "Siguiente"
+		// AÃ±adir un manejador de eventos para el botÃ³n "Siguiente"
 		document.getElementById("nextPageButton").addEventListener("click", nextPage);
 	});
 	</script>
