@@ -42,7 +42,7 @@ video.background-video {
 	width: 32px;
 	height: 32px;
 	background:
-		url('https://png.pngtree.com/png-vector/20220513/ourmid/pngtree-3d-vector-arrow-cursor-png-image_4606160.png')
+		url('../img/cursor.png')
 		no-repeat;
 	background-size: contain;
 	position: absolute;

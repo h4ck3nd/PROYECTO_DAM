@@ -24,7 +24,7 @@
         }
     }
 
-    // Verificar si el token est√° presente
+    // Verificar si el token est· presente
     if (token == null || token.isEmpty()) {
         // Si no hay token, redirigir al logout.jsp
         response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
@@ -62,7 +62,7 @@
         response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
-        out.println("<p>Error: Token inv√°lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token inv·lido (" + e.getMessage() + ")</p>");
         return;
     } catch (Exception e) {
         out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
@@ -73,10 +73,10 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Animaci√≥n</title>
+<title>AnimaciÛn</title>
 <link rel="stylesheet" href="css/animation.css">
-<!-- Redirigir autom√°ticamente despu√©s de 4 segundos -->
-<meta http-equiv="refresh" content="4; url=home_directory/home.jsp">
+<!-- Redirigir autom·ticamente despuÈs de 4 segundos -->
+<meta http-equiv="refresh" content="4; url=home_directory/home.jsp?page=0">
 </head>
 <body>
 
@@ -89,7 +89,7 @@
 
 	<div class="desktop-icon" id="icono-navegador">
 		<img
-			src="https://aprendelibvrefiles.blob.core.windows.net/aprendelibvre-container/course/como_usar_internet/image/i_03_04_l.png"
+			src="img/chrome.png"
 			alt="Icono navegador">
 		<div>Navegador</div>
 	</div>

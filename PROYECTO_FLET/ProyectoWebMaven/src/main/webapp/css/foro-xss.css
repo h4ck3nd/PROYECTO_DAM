@@ -192,7 +192,6 @@ body {
 	transform: scale(1.05);
 }
 
-
 keyframes popupFade {from { opacity:0;
 	transform: translate(-50%, -50%) scale(0.9);
 }
@@ -296,10 +295,10 @@ to {
 	color: #ff0000;
 }
 
-.code-xss {
-	color: #00ffff;
-}
-
 .comment-code {
 	color: green;
+}
+
+.code-xss {
+	color: #00ffff;
 }

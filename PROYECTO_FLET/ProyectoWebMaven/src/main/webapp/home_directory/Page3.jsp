@@ -80,10 +80,16 @@
     <link rel="stylesheet" href="../css/home.css">
     <style>
 		.logo-image {
-		  width: 120px;
+		  width: 140px;
 		  height: 50px;
 		  position: relative;
 		  top: -10px; /* Ajusta el valor según sea necesario */
+		}
+		.result-icon {
+		  width: 25px; /* o el tamaño que quieras */
+		  height: 25px;
+		  object-fit: contain; /* evita que se deforme */
+		  margin-right: 10px; /* opcional, para separación del texto */
 		}
 	</style>
 </head>
@@ -189,14 +195,14 @@
 	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cÃ³mo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad"] },
-	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking"] },
-	    { url: "http://csrf.com", title: "Hacking Web Technologies 3Âª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detecciÃ³n de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro"] },
-	    { url: "http://bac.com", title: "Pack Hacking Web", description: "FormaciÃ³n avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac"] },
-	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende tÃ©cnicas de pentesting y explotaciÃ³n de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso"] },
-	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafÃ­os reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto"] },
-	    { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme"] },
-	    { url: "https://mozilla.org", title: "GuÃ­a de Seguridad Web - Mozilla", description: "Buenas prÃ¡cticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web"] }
+	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cÃ³mo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad", "media", "d1se0"] },
+	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking", "facil", "d1se0"] },
+	    { url: "http://csrf.com", title: "Hacking Web Technologies 3Âª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detecciÃ³n de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro", "facil", "d1se0"] },
+	    { url: "http://bac.com", title: "Pack Hacking Web", description: "FormaciÃ³n avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac", "facil", "d1se0"] },
+	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende tÃ©cnicas de pentesting y explotaciÃ³n de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso", "facil", "s4vitar"] },
+	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafÃ­os reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto", "media", "d1se0"] },
+	    { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme", "facil", "d1se0"] },
+	    { url: "https://mozilla.org", title: "GuÃ­a de Seguridad Web - Mozilla", description: "Buenas prÃ¡cticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web", "media", "d1se0"] }
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
