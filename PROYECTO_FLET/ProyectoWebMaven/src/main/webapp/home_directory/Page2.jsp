@@ -195,14 +195,14 @@
 	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cÃ³mo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad", "facil", "d1se0"] },
-	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking", "media", "d1se0"] },
-	    { url: "http://csrf.com", title: "Hacking Web Technologies 3Âª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detecciÃ³n de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro", "facil", "d1se0"] },
-	    { url: "http://bac.com", title: "Pack Hacking Web", description: "FormaciÃ³n avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac", "media", "d1se0"] },
-	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende tÃ©cnicas de pentesting y explotaciÃ³n de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso", "dificil", "d1se0"] },
-	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafÃ­os reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto", "media", "d1se0"] },
-	    { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme", "facil", "d1se0"] },
-	    { url: "https://mozilla.org", title: "GuÃ­a de Seguridad Web - Mozilla", description: "Buenas prÃ¡cticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web", "facil", "d1se0"] }
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] }
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {

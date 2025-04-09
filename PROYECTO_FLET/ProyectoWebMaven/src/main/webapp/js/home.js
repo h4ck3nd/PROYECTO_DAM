@@ -53,7 +53,7 @@ searchInput.addEventListener("input", function () {
 
         const favicon = document.createElement('img');
         favicon.src = result.image;
-        favicon.onerror = () => favicon.src = '../img/default.png';
+        favicon.onerror = () => favicon.src = '../img/default-error.png';
         favicon.alt = "favicon";
         favicon.classList.add('result-icon');
 
@@ -103,6 +103,8 @@ clearBtn.addEventListener("click", function () {
     searchInput.value = "";
     searchInput.dispatchEvent(new Event("input"));
 });
+
+// ORDENAR POR TIPOS O TAGS
 
 // Variables para almacenar los filtros seleccionados
 let selectedType = null;  // Solo uno por "tipos"
@@ -176,6 +178,10 @@ const filterLinks = document.querySelectorAll('.filter-item');
 filterLinks.forEach(link => {
     link.addEventListener('click', handleFilterClick);
 });
+
+// ORDENAR POR DIFICULTAD O CREADOR
+
+
 
 // La función de renderizado que muestra los resultados
 function renderResults(results) {

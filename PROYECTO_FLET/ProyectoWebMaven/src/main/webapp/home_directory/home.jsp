@@ -189,20 +189,22 @@
         <p>Los resultados estÃ¡n personalizados - <a href="#">Probar sin personalizaciÃ³n</a></p>
         <p><a href="#">Ayuda</a> â€¢ <a href="#">Enviar comentarios</a> â€¢ <a href="#">Privacidad</a> â€¢ <a href="#">TÃ©rminos</a></p>
     </div>
+    
+	<!-- https://www.iemoji.com/view/emoji/932/travel-places/building-construction (Para sacar EMOTES en modo CODIGO) -->
 	
 	<script>
 	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo_hackend.png", tags: ["principal", "web", "hackend", "hackend", "CEO"] },
-	    { url: "../labs/foro-xss.jsp", title: "Curso de Hacking Web", description: "Conoce las bases del hacking web, los principales ataques y cÃ³mo prevenirlos.", image: "../img/xss.png", tags: ["xss", "web", "seguridad", "media", "d1se0"] },
-	    { url: "http://sqlinjection.com", title: "Curso Advanced Web Hacking", description: "Curso de nivel avanzado con laboratorios de hacking y vulnerabilidades reales.", image: "../img/sqlinjection.png", tags: ["sql", "inyeccion", "hacking", "dificil", "d1se0"] },
-	    { url: "http://csrf.com", title: "Hacking Web Technologies 3Âª Silver Edition", description: "Libro sobre fuzzing en aplicaciones web y detecciÃ³n de vulnerabilidades.", image: "../img/csrf.png", tags: ["csrf", "fuzzing", "libro", "facil", "d1se0"] },
-	    { url: "http://bac.com", title: "Pack Hacking Web", description: "FormaciÃ³n avanzada en hacking contra API REST y aplicaciones web.", image: "../img/bac.png", tags: ["api", "rest", "web", "bac"] },
-	    { url: "https://udemy.com", title: "Curso de Pentesting Web", description: "Aprende tÃ©cnicas de pentesting y explotaciÃ³n de vulnerabilidades web.", image: "../img/udemy.png", tags: ["pentesting", "web", "curso", "facil", "d1se0"] },
-	    { url: "https://hackthebox.com", title: "Hack The Box Web Challenges", description: "Resuelve desafÃ­os reales de hacking web en un entorno seguro.", image: "../img/hackthebox.png", tags: ["ctf", "web", "reto", "media", "d1se0"] },
-	    { url: "https://tryhackme.com", title: "Web Hacking en TryHackMe", description: "Plataforma de aprendizaje con laboratorios de hacking web.", image: "../img/tryhackme.png", tags: ["laboratorio", "web", "tryhackme", "dificil", "s4vitar"] },
-	    { url: "https://mozilla.org", title: "GuÃ­a de Seguridad Web - Mozilla", description: "Buenas prÃ¡cticas de desarrollo seguro para aplicaciones web.", image: "../img/mozilla.png", tags: ["mozilla", "seguridad", "web", "facil", "pinguino_de_mario"] }
+		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo_hackend.png", tags: ["principal", "web", "hackend", "CEO"] },
+	    { url: "../labs/foro-xss.jsp", title: "Foro Cross", description: "Conoce a gente nueva en este foro tan espectacular.", image: "../img/xss.png", tags: ["xss", "web", "seguridad", "hacking", "facil", "d1se0"] },
+	    { url: "../labs/sqlinjection.jsp", title: "SQL Injection LAB", description: "Compra y venta de productos al por mayor.", image: "../img/sqlinjection.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
+	    { url: "../labs/csrf.jsp", title: "CSRF LAB", description: "Envianos tu curriculum para promocionarte en Linkedin.", image: "../img/csrf.png", tags: ["csrf", "web", "fuzzing", "url", "hacking", "facil", "d1se0"] },
+	    { url: "../labs/bac.jsp", title: "BAC LAB", description: "Apuntes de hacking para principiantes.", image: "../img/bac.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] }
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
@@ -226,7 +228,7 @@
 	        const favicon = document.createElement('img');
 	        favicon.src = result.image;
 	        favicon.onerror = function () {
-	            favicon.src = '../img/default.png';
+	            favicon.src = '../img/default-error.png';
 	        };
 	        favicon.alt = "favicon";
 	        favicon.classList.add('result-icon');
