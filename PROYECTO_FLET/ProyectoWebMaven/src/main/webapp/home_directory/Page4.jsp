@@ -191,6 +191,13 @@
     </div>
 	
 	<script>
+	window.onload = function() {
+	    const links = document.querySelectorAll("a[target='_blank']");
+	    links.forEach(link => {
+	      link.setAttribute("target", "_self");
+	    });
+	  };
+	  
 	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [

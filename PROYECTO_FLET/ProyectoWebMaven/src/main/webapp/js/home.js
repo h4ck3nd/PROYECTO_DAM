@@ -66,7 +66,7 @@ searchInput.addEventListener("input", function () {
 
         const titleLink = document.createElement('a');
         titleLink.href = result.url;
-        titleLink.target = "_blank";
+        titleLink.target = "_self";
         titleLink.textContent = result.title;
 
         const descriptionParagraph = document.createElement('p');

@@ -193,6 +193,13 @@
 	<!-- https://www.iemoji.com/view/emoji/932/travel-places/building-construction (Para sacar EMOTES en modo CODIGO) -->
 	
 	<script>
+	window.onload = function() {
+	    const links = document.querySelectorAll("a[target='_blank']");
+	    links.forEach(link => {
+	      link.setAttribute("target", "_self");
+	    });
+	  };
+	  
 	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
@@ -242,7 +249,7 @@
 
 	        const titleLink = document.createElement('a');
 	        titleLink.href = result.url;
-	        titleLink.target = "_blank";
+	        titleLink.target = "_self";
 	        titleLink.textContent = result.title;
 
 	        const descriptionParagraph = document.createElement('p');
