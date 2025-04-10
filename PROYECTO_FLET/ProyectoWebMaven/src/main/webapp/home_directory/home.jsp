@@ -24,7 +24,7 @@
         }
     }
 
-    // Verificar si el token está presente
+    // Verificar si el token estÃ¡ presente
     if (token == null || token.isEmpty()) {
         // Si no hay token, redirigir al logout.jsp
         response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
@@ -62,7 +62,7 @@
         response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
-        out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token invÃ¡lido (" + e.getMessage() + ")</p>");
         return;
     } catch (Exception e) {
         out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
@@ -82,13 +82,25 @@
 		  width: 140px;
 		  height: 50px;
 		  position: relative;
-		  top: -10px; /* Ajusta el valor según sea necesario */
+		  top: -10px; /* Ajusta el valor segÃºn sea necesario */
 		}
 		.result-icon {
-		  width: 25px; /* o el tamaño que quieras */
+		  width: 25px; /* o el tamaÃ±o que quieras */
 		  height: 25px;
 		  object-fit: contain; /* evita que se deforme */
-		  margin-right: 10px; /* opcional, para separación del texto */
+		  margin-right: 10px; /* opcional, para separaciÃ³n del texto */
+		}
+		.img-hackend {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
+		.img-dockerpwned {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
+		.img-ovalabs {
+		  object-fit: contain;
+  		  vertical-align: middle;
 		}
 	</style>
 </head>
@@ -105,11 +117,9 @@
 
     <div class="nav-container">
         <nav class="nav-menu">
-            <a href="#">Todo</a>
-            <a href="#">Imagenes</a>
-            <a href="#">Videos</a>
-            <a href="#">Noticias</a>
-            <a href="#">Maps</a>
+            <a href="home.jsp?page=0"><img src="../img/logo_hackend.png" class="img-hackend" width="20px" height="20px"> Hackend</a>
+            <a href="dockerpwned.jsp?page=0"><img src="../img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
+            <a href="ovalabs.jsp?page=0"><img src="../img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
             <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
         </nav>
 
@@ -155,7 +165,7 @@
 		        Creadores <i class="fas fa-chevron-down"></i>
 		        <div class="submenu-container">
 		            <div class="submenu">
-		                <a href="#">PingÃ¼ino de Mario</a>
+		                <a href="#">PingÃÂ¼ino de Mario</a>
 		                <a href="#">S4vitar</a>
 		                <a href="#">D1se0</a>
 		            </div>
@@ -171,9 +181,9 @@
 	        <a href="#"><i class="fas fa-camera"></i></a>
 	    </div>
 	</nav>
-    <div class="results"></div> <!-- AquÃ­ se inyecta el contenido dinÃ¡mico -->
+    <div class="results"></div> <!-- AquÃÂ­ se inyecta el contenido dinÃÂ¡mico -->
 
-    <!-- PAGINACIÃ“N -->
+    <!-- PAGINACIÃâN -->
     <div class="pagination">
         <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
         <a href="home.jsp?page=0" class="page-link">1</a>
@@ -186,8 +196,8 @@
 
     <!-- FOOTER -->
     <div class="footer">
-        <p>Los resultados estÃ¡n personalizados - <a href="#">Probar sin personalizaciÃ³n</a></p>
-        <p><a href="#">Ayuda</a> â€¢ <a href="#">Enviar comentarios</a> â€¢ <a href="#">Privacidad</a> â€¢ <a href="#">TÃ©rminos</a></p>
+        <p>Los resultados estÃÂ¡n personalizados - <a href="#">Probar sin personalizaciÃÂ³n</a></p>
+        <p><a href="#">Ayuda</a> Ã¢â¬Â¢ <a href="#">Enviar comentarios</a> Ã¢â¬Â¢ <a href="#">Privacidad</a> Ã¢â¬Â¢ <a href="#">TÃÂ©rminos</a></p>
     </div>
     
 	<!-- https://www.iemoji.com/view/emoji/932/travel-places/building-construction (Para sacar EMOTES en modo CODIGO) -->
@@ -200,7 +210,7 @@
 	    });
 	  };
 	  
-	// â¬‡ï¸ Definimos estos dos globalmente para que estÃ©n disponibles en todo el script
+	// Ã¢Â¬â¡Ã¯Â¸Â Definimos estos dos globalmente para que estÃÂ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
 		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo_hackend.png", tags: ["principal", "web", "hackend", "CEO"] },
@@ -218,7 +228,7 @@
 	    console.log("DOM completamente cargado");
 
 	    if (!resultsContainer) {
-	        console.error("No se encontrÃ³ el contenedor .results");
+	        console.error("No se encontrÃÂ³ el contenedor .results");
 	        return;
 	    } else {
 	        console.log("Contenedor .results encontrado");
@@ -255,7 +265,7 @@
 	        const descriptionParagraph = document.createElement('p');
 	        descriptionParagraph.textContent = result.description;
 
-	        // Crear contenedor de tags debajo de la descripciÃ³n
+	        // Crear contenedor de tags debajo de la descripciÃÂ³n
 	        const tagsContainer = document.createElement('div');
 	        tagsContainer.classList.add('tags');
 	        
@@ -266,12 +276,12 @@
 	            tagsContainer.appendChild(tagSpan);
 	        });
 
-	        // AÃ±adir todos los elementos
+	        // AÃÂ±adir todos los elementos
 	        resultContent.appendChild(urlSpan);
 	        resultContent.appendChild(document.createElement('br'));
 	        resultContent.appendChild(titleLink);
 	        resultContent.appendChild(descriptionParagraph);
-	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripciÃ³n)
+	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripciÃÂ³n)
 
 	        resultItem.appendChild(favicon);
 	        resultItem.appendChild(resultContent);
@@ -285,29 +295,29 @@
 	    console.log("Todos los resultados fueron agregados al DOM");
 	});
 
-	// FunciÃ³n para obtener el identificador de la pÃ¡gina actual desde la URL
+	// FunciÃÂ³n para obtener el identificador de la pÃÂ¡gina actual desde la URL
 	function getPageIdentifier() {
 		const urlParams = new URLSearchParams(window.location.search);
 		const pageParam = urlParams.get('page');
-		// Si no existe el parÃ¡metro 'page', asumimos que estamos en home.jsp y comenzamos desde la pÃ¡gina 1
+		// Si no existe el parÃÂ¡metro 'page', asumimos que estamos en home.jsp y comenzamos desde la pÃÂ¡gina 1
 		return pageParam ? parseInt(pageParam) : 'home';
 	}
 
-	// FunciÃ³n para actualizar el estilo del nÃºmero de pÃ¡gina activo
+	// FunciÃÂ³n para actualizar el estilo del nÃÂºmero de pÃÂ¡gina activo
 	function highlightCurrentPage() {
 		const currentPage = getPageIdentifier();
 		const pageLinks = document.querySelectorAll(".pagination a");
 
-		// Resaltar el nÃºmero de pÃ¡gina activo con subrayado
+		// Resaltar el nÃÂºmero de pÃÂ¡gina activo con subrayado
 		pageLinks.forEach(link => {
 			if (parseInt(link.textContent) === currentPage) {
-				link.classList.add("active-page"); // AÃ±ade la clase de subrayado
+				link.classList.add("active-page"); // AÃÂ±ade la clase de subrayado
 			} else {
 				link.classList.remove("active-page");
 			}
 		});
 
-		// Cambiar solo la letra "O" correspondiente a la pÃ¡gina activa
+		// Cambiar solo la letra "O" correspondiente a la pÃÂ¡gina activa
 		const logoSpans = document.querySelectorAll(".google-logo span");
 		logoSpans.forEach((span, index) => {
 			if (index + 1 === currentPage) {
@@ -318,7 +328,7 @@
 		});
 	}
 
-	// FunciÃ³n para redirigir a la siguiente pÃ¡gina
+	// FunciÃÂ³n para redirigir a la siguiente pÃÂ¡gina
 	function nextPage() {
 		const currentPage = getPageIdentifier();
 		let nextPageNumber;
@@ -349,11 +359,11 @@
 		}
 	}
 
-	// Llamar a la funciÃ³n al cargar la pÃ¡gina para resaltar la letra correspondiente
+	// Llamar a la funciÃÂ³n al cargar la pÃÂ¡gina para resaltar la letra correspondiente
 	document.addEventListener("DOMContentLoaded", function() {
 		highlightCurrentPage();
 
-		// AÃ±adir un manejador de eventos para el botÃ³n "Siguiente"
+		// AÃÂ±adir un manejador de eventos para el botÃÂ³n "Siguiente"
 		document.getElementById("nextPageButton").addEventListener("click", nextPage);
 	});
 	</script>

@@ -90,6 +90,18 @@
 		  object-fit: contain; /* evita que se deforme */
 		  margin-right: 10px; /* opcional, para separación del texto */
 		}
+		.img-hackend {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
+		.img-dockerpwned {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
+		.img-ovalabs {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
 	</style>
 </head>
 <body>
@@ -105,11 +117,9 @@
 
     <div class="nav-container">
         <nav class="nav-menu">
-            <a href="#">Todo</a>
-            <a href="#">Imagenes</a>
-            <a href="#">Videos</a>
-            <a href="#">Noticias</a>
-            <a href="#">Maps</a>
+            <a href="home.jsp?page=0"><img src="../img/logo_hackend.png" class="img-hackend" width="20px" height="20px"> Hackend</a>
+            <a href="dockerpwned.jsp?page=0"><img src="../img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
+            <a href="ovalabs.jsp?page=0"><img src="../img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
             <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
         </nav>
 
