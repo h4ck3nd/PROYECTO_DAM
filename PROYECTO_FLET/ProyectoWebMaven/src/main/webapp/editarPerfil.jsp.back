@@ -1,0 +1,128 @@
+<%@ page import="io.jsonwebtoken.*"%>
+<%@ page import="java.util.Base64"%>
+<%@ page import="java.util.Date"%>
+<%@ page import="javax.servlet.http.Cookie"%>
+
+<%
+String token = null;
+
+// Buscar el token en las cookies
+Cookie[] cookies = request.getCookies(); // Obtener todas las cookies
+
+if (cookies != null) {
+	for (Cookie cookie : cookies) {
+		if ("token".equals(cookie.getName())) {
+	token = cookie.getValue(); // Si encontramos la cookie con el nombre "token", obtenemos su valor
+	break;
+		}
+	}
+}
+
+if (token == null || token.isEmpty()) {
+	out.println("<p>Error: Token no proporcionado.</p>");
+	return;
+}
+
+String SECRET_KEY = "clave_super_secreta";
+
+// Decodificar y verificar el token JWT
+String nombre = "";
+String apellidos = "";
+String email = "";
+String usuario = "";
+int userId = -1;
+
+try {
+	Claims claims = Jwts.parser().setSigningKey(SECRET_KEY.getBytes("UTF-8")).parseClaimsJws(token).getBody();
+
+	userId = ((Number) claims.get("user_id")).intValue(); // CORRECCIÓN AQUÍ
+	nombre = (String) claims.get("nombre");
+	apellidos = (String) claims.get("apellidos");
+	email = (String) claims.get("email");
+	usuario = (String) claims.get("usuario");
+
+} catch (ExpiredJwtException e) {
+	out.println("<p>Error: El token ha expirado.</p>");
+	return;
+} catch (Exception e) {
+	out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
+	return;
+}
+%>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Perfil</title>
+<link rel="stylesheet" href="css/editarPerfil.css">
+</head>
+<body class="cursor-locked">
+  <div class="background">
+    <div class="monitor">
+      <div class="screen" id="pantalla">
+        <form class="formulario" id="formulario">
+          <div class="ventana-macos">
+            <span class="boton rojo"></span>
+            <span class="boton amarillo"></span>
+            <span class="boton verde"></span>
+          </div>
+
+          <h2>Editar Perfil</h2>
+
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required>
+
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" name="apellidos" required>
+
+          <label for="usuario">Nombre de usuario</label>
+          <input type="text" id="usuario" name="usuario" required>
+
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required>
+
+          <label for="actual">Contraseña actual</label>
+          <input type="password" id="actual" name="actual" required>
+
+          <label for="nueva">Nueva contraseña</label>
+          <input type="password" id="nueva" name="nueva">
+
+          <label for="repetir">Repetir contraseña</label>
+          <input type="password" id="repetir" name="repetir">
+
+          <button type="submit" id="btn-editar">Editar perfil</button>
+        </form>
+      </div>
+      <div class="stand"></div>
+      <div class="base"></div>
+    </div>
+  </div>
+
+  <script>
+//Cuando el puntero entra en la pantalla, lo ocultamos y desactivamos los eventos del cuerpo
+  pantalla.addEventListener('mouseenter', () => {
+    body.classList.add('cursor-locked');
+    pantalla.classList.add('show-cursor');
+  });
+
+  // Al hacer clic en "Editar perfil", mostramos el puntero y permitimos interacción
+  botonEditar.addEventListener('click', (e) => {
+    e.preventDefault(); // Para pruebas, desactiva envío real
+    body.classList.remove('cursor-locked');  // Vuelve a habilitar el cursor
+    body.classList.add('cursor-enabled');    // Permite la interacción
+    // Aquí puedes agregar cualquier otra lógica necesaria, como el envío del formulario.
+  });
+
+  // Cuando el formulario se envía, permitimos que el puntero se mueva libremente
+  formulario.addEventListener('submit', (e) => {
+    e.preventDefault(); // Para pruebas, desactiva envío real
+    body.classList.remove('cursor-locked');  // Vuelve a habilitar el cursor
+    body.classList.add('cursor-enabled');    // Permite la interacción
+    // Aquí podrías hacer un envío real del formulario, por ejemplo:
+    // formulario.submit();
+  });
+  </script>
+</body>
+</html>
