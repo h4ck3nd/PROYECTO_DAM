@@ -102,6 +102,17 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
+		.results {
+			max-width: 800px;
+			margin: auto;
+			padding: 20px;
+			transform: translateX(150px); /* Mueve el contenido 20px hacia la derecha */
+		}
+		.style-link-number {
+			color: white !important;
+			text-decoration: underline !important;
+			font-weight: bold !important;
+		}
 	</style>
 </head>
 <body>
@@ -186,7 +197,7 @@
     <!-- PAGINACIÃâN -->
     <div class="pagination">
         <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
-        <a href="home.jsp?page=0" class="page-link">1</a>
+        <a href="home.jsp?page=0" class="page-link style-link-number">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>
         <a href="Page3.jsp?page=3" class="page-link">4</a>
@@ -195,10 +206,17 @@
     </div>
 
     <!-- FOOTER -->
-    <div class="footer">
-        <p>Los resultados estÃÂ¡n personalizados - <a href="#">Probar sin personalizaciÃÂ³n</a></p>
-        <p><a href="#">Ayuda</a> Ã¢â¬Â¢ <a href="#">Enviar comentarios</a> Ã¢â¬Â¢ <a href="#">Privacidad</a> Ã¢â¬Â¢ <a href="#">TÃÂ©rminos</a></p>
-    </div>
+	<footer class="footer">
+	  <div class="footer-top">
+	    <p>Todos los derechos reservados <a href="#">d1se0 y m4nu</a></p>
+	  </div>
+	  <div class="footer-bottom">
+	    <a href="#">Ayuda</a>
+	    <a href="#">Enviar comentarios</a>
+	    <a href="#">Privacidad</a>
+	    <a href="#">Terminos</a>
+	  </div>
+	</footer>
     
 	<!-- https://www.iemoji.com/view/emoji/932/travel-places/building-construction (Para sacar EMOTES en modo CODIGO) -->
 	

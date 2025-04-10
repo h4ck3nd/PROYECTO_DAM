@@ -171,12 +171,6 @@ body {
 	color: white;
 }
 
-.results {
-	max-width: 800px;
-	margin: auto;
-	padding: 20px;
-}
-
 .result-item {
 	display: flex;
 	align-items: flex-start;
@@ -232,9 +226,7 @@ body {
 }
 
 .pagination a.active-page {
-	text-decoration: underline;
-	font-weight: bold;
-	color: white;
+	color: none;
 }
 
 .google-logo {
@@ -268,22 +260,37 @@ body {
 	color: #8ab4f8; /* El color no cambia al hacer clic */
 }
 /* FOOTER */
+
 .footer {
-	background-color: #1e1e1e;
-	padding: 15px;
-	text-align: center;
-	font-size: 14px;
-	color: #888;
+  background-color: #1f1f1f;
+  color: #ccc;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 10px;
+  border-top: 1px solid #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .footer a {
-	color: #8ab4f8;
-	text-decoration: none;
-	margin: 0 10px;
+  color: #8ab4f8;
+  text-decoration: none;
+  transition: color 0.2s;
 }
 
 .footer a:hover {
-	text-decoration: underline;
+  color: #ffffff;
+}
+
+.footer-top {
+  margin-bottom: 10px;
+}
+
+.footer-bottom a {
+  margin: 0 8px;
+}
+
+.footer-bottom span {
+  color: #555;
 }
 
 /* TAGS ESTILOS */
@@ -315,4 +322,3 @@ body {
     padding: 5px 10px;
     display: inline-block;
 }
-

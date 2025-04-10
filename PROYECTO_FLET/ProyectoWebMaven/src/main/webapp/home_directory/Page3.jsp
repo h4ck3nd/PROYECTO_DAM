@@ -103,6 +103,20 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
+		.results {
+			max-width: 800px;
+			margin: auto;
+			padding: 20px;
+			transform: translateX(150px); /* Mueve el contenido 20px hacia la derecha */
+		}
+		.style-letters-hackend {
+			color: #00ffff !important;
+		}
+		.style-link-number {
+			color: white !important;
+			text-decoration: underline !important;
+			font-weight: bold !important;
+		}
 	</style>
 </head>
 <body>
@@ -186,20 +200,27 @@
 
     <!-- PAGINACIÃ“N -->
     <div class="pagination">
-        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
+        <div class="google-logo">H<span>a</span><span>a</span><span class="style-letters-hackend">a</span><span>a</span><span>a</span><span>a</span>ckend</div>
         <a href="home.jsp?page=0" class="page-link">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>
-        <a href="Page3.jsp?page=3" class="page-link">4</a>
+        <a href="Page3.jsp?page=3" class="page-link style-link-number">4</a>
         <a href="Page4.jsp?page=4" class="page-link">5</a>
         <button class="next" id="nextPageButton">Siguiente</button>
     </div>
 
     <!-- FOOTER -->
-    <div class="footer">
-        <p>Los resultados estÃ¡n personalizados - <a href="#">Probar sin personalizaciÃ³n</a></p>
-        <p><a href="#">Ayuda</a> â€¢ <a href="#">Enviar comentarios</a> â€¢ <a href="#">Privacidad</a> â€¢ <a href="#">TÃ©rminos</a></p>
-    </div>
+	<footer class="footer">
+	  <div class="footer-top">
+	    <p>Todos los derechos reservados <a href="#">d1se0 y m4nu</a></p>
+	  </div>
+	  <div class="footer-bottom">
+	    <a href="#">Ayuda</a>
+	    <a href="#">Enviar comentarios</a>
+	    <a href="#">Privacidad</a>
+	    <a href="#">Terminos</a>
+	  </div>
+	</footer>
 	
 	<script>
 	window.onload = function() {
