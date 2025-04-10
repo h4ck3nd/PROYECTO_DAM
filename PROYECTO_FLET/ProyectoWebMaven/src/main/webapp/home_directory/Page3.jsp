@@ -80,10 +80,10 @@
     <link rel="stylesheet" href="../css/home.css">
     <style>
 		.logo-image {
-		  width: 140px;
+		  width: 125px;
 		  height: 50px;
 		  position: relative;
-		  top: -10px; /* Ajusta el valor según sea necesario */
+		  top: -10px; /* Ajusta el valor segÃºn sea necesario */
 		}
 		.result-icon {
 		  width: 25px; /* o el tamaño que quieras */
@@ -126,7 +126,7 @@
         <a href="../profile.jsp">
 	  <img src="../img/Profile.png" class="profile-image" alt="Imagen Usuario">
 	   </a>
-	   <img src="../img/hackendLogoUpdateTransparent.png" class="logo-image" alt="Imagen Logo">
+	   <img src="../img/hackendLogoUpdate.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
 
