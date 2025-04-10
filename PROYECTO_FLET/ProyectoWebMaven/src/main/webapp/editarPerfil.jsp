@@ -73,16 +73,35 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editar Perfil</title>
-    <link rel="stylesheet" href="css/editarPerfil.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Editar Perfil</title>
+<link rel="stylesheet" href="css/editarPerfilUpdate.css">
+<style>
+	body, html {
+	  height: 100%;
+	  font-family: sans-serif;
+	  background: linear-gradient(to bottom, #333, #222);
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  transition: all 0.3s ease;
+	  cursor: none; /* Inicialmente, el cursor no será visible */
+	}
+</style>
 </head>
-<body>
-	
-	<div class="profile-container">
-	    <h2>Editar Perfil</h2>
-	    <form action="procesarEdicion.jsp" method="post">
+<body class="cursor-locked">
+  <div class="background">
+    <div class="monitor">
+      <div class="screen" id="pantalla">
+        <form action="procesarEdicion.jsp" method="post" class="formulario" id="formulario">
+          <div class="ventana-macos">
+            <a href="profile.jsp" class="boton rojo"></a>
+            <span class="boton amarillo"></span>
+            <span class="boton verde"></span>
+          </div>
+
+          <h2>Editar Perfil</h2>
 	        <input type="hidden" name="token" value="<%= token %>">
 	         
 	        <label for="nombre">Nombre: </label>
@@ -109,8 +128,11 @@
 		    <input type="password" name="confirmNewPassword"><br>
 	         
 	        <button type="submit">Guardar Cambios</button>
-	    </form>
+        </form>
+      </div>
+      <div class="stand"></div>
+      <div class="base"></div>
     </div>
-
+  </div>
 </body>
 </html>

@@ -74,61 +74,43 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil de <%= usuario %></title>
-	<link rel="stylesheet" href="css/profileUpdate.css">
-	<link rel="stylesheet" href="css/editarPerfilUpdate.css">
-	<style>
-	body, html {
-	  height: 100%;
-	  font-family: sans-serif;
-	  background: linear-gradient(to bottom, #333, #222);
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  transition: all 0.3s ease;
-	  cursor: none; /* Inicialmente, el cursor no será visible */
-	}
-</style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Perfil</title>
+    <link rel="stylesheet" href="css/editarPerfil_old.css">
 </head>
 <body>
-	<div class="background">
-    <div class="monitor">
-      <div class="screen" id="pantalla">
-        <form class="formulario" id="formulario">
-          <div class="ventana-macos">
-            <a href="home_directory/home.jsp?page=0" class="boton rojo"></a>
-            <span class="boton amarillo"></span>
-            <span class="boton verde"></span>
-	          </div>
-	          <br><br>
-	          <div class="content">
-			  <div class="profile-header">
-			    <img src="img/Profile.png" class="profile-img" alt="Perfil">
-			    <div class="user-info">
-			      <h2 class="username"><%= usuario %></h2>
-			      <p class="role">Rol: <%= rol %></p>
-			    </div>
-			  </div>
-			
-			  <div class="profile-details">
-			    <p><strong>Correo:</strong> <%= email %></p>
-			    <p><strong>Nombre:</strong> <%= nombre %></p>
-			    <p><strong>Apellido:</strong> <%= apellidos %></p>
-			    <p><strong>Último Login:</strong> <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesión" %></p>
-			    <p><strong>Cookie:</strong> <%= cookie %></p>
-			    <p><strong>Token:</strong> <%= token %></p>
-			  </div>
-			
-			  <div class="profile-actions">
-			    <button class="btn editar"><a href="editarPerfil.jsp" style="text-decoration: none; color: white;">Editar Perfil</a></button>
-			    <button onclick="window.location.href='logout.jsp'" class="btn cerrar">Cerrar sesión</button>
-			  </div>
-			</div>
-        </form>
-      </div>
-      <div class="stand"></div>
-      <div class="base"></div>
+	
+	<div class="profile-container">
+	    <h2>Editar Perfil</h2>
+	    <form action="procesarEdicion.jsp" method="post">
+	        <input type="hidden" name="token" value="<%= token %>">
+	         
+	        <label for="nombre">Nombre: </label>
+	        <input type="text" name="nombre" value="<%= nombre %>"><br>
+	        
+	        <label for="apellidos">Apellidos: </label>
+	        <input type="text" name="apellidos" value="<%= apellidos %>"><br>
+	        
+	        <label for="email">Email: </label>
+	        <input type="email" name="email" value="<%= email %>"><br>
+	        
+	        <label for="usuario">Usuario: </label>
+	        <input type="text" name="usuario" value="<%= usuario %>"><br>
+	         
+		    <!-- Nuevo campo para la contraseña actual -->
+		    <label for="currentPassword">Contraseña Actual: </label>
+		    <input type="password" name="currentPassword"><br>
+		
+		    <!-- Nueva contraseña y confirmación de nueva contraseña -->
+		    <label for="newPassword">Nueva Contraseña: </label>
+		    <input type="password" name="newPassword"><br>
+		
+		    <label for="confirmNewPassword">Confirmar Nueva Contraseña: </label>
+		    <input type="password" name="confirmNewPassword"><br>
+	         
+	        <button type="submit">Guardar Cambios</button>
+	    </form>
     </div>
-  </div>
+
 </body>
 </html>

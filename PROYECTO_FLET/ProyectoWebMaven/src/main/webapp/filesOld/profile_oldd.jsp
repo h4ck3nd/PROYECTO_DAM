@@ -75,60 +75,39 @@
 <head>
     <meta charset="UTF-8">
     <title>Perfil de <%= usuario %></title>
-	<link rel="stylesheet" href="css/profileUpdate.css">
-	<link rel="stylesheet" href="css/editarPerfilUpdate.css">
-	<style>
-	body, html {
-	  height: 100%;
-	  font-family: sans-serif;
-	  background: linear-gradient(to bottom, #333, #222);
-	  display: flex;
-	  justify-content: center;
-	  align-items: center;
-	  transition: all 0.3s ease;
-	  cursor: none; /* Inicialmente, el cursor no será visible */
-	}
-</style>
+	<link rel="stylesheet" href="css/profile_old.css">
 </head>
 <body>
-	<div class="background">
-    <div class="monitor">
-      <div class="screen" id="pantalla">
-        <form class="formulario" id="formulario">
-          <div class="ventana-macos">
-            <a href="home_directory/home.jsp?page=0" class="boton rojo"></a>
-            <span class="boton amarillo"></span>
-            <span class="boton verde"></span>
-	          </div>
-	          <br><br>
-	          <div class="content">
-			  <div class="profile-header">
-			    <img src="img/Profile.png" class="profile-img" alt="Perfil">
-			    <div class="user-info">
-			      <h2 class="username"><%= usuario %></h2>
-			      <p class="role">Rol: <%= rol %></p>
-			    </div>
-			  </div>
-			
-			  <div class="profile-details">
-			    <p><strong>Correo:</strong> <%= email %></p>
-			    <p><strong>Nombre:</strong> <%= nombre %></p>
-			    <p><strong>Apellido:</strong> <%= apellidos %></p>
-			    <p><strong>Último Login:</strong> <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesión" %></p>
-			    <p><strong>Cookie:</strong> <%= cookie %></p>
-			    <p><strong>Token:</strong> <%= token %></p>
-			  </div>
-			
-			  <div class="profile-actions">
-			    <button class="btn editar"><a href="editarPerfil.jsp" style="text-decoration: none; color: white;">Editar Perfil</a></button>
-			    <button onclick="window.location.href='logout.jsp'" class="btn cerrar">Cerrar sesión</button>
-			  </div>
-			</div>
-        </form>
-      </div>
-      <div class="stand"></div>
-      <div class="base"></div>
+
+    <div class="window">
+        <div class="title-bar">
+            <span>Perfil de Usuario</span>
+            <div class="title-bar-buttons">
+                <div class="title-bar-button minimize"></div>
+                <div class="title-bar-button maximize"></div>
+                <div class="title-bar-button close" onclick="window.location.href='home_directory/home.jsp?page=0'"></div>
+            </div>
+        </div>
+
+        <div class="content">
+            <img src="img/Profile.png" class="profile-img" alt="Perfil">
+            <p class="username"><%= usuario %></p>
+            <p class="info">Correo: <%= email %></p>
+            <p class="info">Nombre: <%= nombre %></p>
+            <p class="info">Apellido: <%= apellidos %></p>
+            <p class="info">Rol: <%= rol %></p>
+            <p class="info">Último Login: <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesión" %></p>
+
+            <form action="editarPerfil.jsp" method="get">
+                <button class="edit-button" type="submit">Editar Perfil</button>
+            </form>
+
+            <button class="logout-button button" onclick="window.location.href='logout.jsp'">Cerrar sesión</button>
+
+            <p class="info">Cookie: <%= cookie %></p>
+            <p class="info">Token: <%= token %></p>
+        </div>
     </div>
-  </div>
+
 </body>
 </html>
