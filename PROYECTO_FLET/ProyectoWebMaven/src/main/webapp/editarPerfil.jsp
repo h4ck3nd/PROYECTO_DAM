@@ -150,14 +150,14 @@
 	        <input type="text" name="usuario" value="<%= usuario %>"><br>
 	         
 		    <!-- Nuevo campo para la contraseña actual -->
-		    <label for="currentPassword">Contraseña Actual: </label>
+		    <label for="currentPassword">Password Actual: </label>
 		    <input type="password" name="currentPassword"><br>
 		
 		    <!-- Nueva contraseña y confirmación de nueva contraseña -->
-		    <label for="newPassword">Nueva Contraseña: </label>
+		    <label for="newPassword">Nueva Password: </label>
 		    <input type="password" name="newPassword"><br>
 		
-		    <label for="confirmNewPassword">Confirmar Nueva Contraseña: </label>
+		    <label for="confirmNewPassword">Confirmar Nueva Password: </label>
 		    <input type="password" name="confirmNewPassword"><br>
 	         
 	        <button type="submit">Guardar Cambios</button>
