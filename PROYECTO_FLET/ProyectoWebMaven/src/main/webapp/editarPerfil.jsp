@@ -88,6 +88,39 @@
 	  transition: all 0.3s ease;
 	  cursor: none; /* Inicialmente, el cursor no será visible */
 	}
+	.ground {
+	  width: 100%;
+	  height: 155px;
+	  background: linear-gradient(90deg, 
+	    #4d3620 10%, 
+	    #3a2c19 30%, 
+	    #5e412e 50%, 
+	    #3a2c19 70%, 
+	    #4d3620 90%
+	  );
+	  background-repeat: no-repeat;
+	  background-size: 200% 100%;
+	  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5), 0 -2px 6px rgba(0, 0, 0, 0.2);
+	  position: absolute;
+	  bottom: 0;
+	  left: 0;
+	  z-index: 1;
+	  border-top: 2px solid #2d2118; /* Borde superior para mayor contraste */
+	  animation: woodEffect 15s infinite linear; /* Animación sutil para el efecto de madera */
+	}
+	
+	/* Animación sutil para el movimiento de las vetas de la madera */
+	@keyframes woodEffect {
+	  0% {
+	    background-position: 0 0;
+	  }
+	  50% {
+	    background-position: 100% 0;
+	  }
+	  100% {
+	    background-position: 0 0;
+	  }
+	}
 </style>
 </head>
 <body class="cursor-locked">
@@ -132,6 +165,7 @@
       </div>
       <div class="stand"></div>
       <div class="base"></div>
+      <div class="ground"></div>
     </div>
   </div>
 </body>
