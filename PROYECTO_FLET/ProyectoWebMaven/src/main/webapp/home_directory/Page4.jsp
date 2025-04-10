@@ -165,7 +165,7 @@
 		        Creadores <i class="fas fa-chevron-down"></i>
 		        <div class="submenu-container">
 		            <div class="submenu">
-		                <a href="#">PingÃ¼ino de Mario</a>
+		                <a href="#">Pinguino de Mario</a>
 		                <a href="#">S4vitar</a>
 		                <a href="#">D1se0</a>
 		            </div>
