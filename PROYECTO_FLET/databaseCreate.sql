@@ -21,3 +21,11 @@ CREATE TABLE usuarios (
 
 -- Añadir la columna "Cookie" a la tabla usuarios
 ALTER TABLE usuarios ADD COLUMN cookie VARCHAR(255) UNIQUE;
+
+-- Crear Tabla en la DDBB de hackend para el cambio de la foto de perfil
+
+CREATE TABLE profile (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,  -- ID del usuario, que proviene de la validación con el token
+    photo_path VARCHAR(255)
+);
