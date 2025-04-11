@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public class ConexionDDBB {
 	private static final String DRIVER = "org.postgresql.Driver";
-	private static final String URL = "jdbc:postgresql://localhost:5432/proyectoweb";
+	private static final String URL = "jdbc:postgresql://localhost:5432/hackend";
 	private static final String USER = "postgres";
 	private static final String PASSWORD = "1234";
 	private Connection conexion = null;
