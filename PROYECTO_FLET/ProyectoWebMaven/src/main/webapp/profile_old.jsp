@@ -24,7 +24,7 @@
         }
     }
 
-    // Verificar si el token est· presente
+    // Verificar si el token est√° presente
     if (token == null || token.isEmpty()) {
         // Si no hay token, redirigir al logout.jsp
         response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
@@ -62,7 +62,7 @@
         response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
         return;
     } catch (JWTVerificationException e) {
-        out.println("<p>Error: Token inv·lido (" + e.getMessage() + ")</p>");
+        out.println("<p>Error: Token inv√°lido (" + e.getMessage() + ")</p>");
         return;
     } catch (Exception e) {
         out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
@@ -86,7 +86,7 @@
 	  justify-content: center;
 	  align-items: center;
 	  transition: all 0.3s ease;
-	  cursor: none; /* Inicialmente, el cursor no ser· visible */
+	  cursor: none; /* Inicialmente, el cursor no ser√° visible */
 	}
 	.ground {
 	  width: 100%;
@@ -106,10 +106,10 @@
 	  left: 0;
 	  z-index: 1;
 	  border-top: 2px solid #2d2118; /* Borde superior para mayor contraste */
-	  animation: woodEffect 15s infinite linear; /* AnimaciÛn sutil para el efecto de madera */
+	  animation: woodEffect 15s infinite linear; /* Animaci√≥n sutil para el efecto de madera */
 	}
 	
-	/* AnimaciÛn sutil para el movimiento de las vetas de la madera */
+	/* Animaci√≥n sutil para el movimiento de las vetas de la madera */
 	@keyframes woodEffect {
 	  0% {
 	    background-position: 0 0;
@@ -147,14 +147,14 @@
 			    <p><strong>Correo:</strong> <%= email %></p>
 			    <p><strong>Nombre:</strong> <%= nombre %></p>
 			    <p><strong>Apellido:</strong> <%= apellidos %></p>
-			    <p><strong>⁄ltimo Login:</strong> <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesiÛn" %></p>
+			    <p><strong>√öltimo Login:</strong> <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesi√≥n" %></p>
 			    <p><strong>Cookie:</strong> <%= cookie %></p>
 			    <p><strong>Token:</strong> <%= token %></p>
 			  </div>
 			
 			  <div class="profile-actions">
 			    <button class="btn editar"><a href="editarPerfil.jsp" style="text-decoration: none; color: white;">Editar Perfil</a></button>
-			    <button onclick="window.location.href='logout.jsp'" class="btn cerrar">Cerrar sesiÛn</button>
+			    <button onclick="window.location.href='logout.jsp'" class="btn cerrar">Cerrar sesi√≥n</button>
 			  </div>
 			</div>
         </form>
