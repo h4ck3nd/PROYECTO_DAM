@@ -22,7 +22,7 @@
         return;
     }
 
-    // Obtener los par·metros enviados desde el formulario
+    // Obtener los par√°metros enviados desde el formulario
     String nombre = request.getParameter("nombre");
     String apellidos = request.getParameter("apellidos");
     String email = request.getParameter("email");
@@ -31,9 +31,9 @@
     String newPassword = request.getParameter("newPassword");
     String confirmNewPassword = request.getParameter("confirmNewPassword");
 
-    // Verificar contraseÒas
+    // Verificar contrase√±as
     if (newPassword != null && !newPassword.isEmpty() && !newPassword.equals(confirmNewPassword)) {
-        response.sendRedirect("editarPerfil.jsp?mensaje=Las contraseÒas no coinciden");
+        response.sendRedirect("editarPerfil.jsp?mensaje=Las contrase√±as no coinciden");
         return;
     }
 
@@ -82,18 +82,18 @@
 
         // Eliminar la cookie antigua (si existe)
         javax.servlet.http.Cookie cookieAntigua = new javax.servlet.http.Cookie("token", "");
-        cookieAntigua.setMaxAge(0);  // Establecer la edad m·xima a 0 para eliminar la cookie
+        cookieAntigua.setMaxAge(0);  // Establecer la edad m√°xima a 0 para eliminar la cookie
         cookieAntigua.setPath("/");  // Asegurarse de que se elimine en todo el sitio
         response.addCookie(cookieAntigua);
 
         // Guardar el nuevo token en la cookie
         javax.servlet.http.Cookie nuevoCookie = new javax.servlet.http.Cookie("token", nuevoToken);
-        nuevoCookie.setMaxAge(3600);  // DuraciÛn de 1 hora para la cookie
+        nuevoCookie.setMaxAge(3600);  // Duraci√≥n de 1 hora para la cookie
         nuevoCookie.setHttpOnly(true);  // Asegurarse de que la cookie no se pueda acceder por JavaScript
-        nuevoCookie.setPath("/");  // Para que estÈ disponible en todo el dominio
+        nuevoCookie.setPath("/");  // Para que est√© disponible en todo el dominio
         response.addCookie(nuevoCookie);
 
-        // Redirigir al perfil o p·gina de Èxito con el nuevo token
+        // Redirigir al perfil o p√°gina de √©xito con el nuevo token
         response.sendRedirect("profile.jsp");
 
     } catch (Exception e) {
