@@ -1,27 +1,24 @@
 <%@ page import="util.JWTUtils" %>
-<%@ page import="io.jsonwebtoken.Claims" %>
-<%@ page import="javax.servlet.http.Cookie" %>
+<%@ page import="util.UsuarioJWT" %>
 
 <%
-    Claims claims = null;
+    UsuarioJWT usuarioJWT = null;
 
     try {
-        // Validar el token y obtener los claims usando la clase util
-        claims = JWTUtils.validarYObtenerClaimsDesdeRequest(request);
+        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
     } catch (Exception e) {
-        // Redirigir al logout.jsp si hay cualquier problema con el token
         response.sendRedirect(request.getContextPath() + "/logout.jsp");
         return;
     }
 
-    // Extraer los datos del token JWT
-    String nombre = (String) claims.get("nombre");
-    String apellidos = (String) claims.get("apellidos");
-    String rol = (String) claims.get("rol");
-    String email = (String) claims.get("email");
-    String ultimoLogin = (String) claims.get("ultimo_login");
-    String usuario = (String) claims.get("usuario");
-    String cookie = (String) claims.get("cookie");
+    // Puedes crear variables individuales si quieres
+    String nombre = usuarioJWT.getNombre();
+    String apellidos = usuarioJWT.getApellidos();
+    String email = usuarioJWT.getEmail();
+    String token = usuarioJWT.getToken();
+    String ultimoLogin = usuarioJWT.getUltimoLogin();
+    String cookie = usuarioJWT.getCookie();
+    String userId = usuarioJWT.getUserId();
 %>
 <!DOCTYPE html>
 <html lang="es">
