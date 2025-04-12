@@ -44,16 +44,22 @@ public class FotoControlador extends HttpServlet {
             return;
         }
 
-        // Guardar archivo en el directorio "uploads"
-        String uploadDirPath = getServletContext().getRealPath("/") + "uploads";
-        File uploadDir = new File(uploadDirPath);
+     // Definir la carpeta "uploads" dentro del contexto de la aplicación
+        String relativePath = "uploads";
+        String absolutePath = getServletContext().getRealPath(relativePath);  // Ruta absoluta relativa a /webapp/uploads
+
+        // Crear el directorio si no existe
+        File uploadDir = new File(absolutePath);
         if (!uploadDir.exists()) {
             uploadDir.mkdirs();
+            System.out.println("Directorio creado en: " + absolutePath);
         }
 
-        String uploadPath = uploadDirPath + File.separator + fileName;
+        // Ruta completa del archivo a guardar
+        String uploadPath = absolutePath + File.separator + fileName;
+
         try {
-            filePart.write(uploadPath);
+            filePart.write(uploadPath);  // Guardar archivo
             System.out.println("Archivo guardado en: " + uploadPath);
         } catch (IOException e) {
             e.printStackTrace();
