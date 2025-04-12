@@ -156,8 +156,9 @@
           <br>
           <h2>Cambiar Foto de Perfil</h2>
           <br>
-		  <input type="file" name="profilePhoto" required>
+		  <input type="file" name="profilePhoto">
 		  <button type="submit">Subir Foto</button>
+    	  <button type="submit" name="eliminar" value="true">Eliminar Foto de Perfil</button>
 		</form>
       </div>
       </div>
