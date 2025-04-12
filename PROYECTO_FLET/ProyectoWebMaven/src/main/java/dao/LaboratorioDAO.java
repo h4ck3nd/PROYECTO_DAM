@@ -4,10 +4,34 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import conexionDDBB.ConexionDDBB;
 
 public class LaboratorioDAO {
+
+	// Método para asegurarse de que la tabla 'laboratorios' exista, si no la crea
+    public static void ensureTableExists() throws SQLException {
+        String checkTableQuery = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'laboratorios'";
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement ps = conn.prepareStatement(checkTableQuery)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt(1) == 0) {
+                // Si la tabla no existe, crearla
+                String createTableQuery = "CREATE TABLE laboratorios ("
+                        + "lab_id SERIAL PRIMARY KEY, "
+                        + "nombre VARCHAR(255) NOT NULL, "
+                        + "flag VARCHAR(255) NOT NULL, "
+                        + "puntos INT NOT NULL)";
+                
+                try (Statement stmt = conn.createStatement()) {
+                    stmt.executeUpdate(createTableQuery);
+                    System.out.println("Tabla 'laboratorios' creada exitosamente.");
+                }
+            }
+        }
+    }
 	
 	// Método para obtener el ID del laboratorio con nombre "foro-xss" (fijo)
     public static int obtenerIdLaboratorioForoXss() {
