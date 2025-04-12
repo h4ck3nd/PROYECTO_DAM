@@ -29,3 +29,20 @@ CREATE TABLE profile (
     user_id INT NOT NULL,  -- ID del usuario, que proviene de la validación con el token
     photo_path VARCHAR(255)
 );
+
+-- Tabla Laboratorios
+CREATE TABLE laboratorios (
+    lab_id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
+-- Tabla ValidateFlag (sin clave foránea)
+CREATE TABLE validate_flag (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    lab_id INT NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
