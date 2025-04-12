@@ -111,7 +111,7 @@
   <div class="background">
     <div class="monitor">
       <div class="screen" id="pantalla">
-        <form action="procesarEdicion.jsp" method="post" class="formulario" id="formulario">
+        <form action="${pageContext.request.contextPath}/actualizarPerfil" method="post" class="formulario" id="formulario">
           <div class="ventana-macos">
             <a href="profile.jsp" class="boton rojo"></a>
             <span class="boton amarillo"></span>
