@@ -1,80 +1,41 @@
-<%@ page import="com.auth0.jwt.JWT" %>
-<%@ page import="com.auth0.jwt.algorithms.Algorithm" %>
-<%@ page import="com.auth0.jwt.interfaces.DecodedJWT" %>
-<%@ page import="com.auth0.jwt.interfaces.JWTVerifier" %>
-<%@ page import="com.auth0.jwt.exceptions.JWTVerificationException" %>
-<%@ page import="io.jsonwebtoken.Claims" %>
-<%@ page import="io.jsonwebtoken.Jwts" %>
-<%@ page import="io.jsonwebtoken.ExpiredJwtException" %>
-<%@ page import="java.nio.charset.StandardCharsets" %>
-<%@ page import="javax.servlet.http.Cookie" %>
-<%@ page import="javax.servlet.http.HttpSession" %>
+<%@ page import="dao.FotoDAO" %>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
 
 <%
-    // Obtener el token desde las cookies
-    String token = null;
-    Cookie[] cookies = request.getCookies();  // Obtener todas las cookies
-
-    if (cookies != null) {
-        for (Cookie cookie : cookies) {
-            if ("token".equals(cookie.getName())) {
-                token = cookie.getValue();  // Si encontramos la cookie con el nombre "token", obtenemos su valor
-                break;
-            }
-        }
-    }
-
-    // Verificar si el token está presente
-    if (token == null || token.isEmpty()) {
-        // Si no hay token, redirigir al logout.jsp
-        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
-        return;
-    }
-
-    String SECRET_KEY = "clave_super_secreta";  // La misma clave secreta que usaste para firmar el JWT
-
-    String nombre = "";
-    String apellidos = "";
-    String rol = "";
-    String email = "";
-    String ultimoLogin = "";
-    String usuario = "";
-    String cookie = "";
-    String userId = "";  // Aquí se guarda el user_id
+    UsuarioJWT usuarioJWT = null;
 
     try {
-        // Intentar decodificar el JWT utilizando io.jsonwebtoken (JJWT)
-        Claims claims = Jwts.parser()
-            .setSigningKey(SECRET_KEY.getBytes(StandardCharsets.UTF_8))  // Usamos la clave secreta
-            .parseClaimsJws(token)  // Parseamos el token JWT
-            .getBody();  // Extraemos el cuerpo del token (claims)
-
-        // Obtener los valores del token (JWT)
-        nombre = (String) claims.get("nombre");
-        apellidos = (String) claims.get("apellidos");
-        rol = (String) claims.get("rol");
-        email = (String) claims.get("email");
-        ultimoLogin = (String) claims.get("ultimo_login");
-        usuario = (String) claims.get("usuario");
-        cookie = (String) claims.get("cookie");
-
-        // Obtener user_id, manejando si es un Integer
-        Object userIdObject = claims.get("user_id");
-        if (userIdObject != null) {
-            // Si user_id es un Integer, lo convertimos a String
-            userId = userIdObject instanceof Integer ? String.valueOf(userIdObject) : (String) userIdObject;
-        }
-
-    } catch (ExpiredJwtException e) {
-        // Si el token ha expirado, redirigir al logout.jsp
-        response.sendRedirect("http://localhost:8080/ProyectoWebMaven/logout.jsp");
-        return;
-    } catch (JWTVerificationException e) {
-        out.println("<p>Error: Token inválido (" + e.getMessage() + ")</p>");
-        return;
+        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
     } catch (Exception e) {
-        out.println("<p>Error al procesar el token: " + e.getMessage() + "</p>");
+        response.sendRedirect(request.getContextPath() + "/logout.jsp");
         return;
+    }
+
+    // Puedes crear variables individuales si quieres
+    String usuario = usuarioJWT.getUsuario();
+    String nombre = usuarioJWT.getNombre();
+    String apellidos = usuarioJWT.getApellidos();
+    String email = usuarioJWT.getEmail();
+    String token = usuarioJWT.getToken();
+    String ultimoLogin = usuarioJWT.getUltimoLogin();
+    String rol = usuarioJWT.getRol();
+    String cookie = usuarioJWT.getCookie();
+    String userId = usuarioJWT.getUserId();
+
+    // Validar que userId no sea null ni vacío
+    if (userId == null || userId.isEmpty()) {
+        out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
+        return;
+    }
+
+    // Crear una instancia del DAO y obtener la foto de perfil
+    FotoDAO fotoDAO = new FotoDAO();
+    String photoPath = fotoDAO.obtenerRutaFotoPerfil(userId);
+
+    // Si no tiene foto de perfil, establecer una imagen por defecto
+    if (photoPath == null || photoPath.isEmpty()) {
+        photoPath = "img/Profile.png";  // Ruta de la imagen por defecto
     }
 %>
 
@@ -98,7 +59,7 @@
 	}
 	.ground {
 	  width: 100%;
-	  height: 155px;
+	  height: 105px;
 	  background: linear-gradient(90deg, 
 	    #4d3620 10%, 
 	    #3a2c19 30%, 
@@ -129,6 +90,20 @@
 	    background-position: 0 0;
 	  }
 	}
+	.screen {
+	  width: 840px;
+	  height: 460px;
+	  background-color: #111;
+	  border: 8px solid #000;
+	  border-radius: 6px;
+	  overflow: hidden;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  position: relative;
+	  transition: box-shadow 0.3s, border-color 0.3s;
+	  cursor:default;
+	}
 </style>
 </head>
 <body>
@@ -141,7 +116,7 @@
             <span class="boton amarillo"></span>
             <span class="boton verde"></span>
           </div>
-
+		  <br>
           <h2>Editar Perfil</h2>
 	        <input type="hidden" name="token" value="<%= token %>">
 	        
@@ -170,6 +145,20 @@
 	         
 	        <button type="submit">Guardar Cambios</button>
         </form>
+        <div class="screen" id="pantalla">
+        <form action="SubirFotoPerfil?user_id=<%= userId %>" method="post" class="formulario" enctype="multipart/form-data">
+        <div class="ventana-macos">
+            <a href="profile.jsp" class="boton rojo"></a>
+            <span class="boton amarillo"></span>
+            <span class="boton verde"></span>
+          </div>
+          <br>
+          <h2>Cambiar Foto de Perfil</h2>
+          <br>
+		  <input type="file" name="profilePhoto" required>
+		  <button type="submit">Subir Foto</button>
+		</form>
+      </div>
       </div>
       <div class="stand"></div>
       <div class="base"></div>

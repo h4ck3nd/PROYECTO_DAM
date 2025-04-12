@@ -1,4 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+    UsuarioJWT usuarioJWT = null;
+
+    try {
+        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+    } catch (Exception e) {
+        response.sendRedirect(request.getContextPath() + "/logout.jsp");
+        return;
+    }
+
+ 	// Puedes crear variables individuales si quieres
+    String usuario = usuarioJWT.getUsuario();
+    String nombre = usuarioJWT.getNombre();
+    String apellidos = usuarioJWT.getApellidos();
+    String email = usuarioJWT.getEmail();
+    String token = usuarioJWT.getToken();
+    String ultimoLogin = usuarioJWT.getUltimoLogin();
+    String rol = usuarioJWT.getRol();
+    String cookie = usuarioJWT.getCookie();
+    String userId = usuarioJWT.getUserId();
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
