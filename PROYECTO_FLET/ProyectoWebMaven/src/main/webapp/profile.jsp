@@ -13,9 +13,9 @@
 	    return;
 	}
 
-    // Validar que userId no sea null ni vacÃ­o
+    // Validar que userId no sea null ni vacío
     if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
-        out.println("<p>Error: El ID de usuario no estÃ¡ disponible en el token.</p>");
+        out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
 
@@ -45,7 +45,7 @@
 	  justify-content: center;
 	  align-items: center;
 	  transition: all 0.3s ease;
-	  cursor: none; /* Inicialmente, el cursor no serÃ¡ visible */
+	  cursor: none; /* Inicialmente, el cursor no será visible */
 	}
 	.ground {
 	  width: 100%;
@@ -65,10 +65,10 @@
 	  left: 0;
 	  z-index: 1;
 	  border-top: 2px solid #2d2118; /* Borde superior para mayor contraste */
-	  animation: woodEffect 15s infinite linear; /* AnimaciÃ³n sutil para el efecto de madera */
+	  animation: woodEffect 15s infinite linear; /* Animación sutil para el efecto de madera */
 	}
 	
-	/* AnimaciÃ³n sutil para el movimiento de las vetas de la madera */
+	/* Animación sutil para el movimiento de las vetas de la madera */
 	@keyframes woodEffect {
 	  0% {
 	    background-position: 0 0;
@@ -138,7 +138,7 @@
 			    <p><strong>Correo:</strong> <%= usuarioJWT.getEmail() %></p>
 			    <p><strong>Nombre:</strong> <%= usuarioJWT.getNombre() %></p>
 			    <p><strong>Apellido:</strong> <%= usuarioJWT.getApellidos() %></p>
-			    <p><strong>Ãšltimo Login:</strong> <%= usuarioJWT.getUltimoLogin() != null ? usuarioJWT.getUltimoLogin() : "Nunca ha iniciado sesiÃ³n" %></p>
+			    <p><strong>Último Login:</strong> <%= usuarioJWT.getUltimoLogin() != null ? usuarioJWT.getUltimoLogin() : "Nunca ha iniciado sesión" %></p>
 			    <p><strong>Cookie:</strong> <%= usuarioJWT.getCookie() %></p>
 			    <p><strong>Token:</strong> <%= usuarioJWT.getToken() %></p>
 			  </div>

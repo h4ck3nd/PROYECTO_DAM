@@ -86,6 +86,21 @@
         <a href="<%= request.getContextPath() %>/profile.jsp">
 	  <img src="<%= request.getContextPath() %>/<%= photoPath %>" alt="Foto de perfil" class="profile-image-update">
 	   </a>
+	   <!-- Validar que el usuario tenga el ROL "designer" -->
+	   <% if ("designer".equalsIgnoreCase(usuarioJWT.getRol())) { %>
+		    <div style="margin-top: 20px;">
+		        <a href="<%= request.getContextPath() %>/designer/admin-panel.jsp" class="btn diseñador" style="
+		            padding: 10px 20px;
+		            background-color: #007bff;
+		            color: white;
+		            text-decoration: none;
+		            border-radius: 5px;
+		            display: inline-block;
+		            font-weight: bold;">
+		            Ir al Panel
+		        </a>
+		    </div>
+		<% } %>
 	   <img src="<%= request.getContextPath() %>/img/hackendLogoUpdate.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
