@@ -11,17 +11,6 @@
 	    response.sendRedirect(request.getContextPath() + "/logout");
 	    return;
 	}
-
- 	// Puedes crear variables individuales si quieres
-    String usuario = usuarioJWT.getUsuario();
-    String nombre = usuarioJWT.getNombre();
-    String apellidos = usuarioJWT.getApellidos();
-    String email = usuarioJWT.getEmail();
-    String token = usuarioJWT.getToken();
-    String ultimoLogin = usuarioJWT.getUltimoLogin();
-    String rol = usuarioJWT.getRol();
-    String cookie = usuarioJWT.getCookie();
-    String userId = usuarioJWT.getUserId();
 %>
 <!DOCTYPE html>
 <html lang="es">

@@ -13,26 +13,15 @@
 	    return;
 	}
 
-    // Puedes crear variables individuales si quieres
-    String usuario = usuarioJWT.getUsuario();
-    String nombre = usuarioJWT.getNombre();
-    String apellidos = usuarioJWT.getApellidos();
-    String email = usuarioJWT.getEmail();
-    String token = usuarioJWT.getToken();
-    String ultimoLogin = usuarioJWT.getUltimoLogin();
-    String rol = usuarioJWT.getRol();
-    String cookie = usuarioJWT.getCookie();
-    String userId = usuarioJWT.getUserId();
-
     // Validar que userId no sea null ni vacío
-    if (userId == null || userId.isEmpty()) {
+    if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
         out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
 
     // Crear una instancia del DAO y obtener la foto de perfil
     FotoDAO fotoDAO = new FotoDAO();
-    String photoPath = fotoDAO.obtenerRutaFotoPerfil(userId);
+    String photoPath = fotoDAO.obtenerRutaFotoPerfil(usuarioJWT.getUserId());
 
     // Si no tiene foto de perfil, establecer una imagen por defecto
     if (photoPath == null || photoPath.isEmpty()) {
@@ -47,7 +36,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buscador Web</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/home.css">
     <style>
 		.logo-image {
 		  width: 125px;
@@ -98,10 +87,10 @@
 
     <header class="header">
         <!--<div class="profile-icon"></div>-->
-        <a href="../profile.jsp">
-	  <img src="../<%= photoPath %>" alt="Foto de perfil" class="profile-image-update">
+        <a href="<%= request.getContextPath() %>/profile.jsp">
+	  <img src="<%= request.getContextPath() %>/<%= photoPath %>" alt="Foto de perfil" class="profile-image-update">
 	   </a>
-	   <img src="../img/hackendLogoUpdate.png" class="logo-image" alt="Imagen Logo">
+	   <img src="<%= request.getContextPath() %>/img/hackendLogoUpdate.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
 
@@ -361,7 +350,7 @@
 		document.getElementById("nextPageButton").addEventListener("click", nextPage);
 	});
 	</script>
-	<script src="../js/home.js"></script>
+	<script src="<%= request.getContextPath() %>/js/home.js"></script>
 
 </body>
 </html>

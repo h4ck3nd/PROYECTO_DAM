@@ -13,26 +13,15 @@
 	    return;
 	}
 
-    // Puedes crear variables individuales si quieres
-    String usuario = usuarioJWT.getUsuario();
-    String nombre = usuarioJWT.getNombre();
-    String apellidos = usuarioJWT.getApellidos();
-    String email = usuarioJWT.getEmail();
-    String token = usuarioJWT.getToken();
-    String ultimoLogin = usuarioJWT.getUltimoLogin();
-    String rol = usuarioJWT.getRol();
-    String cookie = usuarioJWT.getCookie();
-    String userId = usuarioJWT.getUserId();
-
     // Validar que userId no sea null ni vacío
-    if (userId == null || userId.isEmpty()) {
+    if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
         out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
 
     // Crear una instancia del DAO y obtener la foto de perfil
     FotoDAO fotoDAO = new FotoDAO();
-    String photoPath = fotoDAO.obtenerRutaFotoPerfil(userId);
+    String photoPath = fotoDAO.obtenerRutaFotoPerfil(usuarioJWT.getUserId());
 
     // Si no tiene foto de perfil, establecer una imagen por defecto
     if (photoPath == null || photoPath.isEmpty()) {
@@ -119,19 +108,19 @@
           </div>
 		  <br>
           <h2>Editar Perfil</h2>
-	        <input type="hidden" name="token" value="<%= token %>">
+	        <input type="hidden" name="token" value="<%= usuarioJWT.getToken() %>">
 	        
 	        <label for="nombre">Nombre: </label>
-	        <input type="text" name="nombre" value="<%= nombre %>"><br>
+	        <input type="text" name="nombre" value="<%= usuarioJWT.getNombre() %>"><br>
 	         
 	        <label for="apellidos">Apellidos: </label>
-	        <input type="text" name="apellidos" value="<%= apellidos %>"><br>
+	        <input type="text" name="apellidos" value="<%= usuarioJWT.getApellidos() %>"><br>
 	         
 	        <label for="email">Email: </label>
-	        <input type="email" name="email" value="<%= email %>"><br>
+	        <input type="email" name="email" value="<%= usuarioJWT.getEmail() %>"><br>
 	         
 	        <label for="usuario">Usuario: </label>
-	        <input type="text" name="usuario" value="<%= usuario %>"><br>
+	        <input type="text" name="usuario" value="<%= usuarioJWT.getUsuario() %>"><br>
 	         
 		    <!-- Nuevo campo para la contraseña actual -->
 		    <label for="currentPassword">Password Actual: </label>
@@ -147,7 +136,7 @@
 	        <button type="submit">Guardar Cambios</button>
         </form>
         <div class="screen" id="pantalla">
-        <form action="SubirFotoPerfil?user_id=<%= userId %>" method="post" class="formulario" enctype="multipart/form-data">
+        <form action="SubirFotoPerfil?user_id=<%= usuarioJWT.getUserId() %>" method="post" class="formulario" enctype="multipart/form-data">
         <div class="ventana-macos">
             <a href="profile.jsp" class="boton rojo"></a>
             <span class="boton amarillo"></span>

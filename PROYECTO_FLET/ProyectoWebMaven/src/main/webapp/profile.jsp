@@ -13,26 +13,15 @@
 	    return;
 	}
 
-    // Puedes crear variables individuales si quieres
-    String usuario = usuarioJWT.getUsuario();
-    String nombre = usuarioJWT.getNombre();
-    String apellidos = usuarioJWT.getApellidos();
-    String email = usuarioJWT.getEmail();
-    String token = usuarioJWT.getToken();
-    String ultimoLogin = usuarioJWT.getUltimoLogin();
-    String rol = usuarioJWT.getRol();
-    String cookie = usuarioJWT.getCookie();
-    String userId = usuarioJWT.getUserId();
-
     // Validar que userId no sea null ni vacío
-    if (userId == null || userId.isEmpty()) {
+    if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
         out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
 
     // Crear una instancia del DAO y obtener la foto de perfil
     FotoDAO fotoDAO = new FotoDAO();
-    String photoPath = fotoDAO.obtenerRutaFotoPerfil(userId);
+    String photoPath = fotoDAO.obtenerRutaFotoPerfil(usuarioJWT.getUserId());
 
     // Si no tiene foto de perfil, establecer una imagen por defecto
     if (photoPath == null || photoPath.isEmpty()) {
@@ -44,7 +33,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil de <%= usuario %></title>
+    <title>Perfil de <%= usuarioJWT.getUsuario() %></title>
 	<link rel="stylesheet" href="css/profileUpdate.css">
 	<link rel="stylesheet" href="css/editarPerfilUpdate.css">
 	<style>
@@ -113,7 +102,7 @@
       <div class="screen" id="pantalla">
         <form class="formulario" id="formulario">
           <div class="ventana-macos">
-            <a href="home_directory/home.jsp?page=0" class="boton rojo"></a>
+            <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0" class="boton rojo"></a>
             <span class="boton amarillo"></span>
             <span class="boton verde"></span>
 	          </div>
@@ -122,18 +111,18 @@
 			  <div class="profile-header">
 			    <img src="<%= photoPath %>" alt="Foto de perfil" class="profile-img">
 			    <div class="user-info">
-			      <h2 class="username"><%= usuario %></h2>
-			      <p class="role">Rol: <%= rol %></p>
+			      <h2 class="username"><%= usuarioJWT.getUsuario() %></h2>
+			      <p class="role">Rol: <%= usuarioJWT.getRol() %></p>
 			    </div>
 			  </div>
 			
 			  <div class="profile-details">
-			    <p><strong>Correo:</strong> <%= email %></p>
-			    <p><strong>Nombre:</strong> <%= nombre %></p>
-			    <p><strong>Apellido:</strong> <%= apellidos %></p>
-			    <p><strong>Último Login:</strong> <%= ultimoLogin != null ? ultimoLogin : "Nunca ha iniciado sesión" %></p>
-			    <p><strong>Cookie:</strong> <%= cookie %></p>
-			    <p><strong>Token:</strong> <%= token %></p>
+			    <p><strong>Correo:</strong> <%= usuarioJWT.getEmail() %></p>
+			    <p><strong>Nombre:</strong> <%= usuarioJWT.getNombre() %></p>
+			    <p><strong>Apellido:</strong> <%= usuarioJWT.getApellidos() %></p>
+			    <p><strong>Último Login:</strong> <%= usuarioJWT.getUltimoLogin() != null ? usuarioJWT.getUltimoLogin() : "Nunca ha iniciado sesión" %></p>
+			    <p><strong>Cookie:</strong> <%= usuarioJWT.getCookie() %></p>
+			    <p><strong>Token:</strong> <%= usuarioJWT.getToken() %></p>
 			  </div>
 			
 			  <div class="profile-actions">
