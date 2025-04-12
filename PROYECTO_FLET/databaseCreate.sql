@@ -46,3 +46,7 @@ CREATE TABLE validate_flag (
     flag VARCHAR(255) NOT NULL,
     puntos INT NOT NULL
 );
+
+-- Insertar LABs en tabla laboratorios
+
+INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('foro-xss', 'FLAG{lo_lograste}', 10)
