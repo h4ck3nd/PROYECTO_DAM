@@ -8,6 +8,30 @@ import java.sql.SQLException;
 
 public class ValidateFlagDAO {
 
+    // Método para verificar si la tabla validate_flag existe, si no la crea
+    public static void ensureTableExists() throws SQLException {
+        String checkTableQuery = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'validate_flag'";
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement ps = conn.prepareStatement(checkTableQuery)) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt(1) == 0) {
+                // Si no existe, crear la tabla
+                String createTableQuery = "CREATE TABLE validate_flag ("
+                        + "id SERIAL PRIMARY KEY, "
+                        + "user_id INT NOT NULL, "
+                        + "lab_id INT NOT NULL, "
+                        + "flag VARCHAR(255) NOT NULL, "
+                        + "puntos INT NOT NULL)";
+                
+                try (Statement stmt = conn.createStatement()) {
+                    stmt.executeUpdate(createTableQuery);
+                    System.out.println("Tabla 'validate_flag' creada exitosamente.");
+                }
+            }
+        }
+    }
+    
     // Verificar si el usuario ya ha validado la flag para el laboratorio
     public static boolean hasFlagBeenValidated(int userId, int labId) throws SQLException {
         boolean result = false;
