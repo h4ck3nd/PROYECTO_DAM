@@ -1,7 +1,6 @@
 package controlador;
 
-import java.io.File;
-import java.io.IOException;
+import dao.FotoPerfilDAO;  // Importar el DAO
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import conexionDDBB.ConexionDDBB;
+import java.io.File;
+import java.io.IOException;
 
 @WebServlet("/SubirFotoPerfil")
 @MultipartConfig
@@ -34,6 +29,13 @@ public class FotoControlador extends HttpServlet {
             return;
         }
 
+        // Verifica si es acción de eliminar foto
+        if (request.getParameter("eliminar") != null) {
+            FotoPerfilDAO.eliminarFoto(userId, getServletContext());
+            response.sendRedirect("profile.jsp");
+            return;
+        }
+
         // Obtener imagen subida
         Part filePart = request.getPart("profilePhoto");
         String fileName = extractFileName(filePart);
@@ -43,8 +45,16 @@ public class FotoControlador extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No se proporcionó una foto de perfil.");
             return;
         }
+        
+        // Validar extensión del archivo
+        String fileExtension = getFileExtension(fileName).toLowerCase();
+        if (!fileExtension.equals("png") && !fileExtension.equals("jpg") && !fileExtension.equals("jpeg")) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Solo se permiten archivos .png, .jpg o .jpeg.");
+            return;
+        }
 
-     // Definir la carpeta "uploads" dentro del contexto de la aplicación
+        
+        // Definir la carpeta "uploads" dentro del contexto de la aplicación
         String relativePath = "uploads";
         String absolutePath = getServletContext().getRealPath(relativePath);  // Ruta absoluta relativa a /webapp/uploads
 
@@ -67,48 +77,10 @@ public class FotoControlador extends HttpServlet {
             return;
         }
 
-        // Guardar en BD
-        actualizarFotoEnBD(userId, fileName, response);
+        // Llamada al DAO para actualizar la foto en la base de datos
+        FotoPerfilDAO.actualizarFoto(userId, "uploads/" + fileName);
 
         response.sendRedirect("profile.jsp");
-    }
-
-    // Actualiza o inserta la foto en BD
-    private void actualizarFotoEnBD(String userId, String fileName, HttpServletResponse response) throws IOException {
-        ConexionDDBB conexion = new ConexionDDBB();
-        try (Connection conn = conexion.conectar()) {
-            // Verificar si el user_id ya tiene entrada en profile
-            String checkSql = "SELECT COUNT(*) FROM profile WHERE user_id = ?";
-            try (PreparedStatement checkStmt = conn.prepareStatement(checkSql)) {
-                checkStmt.setInt(1, Integer.parseInt(userId));
-                ResultSet rs = checkStmt.executeQuery();
-                rs.next();
-                int count = rs.getInt(1);
-
-                if (count > 0) {
-                    // Si ya existe, hacer UPDATE
-                    String updateSql = "UPDATE profile SET photo_path = ? WHERE user_id = ?";
-                    try (PreparedStatement stmt = conn.prepareStatement(updateSql)) {
-                        stmt.setString(1, "uploads/" + fileName);
-                        stmt.setInt(2, Integer.parseInt(userId));
-                        stmt.executeUpdate();
-                        System.out.println("Foto actualizada para user_id = " + userId);
-                    }
-                } else {
-                    // Si no existe, hacer INSERT
-                    String insertSql = "INSERT INTO profile (user_id, photo_path) VALUES (?, ?)";
-                    try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
-                        stmt.setInt(1, Integer.parseInt(userId));
-                        stmt.setString(2, "uploads/" + fileName);
-                        stmt.executeUpdate();
-                        System.out.println("Foto insertada para user_id = " + userId);
-                    }
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR, "Error en la base de datos.");
-        }
     }
 
     // Extraer nombre real del archivo subido
@@ -121,4 +93,12 @@ public class FotoControlador extends HttpServlet {
         }
         return null;
     }
+    
+    // Obtener la extensión del archivo
+    private String getFileExtension(String fileName) {
+        int dotIndex = fileName.lastIndexOf('.');
+        if (dotIndex == -1) return "";  // No tiene extensión
+        return fileName.substring(dotIndex + 1);
+    }
+
 }
