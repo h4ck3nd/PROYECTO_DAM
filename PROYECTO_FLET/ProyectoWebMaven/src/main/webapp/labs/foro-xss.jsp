@@ -5,12 +5,13 @@
 <%
     UsuarioJWT usuarioJWT = null;
 
-    try {
-        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
-    } catch (Exception e) {
-        response.sendRedirect(request.getContextPath() + "/logout.jsp");
-        return;
-    }
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
 
  	// Puedes crear variables individuales si quieres
     String usuario = usuarioJWT.getUsuario();

@@ -5,12 +5,13 @@
 <%
     UsuarioJWT usuarioJWT = null;
 
-    try {
-        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
-    } catch (Exception e) {
-        response.sendRedirect(request.getContextPath() + "/logout.jsp");
-        return;
-    }
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
 
     // Puedes crear variables individuales si quieres
     String usuario = usuarioJWT.getUsuario();
@@ -138,7 +139,9 @@
 			  <div class="profile-actions">
 			    <button class="btn editar"><a href="editarPerfil.jsp" style="text-decoration: none; color: white;">Editar Perfil</a></button>
 			    <!--<button class="btn editar"><a href="subirFotoPerfil.jsp" style="text-decoration: none; color: white;">Subir Foto de Perfil</a></button>-->
-			    <button class="btn cerrar"><a href="logout.jsp" style="text-decoration: none; color: white;">Cerrar sesión</a></button>
+			    <button class="btn cerrar">
+				  <a href="${pageContext.request.contextPath}/logout" style="text-decoration: none; color: white;">Cerrar sesión</a>
+				</button>
 			  </div>
 			</div>
         </form>
