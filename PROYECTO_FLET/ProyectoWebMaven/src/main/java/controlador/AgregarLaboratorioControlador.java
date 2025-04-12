@@ -40,6 +40,6 @@ public class AgregarLaboratorioControlador extends HttpServlet {
 
         // Pasar el mensaje al JSP
         request.setAttribute("mensaje", mensaje);
-        request.getRequestDispatcher("/agregarLaboratorio.jsp").forward(request, response);
+        request.getRequestDispatcher("designer/agregarLaboratorio.jsp").forward(request, response);
     }
 }
