@@ -55,6 +55,15 @@
             </form>
         </div>
     </div>
+    
+    <div class="panel">
+        <h2>Insertar, Eliminar, Actualizar Tablas en la DDBB</h2>
+        <div class="btn-container">
+            <form method="post" action="<%= request.getContextPath() %>/designer/manageTables.jsp">
+                <button type="submit">Gestionar DDBB</button>
+            </form>
+        </div>
+    </div>
 
     <form method="post" action="<%= request.getContextPath() %>/home_directory/home.jsp?page=0" class="btn-container">
         <button type="submit" class="back-button">Volver</button>
