@@ -50,3 +50,42 @@ CREATE TABLE validate_flag (
 -- Insertar LABs en tabla laboratorios
 
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('foro-xss', 'FLAG{lo_lograste}', 10)
+
+-- Crear Tablas para DockerPwned y OvaLabs
+
+CREATE TABLE laboratorios_dockerpwned (
+    lab_id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
+CREATE TABLE laboratorios_ovalabs (
+    lab_id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
+CREATE TABLE validate_flag_dockerpwned (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    lab_id INT NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
+CREATE TABLE validate_flag_ovalabs (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    lab_id INT NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
+-- Inserts de prueba para testeo
+INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('test_docker', 'FLAG{test_flag}', 30);
+INSERT INTO laboratorios_ovalabs (nombre, flag, puntos) VALUES ('test_ova', 'FLAG{test_flag}', 50);
+
+INSERT INTO validate_flag_dockerpwned (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 30);
+INSERT INTO validate_flag_ovalabs (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 50);
