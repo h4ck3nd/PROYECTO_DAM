@@ -91,19 +91,36 @@
 	  <img src="<%= request.getContextPath() %>/<%= photoPath %>" alt="Foto de perfil" class="profile-image-update">
 	   </a>
 	   <!-- Validar que el usuario tenga el ROL "designer" -->
-	   <% if ("designer".equalsIgnoreCase(usuarioJWT.getRol())) { %>
-		    <div style="margin-top: 20px;">
-		        <a href="<%= request.getContextPath() %>/designer/admin-panel.jsp" class="btn diseñador" style="
-		            padding: 10px 20px;
-		            background-color: #007bff;
-		            color: white;
-		            text-decoration: none;
-		            border-radius: 5px;
-		            display: inline-block;
-		            font-weight: bold;">
-		            Ir al Panel
-		        </a>
+		<% if ("designer".equalsIgnoreCase(usuarioJWT.getRol())) { %>
+		    <div style="margin-top: 20px; text-align: center;">
+		        <a href="<%= request.getContextPath() %>/designer/admin-panel.jsp" class="designer-button">Ir al Panel</a>
 		    </div>
+		
+		    <style>
+		        .designer-button {
+		            background-color: #4f4f4f;
+		            color: #f0f0f0;
+		            font-family: 'Courier New', Courier, monospace;
+		            padding: 10px 20px;
+		            border: 1px solid #444;
+		            border-radius: 5px;
+		            font-size: 1em;
+		            text-decoration: none;
+		            display: inline-block;
+		            font-weight: bold;
+		            transition: background-color 0.3s ease, transform 0.2s ease;
+		        }
+		
+		        .designer-button:hover {
+		            background-color: #777;
+		            transform: translateY(-2px);
+		        }
+		
+		        .designer-button:active {
+		            background-color: #333;
+		            transform: translateY(0);
+		        }
+		    </style>
 		<% } %>
 	   <img src="<%= request.getContextPath() %>/img/hackendLogoUpdate.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
