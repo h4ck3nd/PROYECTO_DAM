@@ -25,73 +25,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Vista de Tablas de la Base de Datos</title>
-    <style>
-        body {
-            font-family: 'Courier New', Courier, monospace;
-            background: #2d2d2d;
-            color: #f0f0f0;
-            padding: 20px;
-            margin: 0;
-        }
-
-        h1 {
-            text-align: center;
-            color: #f0f0f0;
-            font-size: 2em;
-            margin-bottom: 30px;
-        }
-
-        .table-container {
-            margin: 20px 0;
-            background-color: #333;
-            border: 1px solid #444;
-            padding: 10px;
-        }
-
-        .table-container h3 {
-            color: #f0f0f0;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        .table-container table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 1em;
-            color: #f0f0f0;
-        }
-
-        .table-container table th,
-        .table-container table td {
-            padding: 8px;
-            border: 1px solid #444;
-            text-align: left;
-        }
-
-        .table-container table th {
-            background-color: #4f4f4f;
-            font-weight: bold;
-        }
-
-        .table-container table tr:nth-child(even) {
-            background-color: #3b3b3b;
-        }
-
-        .table-container table tr:nth-child(odd) {
-            background-color: #333;
-        }
-
-        .table-container table tr:hover {
-            background-color: #575757;
-        }
-
-        .error-message {
-            text-align: center;
-            color: #ff6f6f;
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/css/viewTables.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function loadTables() {
@@ -116,7 +50,9 @@
 <body>
 
     <h1>Vista de Tablas de la Base de Datos</h1>
-
+	<form method="post" action="<%= request.getContextPath() %>/designer/admin-panel.jsp" class="centered-form">
+	    <button type="submit" class="back-button">Volver</button>
+	</form>
     <div id="tablesContainer">
         <!-- Las tablas serán cargadas aquí por AJAX -->
     </div>

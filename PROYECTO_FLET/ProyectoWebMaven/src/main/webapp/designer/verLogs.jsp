@@ -5,41 +5,11 @@
     <meta charset="UTF-8">
     <title>Panel de Logs</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-    <style>
-        body {
-            background-color: #121212;
-            color: #fff;
-            font-family: monospace;
-            padding: 20px;
-        }
-
-        h2 {
-            margin-bottom: 20px;
-        }
-
-        #logsTable {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #1e1e1e;
-        }
-
-        #logsTable tr:nth-child(even) {
-            background-color: #2a2a2a;
-        }
-
-        #logsTable td {
-            padding: 8px 12px;
-            border: 1px solid #444;
-            white-space: pre-wrap;
-            word-break: break-word;
-        }
-    </style>
-
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/verLogs.css">
     <script>
         function loadLogs() {
             $.ajax({
-                url: "<%= request.getContextPath() %>/getLogs", // 🔥 Cambiado al Servlet
+                url: "<%= request.getContextPath() %>/getLogs",
                 type: "GET",
                 success: function(data) {
                     $('#logsTable').html(data);
@@ -59,6 +29,11 @@
 </head>
 <body>
     <h2>Últimos Logs</h2>
+
+    <form method="post" action="<%= request.getContextPath() %>/designer/admin-panel.jsp">
+        <button type="submit" class="back-button">Volver</button>
+    </form>
+
     <table id="logsTable">
         <!-- Los logs se cargarán aquí dinámicamente -->
     </table>

@@ -79,11 +79,3 @@
   background-color: #007acc;
 }
 
-.btn.cerrar {
-  background-color: #ff5f57;
-  color: #fff;
-}
-
-.btn.cerrar:hover {
-  background-color: #cc4b45;
-}
