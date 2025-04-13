@@ -130,6 +130,28 @@
 	.btn.progreso:hover {
 	  background-color: #007acc;
 	}
+	
+	.btn.danger:hover {
+	  background-color: #b92500;
+	}
+	.btn.danger {
+	  background-color: #b92500;
+  	  color: #fff;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  border-radius: 6px;
+	  font-weight: bold;
+	  border: none;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	  width: fit-content; /* o puedes darle un ancho fijo si prefieres */
+	}
+	
+	.btn.danger:hover {
+	  background-color: #4e1000;
+	}
 </style>
 </head>
 <body>
@@ -167,6 +189,23 @@
 			    <!--<button class="btn editar"><a href="subirFotoPerfil.jsp" style="text-decoration: none; color: white;">Subir Foto de Perfil</a></button>-->
 			    <a href="<%= request.getContextPath() %>/logout" class="btn cerrar" style="text-decoration: none; color: white;">Cerrar Sesion</a>
 			  </div>
+				<!-- Botón sin anidaciones raras -->
+				<button type="button" class="btn danger" data-userid="<%= usuarioJWT.getUserId() %>" onclick="eliminarCuenta(event)">
+				  Eliminar Cuenta
+				</button>
+				<script>
+				  function eliminarCuenta(event) {
+				    event.preventDefault(); // Evita comportamiento por defecto
+				    const button = event.currentTarget;
+				    const userId = button.getAttribute("data-userid");
+				
+				    if (confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.")) {
+				      const url = "http://localhost:5000/eliminar-cuenta?userId=" + encodeURIComponent(userId);
+				      console.log("Redirigiendo a:", url); // Debug
+				      window.location.href = url;
+				    }
+				  }
+				</script>
 			</div>
         </form>
       </div>
