@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 import time
 import requests
 
-from flask import Flask, request, jsonify, session, redirect
+from flask import Flask, request, jsonify, session, redirect, make_response
 import threading
 
 # Clave secreta para JWT
@@ -202,7 +202,7 @@ def handle_login():
         token = generate_token(user_data)
 
         # Establecer la cookie con el token
-        response = jsonify({"message": "Login successful"})
+        response = make_response(redirect("http://localhost:8080/ProyectoWebMaven/animation.jsp"))
         response.set_cookie(
             "token",
             token,
@@ -335,6 +335,48 @@ def logout():
     except Exception as e:
         return jsonify({"error": "Error al intentar cerrar sesión", "mensaje": str(e)}), 500
 
+@app.route("/eliminar-cuenta", methods=["GET"])
+def eliminar_cuenta():
+    try:
+        # Obtener el userId del parámetro de la URL
+        user_id = request.args.get("userId")
+        if not user_id:
+            return jsonify({"error": "userId no proporcionado en la URL"}), 400
+
+        # Obtener el token directamente desde la cookie
+        token = request.cookies.get("token")
+        if not token:
+            return jsonify({"error": "Token no proporcionado en la cookie"}), 400
+
+        # Verificar y decodificar el token
+        payload = verify_token(token)
+        if not payload:
+            return jsonify({"error": "Token inválido o expirado"}), 403
+
+        # Conectar a la base de datos PostgreSQL
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        # Eliminar el usuario de la base de datos usando el userId
+        cursor.execute("DELETE FROM usuarios WHERE id = %s", (user_id,))
+        conn.commit()
+
+        # Comprobar si la eliminación fue exitosa
+        if cursor.rowcount > 0:
+            # Eliminar cookie
+            response = make_response(redirect("http://localhost:30050/"))
+            response.set_cookie("token", "", max_age=0)
+            cursor.close()
+            conn.close()
+            return response
+        else:
+            cursor.close()
+            conn.close()
+            return jsonify({"error": "No se encontró el usuario con ese ID"}), 404
+
+    except Exception as e:
+        return jsonify({"error": "Error al eliminar la cuenta", "mensaje": str(e)}), 500
+
 def run_flask():
     app.run(port=5000, debug=False, use_reloader=False)
 
@@ -419,10 +461,10 @@ def show_login(page):
                     page.launch_url(url)
 
                     # Después de 1 segundo, redirigir a animation.jsp
-                    time.sleep(0.8)  # Esperamos brevemente para que la cookie se haya establecido
+                    #time.sleep(1)  # Esperamos brevemente para que la cookie se haya establecido
 
                     # Luego, redirigir a la página de animación
-                    page.launch_url("http://localhost:8080/ProyectoWebMaven/animation.jsp")
+                    #page.launch_url("http://localhost:8080/ProyectoWebMaven/animation.jsp")
                 else:
                     # Contraseña incorrecta
                     page.add(ft.Text("Usuario o Contraseña incorrectos", color="red"))
@@ -452,4 +494,4 @@ def flet_app(page: Page):
     page.title = "Sistema de Login"
     show_login(page)
 
-ft.app(target=flet_app, view=ft.WEB_BROWSER, port=30050)
+ft.app(target=flet_app, view=ft.WEB_BROWSER, port=30050, host="localhost")
