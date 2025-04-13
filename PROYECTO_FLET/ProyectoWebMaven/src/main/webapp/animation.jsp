@@ -16,7 +16,8 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Animación</title>
+<title>HACKEND</title>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/animation.css">
 <!-- Redirigir automáticamente después de 4 segundos -->
 <meta http-equiv="refresh" content="4; url=home_directory/home.jsp?page=0">

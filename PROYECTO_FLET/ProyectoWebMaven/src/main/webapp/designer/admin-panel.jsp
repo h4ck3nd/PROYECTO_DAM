@@ -22,7 +22,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Panel de Administración</title>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <title>PANEL ADMINISTRADOR</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/admin-panel.css">
 </head>
 <body>

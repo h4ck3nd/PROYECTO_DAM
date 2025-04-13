@@ -26,7 +26,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Foro Hacker - Laboratorio XSS</title>
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+<title>FORO HACKER - LABORATORIO XSS</title>
 <script>
         <%
             // Inyectar código JavaScript desde el backend de forma oculta

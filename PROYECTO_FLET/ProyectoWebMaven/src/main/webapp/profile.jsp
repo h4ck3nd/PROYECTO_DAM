@@ -33,7 +33,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Perfil de <%= usuarioJWT.getUsuario() %></title>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <title>PERFIL DE <%= usuarioJWT.getUsuario() %></title>
 	<link rel="stylesheet" href="css/profileUpdate.css">
 	<link rel="stylesheet" href="css/editarPerfilUpdate.css">
 	<style>

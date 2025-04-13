@@ -6,7 +6,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Agregar Laboratorio</title>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <title>AGREGAR LABORATORIO</title>
     <style>
         body {
             font-family: 'Courier New', Courier, monospace;

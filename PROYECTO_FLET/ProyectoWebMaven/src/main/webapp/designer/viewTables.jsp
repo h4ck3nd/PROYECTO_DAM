@@ -24,7 +24,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Vista de Tablas de la Base de Datos</title>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <title>VISTA DE TABLAS DDBB</title>
     <link rel="stylesheet" href="<%= request.getContextPath() %>/css/viewTables.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
