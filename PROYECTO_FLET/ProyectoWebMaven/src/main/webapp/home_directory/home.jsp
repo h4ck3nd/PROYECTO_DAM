@@ -88,7 +88,7 @@
 	   </a>
 	   <!-- Validar que el usuario tenga el ROL "designer" -->
 		<% if ("designer".equalsIgnoreCase(usuarioJWT.getRol())) { %>
-		    <div style="margin-top: 20px; text-align: center;">
+		    <div style="text-align: center;">
 		        <a href="<%= request.getContextPath() %>/designer/admin-panel.jsp" class="designer-button">Ir al Panel</a>
 		    </div>
 		
@@ -97,7 +97,8 @@
 		            background-color: #4f4f4f;
 		            color: #f0f0f0;
 		            font-family: 'Courier New', Courier, monospace;
-		            padding: 10px 20px;
+		            padding: 5px 10px;
+		            margin-top: 0px;
 		            border: 1px solid #444;
 		            border-radius: 5px;
 		            font-size: 1em;
