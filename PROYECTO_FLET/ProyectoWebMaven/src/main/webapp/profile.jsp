@@ -112,6 +112,24 @@
 	.btn.cerrar:hover {
 	  background-color: #cc4b45;
 	}
+	.btn.progreso {
+	  background-color: #00aaff;
+  	  color: #fff;
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  text-align: center;
+	  border-radius: 6px;
+	  font-weight: bold;
+	  border: none;
+	  cursor: pointer;
+	  transition: background-color 0.3s ease;
+	  width: fit-content; /* o puedes darle un ancho fijo si prefieres */
+	}
+	
+	.btn.progreso:hover {
+	  background-color: #007acc;
+	}
 </style>
 </head>
 <body>
@@ -144,7 +162,8 @@
 			  </div>
 			
 			  <div class="profile-actions">
-			    <a href="editarPerfil.jsp" class="btn editar" style="text-decoration: none; color: white;">Cerrar Sesion</a>
+			    <a href="editarPerfil.jsp" class="btn editar" style="text-decoration: none; color: white;">Editar Perfil</a>
+			    <a href="progreso.jsp" class="btn progreso" style="text-decoration: none; color: white;">Ver Progreso</a>
 			    <!--<button class="btn editar"><a href="subirFotoPerfil.jsp" style="text-decoration: none; color: white;">Subir Foto de Perfil</a></button>-->
 			    <a href="<%= request.getContextPath() %>/logout" class="btn cerrar" style="text-decoration: none; color: white;">Cerrar Sesion</a>
 			  </div>
