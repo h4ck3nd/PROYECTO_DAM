@@ -9,7 +9,7 @@ import java.sql.Statement;
 import conexionDDBB.ConexionDDBB;
 
 public class LaboratorioDAO {
-
+	
 	// Método para asegurarse de que la tabla 'laboratorios' exista, si no la crea
     public static void ensureTableExists() throws SQLException {
         String checkTableQuery = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'laboratorios'";
@@ -70,7 +70,7 @@ public class LaboratorioDAO {
 
         return labId;
     }
-
+    
     // Método para obtener el ID del laboratorio con nombre "Hacking_community" (fijo)
     public static int obtenerIdLaboratorioHacking_community() {
         int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
