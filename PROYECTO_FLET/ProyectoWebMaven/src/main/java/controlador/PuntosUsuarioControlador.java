@@ -18,6 +18,7 @@ public class PuntosUsuarioControlador extends HttpServlet {
 
         if (userIdStr != null) {
             try {
+            	//============================================SECCIONES DE LABS========================================================
                 // Convertir el ID a Integer
                 int userId = Integer.parseInt(userIdStr);
 
@@ -39,7 +40,9 @@ public class PuntosUsuarioControlador extends HttpServlet {
 
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosOvaLabs", puntosOvaLabs);
-
+                
+             	//============================================SECCIONES DE LABS TOTALES========================================================
+                
                 // También obtener los puntos totales del laboratorio 1
                 int puntosTotalesLab1 = puntosDAO.obtenerPuntosTotalesDeLab1();
                 request.setAttribute("puntosTotalesLab1", puntosTotalesLab1);
@@ -51,6 +54,46 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 // También obtener los puntos totales del laboratorio 2
                 int puntosTotalesLab3 = puntosDAO.obtenerPuntosTotalesDeLab3();
                 request.setAttribute("puntosTotalesLab3", puntosTotalesLab3);
+                
+                //============================================LABS POR SEPARADO========================================================
+                
+                // Obtener Puntos del laboratorio XSS1
+                int puntosXSS1 = puntosDAO.obtenerPuntosXSS1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosXSS1", puntosXSS1);
+                
+                // Obtener Puntos del laboratorio SQLi1
+                int puntosSQLi1 = puntosDAO.obtenerPuntosSQLi1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosSQLi1", puntosSQLi1);
+                
+                // Obtener Puntos del laboratorio CSRF1
+                int puntosCSRF1 = puntosDAO.obtenerPuntosCSRF1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosCSRF1", puntosCSRF1);
+                
+                // Obtener Puntos del laboratorio BAC1
+                int puntosBAC1 = puntosDAO.obtenerPuntosBAC1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosBAC1", puntosBAC1);
+                
+                // Obtener Puntos del laboratorio LFI1 (DockerPwned)
+                int puntosLFI1 = puntosDAO.obtenerPuntosLFI1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosLFI1", puntosLFI1);
+                
+                // Obtener Puntos del laboratorio IDOR1 (OvaLabs)
+                int puntosIDOR1 = puntosDAO.obtenerPuntosIDOR1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosIDOR1", puntosIDOR1);
+                
+                //============================================RESTO========================================================
 
                 // Redirigir a la página JSP para mostrar los puntos
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/progreso.jsp");
