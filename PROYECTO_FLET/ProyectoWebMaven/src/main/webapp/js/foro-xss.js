@@ -101,16 +101,6 @@ commentForm.addEventListener('submit', function (e) {
     }
   });
 
-// Mostrar el popup de solución
-function showPopup() {
-document.getElementById("popup-solution").classList.remove("hidden");
-}
-
-//Cerrar el popup de solución
-function closePopup() {
-document.getElementById("popup-solution").classList.add("hidden");
-}
-
 //Agregar la funcionalidad para aumentar el contador de "me gusta"
 document.addEventListener('DOMContentLoaded', () => {
         const forumContainer = document.querySelector('.forum-container');
