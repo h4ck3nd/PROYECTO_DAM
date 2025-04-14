@@ -335,7 +335,7 @@ footer {
 #sql-results {
     display: none; /* Oculto inicialmente */
     position: fixed;
-    top: 40%;
+    top: 60%;
     left: 50%;
     transform: translateX(-50%);
     background-color: #f1f1f1;
@@ -347,3 +347,5 @@ footer {
     max-width: 90%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
+
+

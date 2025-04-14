@@ -231,9 +231,9 @@
 	const searchResults = [
 		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo_hackend.png", tags: ["principal", "web", "hackend", "CEO"] },
 	    { url: "../labs/foro-xss.jsp", title: "Foro Cross", description: "Conoce a gente nueva en este foro tan espectacular.", image: "../img/xss.png", tags: ["xss", "web", "seguridad", "hacking", "facil", "d1se0"] },
-	    { url: "../labs/sqlinjection.jsp", title: "SQL Injection LAB", description: "Compra y venta de productos al por mayor.", image: "../img/sqlinjection.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
+	    { url: "../labs/amashop/amashop.jsp", title: "Amashop Web", description: "Compra y venta de productos al por mayor.", image: "../img/sqlinjection.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
 	    { url: "../labs/csrf.jsp", title: "CSRF LAB", description: "Envianos tu curriculum para promocionarte en Linkedin.", image: "../img/csrf.png", tags: ["csrf", "web", "fuzzing", "url", "hacking", "facil", "d1se0"] },
-	    { url: "../labs/bac.jsp", title: "BAC LAB", description: "Apuntes de hacking para principiantes.", image: "../img/bac.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
+	    { url: "../labs/hacking_community/hacking_community.jsp", title: "Hacking_community", description: "Apuntes de hacking para principiantes.", image: "../img/bac.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },

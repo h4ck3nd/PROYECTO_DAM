@@ -14,7 +14,7 @@
         return;
     }
 
- // Obtener el lab_id de "amashop" desde la base de datos
+ 	// Obtener el lab_id de "hacking_community" desde la base de datos
     int labId = LaboratorioDAO.obtenerIdLaboratorioHacking_community();
     String mensaje = "";
 
@@ -27,239 +27,73 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
   <title>HACKING COMMUNITY | Blog</title>
   <style>
-	* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-html, body {
-  height: 100%;
-  font-family: 'Inter', sans-serif;
-  background-color: #1e212d;
-  color: #fff;
-  line-height: 1.6;
-}
-
-body {
-  display: flex;
-  flex-direction: column;
-}
-
-.wrapper {
-  flex: 1;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-header {
-  background-color: #0a0c11;
-  padding: 20px 0;
-  border-bottom: 1px solid #212430;
-  display: flex;
-  flex-direction: column;
-}
-
-.logo {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #00ffae;
-  margin-bottom: 10px;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
-
-nav a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  transition: color 0.3s ease-in-out;
-}
-
-nav a:hover {
-  color: #00ffae;
-}
-
-main h1 {
-  font-size: 2rem;
-  margin: 30px 0;
-  color: #fff;
-}
-
-.intro-text {
-  margin-top: 20px;
-  font-size: 1.1rem;
-  color: #ccc;
-}
-
-/* Artículo destacado */
-.featured-article {
-  background-color: #2e323d;
-  border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0, 255, 174, 0.2);
-  margin-bottom: 50px;
-}
-
-.featured-article img {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.featured-article .post-content {
-  padding: 25px;
-}
-
-.featured-article h1 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-}
-
-.featured-article .intro-text {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-.featured-article .read-more {
-  color: #00ffae;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.featured-article .read-more:hover {
-  text-decoration: underline;
-}
-
-/* Últimos artículos */
-.blog-posts {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
-  gap: 30px;
-}
-
-.post {
-  background-color: #2e323d;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 255, 174, 0.2);
-  transition: transform 0.3s ease;
-}
-
-.post:hover {
-  transform: translateY(-5px);
-}
-
-.post img {
-  width: 100%;
-  height: auto;
-}
-
-.post-content {
-  padding: 20px;
-}
-
-.post-content h2 {
-  font-size: 1.4rem;
-  margin-bottom: 10px;
-}
-
-.post-content h2 a {
-  text-decoration: none;
-  color: inherit;
-}
-
-.post-content p {
-  color: #bbb;
-  margin-bottom: 15px;
-}
-
-.read-more {
-  color: #00ffae;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.read-more:hover {
-  text-decoration: underline;
-}
-
-.pagination {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 30px;
-}
-
-.page-link {
-  color: #00ffae;
-  font-weight: 600;
-  text-decoration: none;
-}
-
-.page-link:hover {
-  text-decoration: underline;
-}
-
-
-.flag-input-section {
-  margin-top: 40px;
-  padding: 20px;
-  background-color: #2e323d;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0, 255, 174, 0.15);
-  text-align: center;
-}
-
-.flag-input-section h3 {
-  color: #00ffae;
-  margin-bottom: 15px;
-  font-size: 1.2rem;
-}
-
-.flag-input-section input[type="text"] {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  width: 60%;
-  max-width: 400px;
-  font-size: 1rem;
-  margin-right: 10px;
-  text-align: center;
-}
-
-.flag-input-section button {
-  padding: 10px 20px;
-  background-color: #00ffae;
-  color: #1e212d;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.flag-input-section button:hover {
-  background-color: #00e6a0;
-}
-
-footer {
-  background-color: #0a0c11;
-  padding: 20px;
-  text-align: center;
-  color: #888;
-}
+	/* Estilo del mensaje emergente */
+		.message-popup {
+		    position: fixed;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    background-color: rgba(0, 0, 0, 0.85); /* Un poco más oscuro para más énfasis */
+		    padding: 25px 40px; /* Más espacio alrededor del mensaje */
+		    border-radius: 10px; /* Bordes más redondeados */
+		    color: white;
+		    max-width: 90%;
+		    min-width: 300px;
+		    display: none;
+		    z-index: 1000;
+		    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Agregar sombra para dar profundidad */
+		    font-family: Arial, sans-serif;
+		}
+		
+		/* Estilo del contenido dentro del popup */
+		.message-popup .message-popup-content {
+		    font-size: 16px;
+		    padding: 10px;
+		    text-align: center; /* Centrar el texto */
+		}
+		
+		/* Estilo del encabezado dentro del popup */
+		.message-popup .message-popup-header {
+		    font-size: 20px;
+		    font-weight: bold;
+		    margin-bottom: 15px;
+		    text-align: center;
+		    color: #f5f5f5;
+		}
+		
+		/* Estilo del botón para cerrar el popup */
+		.message-popup .message-popup-close-btn {
+		    background: #ff5e57;
+		    border: none;
+		    color: white;
+		    padding: 8px 16px;
+		    font-size: 18px;
+		    cursor: pointer;
+		    border-radius: 5px;
+		    display: block;
+		    margin: 20px auto 0; /* Centrar y separar de la parte superior */
+		    text-align: center;
+		}
+		
+		/* Cambio de color al pasar el ratón sobre el botón de cerrar */
+		.message-popup .message-popup-close-btn:hover {
+		    background: #ff3830;
+		}
+		
+		/* Ocultar el popup por defecto */
+		.message-popup {
+		    display: none; /* Asegúrate de que esté oculto por defecto */
+		}
+		
+		/* Mostrar el popup cuando tiene la clase .show */
+		.message-popup.show {
+		    display: block; /* Se muestra cuando tiene la clase .show */
+		}
   </style>
+  <link rel="stylesheet" href="<%= request.getContextPath() %>/css/hacking_community.css">
 </head>
 <body>
   <div class="wrapper">
@@ -268,25 +102,31 @@ footer {
         <div class="logo">HACKING COMMUNITY</div>
         <nav>
           <ul>
-            <li><a href="hacking_community.jsp">Inicio</a></li>
+            <li><a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0">Inicio</a></li>
             <li><a href="contacto.jsp">Contacto</a></li>
           </ul>
         </nav>
       </div>
     </header>
-
-  <div class="flag-input-section">
-  <h3>Introduce la flag del laboratorio</h3>
-  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
-            <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-            <input type="hidden" name="lab_id" value="<%= labId %>">
-            <label for="flag">Ingrese la FLAG:</label>
-            <input type="text" id="flag" name="flag" required>
-            <button class="flag-btn" type="submit" class="style-button-flag">Enviar FLAG</button>
-        </form>
-</div>
-<br>
-
+	<!-- Popup para mostrar el mensaje -->
+    <div id="popupMessage" class="message-popup">
+        <div class="message-popup-header">Mensaje</div>
+        <div class="message-popup-content" id="popupContent">
+            <p><%= request.getAttribute("mensaje") %></p>
+        </div>
+        <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/hacking_community/hacking_community.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
+    </div>
+	  <div class="flag-input-section">
+		  <h3>Introduce la flag del laboratorio</h3>
+		  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
+			  <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+			  <input type="hidden" name="lab_id" value="<%= labId %>">
+			  <label for="flag">Ingrese la FLAG:</label>
+			  <input type="text" id="flag" name="flag" required>
+			  <button class="flag-btn" type="submit" class="style-button-flag">Enviar FLAG</button>
+		  </form>
+	</div>
+	<br>
     <main class="container">
       <!-- Artículo principal -->
       <section class="featured-article">
@@ -345,5 +185,30 @@ footer {
       <p>&copy; 2025 HACKING COMMUNITY. Todos los derechos reservados.</p>
     </div>
   </footer>
+  <script>
+        // Función para mostrar el popup
+        function showPopup(message) {
+            var popup = document.getElementById("popupMessage");
+            var content = document.getElementById("popupContent");
+            content.innerHTML = message; // Ponemos el mensaje en el popup
+            popup.classList.add('show'); // Hacemos visible el popup
+        }
+
+        // Función para cerrar el popup
+        function closePopup() {
+            var popup = document.getElementById("popupMessage");
+            popup.classList.remove('show'); // Ocultamos el popup
+            window.location.href = "<%= request.getContextPath() %>/labs/foro-xss.jsp"; // Redirigimos
+        }
+
+        // Si el mensaje no es nulo, mostramos el popup con el mensaje
+        <%
+            if (resultadoFlag != null) { 
+        %>
+            showPopup("<%= resultadoFlag %>"); // Mostrar el mensaje en el popup
+        <% 
+            }
+        %>
+    </script>
 </body>
 </html>
