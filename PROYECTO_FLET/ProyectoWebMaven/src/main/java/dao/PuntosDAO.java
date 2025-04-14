@@ -164,4 +164,172 @@ public class PuntosDAO {
 
         return totalPuntosLab1;
     }
+    
+    // Método para obtener los puntos de Hacking Web del usuario
+    public int obtenerPuntosXSS1(int userId) throws SQLException {
+        int puntosXSS1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosXSS1 FROM validate_flag WHERE user_id = ? AND lab_id = 1";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosXSS1 = rs.getInt("puntosXSS1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos XSS1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosXSS1;
+    }
+    
+    // Método para obtener los puntos de SQLi LAB 1 del usuario
+    public int obtenerPuntosSQLi1(int userId) throws SQLException {
+        int puntosSQLi1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosSQLi1 FROM validate_flag WHERE user_id = ? AND lab_id = 2";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosSQLi1 = rs.getInt("puntosSQLi1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos SQLi1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosSQLi1;
+    }
+    
+    // Método para obtener los puntos de CSRF LAB 1 del usuario
+    public int obtenerPuntosCSRF1(int userId) throws SQLException {
+        int puntosCSRF1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosCSRF1 FROM validate_flag WHERE user_id = ? AND lab_id = 4";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosCSRF1 = rs.getInt("puntosCSRF1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos CSRF1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosCSRF1;
+    }
+    
+    // Método para obtener los puntos de BAC LAB 1 del usuario
+    public int obtenerPuntosBAC1(int userId) throws SQLException {
+        int puntosBAC1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosBAC1 FROM validate_flag WHERE user_id = ? AND lab_id = 3";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosBAC1 = rs.getInt("puntosBAC1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos BAC1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosBAC1;
+    }
+    
+    // Método para obtener los puntos de LFI LAB 1 del usuario
+    public int obtenerPuntosLFI1(int userId) throws SQLException {
+        int puntosLFI1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosLFI1 FROM validate_flag_dockerpwned WHERE user_id = ? AND lab_id = 1";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosLFI1 = rs.getInt("puntosLFI1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos LFI1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosLFI1;
+    }
+    
+    // Método para obtener los puntos de LFI LAB 1 del usuario
+    public int obtenerPuntosIDOR1(int userId) throws SQLException {
+        int puntosIDOR1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosIDOR1 FROM validate_flag_ovalabs WHERE user_id = ? AND lab_id = 1";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosIDOR1 = rs.getInt("puntosIDOR1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos IDOR1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosIDOR1;
+    }
 }
