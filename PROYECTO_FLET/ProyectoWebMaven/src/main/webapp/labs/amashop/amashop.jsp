@@ -1,5 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="dao.LaboratorioDAO" %>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+    UsuarioJWT usuarioJWT = null;
+
+    try {
+        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+    } catch (Exception e) {
+        // Redirigir al servlet de logout en vez de al .jsp
+        response.sendRedirect(request.getContextPath() + "/logout");
+        return;
+    }
+
+    // Obtener el lab_id de "foro-xss" desde la base de datos
+    int labId = LaboratorioDAO.obtenerIdLaboratorioForoXss();
+    String mensaje = "";
+
+    // Recuperamos el mensaje desde la URL
+    String resultadoFlag = request.getParameter("mensaje");
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
