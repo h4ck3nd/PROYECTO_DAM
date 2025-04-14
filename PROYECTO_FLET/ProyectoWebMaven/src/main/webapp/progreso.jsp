@@ -308,25 +308,31 @@ body {
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
+const puntosPorLaboratorio = [
+	  "${puntosXSS1}", "${puntosSQLi1}", "${puntosCSRF1}",
+	  "${puntosBAC1}", "${puntosLFI1}", "${puntosIDOR1}"
+	].map(Number); // Convertimos a número
+
   const ctx = document.getElementById('labChart').getContext('2d');
   const labChart = new Chart(ctx, {
     type: 'pie',
     data: {
       labels: [
-        'XSS (Hacking Web)',
-        'SQLi (Hacking Web)',
+        'foro-xss (Hacking Web)',
+        'amashop (Hacking Web)',
+        'writeupSend (Hacking Web)',
+        'hacking_community (Hacking Web)',
         'RCE (DockerPwned)',
-        'File Inclusion (DockerPwned)',
-        'CSRF (OvaLabs)',
+        'LFI (DockerPwned)',
         'IDOR (OvaLabs)'
       ],
       datasets: [{
         label: 'Distribución de Laboratorios',
-        data: [15, 15, 20, 20, 15, 15], // Porcentajes
+        data: puntosPorLaboratorio, // Reutilizamos el arreglo
         backgroundColor: [
-          '#66bb6a', '#81c784',       // Verde esperanza (Hacking Web)
-          '#42a5f5', '#64b5f6',       // Azul (DockerPwned)
-          '#ffa726', '#ffb74d'        // Naranja (OvaLabs)
+          '#66bb6a', '#81c784',
+          '#42a5f5', '#64b5f6',
+          '#ffa726', '#ffb74d'
         ],
         borderColor: '#ffffff',
         borderWidth: 2
@@ -345,18 +351,20 @@ body {
           }
         },
         tooltip: {
-          callbacks: {
-            label: function(context) {
-              const label = context.label || '';
-              const value = context.formattedValue || '';
-              return `${label}: ${value}%`;
-            }
-          }
-        }
+        	  callbacks: {
+        	    label: function(context) {
+        	      const index = context.dataIndex;
+        	      const label = context.chart.data.labels[index];
+        	      const valor = puntosPorLaboratorio[index];
+        	      return `${label}: ${valor}%`;
+        	    }
+        	  }
+        	}
       }
     }
   });
 </script>
+
 
 	
 </body>
