@@ -1,0 +1,212 @@
+/* GENERAL */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html, body {
+	height: 100%;
+	background-color: #333;
+	color: #f5f6f8;
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+}
+
+.page-wrapper {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+/* HEADER */
+.main-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border-bottom: 1px solid #222;
+	background-color: #333;
+	padding: 20px 30px;
+	margin-bottom: 40px;
+	color: #00ffd5;
+	font-family: monospace;
+}
+
+.left-text {
+	font-size: 1.2rem;
+	color: #00ffd5;
+	font-weight: bold;
+}
+
+.titulo {
+	font-size: 1.2rem;
+	color: #00ffd5;
+	text-transform: uppercase;
+	font-weight: 600;
+	text-align: center;
+	flex: 1;
+}
+
+/* Botones tipo ventana */
+.window-buttons {
+	display: flex;
+	gap: 10px;
+}
+
+.window-buttons .btn {
+	background: #21262d;
+	border: none;
+	color: #e6edf3;
+	width: 30px;
+	height: 30px;
+	font-size: 1rem;
+	cursor: pointer;
+	border-radius: 4px;
+}
+
+.btn:hover {
+	background-color: #30363d;
+}
+
+/* GRAFICO SECTORES*/
+.grafico-container {
+	max-width: 600px;
+	margin: 60px auto;
+	padding: 20px;
+	background: #333;
+	border: 1px solid #eaeaea;
+	border-radius: 12px;
+	text-align: center;
+}
+
+.grafico-container h2 {
+	margin-bottom: 20px;
+	font-size: 1.4rem;
+	color: #f5f6f8;
+}
+
+/* COLUMNAS DE LABORATORIOS */
+.columns-container {
+	display: flex;
+	justify-content: space-between;
+	gap: 20px;
+	flex-wrap: wrap;
+}
+
+.puntuacion-total {
+	font-size: 1rem;
+	margin: 8px 0 16px;
+	text-align: center;
+	color: #007bff;
+	font-weight: bold;
+}
+
+.lab-column {
+	flex: 1;
+	min-width: 280px;
+}
+
+.lab-column h2 {
+	color: #f5f6f8;
+	margin-bottom: 16px;
+	font-size: 1.5rem;
+	border-bottom: 2px solid #eaeaea;
+	padding-bottom: 6px;
+	text-align: center;
+}
+
+/*  TARJETAS */
+.lab-card {
+	background: #333;
+	border: 1px solid #e0e0e0;
+	border-radius: 10px;
+	padding: 20px;
+	margin-bottom: 20px;
+	transition: box-shadow 0.2s ease, transform 0.2s ease;
+	text-align: center;
+}
+
+.lab-card:hover {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	transform: translateY(-4px);
+}
+
+.lab-card h3 {
+	font-size: 1.2rem;
+	color: #f5f6f8;
+	margin-bottom: 10px;
+}
+
+.lab-card p {
+	font-size: 0.95rem;
+	color: #aaa2a2;
+	margin-bottom: 15px;
+}
+
+.contenedor-exportar {
+	display: flex;
+	justify-content: center;
+	margin: 40px 0;
+}
+
+.btn-exportar {
+	width: 75%;
+	padding: 14px 0;
+	background-color: #007bff;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: bold;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.btn-exportar:hover {
+	background-color: #0056b3;
+}
+
+.footer {
+	text-align: center;
+	padding: 20px 0;
+	font-size: 0.9rem;
+	color: #777;
+	border-top: 1px solid #222;
+	background-color: #333;
+	margin-top: auto;
+}
+
+.profile-image-update {
+	width: 40px;
+	height: 40px;
+	border-radius: 30px;
+	margin-right: 20px;
+}
+
+.btn-update {
+	display: block;
+	background-color: #4f4f4f;
+	color: #f0f0f0;
+	text-decoration: none;
+	text-align: center;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 10px 20px;
+	border: 1px solid #444;
+	border-radius: 5px;
+	width: fit-content;
+	margin: 0 auto;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-update:hover {
+	background-color: #777;
+	transform: translateY(-2px);
+}
+
+.btn-update:active {
+	background-color: #333;
+	transform: translateY(0);
+}
