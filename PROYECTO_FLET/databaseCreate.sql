@@ -49,7 +49,9 @@ CREATE TABLE validate_flag (
 
 -- Insertar LABs en tabla laboratorios
 
-INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('foro-xss', 'FLAG{lo_lograste}', 10)
+INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('foro-xss', 'FLAG{lo_lograste}', 10);
+INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('amashop', 'FLAG{amashop_flag}', 20);
+INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('hacking_community', 'FLAG{flag_bac}', 10);
 
 -- Crear Tablas para DockerPwned y OvaLabs
 
