@@ -383,14 +383,17 @@ def run_flask():
 threading.Thread(target=run_flask, daemon=True).start()
 
 # ------------ FLET INTERFAZ ------------
-def show_register(page):
+
+def show_register(page: Page):
     page.clean()
-    nombre_input = ft.TextField(label="Nombre")
-    apellidos_input = ft.TextField(label="Apellidos")
-    email_input = ft.TextField(label="Correo Electrónico")
-    usuario_input = ft.TextField(label="Nombre de Usuario")
-    password_input = ft.TextField(label="Contraseña", password=True)
-    confirm_password_input = ft.TextField(label="Repetir Contraseña", password=True)
+    page.bgcolor = "#1e1e2f"  # Fondo oscuro elegante
+
+    nombre_input = ft.TextField(label="Nombre", width=300)
+    apellidos_input = ft.TextField(label="Apellidos", width=300)
+    email_input = ft.TextField(label="Correo Electrónico", width=300)
+    usuario_input = ft.TextField(label="Nombre de Usuario", width=300)
+    password_input = ft.TextField(label="Contraseña", password=True, width=300)
+    confirm_password_input = ft.TextField(label="Repetir Contraseña", password=True, width=300)
 
     def handle_register(e):
         if password_input.value != confirm_password_input.value:
@@ -412,85 +415,94 @@ def show_register(page):
         finally:
             conn.close()
 
-    page.add(ft.Column([
+    form = ft.Column([
+        ft.Image(src="https://cdn-icons-png.flaticon.com/512/295/295128.png", width=100),
         nombre_input, apellidos_input, email_input, usuario_input,
         password_input, confirm_password_input,
         ft.ElevatedButton("Registrarse", on_click=handle_register),
         ft.TextButton("¿Ya tienes cuenta? Inicia sesión", on_click=lambda _: show_login(page))
-    ], alignment="center"))
+    ],
+    alignment=ft.MainAxisAlignment.CENTER,
+    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+    spacing=20
+    )
+
+    container = ft.Container(
+        content=form,
+        bgcolor="#2b2b3c",
+        padding=30,
+        border_radius=20,
+        width=400,
+        shadow=ft.BoxShadow(blur_radius=10, color="#00000040", spread_radius=1)
+    )
+
+    page.add(ft.Row([container], alignment=ft.MainAxisAlignment.CENTER))
 
 
-def show_login(page):
+def show_login(page: Page):
     page.clean()
+    page.bgcolor = "#1e1e2f"
 
-    # Campos para usuario y contraseña
-    username_input = ft.TextField(label="Usuario o Correo")
-    password_input = ft.TextField(label="Contraseña", password=True)
+    username_input = ft.TextField(label="Usuario o Correo", width=300)
+    password_input = ft.TextField(label="Contraseña", password=True, width=300)
 
     def handle_login(e):
         if not username_input.value or not password_input.value:
             page.add(ft.Text("Por favor, ingresa usuario y contraseña", color="red"))
             return
 
-        # Datos para el login
         username_or_email = username_input.value
         password = password_input.value
 
-        # Conectar a la base de datos
         try:
             conn = connect_db()
             cursor = conn.cursor()
 
-            # Buscar al usuario por nombre de usuario o correo electrónico
             cursor.execute("SELECT password_hash FROM usuarios WHERE usuario = %s OR email = %s", (username_or_email, username_or_email))
             user_data = cursor.fetchone()
 
             if user_data:
-                # Usuario encontrado, verificar la contraseña
                 stored_password = user_data[0]
-
-                # Verificar que las contraseñas coinciden
                 if check_password_hash(stored_password, password):
-                    # Las credenciales son correctas, proceder con el login
                     page.add(ft.Text("Login exitoso!", color="green"))
-
-                    # Crear la URL para el login
                     url = f"http://localhost:5000/login?username_or_email={username_or_email}&password={password}"
-
-                    # Abrir la URL de login en la misma pestaña (esto realiza la solicitud)
                     page.launch_url(url)
-
-                    # Después de 1 segundo, redirigir a animation.jsp
-                    #time.sleep(1)  # Esperamos brevemente para que la cookie se haya establecido
-
-                    # Luego, redirigir a la página de animación
-                    #page.launch_url("http://localhost:8080/ProyectoWebMaven/animation.jsp")
                 else:
-                    # Contraseña incorrecta
                     page.add(ft.Text("Usuario o Contraseña incorrectos", color="red"))
             else:
-                # Usuario no encontrado
                 page.add(ft.Text("Usuario o Contraseña incorrectos", color="red"))
 
-            # Cerrar la conexión a la base de datos
             cursor.close()
             conn.close()
 
         except Exception as e:
             page.add(ft.Text(f"Error al conectar con la base de datos: {str(e)}", color="red"))
 
-    # Agregar campos y botón para iniciar sesión
-    page.add(ft.Column([  # Agregar los campos y el botón de login
+    form = ft.Column([
+        ft.Image(src="https://cdn-icons-png.flaticon.com/512/295/295128.png", width=100),
         username_input,
         password_input,
         ft.ElevatedButton("Iniciar sesión", on_click=handle_login),
         ft.TextButton("¿No tienes cuenta? Regístrate", on_click=lambda _: show_register(page))
-    ], alignment="center"))
+    ],
+    alignment=ft.MainAxisAlignment.CENTER,
+    horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+    spacing=20
+    )
+
+    container = ft.Container(
+        content=form,
+        bgcolor="#2b2b3c",
+        padding=30,
+        border_radius=20,
+        width=400,
+        shadow=ft.BoxShadow(blur_radius=10, color="#00000040", spread_radius=1)
+    )
+
+    page.add(ft.Row([container], alignment=ft.MainAxisAlignment.CENTER))
+
 
 def flet_app(page: Page):
-    # Aquí estás agregando la fuente a la página
-    #page.add(ft.Text("Sistema de Login", style="font-family: 'JetBrains Mono', monospace;"))
-
     page.title = "Sistema de Login"
     show_login(page)
 
