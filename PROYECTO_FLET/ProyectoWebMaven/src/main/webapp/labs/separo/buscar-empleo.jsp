@@ -1,8 +1,24 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+    UsuarioJWT usuarioJWT = null;
+
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
 <title>Buscar Empleo | SEPARO</title>
 <style>
 /* General */
@@ -89,7 +105,7 @@ nav.menu-principal a:hover {
 	border-radius: 4px;
 }
 
-/* Página Buscar Empleo */
+/* PÃ¡gina Buscar Empleo */
 .buscar-empleo {
 	flex: 1;
 	padding: 2rem;
@@ -181,7 +197,7 @@ footer {
 					<li><a href="separo.jsp">Inicio</a></li>
 					<li><a href="empresas.jsp">Empresas</a></li>
 					<li><a href="buscar-empleo.jsp">Empleo</a></li>
-					<li><a href="#">Formación</a></li>
+					<li><a href="#">FormaciÃ³n</a></li>
 					<li><a href="#">Prestaciones</a></li>
 				</ul>
 			</nav>
@@ -189,21 +205,20 @@ footer {
 
 		<main class="buscar-empleo">
 			<section class="formulario-cv">
-				<h2>Sube tu Currículum</h2>
-				<p>Envía tu currículum y te notificaremos cuando haya una oferta
+				<h2>Sube tu CurrÃ­culum</h2>
+				<p>EnvÃ­a tu currÃ­culum y te notificaremos cuando haya una oferta
 					adecuada a tu perfil.</p>
 
 				<form action="#" method="post" enctype="multipart/form-data">
 					<label for="nombre">Nombre completo:</label><br> <input
 						type="text" id="nombre" name="nombre" required><br>
-					<br> <label for="email">Correo electrónico:</label><br> <input
+					<br> <label for="email">Correo electrÃ³nico:</label><br> <input
 						type="email" id="email" name="email" required><br>
-					<br> <label for="archivo">Selecciona tu currículum:</label><br>
-					<input type="file" id="archivo" name="archivo"
-						accept=".pdf,.doc,.docx" required><br>
+					<br> <label for="archivo">Enviar tu currÃ­culum (URL):</label><br>
+					<input type="text" id="archivo" name="archivo" required><br>
 					<br>
 
-					<button type="submit">Enviar Currículum</button>
+					<button type="submit">Enviar CurrÃ­culum</button>
 				</form>
 			</section>
 		</main>
@@ -211,7 +226,7 @@ footer {
 		<footer>
 			<p>&copy; 2025 SEPARO. Todos los derechos reservados.</p>
 			<div class="footer-links">
-				<a href="#">Aviso legal</a> <a href="#">Política de privacidad</a> <a
+				<a href="#">Aviso legal</a> <a href="#">PolÃ­tica de privacidad</a> <a
 					href="#">Accesibilidad</a>
 			</div>
 		</footer>

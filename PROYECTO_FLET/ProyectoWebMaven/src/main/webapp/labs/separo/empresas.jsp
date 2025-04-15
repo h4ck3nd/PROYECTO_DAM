@@ -1,8 +1,24 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+    UsuarioJWT usuarioJWT = null;
+
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
 <title>Empresas | SEPARO</title>
 <style>
 /* General */
@@ -120,7 +136,6 @@ nav.menu-principal a:hover {
 	border-radius: 8px;
 	padding: 1.5rem;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-	text-align: center;
 }
 
 .empresa h3 {
