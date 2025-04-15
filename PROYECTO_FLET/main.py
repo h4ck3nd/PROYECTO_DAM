@@ -387,6 +387,8 @@ threading.Thread(target=run_flask, daemon=True).start()
 def show_register(page: Page):
     page.clean()
     page.bgcolor = "#1e1e2f"  # Fondo oscuro elegante
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     nombre_input = ft.TextField(label="Nombre", width=300)
     apellidos_input = ft.TextField(label="Apellidos", width=300)
@@ -430,7 +432,7 @@ def show_register(page: Page):
     container = ft.Container(
         content=form,
         bgcolor="#2b2b3c",
-        padding=30,
+        padding=40,
         border_radius=20,
         width=400,
         shadow=ft.BoxShadow(blur_radius=10, color="#00000040", spread_radius=1)
@@ -442,6 +444,8 @@ def show_register(page: Page):
 def show_login(page: Page):
     page.clean()
     page.bgcolor = "#1e1e2f"
+    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+    page.horizontal_alignment = ft.CrossAxisAlignment.CENTER
 
     username_input = ft.TextField(label="Usuario o Correo", width=300)
     password_input = ft.TextField(label="Contraseña", password=True, width=300)
@@ -493,7 +497,7 @@ def show_login(page: Page):
     container = ft.Container(
         content=form,
         bgcolor="#2b2b3c",
-        padding=30,
+        padding=80,
         border_radius=20,
         width=400,
         shadow=ft.BoxShadow(blur_radius=10, color="#00000040", spread_radius=1)
