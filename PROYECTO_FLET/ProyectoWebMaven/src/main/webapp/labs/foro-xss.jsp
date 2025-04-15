@@ -289,6 +289,14 @@
         <button class="message-popup-close-btn"><a href="foro-xss.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
     </div>
 	<div class="forum-container">
+		<!-- FORMULARIO PARA ENVIAR WRITEUP -->
+		<form action="<%= request.getContextPath() %>/WriteupControlador" method="post">
+		    <input type="hidden" name="lab_id" value="<%= labId %>">
+		    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+		    <label for="url_writeup">Enlace del Writeup:</label>
+		    <input type="url" name="url_writeup" id="url_writeup" required>
+		    <button type="submit">Enviar Writeup</button>
+		</form>
 		<%-- Comentarios precargados de ejemplo (puedes reemplazar por bucles de Java si se conecta a base de datos) --%>
 		<!-- Formulario para ingresar la FLAG -->
         <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
