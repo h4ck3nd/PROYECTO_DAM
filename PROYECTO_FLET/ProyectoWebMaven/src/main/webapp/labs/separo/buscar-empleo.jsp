@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
+<%@ page import="java.net.URL" %>
 
 <%
     UsuarioJWT usuarioJWT = null;
@@ -12,6 +13,36 @@
 	    response.sendRedirect(request.getContextPath() + "/logout");
 	    return;
 	}
+	
+	String metodo = request.getMethod();
+    String mensaje = null;
+    String archivo = "";
+
+    // Si el método es GET y tiene el parámetro 'url'
+    if ("GET".equalsIgnoreCase(metodo)) {
+        String redir = request.getParameter("url");
+
+        if (redir != null && !redir.isEmpty()) {
+            // Redirigir al sitio de la URL proporcionada
+            response.sendRedirect(redir);
+            return;
+        }
+    }
+
+    // Si el método es POST
+    if ("POST".equalsIgnoreCase(metodo)) {
+        String nombre = request.getParameter("nombre");
+        String email = request.getParameter("email");
+        archivo = request.getParameter("archivo");
+
+        if (archivo != null && !archivo.isEmpty()) {
+            // Redirección vulnerable (GET con 'url')
+            response.sendRedirect("buscar-empleo.jsp?url=" + archivo);
+            return;
+        } else {
+            mensaje = "Currículum enviado correctamente.";
+        }
+    }
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -209,16 +240,21 @@ footer {
 				<p>Envía tu currículum y te notificaremos cuando haya una oferta
 					adecuada a tu perfil.</p>
 
-				<form action="#" method="post" enctype="multipart/form-data">
-					<label for="nombre">Nombre completo:</label><br> <input
-						type="text" id="nombre" name="nombre" required><br>
-					<br> <label for="email">Correo electrónico:</label><br> <input
-						type="email" id="email" name="email" required><br>
-					<br> <label for="archivo">Enviar tu currículum (URL):</label><br>
-					<input type="text" id="archivo" name="archivo" required><br>
-					<br>
-
-					<button type="submit">Enviar Currículum</button>
+				<% if (mensaje != null) { %>
+				    <p style="color: green; font-weight: bold;"><%= mensaje %></p>
+				<% } %>
+				
+				<form action="buscar-empleo.jsp?url= <%= archivo %>" method="post" enctype="multipart/form-data">
+				    <label for="nombre">Nombre completo:</label><br>
+				    <input type="text" id="nombre" name="nombre" required><br><br>
+				
+				    <label for="email">Correo electrónico:</label><br>
+				    <input type="email" id="email" name="email" required><br><br>
+				
+				    <label for="archivo">Enviar tu currículum (URL):</label><br>
+				    <input type="text" id="archivo" name="archivo" value="<%= archivo %>" required><br><br>
+				
+				    <button type="submit">Enviar Currículum</button>
 				</form>
 			</section>
 		</main>
