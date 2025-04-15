@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ValidateFlagDAO {
-
-    // Método para verificar si la tabla validate_flag existe, si no la crea
+	
+	// Método para verificar si la tabla validate_flag existe, si no la crea
     public static void ensureTableExists() throws SQLException {
         String checkTableQuery = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'validate_flag'";
 
@@ -32,7 +32,7 @@ public class ValidateFlagDAO {
             }
         }
     }
-    
+	
     // Verificar si el usuario ya ha validado la flag para el laboratorio
     public static boolean hasFlagBeenValidated(int userId, int labId) throws SQLException {
         boolean result = false;
