@@ -273,6 +273,7 @@
 			<h3>Enviar Writeup</h3>
 		    <input type="hidden" name="lab_id" value="<%= labId %>">
 		    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+		    <input type="hidden" name="username" value="<%= usuarioJWT.getUsuario() %>">
 		    <label for="url_writeup">Enviar enlace del Writeup:</label>
 		    <input type="url" name="url_writeup" id="url_writeup" required>
 		    <button type="submit">Enviar Writeup</button>
