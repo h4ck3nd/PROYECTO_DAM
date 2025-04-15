@@ -100,3 +100,6 @@ CREATE TABLE writeups (
     user_id INTEGER NOT NULL,
     url_writeup TEXT NOT NULL
 );
+
+ALTER TABLE writeups
+ADD CONSTRAINT unique_lab_user UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
