@@ -69,11 +69,11 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosSQLi1", puntosSQLi1);
                 
-                // Obtener Puntos del laboratorio CSRF1
-                int puntosCSRF1 = puntosDAO.obtenerPuntosCSRF1(userId);
+                // Obtener Puntos del laboratorio OR1
+                int puntosOR1 = puntosDAO.obtenerPuntosCSRF1(userId);
 
                 // Pasar los puntos al JSP
-                request.setAttribute("puntosCSRF1", puntosCSRF1);
+                request.setAttribute("puntosOR1", puntosOR1);
                 
                 // Obtener Puntos del laboratorio BAC1
                 int puntosBAC1 = puntosDAO.obtenerPuntosBAC1(userId);
