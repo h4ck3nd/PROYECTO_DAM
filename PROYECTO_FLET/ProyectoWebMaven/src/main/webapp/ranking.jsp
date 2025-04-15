@@ -22,7 +22,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Ranking de Usuarios</title>
+	<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <title>RANKING DE USUARIOS</title>
     <style>
         body {
             background: linear-gradient(to right, #1e1e2f, #2b2b3c);
