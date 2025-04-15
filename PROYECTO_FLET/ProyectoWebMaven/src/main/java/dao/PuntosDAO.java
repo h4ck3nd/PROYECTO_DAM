@@ -221,32 +221,32 @@ public class PuntosDAO {
         return puntosSQLi1;
     }
     
-    // Método para obtener los puntos de CSRF LAB 1 del usuario
+    // Método para obtener los puntos de OR LAB 1 del usuario
     public int obtenerPuntosCSRF1(int userId) throws SQLException {
-        int puntosCSRF1 = 0;
+        int puntosOR1 = 0;
         
         // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
         ConexionDDBB conexionDB = new ConexionDDBB();
         Connection conn = conexionDB.conectar();
         
-        String sql = "SELECT SUM(puntos) AS puntosCSRF1 FROM validate_flag WHERE user_id = ? AND lab_id = 4";
+        String sql = "SELECT SUM(puntos) AS puntosOR1 FROM validate_flag WHERE user_id = ? AND lab_id = 4";
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                	puntosCSRF1 = rs.getInt("puntosCSRF1");
+                	puntosOR1 = rs.getInt("puntosOR1");
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al obtener puntos CSRF1: " + e.getMessage());
+            System.err.println("Error al obtener puntos OR1: " + e.getMessage());
             throw e;
         } finally {
             conexionDB.cerrarConexion(); // Cerramos la conexión
         }
         
-        return puntosCSRF1;
+        return puntosOR1;
     }
     
     // Método para obtener los puntos de BAC LAB 1 del usuario
@@ -305,7 +305,7 @@ public class PuntosDAO {
         return puntosLFI1;
     }
     
-    // Método para obtener los puntos de LFI LAB 1 del usuario
+    // Método para obtener los puntos de IDOR LAB 1 del usuario
     public int obtenerPuntosIDOR1(int userId) throws SQLException {
         int puntosIDOR1 = 0;
         
