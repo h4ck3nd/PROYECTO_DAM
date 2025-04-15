@@ -89,7 +89,7 @@ nav.menu-principal a:hover {
 	border-radius: 4px;
 }
 
-/* P·gina Empresas */
+/* P√°gina Empresas */
 .seccion-empresas {
 	padding: 2rem;
 	background-color: #ffffff;
@@ -120,6 +120,7 @@ nav.menu-principal a:hover {
 	border-radius: 8px;
 	padding: 1.5rem;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	text-align: center;
 }
 
 .empresa h3 {
@@ -188,7 +189,7 @@ footer {
 					<li><a href="separo.jsp">Inicio</a></li>
 					<li><a href="empresas.jsp">Empresas</a></li>
 					<li><a href="buscar-empleo.jsp">Empleo</a></li>
-					<li><a href="#">FormaciÛn</a></li>
+					<li><a href="#">Formaci√≥n</a></li>
 					<li><a href="#">Prestaciones</a></li>
 				</ul>
 			</nav>
@@ -196,34 +197,34 @@ footer {
 
 		<main class="seccion-empresas">
 			<h2>Empresas que buscan talento</h2>
-			<p>Estas empresas est·n activamente contratando y se publicitan
+			<p>Estas empresas est√°n activamente contratando y se publicitan
 				en SEPARO para encontrar nuevos profesionales.</p>
 
 			<div class="tarjetas-empresas">
 				<div class="empresa">
 					<h3>TechNova</h3>
 					<p>Buscamos desarrolladores full-stack para nuevos proyectos
-						tecnolÛgicos. Modalidad hÌbrida.</p>
+						tecnol√≥gicos. Modalidad h√≠brida.</p>
 					<a href="#">Ver detalles</a>
 				</div>
 
 				<div class="empresa">
 					<h3>Salud Vital</h3>
-					<p>Centro mÈdico privado busca personal de enfermerÌa y
-						recepciÛn. Contrato fijo.</p>
+					<p>Centro m√©dico privado busca personal de enfermer√≠a y
+						recepci√≥n. Contrato fijo.</p>
 					<a href="#">Ver detalles</a>
 				</div>
 
 				<div class="empresa">
-					<h3>TransLogÌstica</h3>
+					<h3>TransLog√≠stica</h3>
 					<p>Se necesitan conductores con carnet C+E. Jornada completa.
 						Trabajo nacional e internacional.</p>
 					<a href="#">Ver detalles</a>
 				</div>
 
 				<div class="empresa">
-					<h3>EcoAgrÌcola</h3>
-					<p>Ofertas en mantenimiento agrÌcola, operarios y tÈcnicos de
+					<h3>EcoAgr√≠cola</h3>
+					<p>Ofertas en mantenimiento agr√≠cola, operarios y t√©cnicos de
 						campo. Zona rural.</p>
 					<a href="#">Ver detalles</a>
 				</div>
@@ -247,7 +248,7 @@ footer {
 	<footer>
 		<p>&copy; 2025 SEPARO. Todos los derechos reservados.</p>
 		<div class="footer-links">
-			<a href="#">Aviso legal</a> <a href="#">PolÌtica de privacidad</a> <a
+			<a href="#">Aviso legal</a> <a href="#">Pol√≠tica de privacidad</a> <a
 				href="#">Accesibilidad</a>
 		</div>
 	</footer>
