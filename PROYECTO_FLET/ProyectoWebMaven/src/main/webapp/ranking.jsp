@@ -6,17 +6,16 @@
 <%@ page import="utils.UsuarioJWT" %>
 
 <%
-	UsuarioJWT usuarioJWT = null;
-	
-	try {
-	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
-	} catch (Exception e) {
-	    // Redirigir al servlet de logout en vez de al .jsp
-	    response.sendRedirect(request.getContextPath() + "/logout");
-	    return;
-	}	
+    UsuarioJWT usuarioJWT = null;
 
-	RankingControlador rankingController = new RankingControlador();
+    try {
+        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+    } catch (Exception e) {
+        response.sendRedirect(request.getContextPath() + "/logout");
+        return;
+    }
+
+    RankingControlador rankingController = new RankingControlador();
     List<RankingEntry> ranking = rankingController.obtenerRankingUsuarios();
 %>
 
@@ -32,6 +31,7 @@
             margin: 0;
             padding: 0;
         }
+
         .ranking-container {
             max-width: 900px;
             margin: 50px auto;
@@ -40,34 +40,78 @@
             padding: 20px;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
         }
+
         h1 {
             text-align: center;
             color: #ffd700;
         }
+
         table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
+
         th, td {
             padding: 12px;
             text-align: center;
         }
+
         th {
             background-color: #22223b;
             color: #ffd700;
         }
+
         tr:nth-child(even) {
             background-color: #2b2b3c;
         }
+
         tr:nth-child(odd) {
             background-color: #1e1e2f;
+        }
+
+        .gold {
+            background-color: #FFD70033;
+            font-weight: bold;
+            color: #FFD700;
+        }
+
+        .silver {
+            background-color: #C0C0C033;
+            font-weight: bold;
+            color: #C0C0C0;
+        }
+
+        .bronze {
+            background-color: #CD7F3233;
+            font-weight: bold;
+            color: #CD7F32;
+        }
+
+        .btn-volver {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 10px 20px;
+            background-color: #ffd700;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn-volver:hover {
+            background-color: #e6c200;
+        }
+
+        .volver-container {
+            text-align: center;
         }
     </style>
 </head>
 <body>
 <div class="ranking-container">
-    <h1>Ranking de Usuarios</h1>
+    <h1>🏆 Ranking de Usuarios</h1>
     <table>
         <thead>
             <tr>
@@ -78,15 +122,39 @@
         </thead>
         <tbody>
         <% int posicion = 1;
-           for (RankingEntry entry : ranking) { %>
-            <tr>
-                <td><%= posicion++ %></td>
+           for (RankingEntry entry : ranking) {
+               String claseFila = "";
+               String emote = "";
+
+               switch (posicion) {
+                   case 1:
+                       claseFila = "gold";
+                       emote = "🥇 ";
+                       break;
+                   case 2:
+                       claseFila = "silver";
+                       emote = "🥈 ";
+                       break;
+                   case 3:
+                       claseFila = "bronze";
+                       emote = "🥉 ";
+                       break;
+                   default:
+                       claseFila = "";
+               }
+        %>
+            <tr class="<%= claseFila %>">
+                <td><%= emote + posicion %></td>
                 <td><%= entry.getUsername() %></td>
                 <td><%= entry.getTotalPoints() %></td>
             </tr>
-        <% } %>
+        <% posicion++; } %>
         </tbody>
     </table>
+
+    <div class="volver-container">
+        <a class="btn-volver" href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0">Volver al Inicio</a>
+    </div>
 </div>
 </body>
 </html>
