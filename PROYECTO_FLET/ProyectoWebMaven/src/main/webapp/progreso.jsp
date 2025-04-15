@@ -108,7 +108,7 @@
 	const puntosPorLaboratorio = [
 	  "${puntosXSS1}",  // Foro-xss (Hacking Web)
 	  "${puntosSQLi1}", // Amashop (Hacking Web)
-	  "${puntosCSRF1}", // WriteupSend (Hacking Web)
+	  "${puntosOR1}", // Separo (Hacking Web)
 	  "${puntosBAC1}",  // Hacking_community (Hacking Web)
 	  "${puntosRCE1}",  // RCE (DockerPwned)
 	  "${puntosLFI1}",  // LFI (DockerPwned)
@@ -122,7 +122,7 @@
 	    labels: [
 	      'foro-xss (Hacking Web)',
 	      'amashop (Hacking Web)',
-	      'writeupSend (Hacking Web)',
+	      'separo (Hacking Web)',
 	      'hacking_community (Hacking Web)',
 	      'RCE (DockerPwned)',
 	      'LFI (DockerPwned)',
