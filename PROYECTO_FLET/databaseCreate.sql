@@ -91,3 +91,12 @@ INSERT INTO laboratorios_ovalabs (nombre, flag, puntos) VALUES ('test_ova', 'FLA
 
 INSERT INTO validate_flag_dockerpwned (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 30);
 INSERT INTO validate_flag_ovalabs (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 50);
+
+-- Crear Tabla de Writeups (URL)
+
+CREATE TABLE writeups (
+    id SERIAL PRIMARY KEY,
+    lab_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    url_writeup TEXT NOT NULL
+);
