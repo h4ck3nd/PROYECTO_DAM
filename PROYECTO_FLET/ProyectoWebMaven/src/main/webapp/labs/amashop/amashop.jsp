@@ -209,109 +209,117 @@
 		    transform: translate(-50%, -50%) scale(1);
 		  }
 		}
-		.form-container-horizontal {
-		    display: flex;
+		.btn-dark {
+	        display: inline-block;
+	        padding: 10px 20px;
+	        background-color: #4f4f4f;
+	        color: #f0f0f0;
+	        text-decoration: none;
+	        border: 1px solid #444;
+	        border-radius: 5px;
+	        font-family: 'Courier New', Courier, monospace;
+	        transition: background-color 0.3s ease, transform 0.2s ease;
+	    }
+	
+	    .btn-dark:hover {
+	        background-color: #777;
+	        transform: translateY(-2px);
+	    }
+	
+	    .btn-dark:active {
+	        background-color: #333;
+	        transform: translateY(0);
+	    }
+	    .forum-container {
+			padding: 20px;
+			max-width: 800px;
+			margin: auto;
+			flex-grow: 1;
+			overflow-y: auto;
+		}
+		.labPopup-modal {
+		    display: none;
+		    position: fixed;
+		    z-index: 9999;
+		    left: 0;
+		    top: 0;
+		    width: 100vw;
+		    height: 100vh;
+		    background-color: rgba(0, 0, 0, 0.6);
 		    justify-content: center;
-		    align-items: flex-start;
-		    gap: 40px;
-		    margin-top: 50px;
-		    flex-wrap: wrap;
+		    align-items: center;
 		}
 		
-		/* Estilo formulario Writeup */
-		.writeup-form {
-		    background-color: #f9f9f9;
-		    text-align: center;
-		    padding: 2rem;
+		.labPopup-content {
+		    background-color: #2d2d2d;
+		    padding: 30px;
 		    border-radius: 10px;
-		    box-shadow: 0 0 15px rgba(0,0,0,0.1);
-		    color: #333;
-		    display: flex;
-		    flex-direction: column;
-		    width: 100%;
-		    max-width: 400px;
+		    width: 90%;
+		    max-width: 600px;
+		    box-shadow: 0 0 10px #000;
+		    position: relative;
 		}
 		
-		.writeup-form label {
-		    margin-bottom: 8px;
-		    font-weight: 600;
-		    color: #555;
-		}
-		
-		.writeup-form input[type="url"] {
-		    padding: 10px;
-		    border: 1px solid #ccc;
-		    border-radius: 5px;
-		    background-color: #fff;
-		    color: #333;
-		    margin-bottom: 20px;
-		}
-		
-		.writeup-form button {
-		    padding: 10px;
-		    background-color: #3a8bcd;
-		    color: #fff;
-		    border: none;
-		    border-radius: 5px;
+		.labPopup-close {
+		    color: #aaa;
+		    position: absolute;
+		    top: 15px;
+		    right: 20px;
+		    font-size: 28px;
 		    font-weight: bold;
 		    cursor: pointer;
-		    transition: background-color 0.3s ease;
 		}
 		
-		.writeup-form button:hover {
-		    background-color: #3272aa;
+		.labPopup-close:hover {
+		    color: #fff;
 		}
 		
-		/* Estilo formulario FLAG */
-		.flag-input-section {
+		.labPopup-wrapper {
 		    display: flex;
 		    flex-direction: column;
 		    align-items: center;
-		    justify-content: center;
-		    padding: 2rem;
-		    background-color: #f9f9f9;
-		    border-radius: 10px;
-		    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-		    max-width: 400px;
+		}
+		
+		.labPopup-form {
 		    width: 100%;
-		    color: #333;
-		    text-align: center;
-		}
-		
-		.flag-input-section h3 {
-		    margin-bottom: 20px;
-		}
-		
-		.flag-form {
 		    display: flex;
 		    flex-direction: column;
-		    gap: 15px;
-		    width: 100%;
+		    gap: 10px;
+		    margin-bottom: 25px;
 		}
 		
-		.flag-form input[type="text"] {
+		.labPopup-form label {
+		    color: #f0f0f0;
+		    font-weight: bold;
+		}
+		
+		.labPopup-form input {
 		    padding: 10px;
-		    font-size: 14px;
-		    border: 1px solid #ccc;
+		    background: #222;
+		    border: 1px solid #555;
 		    border-radius: 5px;
-		    background-color: #fff;
-		    color: #333;
-		    width: 100%;
+		    color: #fff;
 		}
 		
-		.flag-btn {
-		    padding: 10px;
-		    background-color: #4CAF50;
-		    color: white;
-		    font-size: 14px;
-		    border: none;
+		.labPopup-btn {
+		    background-color: #4f4f4f;
+		    color: #f0f0f0;
+		    padding: 10px 20px;
+		    border: 1px solid #444;
 		    border-radius: 5px;
 		    cursor: pointer;
-		    transition: background-color 0.3s ease;
+		    font-family: 'Courier New', Courier, monospace;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
 		}
 		
-		.flag-btn:hover {
-		    background-color: #45a049;
+		.labPopup-btn:hover {
+		    background-color: #777;
+		    transform: translateY(-2px);
+		}
+		
+		.labPopup-btn:active {
+		    background-color: #333;
+		    transform: translateY(0);
 		}
 
 </style>
@@ -320,11 +328,45 @@
 	
 	<header>
 		<div class="logo"><a style="text-decoration: none; color: white;" href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0">AmaShop</a></div>
+		<!-- Botón para abrir el popup -->
+			<button id="labPopup-openBtn" class="labPopup-btn">Enviar Writeup / FLAG</button>
+			<!-- BOTON PARA VER WRITEUPS -->
+	    	<a class="btn-dark" href="<%= request.getContextPath() %>/verWriteups?lab_id=<%= labId %>">Ver Writeups</a>
 		<input type="text" placeholder="Buscar productos..." class="search-bar">
 		<nav>
 			<button id="open-cart-btn">Ver Carrito</button>
 		</nav>
 	</header>
+	<!-- POPUP MODAL -->
+		<div id="labPopup-modal" class="labPopup-modal">
+		    <div class="labPopup-content">
+		        <span class="labPopup-close" id="labPopup-closeBtn">&times;</span>
+		
+		        <!-- CONTENIDO -->
+		        <div class="labPopup-wrapper">
+		
+		            <!-- FORMULARIO PARA ENVIAR WRITEUP -->
+		            <form class="labPopup-form" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
+		                <input type="hidden" name="lab_id" value="<%= labId %>">
+		                <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+		                <input type="hidden" name="username" value="<%= usuarioJWT.getUsuario() %>">
+		                <label for="url_writeup">Enviar enlace del Writeup:</label>
+		                <input type="url" name="url_writeup" id="url_writeup" required>
+		                <button class="labPopup-btn" type="submit">Enviar Writeup</button>
+		            </form>
+		
+		            <!-- FORMULARIO PARA INGRESAR FLAG -->
+		            <form class="labPopup-form" action="<%= request.getContextPath() %>/validarFlag" method="get">
+		                <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+		                <input type="hidden" name="lab_id" value="<%= labId %>">
+		                <label for="flag">Ingrese la FLAG:</label>
+		                <input type="text" id="flag" name="flag" required>
+		                <button class="labPopup-btn" type="submit">Enviar FLAG</button>
+		            </form>
+		
+		        </div>
+		    </div>
+		</div>
 	<!-- Popup para mostrar el mensaje -->
     <div id="popupMessage" class="message-popup">
         <div class="message-popup-header">Mensaje</div>
@@ -346,29 +388,7 @@
 		</aside>
 		
 		<main class="products">
-		<div class="form-container-horizontal">
-			<!-- FORMULARIO PARA ENVIAR WRITEUP -->
-			<form class="writeup-form" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
-			    <input type="hidden" name="lab_id" value="<%= labId %>">
-			    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-			    <input type="hidden" name="username" value="<%= usuarioJWT.getUsuario() %>">
-			    <label for="url_writeup">Enviar enlace del Writeup:</label>
-			    <input type="url" name="url_writeup" id="url_writeup" required>
-			    <button type="submit">Enviar Writeup</button>
-			</form>
-		</div>
-		<div class="form-container-horizontal">
-		  <div class="flag-input-section">
-			  <h3>Introduce la flag del laboratorio</h3>
-			  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
-				  <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-				  <input type="hidden" name="lab_id" value="<%= labId %>">
-				  <label for="flag">Ingrese la FLAG:</label>
-				  <input type="text" id="flag" name="flag" required>
-				  <button class="flag-btn" type="submit" class="style-button-flag">Enviar FLAG</button>
-			  </form>
-		</div>
-		</div>
+    	
 			<div id="sql-results"></div>
 			
 		    <!-- Producto 1 -->
@@ -583,6 +603,16 @@
 	</div>
    <script src="<%= request.getContextPath() %>/js/amashop.js"></script>
    <script>
+	// Popup Botones de Enviar Flag/Enviar Writeup
+		const popup = document.getElementById("labPopup-modal");
+	   const openBtn = document.getElementById("labPopup-openBtn");
+	   const closeBtn = document.getElementById("labPopup-closeBtn");
+	
+	   openBtn.onclick = () => popup.style.display = "flex";
+	   closeBtn.onclick = () => popup.style.display = "none";
+	   window.onclick = (e) => {
+	       if (e.target === popup) popup.style.display = "none";
+	   };
 		 //Mostrar el popup de solución
 		   function showPopupSolution() {
 		     document.getElementById("popup-solution").classList.remove("hidden");

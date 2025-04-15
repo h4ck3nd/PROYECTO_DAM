@@ -52,13 +52,7 @@ body {
 }
 
 /* COMENTARIOS */
-.forum-container {
-	padding: 20px;
-	max-width: 800px;
-	margin: auto;
-	flex-grow: 1;
-	overflow-y: auto;
-}
+
 
 .comment-box {
 	background: #161b22;

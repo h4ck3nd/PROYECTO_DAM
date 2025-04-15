@@ -244,6 +244,32 @@
 		.writeup-input-section button:hover {
 			background-color: #00e6a0;
 		}
+		.btn-dark {
+	        display: inline-block;
+	        padding: 10px 20px;
+	        background-color: #4f4f4f;
+	        color: #f0f0f0;
+	        text-decoration: none;
+	        border: 1px solid #444;
+	        border-radius: 5px;
+	        font-family: 'Courier New', Courier, monospace;
+	        transition: background-color 0.3s ease, transform 0.2s ease;
+	    }
+	
+	    .btn-dark:hover {
+	        background-color: #777;
+	        transform: translateY(-2px);
+	    }
+	
+	    .btn-dark:active {
+	        background-color: #333;
+	        transform: translateY(0);
+	    }
+	    .btn-viewWriteup {
+	    	align-items: center;
+	    	text-align: center;
+	    	align-content: center;
+	    }
   </style>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/hacking_community.css">
 </head>
@@ -267,6 +293,11 @@
             <p><%= request.getAttribute("mensaje") %></p>
         </div>
         <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/hacking_community/hacking_community.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
+    </div>
+    <br>
+    <div class="btn-viewWriteup">
+    <!-- BOTON PARA VER WRITEUPS -->
+    <a class="btn-dark" href="<%= request.getContextPath() %>/verWriteups?lab_id=<%= labId %>">Ver Writeups</a>
     </div>
     <!-- FORMULARIO PARA ENVIAR WRITEUP -->
 		<form class="writeup-input-section" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
