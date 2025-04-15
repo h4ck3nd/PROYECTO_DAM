@@ -68,6 +68,10 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
+		.img-ranking {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
 		.results {
 			max-width: 800px;
 			margin: auto;
@@ -130,9 +134,10 @@
 
     <div class="nav-container">
         <nav class="nav-menu">
-            <a href="home.jsp?page=0"><img src="../img/logo_hackend.png" class="img-hackend" width="20px" height="20px"> Hackend</a>
-            <a href="dockerpwned.jsp?page=0"><img src="../img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
-            <a href="ovalabs.jsp?page=0"><img src="../img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
+            <a href="home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo_hackend.png" class="img-hackend" width="20px" height="20px"> Hackend</a>
+            <a href="dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
+            <a href="ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
+            <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
             <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
         </nav>
 
