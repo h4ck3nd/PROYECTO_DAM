@@ -92,54 +92,6 @@
 		.message-popup.show {
 		    display: block; /* Se muestra cuando tiene la clase .show */
 		}
-		.flag-input-section {
-		    display: flex;
-		    flex-direction: column;
-		    align-items: center;
-		    justify-content: center;
-		    margin: 40px auto; /* Centrado horizontal y margen superior/inferior */
-		    padding: 30px 40px;
-		    background-color: #fff;
-		    border-radius: 10px;
-		    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-		    max-width: 500px;
-		    width: 100%;
-		    text-align: center;
-		}
-		
-		.flag-input-section h3 {
-		    margin-bottom: 20px;
-		}
-		
-		.flag-form {
-		    display: flex;
-		    flex-direction: column;
-		    gap: 15px;
-		    align-items: center;
-		}
-		
-		.flag-form input[type="text"] {
-		    padding: 8px;
-		    font-size: 14px;
-		    border: 1px solid #ccc;
-		    border-radius: 4px;
-		    width: 100%;
-		}
-		
-		.flag-btn {
-		    padding: 10px 20px;
-		    background-color: #4CAF50;
-		    color: white;
-		    font-size: 14px;
-		    border: none;
-		    border-radius: 4px;
-		    cursor: pointer;
-		    transition: background-color 0.3s ease;
-		}
-		
-		.flag-btn:hover {
-		    background-color: #45a049;
-		}
 		/* Popup estilo minimalista */
 		.popup-solucion {
 		  position: fixed;
@@ -257,6 +209,111 @@
 		    transform: translate(-50%, -50%) scale(1);
 		  }
 		}
+		.form-container-horizontal {
+		    display: flex;
+		    justify-content: center;
+		    align-items: flex-start;
+		    gap: 40px;
+		    margin-top: 50px;
+		    flex-wrap: wrap;
+		}
+		
+		/* Estilo formulario Writeup */
+		.writeup-form {
+		    background-color: #f9f9f9;
+		    text-align: center;
+		    padding: 2rem;
+		    border-radius: 10px;
+		    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+		    color: #333;
+		    display: flex;
+		    flex-direction: column;
+		    width: 100%;
+		    max-width: 400px;
+		}
+		
+		.writeup-form label {
+		    margin-bottom: 8px;
+		    font-weight: 600;
+		    color: #555;
+		}
+		
+		.writeup-form input[type="url"] {
+		    padding: 10px;
+		    border: 1px solid #ccc;
+		    border-radius: 5px;
+		    background-color: #fff;
+		    color: #333;
+		    margin-bottom: 20px;
+		}
+		
+		.writeup-form button {
+		    padding: 10px;
+		    background-color: #3a8bcd;
+		    color: #fff;
+		    border: none;
+		    border-radius: 5px;
+		    font-weight: bold;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease;
+		}
+		
+		.writeup-form button:hover {
+		    background-color: #3272aa;
+		}
+		
+		/* Estilo formulario FLAG */
+		.flag-input-section {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    justify-content: center;
+		    padding: 2rem;
+		    background-color: #f9f9f9;
+		    border-radius: 10px;
+		    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		    max-width: 400px;
+		    width: 100%;
+		    color: #333;
+		    text-align: center;
+		}
+		
+		.flag-input-section h3 {
+		    margin-bottom: 20px;
+		}
+		
+		.flag-form {
+		    display: flex;
+		    flex-direction: column;
+		    gap: 15px;
+		    width: 100%;
+		}
+		
+		.flag-form input[type="text"] {
+		    padding: 10px;
+		    font-size: 14px;
+		    border: 1px solid #ccc;
+		    border-radius: 5px;
+		    background-color: #fff;
+		    color: #333;
+		    width: 100%;
+		}
+		
+		.flag-btn {
+		    padding: 10px;
+		    background-color: #4CAF50;
+		    color: white;
+		    font-size: 14px;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    transition: background-color 0.3s ease;
+		}
+		
+		.flag-btn:hover {
+		    background-color: #45a049;
+		}
+
 </style>
 </head>
 <body>
@@ -276,16 +333,6 @@
         </div>
         <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/amashop/amashop.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
     </div>
-	  <div class="flag-input-section">
-		  <h3>Introduce la flag del laboratorio</h3>
-		  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
-			  <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-			  <input type="hidden" name="lab_id" value="<%= labId %>">
-			  <label for="flag">Ingrese la FLAG:</label>
-			  <input type="text" id="flag" name="flag" required>
-			  <button class="flag-btn" type="submit" class="style-button-flag">Enviar FLAG</button>
-		  </form>
-	</div>
 	<div class="main-container">
 		<aside class="sidebar">
 			<h3>Categorías</h3>
@@ -299,7 +346,28 @@
 		</aside>
 		
 		<main class="products">
-			
+		<div class="form-container-horizontal">
+			<!-- FORMULARIO PARA ENVIAR WRITEUP -->
+			<form class="writeup-form" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
+			    <input type="hidden" name="lab_id" value="<%= labId %>">
+			    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+			    <label for="url_writeup">Enviar enlace del Writeup:</label>
+			    <input type="url" name="url_writeup" id="url_writeup" required>
+			    <button type="submit">Enviar Writeup</button>
+			</form>
+		</div>
+		<div class="form-container-horizontal">
+		  <div class="flag-input-section">
+			  <h3>Introduce la flag del laboratorio</h3>
+			  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
+				  <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+				  <input type="hidden" name="lab_id" value="<%= labId %>">
+				  <label for="flag">Ingrese la FLAG:</label>
+				  <input type="text" id="flag" name="flag" required>
+				  <button class="flag-btn" type="submit" class="style-button-flag">Enviar FLAG</button>
+			  </form>
+		</div>
+		</div>
 			<div id="sql-results"></div>
 			
 		    <!-- Producto 1 -->

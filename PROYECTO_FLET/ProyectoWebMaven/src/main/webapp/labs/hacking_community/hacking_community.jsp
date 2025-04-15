@@ -204,6 +204,46 @@
 		    transform: translate(-50%, -50%) scale(1);
 		  }
 		}
+		.writeup-input-section {
+			margin-top: 40px;
+			padding: 20px;
+			background-color: #2e323d;
+			border-radius: 8px;
+			box-shadow: 0 4px 10px rgba(0, 255, 174, 0.15);
+			text-align: center;
+		}
+		
+		.writeup-input-section h3 {
+			color: #00ffae;
+			margin-bottom: 15px;
+			font-size: 1.2rem;
+		}
+		
+		.writeup-input-section input[type="url"] {
+			padding: 10px 15px;
+			border: none;
+			border-radius: 5px;
+			width: 60%;
+			max-width: 400px;
+			font-size: 1rem;
+			margin-right: 10px;
+			text-align: center;
+		}
+		
+		.writeup-input-section button {
+			padding: 10px 20px;
+			background-color: #00ffae;
+			color: #1e212d;
+			border: none;
+			border-radius: 5px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: background-color 0.3s ease;
+		}
+		
+		.writeup-input-section button:hover {
+			background-color: #00e6a0;
+		}
   </style>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/hacking_community.css">
 </head>
@@ -228,6 +268,16 @@
         </div>
         <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/hacking_community/hacking_community.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
     </div>
+    <!-- FORMULARIO PARA ENVIAR WRITEUP -->
+		<form class="writeup-input-section" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
+			<h3>Enviar Writeup</h3>
+		    <input type="hidden" name="lab_id" value="<%= labId %>">
+		    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+		    <label for="url_writeup">Enviar enlace del Writeup:</label>
+		    <input type="url" name="url_writeup" id="url_writeup" required>
+		    <button type="submit">Enviar Writeup</button>
+		</form>
+	<!-- FORMULARIO PARA ENVIAR FLAG -->
 	  <div class="flag-input-section">
 		  <h3>Introduce la flag del laboratorio</h3>
 		  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">

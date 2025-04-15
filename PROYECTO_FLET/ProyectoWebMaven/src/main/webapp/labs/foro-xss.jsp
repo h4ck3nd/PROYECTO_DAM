@@ -111,44 +111,6 @@
 		    display: block; /* Se muestra cuando tiene la clase .show */
 		}
 		/* Estilo del formulario */
-.flag-form {
-    display: flex;
-    align-items: center; /* Alinea los elementos verticalmente */
-    gap: 10px; /* Espacio entre los elementos */
-    flex-wrap: nowrap; /* Asegura que no se rompan en varias líneas */
-}
-
-/* Estilo de la etiqueta */
-.flag-label {
-    font-size: 14px;
-    color: #333;
-    margin-right: 5px; /* Espacio entre la etiqueta y el campo de entrada */
-}
-
-/* Estilo del campo de entrada */
-.flag-input {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 200px; /* Controla el tamaño del campo de entrada */
-}
-
-/* Estilo del botón */
-.flag-btn {
-    padding: 8px 12px;
-    background-color: #4CAF50;
-    color: white;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.flag-btn:hover {
-    background-color: #45a049;
-}
 /* Popup estilo minimalista */
 .popup-minimalista {
   position: fixed;
@@ -266,6 +228,66 @@
     transform: translate(-50%, -50%) scale(1);
   }
 }
+.form-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        align-content: center;
+        min-height: 80vh;
+    }
+
+    .writeup-form {
+        background-color: #1e1e1e;
+        text-align: center;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.4);
+        color: #eee;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 450px;
+    }
+
+    .writeup-form label {
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #ccc;
+    }
+
+    .writeup-form input[type="url"] {
+        padding: 10px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        background-color: #2b2b2b;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+    
+    .writeup-form input[id="flag"] {
+        padding: 10px;
+        border: 1px solid #444;
+        border-radius: 5px;
+        background-color: #2b2b2b;
+        color: #fff;
+        margin-bottom: 20px;
+    }
+
+    .writeup-form button {
+        padding: 10px;
+        background-color: #3a8bcd;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .writeup-form button:hover {
+        background-color: #3272aa;
+    }
 	</style>
 </head>
 <body>
@@ -290,16 +312,17 @@
     </div>
 	<div class="forum-container">
 		<!-- FORMULARIO PARA ENVIAR WRITEUP -->
-		<form action="<%= request.getContextPath() %>/WriteupControlador" method="post">
+		<form class="writeup-form" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
 		    <input type="hidden" name="lab_id" value="<%= labId %>">
 		    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-		    <label for="url_writeup">Enlace del Writeup:</label>
+		    <label for="url_writeup">Enviar enlace del Writeup:</label>
 		    <input type="url" name="url_writeup" id="url_writeup" required>
 		    <button type="submit">Enviar Writeup</button>
 		</form>
+		<br>
 		<%-- Comentarios precargados de ejemplo (puedes reemplazar por bucles de Java si se conecta a base de datos) --%>
 		<!-- Formulario para ingresar la FLAG -->
-        <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
+        <form class="writeup-form" action="<%= request.getContextPath() %>/validarFlag" method="get">
             <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
             <input type="hidden" name="lab_id" value="<%= labId %>">
             <label for="flag">Ingrese la FLAG:</label>
