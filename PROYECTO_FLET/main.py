@@ -380,6 +380,27 @@ def eliminar_cuenta():
 def run_flask():
     app.run(port=5000, debug=False, use_reloader=False)
 
+@app.route('/get_username/<int:user_id>')
+def get_username(user_id):
+    # Conectando a la base de datos PostgreSQL
+    conn = connect_db()
+    cursor = conn.cursor()
+
+    # Ejecutando la consulta para obtener el nombre de usuario
+    cursor.execute("SELECT usuario FROM usuarios WHERE id = %s", (user_id,))
+    result = cursor.fetchone()
+
+    # Cerrando la conexión
+    cursor.close()
+    conn.close()
+
+    if result:
+        # Si se encuentra el usuario, devolvemos el nombre de usuario
+        return jsonify({"username": result[0]})
+    else:
+        # Si no se encuentra el usuario, devolvemos un mensaje de error
+        return jsonify({"username": "Desconocido"}), 404
+
 threading.Thread(target=run_flask, daemon=True).start()
 
 # ------------ FLET INTERFAZ ------------
