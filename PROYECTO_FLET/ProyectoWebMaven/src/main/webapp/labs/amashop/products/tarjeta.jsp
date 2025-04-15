@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -222,71 +223,71 @@ footer {
 						<div class="product-info">
 							<h1>MicroSD 128GB</h1>
 							<p>
-								La <strong>MicroSD 128GB</strong> es la solución perfecta para
-								expandir el almacenamiento de tus dispositivos móviles, cámaras,
-								y otros dispositivos electrónicos. Con una gran capacidad de
+								La <strong>MicroSD 128GB</strong> es la soluciÃ³n perfecta para
+								expandir el almacenamiento de tus dispositivos mÃ³viles, cÃ¡maras,
+								y otros dispositivos electrÃ³nicos. Con una gran capacidad de
 								almacenamiento y una alta velocidad de transferencia, te permite
-								guardar más fotos, videos y aplicaciones sin preocuparte por
+								guardar mÃ¡s fotos, videos y aplicaciones sin preocuparte por
 								quedarte sin espacio.
 							</p>
 							<ul>
 								<li>Capacidad de almacenamiento de 128GB para guardar una
 									gran cantidad de datos.</li>
-								<li>Velocidad de transferencia rápida para una experiencia
+								<li>Velocidad de transferencia rÃ¡pida para una experiencia
 									de uso eficiente.</li>
 								<li>Compatibilidad con dispositivos que admiten tarjetas
-									MicroSD, como teléfonos, cámaras y más.</li>
+									MicroSD, como telÃ©fonos, cÃ¡maras y mÃ¡s.</li>
 								<li>Resistente a las condiciones extremas, incluyendo
 									temperaturas altas y bajas.</li>
-								<li>Ideal para grabación de videos en 4K, fotografía de
-									alta resolución y aplicaciones de gran tamaño.</li>
-								<li>Fácil de usar, simplemente inserta la tarjeta en el
+								<li>Ideal para grabaciÃ³n de videos en 4K, fotografÃ­a de
+									alta resoluciÃ³n y aplicaciones de gran tamaÃ±o.</li>
+								<li>FÃ¡cil de usar, simplemente inserta la tarjeta en el
 									dispositivo y comienza a almacenar.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>💾 MicroSD 128GB – Expande tu almacenamiento</h2>
+						<h2>ð¾ MicroSD 128GB â Expande tu almacenamiento</h2>
 						<p>
 							La <strong>MicroSD 128GB</strong> es perfecta para quienes
-							necesitan más espacio de almacenamiento en sus dispositivos. Ya
-							sea para tu teléfono, cámara, dron o cualquier otro dispositivo
+							necesitan mÃ¡s espacio de almacenamiento en sus dispositivos. Ya
+							sea para tu telÃ©fono, cÃ¡mara, dron o cualquier otro dispositivo
 							compatible, esta tarjeta ofrece una gran capacidad para guardar
-							fotos, videos, música, y aplicaciones, asegurando que nunca te
+							fotos, videos, mÃºsica, y aplicaciones, asegurando que nunca te
 							quedes sin espacio.
 						</p>
 						<p>Con una alta velocidad de transferencia, puedes almacenar y
-							acceder a tus archivos rápidamente. Es ideal para grabar videos
-							en alta definición o 4K, así como para aplicaciones que requieren
+							acceder a tus archivos rÃ¡pidamente. Es ideal para grabar videos
+							en alta definiciÃ³n o 4K, asÃ­ como para aplicaciones que requieren
 							un gran espacio de almacenamiento, como juegos o software de
-							edición multimedia.</p>
+							ediciÃ³n multimedia.</p>
 						<p>
-							Además, la <strong>MicroSD 128GB</strong> es resistente a
+							AdemÃ¡s, la <strong>MicroSD 128GB</strong> es resistente a
 							condiciones extremas como temperaturas extremas, lo que asegura
-							su durabilidad en ambientes difíciles. Ya sea que la uses para
-							una cámara de acción o para tu smartphone, puedes contar con su
+							su durabilidad en ambientes difÃ­ciles. Ya sea que la uses para
+							una cÃ¡mara de acciÃ³n o para tu smartphone, puedes contar con su
 							confiabilidad y rendimiento superior.
 						</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
 							<li><strong>Capacidad de 128GB:</strong> Amplio espacio para
-								fotos, videos, aplicaciones y más.</li>
-							<li><strong>Alta velocidad de transferencia:</strong> Rápida
+								fotos, videos, aplicaciones y mÃ¡s.</li>
+							<li><strong>Alta velocidad de transferencia:</strong> RÃ¡pida
 								lectura y escritura de archivos.</li>
 							<li><strong>Compatibilidad universal:</strong> Funciona con
 								dispositivos que admiten tarjetas MicroSD.</li>
 							<li><strong>Resistente a temperaturas extremas:</strong>
-								Ideal para condiciones difíciles y grabación al aire libre.</li>
-							<li><strong>Perfecta para grabación en 4K:</strong>
-								Compatible con video de alta resolución.</li>
+								Ideal para condiciones difÃ­ciles y grabaciÃ³n al aire libre.</li>
+							<li><strong>Perfecta para grabaciÃ³n en 4K:</strong>
+								Compatible con video de alta resoluciÃ³n.</li>
 						</ul>
 						</p>
 						<p>
-							Con la <strong>MicroSD 128GB</strong>, tendrás el almacenamiento
-							adicional que necesitas para todos tus dispositivos. ¡Hazte con
-							la tuya y nunca más te quedes sin espacio!
+							Con la <strong>MicroSD 128GB</strong>, tendrÃ¡s el almacenamiento
+							adicional que necesitas para todos tus dispositivos. Â¡Hazte con
+							la tuya y nunca mÃ¡s te quedes sin espacio!
 						</p>
 					</div>
 				</div>

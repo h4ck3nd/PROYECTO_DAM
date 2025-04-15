@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* ð¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃ­as</h3>
+				<h3>CategorÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃ­a</a></li>
+					<li><a href="#">TecnologÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -223,99 +224,99 @@ footer {
 							<h1>Auriculares Bluetooth</h1>
 							<p>
 								Los <strong>Auriculares Bluetooth</strong> ofrecen una calidad
-								de sonido impresionante con un diseño ergonómico y moderno. Con
-								cancelación de ruido activa, batería de larga duración y
-								conectividad rápida, son ideales para cualquier persona que
-								busque disfrutar de su música o realizar llamadas sin
+								de sonido impresionante con un diseÃ±o ergonÃ³mico y moderno. Con
+								cancelaciÃ³n de ruido activa, baterÃ­a de larga duraciÃ³n y
+								conectividad rÃ¡pida, son ideales para cualquier persona que
+								busque disfrutar de su mÃºsica o realizar llamadas sin
 								interrupciones.
 							</p>
 							<ul>
 								<li>Conectividad Bluetooth 5.0</li>
-								<li>Cancelación activa de ruido</li>
-								<li>Hasta 20 horas de batería</li>
-								<li>Diseño ergonómico y cómodo</li>
+								<li>CancelaciÃ³n activa de ruido</li>
+								<li>Hasta 20 horas de baterÃ­a</li>
+								<li>DiseÃ±o ergonÃ³mico y cÃ³modo</li>
 								<li>Compatibles con dispositivos iOS y Android</li>
-								<li>Micrófono incorporado para llamadas</li>
+								<li>MicrÃ³fono incorporado para llamadas</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🎧 Auriculares Bluetooth – Sonido Premium y Confort</h2>
+						<h2>ð§ Auriculares Bluetooth â Sonido Premium y Confort</h2>
 						<p>
-							Los <strong>Auriculares Bluetooth</strong> están diseñados
+							Los <strong>Auriculares Bluetooth</strong> estÃ¡n diseÃ±ados
 							para quienes buscan una experiencia sonora inigualable, sin
-							comprometer la comodidad ni la durabilidad. Con la más avanzada
-							tecnología de cancelación activa de ruido, podrás sumergirte
-							completamente en tu música o llamadas sin preocuparte por los
-							ruidos externos. Ya sea que estés en una oficina, en el
-							transporte público o en un ambiente ruidoso, los X100 eliminan
+							comprometer la comodidad ni la durabilidad. Con la mÃ¡s avanzada
+							tecnologÃ­a de cancelaciÃ³n activa de ruido, podrÃ¡s sumergirte
+							completamente en tu mÃºsica o llamadas sin preocuparte por los
+							ruidos externos. Ya sea que estÃ©s en una oficina, en el
+							transporte pÃºblico o en un ambiente ruidoso, los X100 eliminan
 							las distracciones y te ofrecen una calidad de sonido excepcional.
 						</p>
 						<p>
-							En cuanto al diseño, los <strong>Auriculares Bluetooth
-							</strong> cuentan con un diseño ergonómico y ligero que garantiza un
-							ajuste cómodo incluso durante largas horas de uso. Sus
-							almohadillas de espuma viscoelástica se adaptan perfectamente a
-							la forma de tus oídos, brindándote una sensación de confort que
-							te permitirá disfrutar de tus canciones, podcasts o llamadas
-							durante todo el día sin molestias. Además, son lo suficientemente
-							ligeros como para ser transportados cómodamente en tu mochila o
+							En cuanto al diseÃ±o, los <strong>Auriculares Bluetooth
+							</strong> cuentan con un diseÃ±o ergonÃ³mico y ligero que garantiza un
+							ajuste cÃ³modo incluso durante largas horas de uso. Sus
+							almohadillas de espuma viscoelÃ¡stica se adaptan perfectamente a
+							la forma de tus oÃ­dos, brindÃ¡ndote una sensaciÃ³n de confort que
+							te permitirÃ¡ disfrutar de tus canciones, podcasts o llamadas
+							durante todo el dÃ­a sin molestias. AdemÃ¡s, son lo suficientemente
+							ligeros como para ser transportados cÃ³modamente en tu mochila o
 							bolso.
 						</p>
 						<p>
-							La batería de estos auriculares es uno de sus puntos fuertes, ya
-							que ofrece hasta <strong>20 horas de reproducción
+							La baterÃ­a de estos auriculares es uno de sus puntos fuertes, ya
+							que ofrece hasta <strong>20 horas de reproducciÃ³n
 								continua</strong> con una sola carga. Esto significa que puedes disfrutar
 							de tus actividades diarias, ya sea viajando, haciendo ejercicio o
-							trabajando, sin tener que preocuparte por quedarte sin batería.
-							Cuando sea necesario cargar los auriculares, la carga rápida te
-							permitirá volver a usarlos en muy poco tiempo.
+							trabajando, sin tener que preocuparte por quedarte sin baterÃ­a.
+							Cuando sea necesario cargar los auriculares, la carga rÃ¡pida te
+							permitirÃ¡ volver a usarlos en muy poco tiempo.
 						</p>
 						<p>
 							Los <strong>Auriculares Bluetooth</strong> no solo ofrecen
-							una calidad de sonido superior, sino también un micrófono
+							una calidad de sonido superior, sino tambiÃ©n un micrÃ³fono
 							integrado de alta calidad para realizar llamadas. Gracias a su
-							sistema de cancelación de ruido en el micrófono, las llamadas se
+							sistema de cancelaciÃ³n de ruido en el micrÃ³fono, las llamadas se
 							escuchan claramente y sin interferencias, incluso en entornos
-							ruidosos. Esto los convierte en una opción ideal para quienes
-							necesitan hacer o recibir llamadas mientras están en movimiento,
+							ruidosos. Esto los convierte en una opciÃ³n ideal para quienes
+							necesitan hacer o recibir llamadas mientras estÃ¡n en movimiento,
 							ya sea en la calle, en el gimnasio o en el trabajo.
 						</p>
 						<p>
-							Ya sea que seas un amante de la música que disfruta de la mejor
+							Ya sea que seas un amante de la mÃºsica que disfruta de la mejor
 							calidad de sonido, un profesional que hace llamadas frecuentes o
 							alguien que simplemente busca un dispositivo fiable para uso
 							diario, los <strong>Auriculares Bluetooth X100</strong> son la
-							opción perfecta. Con un sonido impresionante, un diseño
-							ergonómico, una batería de larga duración y un micrófono de
-							calidad, estos auriculares están listos para acompañarte en todas
+							opciÃ³n perfecta. Con un sonido impresionante, un diseÃ±o
+							ergonÃ³mico, una baterÃ­a de larga duraciÃ³n y un micrÃ³fono de
+							calidad, estos auriculares estÃ¡n listos para acompaÃ±arte en todas
 							tus actividades.
 						</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Bluetooth 5.0:</strong> Conexión rápida y
-								estable, con mayor alcance y eficiencia energética.</li>
-							<li><strong>Cancelación activa de ruido:</strong> Aísla el
-								sonido exterior para una experiencia más inmersiva.</li>
-							<li><strong>Hasta 20 horas de duración de batería:</strong>
-								Reproducción continua durante todo el día sin necesidad de
+							<li><strong>Bluetooth 5.0:</strong> ConexiÃ³n rÃ¡pida y
+								estable, con mayor alcance y eficiencia energÃ©tica.</li>
+							<li><strong>CancelaciÃ³n activa de ruido:</strong> AÃ­sla el
+								sonido exterior para una experiencia mÃ¡s inmersiva.</li>
+							<li><strong>Hasta 20 horas de duraciÃ³n de baterÃ­a:</strong>
+								ReproducciÃ³n continua durante todo el dÃ­a sin necesidad de
 								recargar.</li>
-							<li><strong>Micrófono de alta calidad:</strong> Para
-								llamadas claras y nítidas, incluso en entornos ruidosos.</li>
-							<li><strong>Diseño ergonómico y cómodo:</strong>
-								Almohadillas de espuma viscoelástica para un ajuste perfecto.</li>
-							<li><strong>Controles táctiles intuitivos:</strong> Fácil
-								manejo de música y llamadas con solo deslizar el dedo.</li>
+							<li><strong>MicrÃ³fono de alta calidad:</strong> Para
+								llamadas claras y nÃ­tidas, incluso en entornos ruidosos.</li>
+							<li><strong>DiseÃ±o ergonÃ³mico y cÃ³modo:</strong>
+								Almohadillas de espuma viscoelÃ¡stica para un ajuste perfecto.</li>
+							<li><strong>Controles tÃ¡ctiles intuitivos:</strong> FÃ¡cil
+								manejo de mÃºsica y llamadas con solo deslizar el dedo.</li>
 							<li><strong>Compatibilidad universal:</strong> Funciona con
-								dispositivos iOS, Android, tabletas, laptops y más.</li>
+								dispositivos iOS, Android, tabletas, laptops y mÃ¡s.</li>
 						</ul>
 						</p>
 						<p>
 							Con los <strong>Auriculares Bluetooth</strong>, tu
-							experiencia auditiva será más completa, cómoda y de alta calidad.
-							¡Hazte con ellos hoy mismo y lleva tu música y comunicaciones al
+							experiencia auditiva serÃ¡ mÃ¡s completa, cÃ³moda y de alta calidad.
+							Â¡Hazte con ellos hoy mismo y lleva tu mÃºsica y comunicaciones al
 							siguiente nivel!
 						</p>
 					</div>

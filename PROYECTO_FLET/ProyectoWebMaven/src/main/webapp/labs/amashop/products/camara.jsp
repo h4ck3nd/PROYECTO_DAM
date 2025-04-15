@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -220,74 +221,74 @@ footer {
 						<img src="<%= request.getContextPath() %>/img/img_amashop/Camara-Digital-4K.png"
 							alt="Smartwatch Z50" class="product-image">
 						<div class="product-info">
-							<h1>Cámara Digital 4K</h1>
+							<h1>CÃ¡mara Digital 4K</h1>
 							<p>
-								La <strong>Cámara Digital 4K</strong> es la herramienta perfecta
+								La <strong>CÃ¡mara Digital 4K</strong> es la herramienta perfecta
 								para capturar momentos con una calidad de imagen impresionante.
-								Diseñada para los entusiastas de la fotografía y los creadores
-								de contenido, esta cámara ofrece una resolución de 4K para
-								lograr detalles nítidos y colores vibrantes en cada toma.
+								DiseÃ±ada para los entusiastas de la fotografÃ­a y los creadores
+								de contenido, esta cÃ¡mara ofrece una resoluciÃ³n de 4K para
+								lograr detalles nÃ­tidos y colores vibrantes en cada toma.
 							</p>
 							<ul>
-								<li>Resolución 4K para videos de alta calidad.</li>
-								<li>Sensor avanzado para una mejor captura de imágenes con
+								<li>ResoluciÃ³n 4K para videos de alta calidad.</li>
+								<li>Sensor avanzado para una mejor captura de imÃ¡genes con
 									poca luz.</li>
-								<li>Estabilización de imagen para vídeos suaves y sin
+								<li>EstabilizaciÃ³n de imagen para vÃ­deos suaves y sin
 									sacudidas.</li>
 								<li>Conectividad Wi-Fi para compartir y transmitir tus
-									imágenes fácilmente.</li>
+									imÃ¡genes fÃ¡cilmente.</li>
 								<li>Pantalla LCD articulada para facilitar tomas desde
-									diferentes ángulos.</li>
-								<li>Batería de larga duración para sesiones fotográficas
+									diferentes Ã¡ngulos.</li>
+								<li>BaterÃ­a de larga duraciÃ³n para sesiones fotogrÃ¡ficas
 									prolongadas.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🌟 Cámara Digital 4K – Captura el Mundo con Calidad
+						<h2>ð CÃ¡mara Digital 4K â Captura el Mundo con Calidad
 							Profesional</h2>
 						<p>
-							La <strong>Cámara Digital 4K</strong> ofrece un rendimiento
-							superior con una calidad de imagen excepcional. Ya sea que estés
-							grabando un video o capturando una fotografía, esta cámara está
-							diseñada para entregar resultados impresionantes con resolución
+							La <strong>CÃ¡mara Digital 4K</strong> ofrece un rendimiento
+							superior con una calidad de imagen excepcional. Ya sea que estÃ©s
+							grabando un video o capturando una fotografÃ­a, esta cÃ¡mara estÃ¡
+							diseÃ±ada para entregar resultados impresionantes con resoluciÃ³n
 							4K, lo que te garantiza una claridad y detalle excepcionales en
 							cada captura.
 						</p>
-						<p>Gracias a su sensor avanzado, podrás obtener fotos nítidas
+						<p>Gracias a su sensor avanzado, podrÃ¡s obtener fotos nÃ­tidas
 							incluso en condiciones de poca luz, asegurando que cada momento
-							se capture con precisión. La estabilización de imagen integrada
+							se capture con precisiÃ³n. La estabilizaciÃ³n de imagen integrada
 							te permite grabar videos sin movimientos bruscos, lo que resulta
 							en grabaciones suaves y profesionales.</p>
-						<p>Además, su conectividad Wi-Fi te permite compartir tus
+						<p>AdemÃ¡s, su conectividad Wi-Fi te permite compartir tus
 							fotos y videos al instante, y la pantalla LCD articulada facilita
-							la captura de imágenes desde ángulos complicados, brindándote una
-							flexibilidad total. Con su batería de larga duración, podrás
+							la captura de imÃ¡genes desde Ã¡ngulos complicados, brindÃ¡ndote una
+							flexibilidad total. Con su baterÃ­a de larga duraciÃ³n, podrÃ¡s
 							disfrutar de largas sesiones sin preocuparte por quedarte sin
-							energía.</p>
+							energÃ­a.</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Resolución 4K:</strong> Captura imágenes y
+							<li><strong>ResoluciÃ³n 4K:</strong> Captura imÃ¡genes y
 								videos con una calidad profesional.</li>
 							<li><strong>Sensor avanzado:</strong> Mejora las capturas en
 								condiciones de baja luz.</li>
-							<li><strong>Estabilización de imagen:</strong> Videos suaves
+							<li><strong>EstabilizaciÃ³n de imagen:</strong> Videos suaves
 								y sin sacudidas.</li>
 							<li><strong>Conectividad Wi-Fi:</strong> Comparte y
-								transmite tus imágenes de manera instantánea.</li>
+								transmite tus imÃ¡genes de manera instantÃ¡nea.</li>
 							<li><strong>Pantalla LCD articulada:</strong> Toma fotos
-								desde ángulos difíciles con facilidad.</li>
-							<li><strong>Batería de larga duración:</strong> Perfecta
-								para largas sesiones de grabación o fotografía.</li>
+								desde Ã¡ngulos difÃ­ciles con facilidad.</li>
+							<li><strong>BaterÃ­a de larga duraciÃ³n:</strong> Perfecta
+								para largas sesiones de grabaciÃ³n o fotografÃ­a.</li>
 						</ul>
 						</p>
 						<p>
-							La <strong>Cámara Digital 4K</strong> es la herramienta ideal
+							La <strong>CÃ¡mara Digital 4K</strong> es la herramienta ideal
 							para capturar la esencia de cada momento con calidad de nivel
-							profesional. ¡Hazte con la tuya y lleva tus proyectos de
-							fotografía y video al siguiente nivel!
+							profesional. Â¡Hazte con la tuya y lleva tus proyectos de
+							fotografÃ­a y video al siguiente nivel!
 						</p>
 					</div>
 				</div>

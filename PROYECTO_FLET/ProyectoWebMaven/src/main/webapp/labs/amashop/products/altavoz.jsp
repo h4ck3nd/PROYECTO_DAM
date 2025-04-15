@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -222,76 +223,76 @@ footer {
 						<div class="product-info">
 							<h1>Altavoces Bluetooth</h1>
 							<p>
-								Los <strong>Altavoces Bluetooth</strong> son la solución
-								perfecta para disfrutar de tu música en cualquier lugar. Con un
-								diseño portátil, elegante y sonido de alta calidad, estos
+								Los <strong>Altavoces Bluetooth</strong> son la soluciÃ³n
+								perfecta para disfrutar de tu mÃºsica en cualquier lugar. Con un
+								diseÃ±o portÃ¡til, elegante y sonido de alta calidad, estos
 								altavoces te ofrecen la libertad de conectarte sin cables y
-								llevar la música a todas partes. Son ideales para escuchar
-								música en casa, en la playa o mientras haces ejercicio.
+								llevar la mÃºsica a todas partes. Son ideales para escuchar
+								mÃºsica en casa, en la playa o mientras haces ejercicio.
 							</p>
 							<ul>
-								<li>Conexión Bluetooth 5.0 para una transmisión de sonido
-									rápida y estable.</li>
-								<li>Sonido estéreo de alta calidad con graves profundos y
+								<li>ConexiÃ³n Bluetooth 5.0 para una transmisiÃ³n de sonido
+									rÃ¡pida y estable.</li>
+								<li>Sonido estÃ©reo de alta calidad con graves profundos y
 									agudos claros.</li>
-								<li>Resistente al agua con certificación IPX7, perfecto
+								<li>Resistente al agua con certificaciÃ³n IPX7, perfecto
 									para exteriores.</li>
-								<li>Batería de larga duración, hasta 12 horas de
-									reproducción continua.</li>
-								<li>Función manos libres para responder llamadas sin
+								<li>BaterÃ­a de larga duraciÃ³n, hasta 12 horas de
+									reproducciÃ³n continua.</li>
+								<li>FunciÃ³n manos libres para responder llamadas sin
 									desconectar el altavoz.</li>
-								<li>Diseño compacto y portátil, fácil de llevar a todas
+								<li>DiseÃ±o compacto y portÃ¡til, fÃ¡cil de llevar a todas
 									partes.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🔊 Altavoces Bluetooth – Música en todas partes</h2>
+						<h2>ð Altavoces Bluetooth â MÃºsica en todas partes</h2>
 						<p>
 							Los <strong>Altavoces Bluetooth</strong> ofrecen una experiencia
-							de sonido increíble en cualquier lugar. Con la conectividad
-							Bluetooth 5.0, puedes disfrutar de una transmisión estable y
-							rápida sin cables. Ya sea que estés en casa, en el parque o en la
-							playa, estos altavoces están diseñados para adaptarse a tu estilo
+							de sonido increÃ­ble en cualquier lugar. Con la conectividad
+							Bluetooth 5.0, puedes disfrutar de una transmisiÃ³n estable y
+							rÃ¡pida sin cables. Ya sea que estÃ©s en casa, en el parque o en la
+							playa, estos altavoces estÃ¡n diseÃ±ados para adaptarse a tu estilo
 							de vida activo.
 						</p>
-						<p>Disfruta de un sonido estéreo de alta calidad, con graves
-							profundos y agudos nítidos que harán que tu música suene mejor
-							que nunca. Además, su diseño compacto y portátil te permite
-							llevarlo donde quieras, asegurando que siempre tengas la música
+						<p>Disfruta de un sonido estÃ©reo de alta calidad, con graves
+							profundos y agudos nÃ­tidos que harÃ¡n que tu mÃºsica suene mejor
+							que nunca. AdemÃ¡s, su diseÃ±o compacto y portÃ¡til te permite
+							llevarlo donde quieras, asegurando que siempre tengas la mÃºsica
 							que amas al alcance de tu mano.</p>
-						<p>Con la clasificación de resistencia al agua IPX7, estos
+						<p>Con la clasificaciÃ³n de resistencia al agua IPX7, estos
 							altavoces son perfectos para su uso al aire libre, resistiendo la
-							lluvia, las salpicaduras e incluso una inmersión breve en el
-							agua. La batería de larga duración garantiza hasta 12 horas de
-							reproducción continua, por lo que puedes disfrutar de tus
-							canciones favoritas durante todo el día sin preocuparte por
+							lluvia, las salpicaduras e incluso una inmersiÃ³n breve en el
+							agua. La baterÃ­a de larga duraciÃ³n garantiza hasta 12 horas de
+							reproducciÃ³n continua, por lo que puedes disfrutar de tus
+							canciones favoritas durante todo el dÃ­a sin preocuparte por
 							quedarte sin carga.</p>
-						<p>Además, la función manos libres permite que puedas
+						<p>AdemÃ¡s, la funciÃ³n manos libres permite que puedas
 							responder tus llamadas sin desconectar el altavoz, haciendo que
-							sea una opción práctica para cualquier ocasión.</p>
+							sea una opciÃ³n prÃ¡ctica para cualquier ocasiÃ³n.</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Bluetooth 5.0:</strong> Conexión rápida y
+							<li><strong>Bluetooth 5.0:</strong> ConexiÃ³n rÃ¡pida y
 								estable para una experiencia de sonido fluida.</li>
-							<li><strong>Sonido estéreo de alta calidad:</strong> Graves
-								profundos y agudos nítidos.</li>
+							<li><strong>Sonido estÃ©reo de alta calidad:</strong> Graves
+								profundos y agudos nÃ­tidos.</li>
 							<li><strong>Resistencia al agua IPX7:</strong> Perfecto para
 								uso en exteriores y actividades al aire libre.</li>
-							<li><strong>Batería de larga duración:</strong> Hasta 12
-								horas de reproducción continua.</li>
-							<li><strong>Función manos libres:</strong> Responde llamadas
+							<li><strong>BaterÃ­a de larga duraciÃ³n:</strong> Hasta 12
+								horas de reproducciÃ³n continua.</li>
+							<li><strong>FunciÃ³n manos libres:</strong> Responde llamadas
 								sin desconectar el altavoz.</li>
-							<li><strong>Diseño portátil:</strong> Compacto y fácil de
+							<li><strong>DiseÃ±o portÃ¡til:</strong> Compacto y fÃ¡cil de
 								transportar.</li>
 						</ul>
 						</p>
 						<p>
-							¡Hazte con tus <strong>Altavoces Bluetooth</strong> hoy mismo y
-							lleva la música donde quieras! Conéctalos fácilmente y disfruta
-							de la mejor calidad de sonido, estés donde estés.
+							Â¡Hazte con tus <strong>Altavoces Bluetooth</strong> hoy mismo y
+							lleva la mÃºsica donde quieras! ConÃ©ctalos fÃ¡cilmente y disfruta
+							de la mejor calidad de sonido, estÃ©s donde estÃ©s.
 						</p>
 					</div>
 				</div>

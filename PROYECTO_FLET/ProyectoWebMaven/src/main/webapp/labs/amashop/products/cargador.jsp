@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -220,22 +221,22 @@ footer {
 						<img src="<%= request.getContextPath() %>/img/img_amashop/Cargador-Inalambrico.png"
 							alt="Smartwatch Z50" class="product-image">
 						<div class="product-info">
-							<h1>Cargador Inalámbrico</h1>
+							<h1>Cargador InalÃ¡mbrico</h1>
 							<p>
-								El <strong>Cargador Inalámbrico</strong> es la solución perfecta
+								El <strong>Cargador InalÃ¡mbrico</strong> es la soluciÃ³n perfecta
 								para mantener tus dispositivos siempre cargados sin la necesidad
-								de cables. Con un diseño compacto y elegante, este cargador
-								inalámbrico es compatible con la mayoría de los smartphones y
+								de cables. Con un diseÃ±o compacto y elegante, este cargador
+								inalÃ¡mbrico es compatible con la mayorÃ­a de los smartphones y
 								dispositivos habilitados para carga Qi.
 							</p>
 							<ul>
 								<li>Compatible con dispositivos Qi como iPhone, Samsung,
 									entre otros.</li>
-								<li>Diseño compacto y elegante que se adapta a cualquier
+								<li>DiseÃ±o compacto y elegante que se adapta a cualquier
 									entorno.</li>
-								<li>Carga rápida de hasta 15W para una experiencia sin
+								<li>Carga rÃ¡pida de hasta 15W para una experiencia sin
 									interrupciones.</li>
-								<li>Protección contra sobrecalentamiento, sobrecarga y
+								<li>ProtecciÃ³n contra sobrecalentamiento, sobrecarga y
 									cortocircuito.</li>
 								<li>Base antideslizante para mantener el dispositivo seguro
 									mientras se carga.</li>
@@ -245,36 +246,36 @@ footer {
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>⚡ Cargador Inalámbrico – La comodidad de cargar sin
+						<h2>â¡ Cargador InalÃ¡mbrico â La comodidad de cargar sin
 							cables</h2>
 						<p>
-							El <strong>Cargador Inalámbrico</strong> ofrece una forma rápida
+							El <strong>Cargador InalÃ¡mbrico</strong> ofrece una forma rÃ¡pida
 							y eficiente de cargar tus dispositivos sin la molestia de los
 							cables. Solo coloca tu smartphone o dispositivo compatible en la
-							base y disfruta de una carga rápida y segura. Este cargador es
+							base y disfruta de una carga rÃ¡pida y segura. Este cargador es
 							compatible con una amplia gama de dispositivos, desde iPhones
-							hasta Samsung Galaxy y otros teléfonos con tecnología Qi.
+							hasta Samsung Galaxy y otros telÃ©fonos con tecnologÃ­a Qi.
 						</p>
-						<p>Su diseño moderno y elegante se adapta perfectamente a
-							cualquier ambiente, ya sea en tu hogar o en la oficina. Además,
+						<p>Su diseÃ±o moderno y elegante se adapta perfectamente a
+							cualquier ambiente, ya sea en tu hogar o en la oficina. AdemÃ¡s,
 							cuenta con una base antideslizante que asegura que tu dispositivo
 							permanezca en su lugar durante todo el proceso de carga.</p>
-						<p>La carga rápida de hasta 15W garantiza que tu dispositivo
+						<p>La carga rÃ¡pida de hasta 15W garantiza que tu dispositivo
 							se cargue en menos tiempo, lo que te permite mantenerte siempre
-							conectado sin largos tiempos de espera. La protección avanzada
+							conectado sin largos tiempos de espera. La protecciÃ³n avanzada
 							contra sobrecalentamiento, sobrecarga y cortocircuito asegura que
-							tu dispositivo esté seguro durante el proceso de carga.</p>
+							tu dispositivo estÃ© seguro durante el proceso de carga.</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
 							<li><strong>Compatibilidad Qi:</strong> Funciona con una
-								variedad de dispositivos habilitados para carga inalámbrica.</li>
-							<li><strong>Carga rápida de hasta 15W:</strong> Menos tiempo
-								cargando, más tiempo usando tu dispositivo.</li>
-							<li><strong>Diseño elegante y compacto:</strong> Perfecto
-								para cualquier entorno y fácil de transportar.</li>
-							<li><strong>Protección avanzada:</strong>
-								Sobrecalentamiento, sobrecarga y cortocircuito están protegidos.</li>
+								variedad de dispositivos habilitados para carga inalÃ¡mbrica.</li>
+							<li><strong>Carga rÃ¡pida de hasta 15W:</strong> Menos tiempo
+								cargando, mÃ¡s tiempo usando tu dispositivo.</li>
+							<li><strong>DiseÃ±o elegante y compacto:</strong> Perfecto
+								para cualquier entorno y fÃ¡cil de transportar.</li>
+							<li><strong>ProtecciÃ³n avanzada:</strong>
+								Sobrecalentamiento, sobrecarga y cortocircuito estÃ¡n protegidos.</li>
 							<li><strong>Base antideslizante:</strong> Mantiene tu
 								dispositivo en su lugar mientras carga.</li>
 							<li><strong>Indicador LED:</strong> Te muestra el estado de
@@ -282,9 +283,9 @@ footer {
 						</ul>
 						</p>
 						<p>
-							Con el <strong>Cargador Inalámbrico</strong>, disfruta de la
+							Con el <strong>Cargador InalÃ¡mbrico</strong>, disfruta de la
 							comodidad de cargar tus dispositivos sin cables, manteniendo tu
-							espacio organizado y libre de desorden. ¡Hazte con el tuyo hoy y
+							espacio organizado y libre de desorden. Â¡Hazte con el tuyo hoy y
 							experimenta la carga del futuro!
 						</p>
 					</div>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -224,64 +225,64 @@ footer {
 							<p>
 								La <strong>Mochila Gamer</strong> es el accesorio perfecto para
 								llevar todo lo que necesitas para tus sesiones de juego, ya sea
-								en casa o fuera de ella. Con un diseño moderno, resistente y
-								lleno de compartimientos, esta mochila está pensada para gamers
-								que buscan comodidad, organización y estilo.
+								en casa o fuera de ella. Con un diseÃ±o moderno, resistente y
+								lleno de compartimientos, esta mochila estÃ¡ pensada para gamers
+								que buscan comodidad, organizaciÃ³n y estilo.
 							</p>
 							<ul>
-								<li>Diseño ergonómico con correas acolchonadas para mayor
+								<li>DiseÃ±o ergonÃ³mico con correas acolchonadas para mayor
 									comodidad.</li>
 								<li>Amplios compartimentos para laptop, headset, cables y
 									otros accesorios.</li>
 								<li>Material resistente al agua, ideal para condiciones
-									climáticas adversas.</li>
+									climÃ¡ticas adversas.</li>
 								<li>Espacio adicional para botellas de agua, snacks y otros
 									objetos personales.</li>
-								<li>Estilo moderno con detalles que destacan tu pasión por
+								<li>Estilo moderno con detalles que destacan tu pasiÃ³n por
 									los videojuegos.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🎮 Mochila Gamer – Tu compañera ideal para cada aventura</h2>
+						<h2>ð® Mochila Gamer â Tu compaÃ±era ideal para cada aventura</h2>
 						<p>
 							La <strong>Mochila Gamer</strong> es perfecta para aquellos que
-							necesitan llevar su equipo de juego a todas partes. Con un diseño
-							exclusivo y cómodo, esta mochila cuenta con compartimientos
+							necesitan llevar su equipo de juego a todas partes. Con un diseÃ±o
+							exclusivo y cÃ³modo, esta mochila cuenta con compartimientos
 							especiales para guardar tu laptop, headset, controladores y todos
-							tus accesorios, asegurando que tu equipo esté protegido y
+							tus accesorios, asegurando que tu equipo estÃ© protegido y
 							organizado.
 						</p>
-						<p>Además de su gran capacidad, la mochila está fabricada con
-							materiales resistentes al agua, por lo que podrás llevarla sin
-							preocupaciones incluso en días lluviosos. Sus correas
-							acolchonadas aseguran una experiencia cómoda, incluso cuando
+						<p>AdemÃ¡s de su gran capacidad, la mochila estÃ¡ fabricada con
+							materiales resistentes al agua, por lo que podrÃ¡s llevarla sin
+							preocupaciones incluso en dÃ­as lluviosos. Sus correas
+							acolchonadas aseguran una experiencia cÃ³moda, incluso cuando
 							transportas equipo pesado, mientras que su estilo moderno
-							reflejará tu pasión por los videojuegos.</p>
-						<p>Con una variedad de compartimientos, la mochila también te
-							permitirá guardar tus objetos personales como botellas de agua,
+							reflejarÃ¡ tu pasiÃ³n por los videojuegos.</p>
+						<p>Con una variedad de compartimientos, la mochila tambiÃ©n te
+							permitirÃ¡ guardar tus objetos personales como botellas de agua,
 							snacks, y otros accesorios que necesites durante tus sesiones de
 							juego o mientras te desplazas a eventos de gaming.</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Diseño ergonómico:</strong> Correaje acolchonado
+							<li><strong>DiseÃ±o ergonÃ³mico:</strong> Correaje acolchonado
 								para mayor comodidad y soporte.</li>
 							<li><strong>Compartimientos amplios:</strong> Espacio para
-								laptop, headset, controles y más.</li>
+								laptop, headset, controles y mÃ¡s.</li>
 							<li><strong>Material resistente al agua:</strong> Ideal para
 								todo clima.</li>
-							<li><strong>Estilo gamer único:</strong> Diseño que refleja
-								tu pasión por los videojuegos.</li>
-							<li><strong>Comodidad y organización:</strong> Guarda y
+							<li><strong>Estilo gamer Ãºnico:</strong> DiseÃ±o que refleja
+								tu pasiÃ³n por los videojuegos.</li>
+							<li><strong>Comodidad y organizaciÃ³n:</strong> Guarda y
 								organiza todos tus accesorios de manera eficiente.</li>
 						</ul>
 						</p>
 						<p>
-							La <strong>Mochila Gamer</strong> es el compañero ideal para
-							llevar tu equipo de juego con estilo y comodidad. ¡Hazte con la
-							tuya y prepárate para llevar tus aventuras de gaming al siguiente
+							La <strong>Mochila Gamer</strong> es el compaÃ±ero ideal para
+							llevar tu equipo de juego con estilo y comodidad. Â¡Hazte con la
+							tuya y prepÃ¡rate para llevar tus aventuras de gaming al siguiente
 							nivel!
 						</p>
 					</div>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* 🔥 Esto lo hace crecer verticalmente */
+	flex: 1; /* ð¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>Categorías</h3>
+				<h3>CategorÃ­as</h3>
 				<ul>
-					<li><a href="#">Tecnología</a></li>
+					<li><a href="#">TecnologÃ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -221,77 +222,77 @@ footer {
 							alt="Smartphone X300" class="product-image">
 						<div class="product-info">
 							<h1>Smartphone X100</h1>
-							<p>El Smartphone X100 combina diseño elegante con alto
+							<p>El Smartphone X100 combina diseÃ±o elegante con alto
 								rendimiento. Equipado con una pantalla AMOLED de 6.5 pulgadas,
-								128 GB de almacenamiento interno y una cámara triple de 48 MP, 8
+								128 GB de almacenamiento interno y una cÃ¡mara triple de 48 MP, 8
 								MP y 2 MP.</p>
 							<ul>
 								<li>Pantalla AMOLED 6.5"</li>
 								<li>Procesador Octa-Core 2.2GHz</li>
 								<li>128GB almacenamiento / 6GB RAM</li>
-								<li>Batería de 4500mAh</li>
-								<li>Cámara triple: 48MP + 8MP + 2MP</li>
+								<li>BaterÃ­a de 4500mAh</li>
+								<li>CÃ¡mara triple: 48MP + 8MP + 2MP</li>
 								<li>Android 12</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>📱 Smartphone X100 – Elegancia, Potencia y Tecnología
+						<h2>ð± Smartphone X100 â Elegancia, Potencia y TecnologÃ­a
 							Avanzada al Alcance de tu Mano</h2>
 						<p>
-							El <strong>Smartphone X100</strong> es la combinación perfecta
-							entre diseño sofisticado y rendimiento de vanguardia. Este
-							dispositivo ha sido creado pensando en quienes buscan la máxima
-							experiencia móvil, sin comprometer la elegancia ni la potencia.
-							Con un cuerpo delgado y moderno, el X300 está diseñado para
-							destacar en cualquier situación, fusionando estilo con tecnología
+							El <strong>Smartphone X100</strong> es la combinaciÃ³n perfecta
+							entre diseÃ±o sofisticado y rendimiento de vanguardia. Este
+							dispositivo ha sido creado pensando en quienes buscan la mÃ¡xima
+							experiencia mÃ³vil, sin comprometer la elegancia ni la potencia.
+							Con un cuerpo delgado y moderno, el X300 estÃ¡ diseÃ±ado para
+							destacar en cualquier situaciÃ³n, fusionando estilo con tecnologÃ­a
 							avanzada para adaptarse a tu ritmo de vida.
 						</p>
 						<p>
 							En su interior, el <strong>Smartphone X100</strong> alberga una <strong>pantalla
 								AMOLED de 6.5 pulgadas</strong>, que ofrece una experiencia visual
-							impresionante, ideal para ver tus series y películas favoritas
+							impresionante, ideal para ver tus series y pelÃ­culas favoritas
 							con colores vibrantes y negros profundos. Esta pantalla te
-							brindará una calidad de imagen inigualable para que disfrutes
-							cada detalle en alta definición, desde tus redes sociales hasta
+							brindarÃ¡ una calidad de imagen inigualable para que disfrutes
+							cada detalle en alta definiciÃ³n, desde tus redes sociales hasta
 							juegos de alta demanda.
 						</p>
 						<p>
 							Potenciado por un <strong>procesador Octa-Core de 2.2
-								GHz</strong>, el X300 garantiza un rendimiento ágil y fluido en todo
-							momento. Ya sea que tengas varias aplicaciones abiertas, estés
-							trabajando en múltiples tareas o jugando títulos exigentes, el
-							X300 responde sin esfuerzo, brindándote una experiencia sin
-							interrupciones. Además, con <strong>6 GB de RAM</strong>, puedes
+								GHz</strong>, el X300 garantiza un rendimiento Ã¡gil y fluido en todo
+							momento. Ya sea que tengas varias aplicaciones abiertas, estÃ©s
+							trabajando en mÃºltiples tareas o jugando tÃ­tulos exigentes, el
+							X300 responde sin esfuerzo, brindÃ¡ndote una experiencia sin
+							interrupciones. AdemÃ¡s, con <strong>6 GB de RAM</strong>, puedes
 							disfrutar de una multitarea sin demoras, asegurando que cada
-							acción sea rápida y eficiente.
+							acciÃ³n sea rÃ¡pida y eficiente.
 						</p>
 						<p>
-							La autonomía no es un problema con su batería de <strong>4500
-								mAh</strong>, que te acompañará durante todo el día sin necesidad de
-							recargar. Ya sea que estés viendo videos, navegando por internet
-							o utilizando apps de manera intensiva, el X300 está diseñado para
+							La autonomÃ­a no es un problema con su baterÃ­a de <strong>4500
+								mAh</strong>, que te acompaÃ±arÃ¡ durante todo el dÃ­a sin necesidad de
+							recargar. Ya sea que estÃ©s viendo videos, navegando por internet
+							o utilizando apps de manera intensiva, el X300 estÃ¡ diseÃ±ado para
 							seguir el ritmo de tu vida.
 						</p>
 						<p>
-							En el apartado fotográfico, el <strong>Smartphone X100</strong>
-							cuenta con una <strong>cámara triple de 48 MP + 8 MP + 2
+							En el apartado fotogrÃ¡fico, el <strong>Smartphone X100</strong>
+							cuenta con una <strong>cÃ¡mara triple de 48 MP + 8 MP + 2
 								MP</strong>, ofreciendo una calidad de imagen excepcional en cualquier
-							situación. La cámara principal de 48 MP captura fotos nítidas y
+							situaciÃ³n. La cÃ¡mara principal de 48 MP captura fotos nÃ­tidas y
 							detalladas, mientras que el lente ultra gran angular de 8 MP te
-							permite tomar fotos panorámicas con una vista amplia. Además, el
+							permite tomar fotos panorÃ¡micas con una vista amplia. AdemÃ¡s, el
 							sensor de 2 MP te ofrece la capacidad de capturar detalles y
 							efectos de profundidad para darle un toque profesional a tus
-							fotos. Ya sea de día o de noche, podrás capturar momentos con una
+							fotos. Ya sea de dÃ­a o de noche, podrÃ¡s capturar momentos con una
 							claridad impresionante.
 						</p>
 						<p>
 							Con <strong>Android 12</strong> como sistema operativo, el X100
-							te ofrece una interfaz intuitiva, mayor seguridad y las últimas
+							te ofrece una interfaz intuitiva, mayor seguridad y las Ãºltimas
 							funciones para que disfrutes de una experiencia fluida y
-							personalizada. Además, con actualizaciones regulares, tu
-							dispositivo estará siempre a la vanguardia de la tecnología.
+							personalizada. AdemÃ¡s, con actualizaciones regulares, tu
+							dispositivo estarÃ¡ siempre a la vanguardia de la tecnologÃ­a.
 						</p>
 					</div>
 				</div>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* ð¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃ­as</h3>
+				<h3>CategorÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃ­a</a></li>
+					<li><a href="#">TecnologÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -222,47 +223,47 @@ footer {
 						<div class="product-info">
 								<h1>SMARTWATCH Z50</h1>
 							<p>
-								El <strong>Smartwatch Z50</strong> es el compañero perfecto para mantenerte conectado y activo todo el día. Con su diseño elegante y moderno, este reloj inteligente ofrece una experiencia de usuario excepcional, tanto para quienes buscan un dispositivo para llevar un seguimiento de su actividad física como para aquellos que desean mantenerse al tanto de las notificaciones de su teléfono sin necesidad de sacarlo.
+								El <strong>Smartwatch Z50</strong> es el compaÃ±ero perfecto para mantenerte conectado y activo todo el dÃ­a. Con su diseÃ±o elegante y moderno, este reloj inteligente ofrece una experiencia de usuario excepcional, tanto para quienes buscan un dispositivo para llevar un seguimiento de su actividad fÃ­sica como para aquellos que desean mantenerse al tanto de las notificaciones de su telÃ©fono sin necesidad de sacarlo.
 							</p>
 							<ul>
-								<li>Pantalla táctil a color de 1.4 pulgadas</li>
-								<li>Monitoreo de frecuencia cardíaca en tiempo real</li>
+								<li>Pantalla tÃ¡ctil a color de 1.4 pulgadas</li>
+								<li>Monitoreo de frecuencia cardÃ­aca en tiempo real</li>
 								<li>Resistencia al agua (IP67)</li>
 								<li>Notificaciones de llamadas, mensajes y aplicaciones</li>
-								<li>Seguimiento de actividad física (pasos, calorías, distancia)</li>
-								<li>Batería de hasta 7 días de duración</li>
+								<li>Seguimiento de actividad fÃ­sica (pasos, calorÃ­as, distancia)</li>
+								<li>BaterÃ­a de hasta 7 dÃ­as de duraciÃ³n</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>⌚ Smartwatch Z50 – Tu compañero perfecto para el día a día</h2>
+						<h2>â Smartwatch Z50 â Tu compaÃ±ero perfecto para el dÃ­a a dÃ­a</h2>
 						<p>
-							El <strong>Smartwatch Z50</strong> es un reloj inteligente que combina estilo y funcionalidad. Equipado con una pantalla táctil a color de 1.4 pulgadas, este dispositivo te permite acceder a tus notificaciones de manera rápida y sencilla, sin necesidad de sacar tu teléfono. Además, su diseño moderno y elegante lo convierte en el accesorio ideal para cualquier ocasión.
+							El <strong>Smartwatch Z50</strong> es un reloj inteligente que combina estilo y funcionalidad. Equipado con una pantalla tÃ¡ctil a color de 1.4 pulgadas, este dispositivo te permite acceder a tus notificaciones de manera rÃ¡pida y sencilla, sin necesidad de sacar tu telÃ©fono. AdemÃ¡s, su diseÃ±o moderno y elegante lo convierte en el accesorio ideal para cualquier ocasiÃ³n.
 						</p>
 						<p>
-							Con el monitoreo continuo de la frecuencia cardíaca, el Z50 te permite mantener un control preciso sobre tu salud en todo momento. Ya sea que estés haciendo ejercicio o simplemente llevando tu rutina diaria, el smartwatch registra todos tus datos de actividad y te ayuda a mantenerte motivado.
+							Con el monitoreo continuo de la frecuencia cardÃ­aca, el Z50 te permite mantener un control preciso sobre tu salud en todo momento. Ya sea que estÃ©s haciendo ejercicio o simplemente llevando tu rutina diaria, el smartwatch registra todos tus datos de actividad y te ayuda a mantenerte motivado.
 						</p>
 						<p>
-							El <strong>Smartwatch Z50</strong> es resistente al agua con clasificación IP67, lo que significa que puedes usarlo incluso en la lluvia o durante el ejercicio intenso sin preocupaciones. Su batería de larga duración te garantiza hasta <strong>7 días de uso continuo</strong>, lo que te permite olvidarte de cargarlo constantemente.
+							El <strong>Smartwatch Z50</strong> es resistente al agua con clasificaciÃ³n IP67, lo que significa que puedes usarlo incluso en la lluvia o durante el ejercicio intenso sin preocupaciones. Su baterÃ­a de larga duraciÃ³n te garantiza hasta <strong>7 dÃ­as de uso continuo</strong>, lo que te permite olvidarte de cargarlo constantemente.
 						</p>
 						<p>
-							Además, el Z50 es totalmente compatible con dispositivos iOS y Android, permitiéndote recibir llamadas, mensajes y notificaciones de aplicaciones directamente en tu muñeca. Con su fácil acceso a funciones de salud, notificaciones y entretenimiento, el Z50 es la herramienta ideal para mantenerte conectado y en forma.
+							AdemÃ¡s, el Z50 es totalmente compatible con dispositivos iOS y Android, permitiÃ©ndote recibir llamadas, mensajes y notificaciones de aplicaciones directamente en tu muÃ±eca. Con su fÃ¡cil acceso a funciones de salud, notificaciones y entretenimiento, el Z50 es la herramienta ideal para mantenerte conectado y en forma.
 						</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Pantalla táctil a color de 1.4 pulgadas:</strong> Visualización clara y fácil de usar.</li>
-							<li><strong>Monitoreo de frecuencia cardíaca:</strong> Para un control en tiempo real de tu salud.</li>
+							<li><strong>Pantalla tÃ¡ctil a color de 1.4 pulgadas:</strong> VisualizaciÃ³n clara y fÃ¡cil de usar.</li>
+							<li><strong>Monitoreo de frecuencia cardÃ­aca:</strong> Para un control en tiempo real de tu salud.</li>
 							<li><strong>Resistencia al agua IP67:</strong> Usable en lluvia, piscina o durante cualquier actividad.</li>
 							<li><strong>Notificaciones inteligentes:</strong> Recibe llamadas, mensajes y actualizaciones de apps.</li>
-							<li><strong>Seguimiento de actividad física:</strong> Mide tus pasos, calorías quemadas y distancia recorrida.</li>
-							<li><strong>Batería de larga duración:</strong> Hasta 7 días de uso sin necesidad de recargar.</li>
+							<li><strong>Seguimiento de actividad fÃ­sica:</strong> Mide tus pasos, calorÃ­as quemadas y distancia recorrida.</li>
+							<li><strong>BaterÃ­a de larga duraciÃ³n:</strong> Hasta 7 dÃ­as de uso sin necesidad de recargar.</li>
 							<li><strong>Compatibilidad universal:</strong> Funciona con dispositivos iOS y Android.</li>
 						</ul>
 						</p>
 						<p>
-							Con el <strong>Smartwatch Z50</strong>, tendrás todo lo que necesitas en la palma de tu mano. ¡Hazte con el tuyo y lleva tu estilo de vida al siguiente nivel!
+							Con el <strong>Smartwatch Z50</strong>, tendrÃ¡s todo lo que necesitas en la palma de tu mano. Â¡Hazte con el tuyo y lleva tu estilo de vida al siguiente nivel!
 						</p>
 					</div>
 				</div>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -222,71 +223,71 @@ footer {
 						<div class="product-info">
 							<h1>Laptop Gaming X300</h1>
 							<p>
-								La <strong>Laptop Gaming X300</strong> está diseñada para
+								La <strong>Laptop Gaming X300</strong> estÃ¡ diseÃ±ada para
 								ofrecerte un rendimiento superior en todos tus juegos. Equipado
-								con un procesador de última generación, tarjeta gráfica avanzada
-								y una pantalla de alta resolución, esta laptop es perfecta para
+								con un procesador de Ãºltima generaciÃ³n, tarjeta grÃ¡fica avanzada
+								y una pantalla de alta resoluciÃ³n, esta laptop es perfecta para
 								gamers que buscan la mejor experiencia de juego en todo momento.
 							</p>
 							<ul>
-								<li>Procesador Intel i7 de 10ª generación para un
+								<li>Procesador Intel i7 de 10Âª generaciÃ³n para un
 									rendimiento sin interrupciones.</li>
-								<li>Tarjeta gráfica NVIDIA GeForce RTX 3060 para una
+								<li>Tarjeta grÃ¡fica NVIDIA GeForce RTX 3060 para una
 									experiencia visual impresionante.</li>
 								<li>Pantalla Full HD de 15.6 pulgadas con una tasa de
 									refresco de 144Hz.</li>
 								<li>Teclado retroiluminado RGB personalizable.</li>
-								<li>Almacenamiento SSD de 1TB para un inicio rápido y una
+								<li>Almacenamiento SSD de 1TB para un inicio rÃ¡pido y una
 									carga eficiente.</li>
-								<li>Duración de batería de hasta 8 horas para sesiones de
+								<li>DuraciÃ³n de baterÃ­a de hasta 8 horas para sesiones de
 									juego prolongadas.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🌟 Laptop Gaming X300 – Potencia y Estilo en un Solo
+						<h2>ð Laptop Gaming X300 â Potencia y Estilo en un Solo
 							Dispositivo</h2>
 						<p>
 							La <strong>Laptop Gaming X300</strong> es todo lo que necesitas
-							para jugar sin límites. Con un procesador Intel i7 de 10ª
-							generación y una tarjeta gráfica NVIDIA GeForce RTX 3060, puedes
-							esperar gráficos de alta calidad, renderizado fluido y velocidad
+							para jugar sin lÃ­mites. Con un procesador Intel i7 de 10Âª
+							generaciÃ³n y una tarjeta grÃ¡fica NVIDIA GeForce RTX 3060, puedes
+							esperar grÃ¡ficos de alta calidad, renderizado fluido y velocidad
 							inigualable. Ya sea para juegos AAA o para streamings en alta
-							resolución, esta laptop está lista para llevarte al siguiente
+							resoluciÃ³n, esta laptop estÃ¡ lista para llevarte al siguiente
 							nivel.
 						</p>
 						<p>La pantalla Full HD de 15.6 pulgadas con una tasa de
-							refresco de 144Hz te brinda una visualización clara y fluida,
-							permitiéndote disfrutar de tus juegos sin desfases ni
-							interrupciones. Además, el teclado retroiluminado RGB se adapta a
-							tu estilo, permitiéndote personalizar la iluminación según tus
+							refresco de 144Hz te brinda una visualizaciÃ³n clara y fluida,
+							permitiÃ©ndote disfrutar de tus juegos sin desfases ni
+							interrupciones. AdemÃ¡s, el teclado retroiluminado RGB se adapta a
+							tu estilo, permitiÃ©ndote personalizar la iluminaciÃ³n segÃºn tus
 							preferencias.</p>
-						<p>Con 1TB de almacenamiento SSD, tendrás espacio más que
+						<p>Con 1TB de almacenamiento SSD, tendrÃ¡s espacio mÃ¡s que
 							suficiente para instalar todos tus juegos favoritos y acceder a
-							ellos rápidamente. Su batería de larga duración de hasta 8 horas
+							ellos rÃ¡pidamente. Su baterÃ­a de larga duraciÃ³n de hasta 8 horas
 							garantiza que puedas jugar durante largas sesiones sin
 							interrupciones.</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Procesador Intel i7 de 10ª generación:</strong>
+							<li><strong>Procesador Intel i7 de 10Âª generaciÃ³n:</strong>
 								Velocidad y eficiencia para juegos sin interrupciones.</li>
-							<li><strong>Tarjeta gráfica NVIDIA GeForce RTX
-									3060:</strong> Gráficos impresionantes y rendimiento sin igual.</li>
+							<li><strong>Tarjeta grÃ¡fica NVIDIA GeForce RTX
+									3060:</strong> GrÃ¡ficos impresionantes y rendimiento sin igual.</li>
 							<li><strong>Pantalla Full HD de 15.6 pulgadas:</strong>
-								Visualización nítida y tasa de refresco de 144Hz.</li>
+								VisualizaciÃ³n nÃ­tida y tasa de refresco de 144Hz.</li>
 							<li><strong>Teclado retroiluminado RGB:</strong>
-								Personalización total de la iluminación.</li>
+								PersonalizaciÃ³n total de la iluminaciÃ³n.</li>
 							<li><strong>Almacenamiento SSD de 1TB:</strong> Acceso
-								rápido a tus juegos y archivos.</li>
-							<li><strong>Duración de batería de hasta 8 horas:</strong>
-								Juega por más tiempo sin necesidad de cargar.</li>
+								rÃ¡pido a tus juegos y archivos.</li>
+							<li><strong>DuraciÃ³n de baterÃ­a de hasta 8 horas:</strong>
+								Juega por mÃ¡s tiempo sin necesidad de cargar.</li>
 						</ul>
 						</p>
 						<p>
-							La <strong>Laptop Gaming X300</strong> es la opción perfecta para
-							quienes buscan potencia, velocidad y diseño. ¡Hazla tuya y lleva
+							La <strong>Laptop Gaming X300</strong> es la opciÃ³n perfecta para
+							quienes buscan potencia, velocidad y diseÃ±o. Â¡Hazla tuya y lleva
 							tu experiencia de juego a nuevas alturas!
 						</p>
 					</div>

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -58,7 +59,7 @@
 </head>
 <body>
     <div class="container">
-        <div class="emoji">🚧</div>
+        <div class="emoji">ð§</div>
         <h1>LA COMPRA DEL PRODUCTO NO ESTA DISPONIBLE</h1>
         <p>El producto no esta a la venta.<br>
            Debido a que AmaShop es una pagina de laboratorio de Hacking Web Etico.</p>

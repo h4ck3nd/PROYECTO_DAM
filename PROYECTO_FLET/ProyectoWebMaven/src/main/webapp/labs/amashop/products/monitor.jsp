@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -222,77 +223,77 @@ footer {
 						<div class="product-info">
 							<h1>Monitor Curvo 27 Pulgadas</h1>
 							<p>
-								El <strong>Monitor Curvo 27 Pulgadas</strong> es la opción ideal
+								El <strong>Monitor Curvo 27 Pulgadas</strong> es la opciÃ³n ideal
 								para quienes buscan una experiencia visual inmersiva y sin
-								distracciones. Con su diseño curvado, este monitor te ofrece un
-								ángulo de visión envolvente, ideal para el trabajo, el gaming y
-								el entretenimiento. Su pantalla de alta definición garantiza
-								colores vibrantes y detalles nítidos, mejorando cada actividad
+								distracciones. Con su diseÃ±o curvado, este monitor te ofrece un
+								Ã¡ngulo de visiÃ³n envolvente, ideal para el trabajo, el gaming y
+								el entretenimiento. Su pantalla de alta definiciÃ³n garantiza
+								colores vibrantes y detalles nÃ­tidos, mejorando cada actividad
 								que realices en tu computador.
 							</p>
 							<ul>
-								<li>Pantalla curva de 27 pulgadas para una visualización
+								<li>Pantalla curva de 27 pulgadas para una visualizaciÃ³n
 									envolvente.</li>
-								<li>Resolución Full HD (1920x1080) para imágenes claras y
-									nítidas.</li>
-								<li>Tecnología de reducción de parpadeo para menos fatiga
+								<li>ResoluciÃ³n Full HD (1920x1080) para imÃ¡genes claras y
+									nÃ­tidas.</li>
+								<li>TecnologÃ­a de reducciÃ³n de parpadeo para menos fatiga
 									visual.</li>
-								<li>Tiempo de respuesta rápido para una experiencia sin
+								<li>Tiempo de respuesta rÃ¡pido para una experiencia sin
 									interrupciones en juegos.</li>
-								<li>Amplios ángulos de visión para que puedas ver la
+								<li>Amplios Ã¡ngulos de visiÃ³n para que puedas ver la
 									pantalla claramente desde cualquier lugar.</li>
-								<li>Conectividad versátil con puertos HDMI y DisplayPort.</li>
+								<li>Conectividad versÃ¡til con puertos HDMI y DisplayPort.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🌟 Monitor Curvo 27 Pulgadas – Una Experiencia Visual
+						<h2>ð Monitor Curvo 27 Pulgadas â Una Experiencia Visual
 							Incomparable</h2>
 						<p>
-							El <strong>Monitor Curvo 27 Pulgadas</strong> está diseñado para
+							El <strong>Monitor Curvo 27 Pulgadas</strong> estÃ¡ diseÃ±ado para
 							ofrecerte una experiencia visual totalmente envolvente. Con su
-							pantalla curva, disfrutarás de un campo de visión más amplio, lo
-							que te permitirá sumergirte por completo en juegos, películas o
-							tareas laborales. Su resolución Full HD te garantiza imágenes de
+							pantalla curva, disfrutarÃ¡s de un campo de visiÃ³n mÃ¡s amplio, lo
+							que te permitirÃ¡ sumergirte por completo en juegos, pelÃ­culas o
+							tareas laborales. Su resoluciÃ³n Full HD te garantiza imÃ¡genes de
 							alta calidad, colores vibrantes y detalles excepcionales que
 							mejoran tu productividad y entretenimiento.
 						</p>
-						<p>La tecnología de reducción de parpadeo del monitor está
+						<p>La tecnologÃ­a de reducciÃ³n de parpadeo del monitor estÃ¡
 							pensada para proteger tu vista durante largas sesiones frente a
-							la pantalla. Además, su rápido tiempo de respuesta lo convierte
-							en la opción ideal para jugadores que buscan precisión y
-							velocidad. Los amplios ángulos de visión aseguran que obtendrás
-							una visualización clara, sin importar desde qué ángulo mires la
+							la pantalla. AdemÃ¡s, su rÃ¡pido tiempo de respuesta lo convierte
+							en la opciÃ³n ideal para jugadores que buscan precisiÃ³n y
+							velocidad. Los amplios Ã¡ngulos de visiÃ³n aseguran que obtendrÃ¡s
+							una visualizaciÃ³n clara, sin importar desde quÃ© Ã¡ngulo mires la
 							pantalla.</p>
 						<p>
-							Con puertos HDMI y DisplayPort, podrás conectar este monitor a
+							Con puertos HDMI y DisplayPort, podrÃ¡s conectar este monitor a
 							una gran variedad de dispositivos, desde computadoras hasta
-							consolas de videojuegos. Si estás buscando una pantalla que
-							combine elegancia, rendimiento y tecnología avanzada, el <strong>Monitor
-								Curvo 27 Pulgadas</strong> es la opción perfecta para ti.
+							consolas de videojuegos. Si estÃ¡s buscando una pantalla que
+							combine elegancia, rendimiento y tecnologÃ­a avanzada, el <strong>Monitor
+								Curvo 27 Pulgadas</strong> es la opciÃ³n perfecta para ti.
 						</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
 							<li><strong>Pantalla curva de 27 pulgadas:</strong> Te
 								brinda una experiencia inmersiva, ideal para el gaming y el
 								trabajo.</li>
-							<li><strong>Resolución Full HD (1920x1080):</strong>
-								Imágenes nítidas y detalles vibrantes.</li>
-							<li><strong>Tecnología de reducción de parpadeo:</strong>
+							<li><strong>ResoluciÃ³n Full HD (1920x1080):</strong>
+								ImÃ¡genes nÃ­tidas y detalles vibrantes.</li>
+							<li><strong>TecnologÃ­a de reducciÃ³n de parpadeo:</strong>
 								Protege tu vista y reduce la fatiga ocular.</li>
-							<li><strong>Tiempo de respuesta rápido:</strong> Perfecto
+							<li><strong>Tiempo de respuesta rÃ¡pido:</strong> Perfecto
 								para juegos sin interrupciones.</li>
-							<li><strong>Amplios ángulos de visión:</strong> Disfruta de
-								una visualización clara desde cualquier lugar.</li>
-							<li><strong>Conectividad versátil:</strong> Incluye puertos
-								HDMI y DisplayPort para una fácil conexión.</li>
+							<li><strong>Amplios Ã¡ngulos de visiÃ³n:</strong> Disfruta de
+								una visualizaciÃ³n clara desde cualquier lugar.</li>
+							<li><strong>Conectividad versÃ¡til:</strong> Incluye puertos
+								HDMI y DisplayPort para una fÃ¡cil conexiÃ³n.</li>
 						</ul>
 						</p>
 						<p>
 							Mejora tu experiencia visual con el <strong>Monitor
-								Curvo 27 Pulgadas</strong>. ¡Hazte con el tuyo y disfruta de imágenes
+								Curvo 27 Pulgadas</strong>. Â¡Hazte con el tuyo y disfruta de imÃ¡genes
 							impresionantes con la mayor comodidad!
 						</p>
 					</div>

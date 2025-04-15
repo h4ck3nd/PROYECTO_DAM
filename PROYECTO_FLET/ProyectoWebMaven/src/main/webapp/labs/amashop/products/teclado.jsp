@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -113,7 +114,7 @@ nav a {
 	background-color: #ffffff;
 	padding: 30px;
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-	flex: 1; /* Ã°ÂÂÂ¥ Esto lo hace crecer verticalmente */
+	flex: 1; /* ÃÂ°ÃÂÃÂÃÂ¥ Esto lo hace crecer verticalmente */
 	display: flex;
 	flex-direction: column;
 }
@@ -204,9 +205,9 @@ footer {
 
 		<div class="main-container">
 			<aside class="sidebar">
-				<h3>CategorÃÂ­as</h3>
+				<h3>CategorÃÂÃÂ­as</h3>
 				<ul>
-					<li><a href="#">TecnologÃÂ­a</a></li>
+					<li><a href="#">TecnologÃÂÃÂ­a</a></li>
 					<li><a href="#">Hogar</a></li>
 					<li><a href="#">Ropa</a></li>
 					<li><a href="#">Deportes</a></li>
@@ -220,76 +221,76 @@ footer {
 						<img src="<%= request.getContextPath() %>/img/img_amashop/Teclado-Mecanico-RGB.png"
 							alt="Smartwatch Z50" class="product-image">
 						<div class="product-info">
-							<h1>Teclado Mecánico Gaming</h1>
+							<h1>Teclado MecÃ¡nico Gaming</h1>
 							<p>
-								El <strong>Teclado Mecánico Gaming</strong> es la herramienta
+								El <strong>Teclado MecÃ¡nico Gaming</strong> es la herramienta
 								definitiva para llevar tu experiencia de juego a otro nivel.
-								Diseñado para jugadores serios, este teclado ofrece una
-								respuesta rápida y precisa con sus interruptores mecánicos, lo
-								que garantiza un rendimiento sin igual en cada pulsación. Ya sea
-								que estés jugando a nivel competitivo o disfrutando de una
-								partida casual, su durabilidad y capacidad de respuesta te darán
+								DiseÃ±ado para jugadores serios, este teclado ofrece una
+								respuesta rÃ¡pida y precisa con sus interruptores mecÃ¡nicos, lo
+								que garantiza un rendimiento sin igual en cada pulsaciÃ³n. Ya sea
+								que estÃ©s jugando a nivel competitivo o disfrutando de una
+								partida casual, su durabilidad y capacidad de respuesta te darÃ¡n
 								la ventaja en cada momento.
 							</p>
 							<ul>
-								<li>Interruptores mecánicos para mayor precisión y
+								<li>Interruptores mecÃ¡nicos para mayor precisiÃ³n y
 									durabilidad.</li>
-								<li>Retroiluminación RGB personalizable.</li>
-								<li>Teclas programables para acceso rápido a funciones.</li>
-								<li>Diseño ergonómico para largas sesiones de juego.</li>
-								<li>Construcción robusta y resistente.</li>
+								<li>RetroiluminaciÃ³n RGB personalizable.</li>
+								<li>Teclas programables para acceso rÃ¡pido a funciones.</li>
+								<li>DiseÃ±o ergonÃ³mico para largas sesiones de juego.</li>
+								<li>ConstrucciÃ³n robusta y resistente.</li>
 								<li>Compatibilidad con PC, laptops y consolas.</li>
 							</ul>
 							<button class="add-to-cart" onclick="window.location.href='comprar.jsp'">Comprar ahora</button>
 						</div>
 					</div>
 					<div class="product-description">
-						<h2>🎮 Teclado Mecánico Gaming – Precisión, Estilo y
+						<h2>ð® Teclado MecÃ¡nico Gaming â PrecisiÃ³n, Estilo y
 							Rendimiento</h2>
 						<p>
-							El <strong>Teclado Mecánico Gaming</strong> es la herramienta
-							definitiva para jugadores que buscan la mayor precisión,
+							El <strong>Teclado MecÃ¡nico Gaming</strong> es la herramienta
+							definitiva para jugadores que buscan la mayor precisiÃ³n,
 							velocidad y comodidad en sus sesiones de juego. Con sus
-							interruptores mecánicos de alta calidad, cada pulsación se siente
-							rápida y precisa, lo que te otorga una ventaja competitiva en
-							cada partida. Su construcción robusta y su diseño ergonómico
+							interruptores mecÃ¡nicos de alta calidad, cada pulsaciÃ³n se siente
+							rÃ¡pida y precisa, lo que te otorga una ventaja competitiva en
+							cada partida. Su construcciÃ³n robusta y su diseÃ±o ergonÃ³mico
 							garantizan horas de juego sin molestias, mientras que las teclas
 							programables te permiten personalizar cada comando a tu gusto.
 						</p>
-						<p>Con retroiluminación RGB completamente personalizable,
+						<p>Con retroiluminaciÃ³n RGB completamente personalizable,
 							puedes elegir entre una amplia gama de colores y efectos para
 							adaptar el teclado a tu estilo. Ya sea para crear el ambiente
-							perfecto en la oscuridad o simplemente para añadir un toque de
-							estilo, la iluminación del teclado está diseñada para
+							perfecto en la oscuridad o simplemente para aÃ±adir un toque de
+							estilo, la iluminaciÃ³n del teclado estÃ¡ diseÃ±ada para
 							impresionar.</p>
-						<p>Además, la compatibilidad con todas las plataformas
+						<p>AdemÃ¡s, la compatibilidad con todas las plataformas
 							principales (PC, laptops y consolas) asegura que puedas disfrutar
 							de un rendimiento excepcional en cualquier dispositivo. Con un
-							diseño compacto pero funcional, este teclado se adapta
+							diseÃ±o compacto pero funcional, este teclado se adapta
 							perfectamente a cualquier espacio de juego.</p>
 						<p>
-							<strong>Características principales:</strong>
+							<strong>CaracterÃ­sticas principales:</strong>
 						<ul>
-							<li><strong>Interruptores mecánicos de alto
-									rendimiento:</strong> Teclas que responden con precisión para un control
+							<li><strong>Interruptores mecÃ¡nicos de alto
+									rendimiento:</strong> Teclas que responden con precisiÃ³n para un control
 								absoluto.</li>
-							<li><strong>Retroiluminación RGB personalizable:</strong>
+							<li><strong>RetroiluminaciÃ³n RGB personalizable:</strong>
 								Elige entre miles de colores y efectos para crear el ambiente
 								perfecto.</li>
-							<li><strong>Teclas programables:</strong> Accede rápidamente
-								a tus macros y comandos más usados.</li>
-							<li><strong>Diseño ergonómico:</strong> Comodidad total
+							<li><strong>Teclas programables:</strong> Accede rÃ¡pidamente
+								a tus macros y comandos mÃ¡s usados.</li>
+							<li><strong>DiseÃ±o ergonÃ³mico:</strong> Comodidad total
 								durante largas horas de juego.</li>
-							<li><strong>Construcción robusta:</strong> Durabilidad
+							<li><strong>ConstrucciÃ³n robusta:</strong> Durabilidad
 								garantizada para sesiones de juego intensas.</li>
 							<li><strong>Compatibilidad universal:</strong> Compatible
 								con PC, laptops y consolas.</li>
 						</ul>
 						</p>
 						<p>
-							Con el <strong>Teclado Mecánico Gaming</strong>, cada partida
-							será una experiencia mejorada. ¡Consigue el tuyo y domina el
-							juego con estilo y precisión!
+							Con el <strong>Teclado MecÃ¡nico Gaming</strong>, cada partida
+							serÃ¡ una experiencia mejorada. Â¡Consigue el tuyo y domina el
+							juego con estilo y precisiÃ³n!
 						</p>
 					</div>
 				</div>
