@@ -130,7 +130,7 @@
 
     <div class="nav-container">
         <nav class="nav-menu">
-            <a href="home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo_hackend.png" class="img-hackend" width="20px" height="20px"> Hackend</a>
+            <a href="home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
             <a href="dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
             <a href="ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
@@ -234,11 +234,11 @@
 	// Ã¢Â¬â¡Ã¯Â¸Â Definimos estos dos globalmente para que estÃÂ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo_hackend.png", tags: ["principal", "web", "hackend", "CEO"] },
-	    { url: "../labs/foro-xss.jsp", title: "Foro Cross", description: "Conoce a gente nueva en este foro tan espectacular.", image: "../img/xss.png", tags: ["xss", "web", "seguridad", "hacking", "facil", "d1se0"] },
-	    { url: "../labs/amashop/amashop.jsp", title: "Amashop Web", description: "Compra y venta de productos al por mayor.", image: "../img/sqlinjection.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
-	    { url: "../labs/csrf.jsp", title: "CSRF LAB", description: "Envianos tu curriculum para promocionarte en Linkedin.", image: "../img/csrf.png", tags: ["csrf", "web", "fuzzing", "url", "hacking", "facil", "d1se0"] },
-	    { url: "../labs/hacking_community/hacking_community.jsp", title: "Hacking_community", description: "Apuntes de hacking para principiantes.", image: "../img/bac.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
+		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo-test-6-update.png", tags: ["principal", "web", "hackend", "CEO"] },
+	    { url: "../labs/foro-xss.jsp", title: "Foro Cross", description: "Conoce a gente nueva en este foro tan espectacular.", image: "../img/logo-test-2-update.png", tags: ["xss", "web", "seguridad", "hacking", "facil", "d1se0"] },
+	    { url: "../labs/amashop/amashop.jsp", title: "Amashop Web", description: "Compra y venta de productos al por mayor.", image: "../img/logo-test-1-update.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
+	    { url: "../labs/csrf.jsp", title: "CSRF LAB", description: "Envianos tu curriculum para promocionarte en Linkedin.", image: "../img/logo-test-3-update.png", tags: ["csrf", "web", "fuzzing", "url", "hacking", "facil", "d1se0"] },
+	    { url: "../labs/hacking_community/hacking_community.jsp", title: "Hacking_community", description: "Apuntes de hacking para principiantes.", image: "../img/logo-test-4-update.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
