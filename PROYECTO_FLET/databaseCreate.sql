@@ -106,3 +106,18 @@ ADD CONSTRAINT unique_lab_user UNIQUE (lab_id, user_id); -- Esto asegura que par
 
 ALTER TABLE writeups
 ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
+
+-- Crear Tabla de Writeups Dockerpwned (URL)
+
+CREATE TABLE writeups_dockerpwned (
+    id SERIAL PRIMARY KEY,
+    lab_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    url_writeup TEXT NOT NULL
+);
+
+ALTER TABLE writeups_dockerpwned
+ADD CONSTRAINT unique_lab_user UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
+
+ALTER TABLE writeups_dockerpwned
+ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
