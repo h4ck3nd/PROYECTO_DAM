@@ -83,6 +83,9 @@
 			text-decoration: underline !important;
 			font-weight: bold !important;
 		}
+		.style-letters-hackend {
+			color: #ffb200 !important;
+		}
 		.tag {
 		    display: inline-block;
 		    margin-right: 5px;
@@ -216,12 +219,12 @@
 
     <!-- PAGINACIÃÂÃ¢ÂÂN -->
     <div class="pagination">
-        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
-        <a href="home_dockerpwned.jsp?page=0" class="page-link style-link-number">1</a>
+        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span class="style-letters-hackend">a</span><span>a</span><span>a</span>ckend</div>
+        <a href="home_ovalabs.jsp?page=0" class="page-link">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>
         <a href="Page3.jsp?page=3" class="page-link">4</a>
-        <a href="Page4.jsp?page=4" class="page-link">5</a>
+        <a href="Page4.jsp?page=4" class="page-link style-link-number">5</a>
         <button class="next" id="nextPageButton">Siguiente</button>
     </div>
 
@@ -251,7 +254,7 @@
 	// ÃÂ¢ÃÂ¬Ã¢ÂÂ¡ÃÂ¯ÃÂ¸ÃÂ Definimos estos dos globalmente para que estÃÂÃÂ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-		{ url: "../labs/ovalabs.jsp", title: "OVALABS", description: "Pagina principal, donde se explica de que va todo esto.", image: "../../img/logo-test-14-update.png", tags: ["principal", "web", "ovalabs", "CEO"] },
+		{ url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 		{ url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },

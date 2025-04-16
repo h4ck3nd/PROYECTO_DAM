@@ -3,14 +3,6 @@
 	/*font-family: 'console', monospace;*/
 }
 
-body {
-	background: linear-gradient(160deg, #1f1a00, #3b3200, #5c4d03);
-	color: #d38619;
-	font-family: Arial, sans-serif;
-	margin: 0;
-	padding: 0;
-}
-
 .header {
 	display: flex;
 	justify-content: space-between;
@@ -290,15 +282,6 @@ body {
 
 /* TAGS ESTILOS */
 
-.tag {
-	display: inline-block;
-	margin-right: 5px;
-	font-size: 0.8rem;
-	color: rgba(81, 255, 0, 0.8); /* naranja fuerte translúcido */
-	background-color: rgba(81, 255, 0, 0.1); /* fondo naranja muy suave */
-	padding: 2px 6px;
-	border-radius: 6px;
-}
 .tags {
 	margin-top: 5px;
 }
