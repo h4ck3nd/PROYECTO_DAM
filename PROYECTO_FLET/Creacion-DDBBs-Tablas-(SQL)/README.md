@@ -8,17 +8,9 @@ Este proyecto representa un entorno completo de desarrollo web utilizando **Java
 
 Este proyecto requiere **dos bases de datos separadas** en PostgreSQL para funcionar correctamente:
 
-### 1. `usuarios_db` – Autenticación
+### 1. `appusers` – Autenticación
 
 Esta base de datos contiene los datos de los usuarios que pueden iniciar sesión.
-
-#### Tablas Principales:
-
-- **usuarios**
-  - `id SERIAL PRIMARY KEY`
-  - `nombre VARCHAR(100)`
-  - `correo VARCHAR(100) UNIQUE`
-  - `password VARCHAR(255)` *(encriptada preferiblemente)*
 
 #### Uso:
 
@@ -27,90 +19,26 @@ Esta base de datos contiene los datos de los usuarios que pueden iniciar sesión
 
 ---
 
-### 2. `proyecto_app_db` – Lógica Java
+### 2. `hackend` – Lógica Java
 
-Contiene los datos relacionados con el funcionamiento de la aplicación web en Java. Aquí es donde se gestionan flags, writeups, logs, usuarios internos, etc.
-
-#### Tablas Sugeridas (dependiendo del alcance del proyecto):
-
-- **writeups**
-  - `id SERIAL PRIMARY KEY`
-  - `titulo VARCHAR(100)`
-  - `contenido TEXT`
-  - `usuario_id INT` *(relación con usuarios internos o autores)*
-  - `fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP`
-
-- **flags**
-  - `id SERIAL PRIMARY KEY`
-  - `flag VARCHAR(255)`
-  - `reto VARCHAR(100)`
-  - `usuario_id INT`
-  - `fecha TIMESTAMP`
-
-- **logs**
-  - `id SERIAL PRIMARY KEY`
-  - `accion TEXT`
-  - `usuario_id INT`
-  - `fecha TIMESTAMP`
-
-- **usuarios_internos** (si se requiere un manejo adicional desde Java)
-  - `id SERIAL PRIMARY KEY`
-  - `nombre VARCHAR(100)`
-  - `correo VARCHAR(100) UNIQUE`
+Contiene los datos relacionados con el funcionamiento de la aplicación web en Java. Aquí es donde se gestionan flags, writeups, logs, laboratorios, etc.
 
 ---
 
 ### 📄 Archivo SQL Recomendado: `estructura_bases.sql`
 
-Te recomiendo tener un único archivo `.sql` con la siguiente estructura:
+Te recomiendo tener un único archivo `.sql` con la estructura que se encuentra en dicho archivo.
 
-```sql
--- Base de datos para autenticación
-CREATE DATABASE usuarios_db;
-\c usuarios_db;
+## 🧪 ¿Cómo importar el .sql en PostgreSQL?
 
-CREATE TABLE usuarios (
-  id SERIAL PRIMARY KEY,
-  nombre VARCHAR(100),
-  correo VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL
-);
-
--- Base de datos para la aplicación Java
-CREATE DATABASE proyecto_app_db;
-\c proyecto_app_db;
-
-CREATE TABLE writeups (
-  id SERIAL PRIMARY KEY,
-  titulo VARCHAR(100),
-  contenido TEXT,
-  usuario_id INT,
-  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE flags (
-  id SERIAL PRIMARY KEY,
-  flag VARCHAR(255),
-  reto VARCHAR(100),
-  usuario_id INT,
-  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-
-CREATE TABLE logs (
-  id SERIAL PRIMARY KEY,
-  accion TEXT,
-  usuario_id INT,
-  fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-🧪 ¿Cómo importar el .sql en PostgreSQL?
 Abre tu terminal (o pgAdmin si prefieres entorno gráfico).
 
 Ejecuta:
 
-bash
-Copiar
-Editar
+```
 psql -U postgres -f estructura_bases.sql
+```
+
 Verifica que se han creado ambas bases de datos con \l y luego con \dt dentro de cada una.
 
 ⚠️ Posibles Errores y Soluciones
