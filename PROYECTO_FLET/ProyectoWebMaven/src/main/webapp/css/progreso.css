@@ -152,23 +152,6 @@ body {
 	margin: 40px 0;
 }
 
-.btn-exportar {
-	width: 75%;
-	padding: 14px 0;
-	background-color: #007bff;
-	color: white;
-	border: none;
-	border-radius: 8px;
-	font-size: 1rem;
-	font-weight: bold;
-	cursor: pointer;
-	transition: background-color 0.3s ease;
-}
-
-.btn-exportar:hover {
-	background-color: #0056b3;
-}
-
 .footer {
 	text-align: center;
 	padding: 20px 0;
