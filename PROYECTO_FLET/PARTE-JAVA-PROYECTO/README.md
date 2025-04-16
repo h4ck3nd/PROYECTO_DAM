@@ -1,5 +1,9 @@
-# Instalación
+# Explicación
 
 Esto es un proyecto echo en el software `Eclipse Web Developer` se le ha llamado `ProyectoWebMaven`, es la parte tanto del `Frontend` como de `Backend` realizado con `JAVA`, `HTML`, `CSS` y `JS`.
 
 La autenticacion la maneja el `main.py` asi como una `DDBB` en la que estan la tabla de los usuarios y en otra `DDBB` que maneja toda la aplicacion de `JAVA` asi separamos la autenticacion de los usuarios para que no se toque directamente desde `JAVA`.
+
+# Instalación
+
+Solo tendremos que arrastrar la carpeta de `ProyectoWebMaven` a nuestro `Workspace` de `Eclipse Web Developer`, tambien tendremos que tener `Tomcat v9.0` instalado en nuestro `Windows` para enlazar el servidor de `Tomcat` con `Eclipse` y que podamos trabajar con la aplicacion desde una `Pagina Web` en `local`.
