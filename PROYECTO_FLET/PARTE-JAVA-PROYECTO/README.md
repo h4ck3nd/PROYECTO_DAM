@@ -100,14 +100,14 @@ ProyectoWebMaven/
 ### 2. Instala las dependencias necesarias con:
 
 ```bash
-pip install flask psycopg2 flask-cors
+pip install flet flask psycopg2-binary flask_cors jwt requests
 ```
 Configura las credenciales de la base de datos en `main.py`.
 
 Ejecuta el script con:
 
 ```
-python3 main.py
+python main.py
 ```
 
 La `API` debería estar disponible en ``http://localhost:5000``.
