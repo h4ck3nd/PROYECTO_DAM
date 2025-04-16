@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="dao.FotoDAO" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
@@ -14,9 +15,9 @@
 	    return;
 	}
 
-    // Validar que userId no sea null ni vacío
+    // Validar que userId no sea null ni vacÃ­o
     if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
-        out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
+        out.println("<p>Error: El ID de usuario no estÃ¡ disponible en el token.</p>");
         return;
     }
 
@@ -64,7 +65,7 @@
 		<section class="lab-column">
 			<h2>Hacking Web</h2>
 			<p id="puntos-hacking" class="puntuacion-total">
-			  Puntuación: ${puntosHackingWeb} / ${puntosTotalesLab1}
+			  PuntuaciÃ³n: ${puntosHackingWeb} / ${puntosTotalesLab1}
 			</p>
 			<div class="lab-card">
 				<h3>Hacking Web</h3>
@@ -76,7 +77,7 @@
 		<section class="lab-column">
 			<h2>DockerPwned</h2>
 			<p id="puntos-docker" class="puntuacion-total">
-			  Puntuación: ${puntosDockerPwned} / ${puntosTotalesLab2}
+			  PuntuaciÃ³n: ${puntosDockerPwned} / ${puntosTotalesLab2}
 			</p>
 			<div class="lab-card">
 				<h3>DockerPwned</h3>
@@ -88,7 +89,7 @@
 		<section class="lab-column">
 			<h2>OvaLabs</h2>
 			<p id="puntos-ova" class="puntuacion-total">
-			  Puntuación: ${puntosOvaLabs} / ${puntosTotalesLab3}
+			  PuntuaciÃ³n: ${puntosOvaLabs} / ${puntosTotalesLab3}
 			</p>
 			<div class="lab-card">
 				<h3>OvaLabs</h3>
@@ -97,7 +98,19 @@
 		</section>
 	</main>
 	<div class="contenedor-exportar">
-  <button class="btn-exportar">Exportar PDF</button>
+  <form method="get" action="<%= request.getContextPath() %>/exportarPDF">
+    <input type="hidden" name="usuarioNombre" value="<%= usuarioJWT.getNombre() %>">
+    <input type="hidden" name="usuarioApellidos" value="<%= usuarioJWT.getApellidos() %>">
+    <input type="hidden" name="usuarioEmail" value="<%= usuarioJWT.getEmail() %>">
+    <input type="hidden" name="puntosHackingWeb" value="${puntosHackingWeb}">
+    <input type="hidden" name="puntosTotalesLab1" value="${puntosTotalesLab1}">
+    <input type="hidden" name="puntosDockerPwned" value="${puntosDockerPwned}">
+    <input type="hidden" name="puntosTotalesLab2" value="${puntosTotalesLab2}">
+    <input type="hidden" name="puntosOvaLabs" value="${puntosOvaLabs}">
+    <input type="hidden" name="puntosTotalesLab3" value="${puntosTotalesLab3}">
+    
+    <button class="btn-exportar" type="submit">ðŸ“„ Exportar a PDF</button>
+</form>
 </div>
 	<footer class="footer"> &copy; 2025 Hackend. Todos los
 		derechos reservados. 
@@ -113,7 +126,7 @@
 	  "${puntosRCE1}",  // RCE (DockerPwned)
 	  "${puntosLFI1}",  // LFI (DockerPwned)
 	  "${puntosIDOR1}"  // IDOR (OvaLabs)
-	].map(Number); // Convertimos a números
+	].map(Number); // Convertimos a nÃºmeros
 	
 	const ctx = document.getElementById('labChart').getContext('2d');
 	const labChart = new Chart(ctx, {
@@ -129,7 +142,7 @@
 	      'IDOR (OvaLabs)'
 	    ],
 	    datasets: [{
-	      label: 'Distribución de Laboratorios',
+	      label: 'DistribuciÃ³n de Laboratorios',
 	      data: puntosPorLaboratorio,
 	      backgroundColor: [
 	        '#66bb6a', '#81c784', '#a5d6a7', '#48e05f',   // Hacking Web - VERDE
@@ -154,7 +167,7 @@
 	        callbacks: {
 	          label: function(context) {
 	            const label = context.label || '';
-	            const index = context.dataIndex; // Obtener el índice de cada laboratorio
+	            const index = context.dataIndex; // Obtener el Ã­ndice de cada laboratorio
 	            const valor = puntosPorLaboratorio[index]; // Obtener el valor correcto de puntos
 	            return `${label}: ${valor} puntos`; // Muestra el nombre y los puntos
 	          }
