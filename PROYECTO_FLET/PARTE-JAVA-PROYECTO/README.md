@@ -24,11 +24,26 @@ La autenticación de usuarios está manejada mediante un archivo Python (`main.p
 
 ## 📦 Estructura del Proyecto
 
-ProyectoWebMaven/ ├── src/ │ └── main/ │ ├── java/ # Servlets y lógica backend │ └── webapp/ │ ├── WEB-INF/ # Configuración del proyecto │ ├── css/ # Estilos personalizados │ ├── js/ # Funcionalidad en JavaScript │ ├── img/ # Recursos gráficos │ └── *.jsp # Páginas JSP ├── main.py # Script de autenticación ├── pom.xml # Archivo de Maven └── README.md # Este archivo
-
-markdown
-Copiar
-Editar
+ProyectoWebMaven/ 
+├── src/ 
+│ 
+└── main/ 
+│ 
+├── java/ # Servlets y lógica backend 
+│ └── webapp/ 
+│ 
+├── WEB-INF/ # Configuración del proyecto 
+│ 
+├── css/ # Estilos personalizados 
+│ 
+├── js/ # Funcionalidad en JavaScript 
+│ 
+├── img/ # Recursos gráficos 
+│ 
+└── *.jsp # Páginas JSP 
+├── main.py # Script de autenticación 
+├── pom.xml # Archivo de Maven 
+└── README.md # Este archivo
 
 ---
 
