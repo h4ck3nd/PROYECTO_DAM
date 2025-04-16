@@ -25,9 +25,13 @@ La autenticación de usuarios está manejada mediante un archivo Python (`main.p
 ## 📦 Estructura del Proyecto
 
 ProyectoWebMaven/ 
+
 ├── src/ 
+
 │ 
+
 └── main/ 
+
 │ 
 ├── java/ # Servlets y lógica backend 
 │ └── webapp/ 
