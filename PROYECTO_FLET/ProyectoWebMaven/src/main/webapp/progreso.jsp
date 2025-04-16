@@ -39,6 +39,33 @@
 <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
 <title>HACKEND - PROGRESO PERFIL</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/progreso.css">
+<style>
+	.btn-exportar-update {
+		color: white;
+		border: none;
+		font-weight: bold;
+		background-color: transparent;
+		font-size: 20px;
+		align-content: center;
+		text-align: center;
+		align-items: center;
+	}
+	.form-exportar-update {
+		align-content: center;
+		text-align: center;
+		align-items: center;
+		width: 55%;
+		padding: 14px 0;
+		background-color: #007bff !important;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		transition: background-color 0.3s ease !important;
+	}
+	.form-exportar-update:hover {
+		background-color: #0056b3 !important;
+	}
+</style>
 </head>
 <body>
 	<header class="main-header">
@@ -98,7 +125,7 @@
 		</section>
 	</main>
 	<div class="contenedor-exportar">
-  <form method="get" action="<%= request.getContextPath() %>/exportarPDF">
+  <form method="get" action="<%= request.getContextPath() %>/exportarPDF" class="form-exportar-update">
     <input type="hidden" name="usuarioNombre" value="<%= usuarioJWT.getNombre() %>">
     <input type="hidden" name="usuarioApellidos" value="<%= usuarioJWT.getApellidos() %>">
     <input type="hidden" name="usuarioEmail" value="<%= usuarioJWT.getEmail() %>">
@@ -109,7 +136,7 @@
     <input type="hidden" name="puntosOvaLabs" value="${puntosOvaLabs}">
     <input type="hidden" name="puntosTotalesLab3" value="${puntosTotalesLab3}">
     
-    <button class="btn-exportar" type="submit">📄 Exportar a PDF</button>
+    <button type="submit" class="btn-exportar-update">📄 Exportar a PDF</button>
 </form>
 </div>
 	<footer class="footer"> &copy; 2025 Hackend. Todos los
