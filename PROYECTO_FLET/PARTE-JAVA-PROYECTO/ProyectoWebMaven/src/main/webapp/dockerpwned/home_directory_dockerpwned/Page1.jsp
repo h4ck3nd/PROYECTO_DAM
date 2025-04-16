@@ -72,6 +72,10 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
+		.img-install {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
 		.results {
 			max-width: 800px;
 			margin: auto;

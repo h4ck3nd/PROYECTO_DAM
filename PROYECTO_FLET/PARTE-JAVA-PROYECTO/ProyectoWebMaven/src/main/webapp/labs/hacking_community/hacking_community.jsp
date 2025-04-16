@@ -1,5 +1,4 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
-<%@ page import="dao.LaboratorioDAO" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -13,13 +12,6 @@
         response.sendRedirect(request.getContextPath() + "/logout");
         return;
     }
-
- 	// Obtener el lab_id de "hacking_community" desde la base de datos
-    int labId = LaboratorioDAO.obtenerIdLaboratorioHacking_community();
-    String mensaje = "";
-
-    // Recuperamos el mensaje desde la URL
-    String resultadoFlag = request.getParameter("mensaje");
 %>
 
 <!DOCTYPE html>
@@ -204,72 +196,6 @@
 		    transform: translate(-50%, -50%) scale(1);
 		  }
 		}
-		.writeup-input-section {
-			margin-top: 40px;
-			padding: 20px;
-			background-color: #2e323d;
-			border-radius: 8px;
-			box-shadow: 0 4px 10px rgba(0, 255, 174, 0.15);
-			text-align: center;
-		}
-		
-		.writeup-input-section h3 {
-			color: #00ffae;
-			margin-bottom: 15px;
-			font-size: 1.2rem;
-		}
-		
-		.writeup-input-section input[type="url"] {
-			padding: 10px 15px;
-			border: none;
-			border-radius: 5px;
-			width: 60%;
-			max-width: 400px;
-			font-size: 1rem;
-			margin-right: 10px;
-			text-align: center;
-		}
-		
-		.writeup-input-section button {
-			padding: 10px 20px;
-			background-color: #00ffae;
-			color: #1e212d;
-			border: none;
-			border-radius: 5px;
-			font-weight: bold;
-			cursor: pointer;
-			transition: background-color 0.3s ease;
-		}
-		
-		.writeup-input-section button:hover {
-			background-color: #00e6a0;
-		}
-		.btn-dark {
-	        display: inline-block;
-	        padding: 10px 20px;
-	        background-color: #4f4f4f;
-	        color: #f0f0f0;
-	        text-decoration: none;
-	        border: 1px solid #444;
-	        border-radius: 5px;
-	        font-family: 'Courier New', Courier, monospace;
-	        transition: background-color 0.3s ease, transform 0.2s ease;
-	    }
-	
-	    .btn-dark:hover {
-	        background-color: #777;
-	        transform: translateY(-2px);
-	    }
-	
-	    .btn-dark:active {
-	        background-color: #333;
-	        transform: translateY(0);
-	    }
-	    .btn-viewWriteup {
-	    	align-items: center;
-	    	text-align: center;
-	    	align-content: center;
-	    }
   </style>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/css/hacking_community.css">
 </head>
@@ -280,46 +206,12 @@
         <div class="logo">HACKING COMMUNITY</div>
         <nav>
           <ul>
-            <li><a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0">Inicio</a></li>
+            <li><a href="<%= request.getContextPath() %>/labs/hacking_community/hacking_community-lab.jsp">Inicio</a></li>
             <li><a href="contacto.jsp">Contacto</a></li>
           </ul>
         </nav>
       </div>
     </header>
-	<!-- Popup para mostrar el mensaje -->
-    <div id="popupMessage" class="message-popup">
-        <div class="message-popup-header">Mensaje</div>
-        <div class="message-popup-content" id="popupContent">
-            <p><%= request.getAttribute("mensaje") %></p>
-        </div>
-        <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/hacking_community/hacking_community.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
-    </div>
-    <br>
-    <div class="btn-viewWriteup">
-    <!-- BOTON PARA VER WRITEUPS -->
-    <a class="btn-dark" href="<%= request.getContextPath() %>/verWriteups?lab_id=<%= labId %>">Ver Writeups</a>
-    </div>
-    <!-- FORMULARIO PARA ENVIAR WRITEUP -->
-		<form class="writeup-input-section" action="<%= request.getContextPath() %>/WriteupControlador" method="post">
-			<h3>Enviar Writeup</h3>
-		    <input type="hidden" name="lab_id" value="<%= labId %>">
-		    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-		    <input type="hidden" name="username" value="<%= usuarioJWT.getUsuario() %>">
-		    <label for="url_writeup">Enviar enlace del Writeup:</label>
-		    <input type="url" name="url_writeup" id="url_writeup" required>
-		    <button type="submit">Enviar Writeup</button>
-		</form>
-	<!-- FORMULARIO PARA ENVIAR FLAG -->
-	  <div class="flag-input-section">
-		  <h3>Introduce la flag del laboratorio</h3>
-		  <form action="<%= request.getContextPath() %>/validarFlag" method="get" class="flag-form">
-			  <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
-			  <input type="hidden" name="lab_id" value="<%= labId %>">
-			  <label for="flag">Ingrese la FLAG:</label>
-			  <input type="text" id="flag" name="flag" required>
-			  <button class="flag-btn" type="submit" class="style-button-flag">Enviar FLAG</button>
-		  </form>
-	</div>
 	<br>
     <main class="container">
       <!-- Artículo principal -->
@@ -408,30 +300,6 @@
 		  function closePopupSolution() {
 		    document.getElementById("popup-solution").classList.add("hidden");
 		  }
-  
-        // Función para mostrar el popup
-        function showPopup(message) {
-            var popup = document.getElementById("popupMessage");
-            var content = document.getElementById("popupContent");
-            content.innerHTML = message; // Ponemos el mensaje en el popup
-            popup.classList.add('show'); // Hacemos visible el popup
-        }
-
-        // Función para cerrar el popup
-        function closePopup() {
-            var popup = document.getElementById("popupMessage");
-            popup.classList.remove('show'); // Ocultamos el popup
-            window.location.href = "<%= request.getContextPath() %>/labs/hacking_community/hacking_community.jsp"; // Redirigimos
-        }
-
-        // Si el mensaje no es nulo, mostramos el popup con el mensaje
-        <%
-            if (resultadoFlag != null) { 
-        %>
-            showPopup("<%= resultadoFlag %>"); // Mostrar el mensaje en el popup
-        <% 
-            }
-        %>
     </script>
 </body>
 </html>

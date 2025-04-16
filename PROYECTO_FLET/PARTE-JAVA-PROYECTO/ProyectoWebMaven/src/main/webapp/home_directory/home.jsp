@@ -72,6 +72,10 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
+		.img-document {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
 		.results {
 			max-width: 800px;
 			margin: auto;
@@ -135,6 +139,7 @@
             <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
             <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
+            <a href="https://dise0.gitbook.io/h4cker_b00k/proyecto-dam/documentacion-proyecto_dam"><img src="<%= request.getContextPath() %>/img/document.png" class="img-document" width="20px" height="20px"> Documentación</a>
             <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
         </nav>
 
@@ -236,10 +241,10 @@
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
 		{ url: "../labs/hackend.jsp", title: "HACKEND", description: "Pagina principal, donde se explica de que va todo esto.", image: "../img/logo-test-6-update.png", tags: ["principal", "web", "hackend", "CEO"] },
-	    { url: "../labs/foro-xss.jsp", title: "Foro Cross", description: "Conoce a gente nueva en este foro tan espectacular.", image: "../img/logo-test-2-update.png", tags: ["xss", "web", "seguridad", "hacking", "facil", "d1se0"] },
-	    { url: "../labs/amashop/amashop.jsp", title: "Amashop Web", description: "Compra y venta de productos al por mayor.", image: "../img/logo-test-1-update.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
-	    { url: "../labs/separo/separo.jsp", title: "SEPARO Curriculum", description: "Envianos tu curriculum para trabajar con nosotros.", image: "../img/logo-test-3-update.png", tags: ["open redirect", "open", "redirect", "web", "url", "hacking", "facil", "d1se0"] },
-	    { url: "../labs/hacking_community/hacking_community.jsp", title: "Hacking_community", description: "Apuntes de hacking para principiantes.", image: "../img/logo-test-4-update.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
+	    { url: "../labs/foro-xss-lab.jsp", title: "Foro Cross", description: "Conoce a gente nueva en este foro tan espectacular.", image: "../img/logo-test-2-update.png", tags: ["xss", "web", "seguridad", "hacking", "facil", "d1se0"] },
+	    { url: "../labs/amashop/amashop-lab.jsp", title: "Amashop Web", description: "Compra y venta de productos al por mayor.", image: "../img/logo-test-1-update.png", tags: ["sql", "web", "inyeccion", "hacking", "dificil", "d1se0"] },
+	    { url: "../labs/separo/separo-lab.jsp", title: "SEPARO Curriculum", description: "Envianos tu curriculum para trabajar con nosotros.", image: "../img/logo-test-3-update.png", tags: ["open redirect", "open", "redirect", "web", "url", "hacking", "facil", "d1se0"] },
+	    { url: "../labs/hacking_community/hacking_community-lab.jsp", title: "Hacking_community", description: "Apuntes de hacking para principiantes.", image: "../img/logo-test-4-update.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
