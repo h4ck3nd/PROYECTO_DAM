@@ -56,19 +56,16 @@ public class ValidateFlagControlador extends HttpServlet {
         String redireccion;
         switch (labId) {
             case 1:
-                redireccion = "/labs/foro-xss.jsp";
+                redireccion = "/labs/foro-xss-lab.jsp";
                 break;
             case 2:
-                redireccion = "/labs/amashop/amashop.jsp";
+                redireccion = "/labs/amashop/amashop-lab.jsp";
                 break;
             case 3:
-                redireccion = "/labs/hacking_community/hacking_community.jsp";
+                redireccion = "/labs/hacking_community/hacking_community-lab.jsp";
                 break;
             case 4:
-                redireccion = "/labs/separo/separo.jsp";
-                break;
-            case 5:
-                redireccion = "/dockerpwned/labs/r00tless.jsp";
+                redireccion = "/labs/separo/separo-lab.jsp";
                 break;
             default:
                 redireccion = "/home_directory/home.jsp?page=0"; // Ruta por defecto si no coincide
