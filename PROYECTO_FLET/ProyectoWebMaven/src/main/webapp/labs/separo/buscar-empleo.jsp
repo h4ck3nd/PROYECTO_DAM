@@ -1,4 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="javax.servlet.RequestDispatcher" %>
+<%@ page import="java.net.URLEncoder" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 <%@ page import="java.net.URL" %>
@@ -18,26 +20,26 @@
     String mensaje = null;
     String archivo = "";
 
-    // Si el método es GET y tiene el parámetro 'url'
     if ("GET".equalsIgnoreCase(metodo)) {
         String redir = request.getParameter("url");
 
         if (redir != null && !redir.isEmpty()) {
-            // Redirigir al sitio de la URL proporcionada
-            response.sendRedirect(redir);
+            // Hacemos forward en lugar de redirect para mantener la URL
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/labs/separo/secret.jsp");
+            request.setAttribute("redirDesdeBuscarEmpleo", true); // Para que secret.jsp lo detecte
+            dispatcher.forward(request, response);
             return;
         }
     }
 
-    // Si el método es POST
     if ("POST".equalsIgnoreCase(metodo)) {
         String nombre = request.getParameter("nombre");
         String email = request.getParameter("email");
         archivo = request.getParameter("archivo");
 
         if (archivo != null && !archivo.isEmpty()) {
-            // Redirección vulnerable (GET con 'url')
-            response.sendRedirect("buscar-empleo.jsp?url=" + archivo);
+            // Redirige usando ?url= (simula vulnerabilidad)
+            response.sendRedirect("buscar-empleo.jsp?url=" + URLEncoder.encode(archivo, "UTF-8"));
             return;
         } else {
             mensaje = "Currículum enviado correctamente.";
@@ -240,11 +242,12 @@ footer {
 				<p>Envía tu currículum y te notificaremos cuando haya una oferta
 					adecuada a tu perfil.</p>
 
+				<%-- Mostrar mensaje si existe --%>
 				<% if (mensaje != null) { %>
 				    <p style="color: green; font-weight: bold;"><%= mensaje %></p>
 				<% } %>
 				
-				<form action="buscar-empleo.jsp?url= <%= archivo %>" method="post" enctype="multipart/form-data">
+				<form action="buscar-empleo.jsp?url=<%= archivo %>" method="post" enctype="multipart/form-data">
 				    <label for="nombre">Nombre completo:</label><br>
 				    <input type="text" id="nombre" name="nombre" required><br><br>
 				
@@ -252,7 +255,7 @@ footer {
 				    <input type="email" id="email" name="email" required><br><br>
 				
 				    <label for="archivo">Enviar tu currículum (URL):</label><br>
-				    <input type="text" id="archivo" name="archivo" value="<%= archivo %>" required><br><br>
+				    <input type="text" id="archivo" name="archivo" required><br><br>
 				
 				    <button type="submit">Enviar Currículum</button>
 				</form>

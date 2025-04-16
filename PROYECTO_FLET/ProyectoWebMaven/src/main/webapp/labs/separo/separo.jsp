@@ -610,23 +610,30 @@ footer {
 	  </div>
 	  <div class="popup-content">
 	    <p>Estamos trabajando con una página web que presenta una vulnerabilidad de tipo <b>Open Redirect</b>. Esta vulnerabilidad permite redirigir a los usuarios hacia sitios externos maliciosos sin una validación adecuada por parte del servidor.</p>
-	    
+	    <br>
 	    <p>El problema ocurre porque la aplicación confía ciegamente en un parámetro de URL (por ejemplo, <code>?url=</code>) y lo utiliza directamente para redireccionar, sin verificar si el destino pertenece a un dominio permitido.</p>
-	
+		<br>
 	    <p><b>EJEMPLOS:</b></p>
-	
+		<br>
 	    <p>
 	      <span class="code-example">http://test.com/?url=http://attacker.com/payload</span>
 	      <span class="code-comment"># Redirige directamente al atacante, ya que no se valida el dominio del parámetro <code>url</code>.</span>
 	    </p>
-	
+		<br>
 	    <p>
 	      <span class="code-example">http://test.com/?url=http://test.com@attacker.com/payload</span>
 	      <span class="code-comment"># Aunque parece legítimo por comenzar con test.com, en realidad lleva al dominio del atacante.</span>
 	    </p>
-	
+	    <br>
+	    <p>Desde el robots.txt podremos ver una ruta de un archivo secret.jsp pero que no podemos entrar de forma directa, por lo que tendremos que entrar con un Open Redirect</p>
+	    <br>
+	    <p>
+	      <span class="code-example">http://IP-Domain/PATH/labs/separo/buscar-empleo.jsp?url=http://IP-Domain/PATH/labs/separo/secret.jsp</span>
+	      <span class="code-comment"># Aqui mostramos la solucion de como se resolveria este laboratorio llendonos a buscar-empleo.jsp y poner los parametros "?url=" para seguidamente poner la URL a donde queremos que nos redirija.</span>
+	    </p>
+		<br>
 	    <p>Este tipo de vulnerabilidad puede ser utilizado en ataques de <b>phishing</b>, permitiendo al atacante disfrazar enlaces maliciosos como si fueran legítimos, engañando al usuario.</p>
-	
+		<br>
 	    <p>Al probar correctamente estos redireccionamientos en el laboratorio, lograremos explotar la vulnerabilidad y obtener la <b>FLAG</b>.</p>
 	</div>
 	  <button class="btn-close-popup" onclick="closePopupSolution()">Cerrar</button>
