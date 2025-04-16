@@ -81,11 +81,11 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosBAC1", puntosBAC1);
                 
-                // Obtener Puntos del laboratorio LFI1 (DockerPwned)
-                int puntosLFI1 = puntosDAO.obtenerPuntosLFI1(userId);
+                // Obtener Puntos del laboratorio R00tless (DockerPwned)
+                int puntosR00tless = puntosDAO.obtenerPuntosR00tless(userId);
 
                 // Pasar los puntos al JSP
-                request.setAttribute("puntosLFI1", puntosLFI1);
+                request.setAttribute("puntosR00tless", puntosR00tless);
                 
                 // Obtener Puntos del laboratorio IDOR1 (OvaLabs)
                 int puntosIDOR1 = puntosDAO.obtenerPuntosIDOR1(userId);

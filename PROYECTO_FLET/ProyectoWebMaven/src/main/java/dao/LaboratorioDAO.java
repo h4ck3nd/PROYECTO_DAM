@@ -109,6 +109,25 @@ public class LaboratorioDAO {
         return labId;
     }
     
+    // Método para obtener el ID del laboratorio con nombre "r00tless" (fijo)
+    public static int obtenerIdLaboratorioR00tless() {
+        int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
+        String query = "SELECT lab_id FROM laboratorios_dockerpwned WHERE nombre = 'r00tless'";  // Nombre fijo
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    labId = rs.getInt("lab_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return labId;
+    }
+    
     // Método para agregar un nuevo laboratorio a la base de datos
     public static boolean agregarLaboratorio(String nombre, String flag, int puntos) {
         boolean exito = false;
@@ -178,6 +197,71 @@ public class LaboratorioDAO {
     public static int obtenerPuntosPorLaboratorio(int labId) {
         int puntos = 0;
         String query = "SELECT puntos FROM laboratorios WHERE lab_id = ?";
+        
+        // Crea una instancia de ConexionDDBB
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        
+        try (Connection conn = conexionDB.conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, labId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    puntos = rs.getInt("puntos");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return puntos;
+    }
+    
+    // Obtener la flag del laboratorio (Dockerpwned)
+    public static String obtenerFlagPorLaboratorioDockerpwned(int labId) {
+        String flag = null;
+        String query = "SELECT flag FROM laboratorios_dockerpwned WHERE lab_id = ?";
+        
+        // Crea una instancia de ConexionDDBB
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        
+        try (Connection conn = conexionDB.conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, labId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    flag = rs.getString("flag");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return flag;
+    }
+    
+    public static String obtenerNombreLaboratorioDockerpwned(int labId) {
+        String nombre = "";
+        String query = "SELECT nombre FROM laboratorios_dockerpwned WHERE lab_id = ?";
+        
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, labId);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                nombre = rs.getString("nombre");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return nombre;
+    }
+    
+    // Obtener los puntos del laboratorio (Dockerpwned)
+    public static int obtenerPuntosPorLaboratorioDockerpwned(int labId) {
+        int puntos = 0;
+        String query = "SELECT puntos FROM laboratorios_dockerpwned WHERE lab_id = ?";
         
         // Crea una instancia de ConexionDDBB
         ConexionDDBB conexionDB = new ConexionDDBB();

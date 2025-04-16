@@ -277,32 +277,32 @@ public class PuntosDAO {
         return puntosBAC1;
     }
     
-    // Método para obtener los puntos de LFI LAB 1 del usuario
-    public int obtenerPuntosLFI1(int userId) throws SQLException {
-        int puntosLFI1 = 0;
+    // Método para obtener los puntos de R00tless LAB 1 del usuario
+    public int obtenerPuntosR00tless(int userId) throws SQLException {
+        int puntosR00tless = 0;
         
         // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
         ConexionDDBB conexionDB = new ConexionDDBB();
         Connection conn = conexionDB.conectar();
         
-        String sql = "SELECT SUM(puntos) AS puntosLFI1 FROM validate_flag_dockerpwned WHERE user_id = ? AND lab_id = 1";
+        String sql = "SELECT SUM(puntos) AS puntosR00tless FROM validate_flag_dockerpwned WHERE user_id = ? AND lab_id = 1";
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                	puntosLFI1 = rs.getInt("puntosLFI1");
+                	puntosR00tless = rs.getInt("puntosR00tless");
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al obtener puntos LFI1: " + e.getMessage());
+            System.err.println("Error al obtener puntos R00tless: " + e.getMessage());
             throw e;
         } finally {
             conexionDB.cerrarConexion(); // Cerramos la conexión
         }
         
-        return puntosLFI1;
+        return puntosR00tless;
     }
     
     // Método para obtener los puntos de IDOR LAB 1 del usuario

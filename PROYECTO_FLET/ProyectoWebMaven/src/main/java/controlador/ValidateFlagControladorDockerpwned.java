@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("/validarFlag")
-public class ValidateFlagControlador extends HttpServlet {
+@WebServlet("/validarFlagDockerpwned")
+public class ValidateFlagControladorDockerpwned extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -31,17 +31,17 @@ public class ValidateFlagControlador extends HttpServlet {
             labId = Integer.parseInt(labIdParam);
 
             // Verificar si el usuario ya ha validado la flag
-            boolean flagValidada = ValidateFlagDAO.hasFlagBeenValidated(Integer.parseInt(userId), labId);
+            boolean flagValidada = ValidateFlagDAO.hasFlagBeenValidatedDockerpwned(Integer.parseInt(userId), labId);
             if (flagValidada) {
                 mensaje = "Ya has validado esta flag.";
             } else {
                 // Comprobar flag
                 String flagIngresada = request.getParameter("flag");
-                String flagCorrecta = LaboratorioDAO.obtenerFlagPorLaboratorio(labId);
+                String flagCorrecta = LaboratorioDAO.obtenerFlagPorLaboratorioDockerpwned(labId);
 
                 if (flagIngresada != null && flagIngresada.equals(flagCorrecta)) {
-                    int puntos = LaboratorioDAO.obtenerPuntosPorLaboratorio(labId);
-                    ValidateFlagDAO.registerFlagValidation(Integer.parseInt(userId), labId, flagIngresada, puntos);
+                    int puntos = LaboratorioDAO.obtenerPuntosPorLaboratorioDockerpwned(labId);
+                    ValidateFlagDAO.registerFlagValidationDockerpwned(Integer.parseInt(userId), labId, flagIngresada, puntos);
                     mensaje = "Flag validada con exito. Puntos: " + puntos;
                 } else {
                     mensaje = "Flag incorrecta, intenta nuevamente.";
@@ -56,22 +56,10 @@ public class ValidateFlagControlador extends HttpServlet {
         String redireccion;
         switch (labId) {
             case 1:
-                redireccion = "/labs/foro-xss.jsp";
-                break;
-            case 2:
-                redireccion = "/labs/amashop/amashop.jsp";
-                break;
-            case 3:
-                redireccion = "/labs/hacking_community/hacking_community.jsp";
-                break;
-            case 4:
-                redireccion = "/labs/separo/separo.jsp";
-                break;
-            case 5:
                 redireccion = "/dockerpwned/labs/r00tless.jsp";
                 break;
             default:
-                redireccion = "/home_directory/home.jsp?page=0"; // Ruta por defecto si no coincide
+                redireccion = "/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"; // Ruta por defecto si no coincide
                 break;
         }
 
