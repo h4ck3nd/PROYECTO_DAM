@@ -37,7 +37,7 @@
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
     <title>DOCKER PWNED</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_dockerpwned/home_dockerpwned.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_ovalabs/home_ovalabs.css">
 	<style>
 		.logo-image {
 		  width: 125px;
@@ -82,9 +82,6 @@
 			color: white !important;
 			text-decoration: underline !important;
 			font-weight: bold !important;
-		}
-		.style-letters-hackend {
-			color: #00ffff !important;
 		}
 	</style>
 </head>
@@ -136,9 +133,8 @@
         <nav class="nav-menu">
             <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
             <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
-            <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
+            <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
-            <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/instalacion.jsp"><img src="<%= request.getContextPath() %>/img/img_dockerpwned/install.png" class="img-install" width="20px" height="20px"> Instalación</a>
             <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
         </nav>
 
@@ -204,11 +200,11 @@
 
     <!-- PAGINACIÃÂÃ¢ÂÂN -->
     <div class="pagination">
-        <div class="google-logo">H<span>a</span><span>a</span><span class="style-letters-hackend">a</span><span>a</span><span>a</span><span>a</span>ckend</div>
-        <a href="home_dockerpwned.jsp?page=0" class="page-link">1</a>
+        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
+        <a href="home_dockerpwned.jsp?page=0" class="page-link style-link-number">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>
-        <a href="Page3.jsp?page=3" class="page-link style-link-number">4</a>
+        <a href="Page3.jsp?page=3" class="page-link">4</a>
         <a href="Page4.jsp?page=4" class="page-link">5</a>
         <button class="next" id="nextPageButton">Siguiente</button>
     </div>
@@ -239,8 +235,8 @@
 	// ÃÂ¢ÃÂ¬Ã¢ÂÂ¡ÃÂ¯ÃÂ¸ÃÂ Definimos estos dos globalmente para que estÃÂÃÂ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
+		{ url: "../labs/ovalabs.jsp", title: "OVALABS", description: "Pagina principal, donde se explica de que va todo esto.", image: "../../img/logo-test-14-update.png", tags: ["principal", "web", "ovalabs", "CEO"] },
 		{ url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
