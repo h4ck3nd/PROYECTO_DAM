@@ -36,36 +36,36 @@
     }
 
    .window-buttons {
-	display: flex;
-	gap: 8px;
-	position: absolute;
-	right: 20px;
-}
-
-.window-buttons button {
-	background: transparent;
-	border: none;
-	color: #ccc;
-	font-size: 16px;
-	cursor: pointer;
-	padding: 4px 8px;
-	transition: background 0.2s ease, color 0.2s ease;
-	border-radius: 4px;
-}
-
-.window-buttons button:hover {
-	background-color: #333;
-}
-
-.window-buttons .close:hover {
-	background-color: #c0392b;
-	color: #fff;
-}
-
-.window-buttons .minimize:hover, .window-buttons .maximize:hover {
-	background-color: #555;
-	color: #fff;
-}
+		display: flex;
+		gap: 8px;
+		position: absolute;
+		right: 20px;
+	}
+	
+	.window-buttons button {
+		background: transparent;
+		border: none;
+		color: #ccc;
+		font-size: 16px;
+		cursor: pointer;
+		padding: 4px 8px;
+		transition: background 0.2s ease, color 0.2s ease;
+		border-radius: 4px;
+	}
+	
+	.window-buttons button:hover {
+		background-color: #333;
+	}
+	
+	.window-buttons .close:hover {
+		background-color: #c0392b;
+		color: #fff;
+	}
+	
+	.window-buttons .minimize:hover, .window-buttons .maximize:hover {
+		background-color: #555;
+		color: #fff;
+	}
 
     section {
       max-width: 1000px;

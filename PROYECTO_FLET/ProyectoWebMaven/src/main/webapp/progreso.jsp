@@ -46,6 +46,7 @@
 		font-weight: bold;
 		background-color: transparent;
 		font-size: 20px;
+		cursor: pointer;
 		align-content: center;
 		text-align: center;
 		align-items: center;
@@ -74,8 +75,8 @@
 	<h1 class="titulo">HACKEND</h1>
 	<div class="window-buttons">
 		<button class="btn minimizar">-</button>
-			<button class="btn maximizar">O</button>
-			<button onclick="window.location.href='/ProyectoWebMaven/profile.jsp'" class="btn cerrar">X</button>
+		<button class="btn maximizar">O</button>
+		<button onclick="window.location.href='/ProyectoWebMaven/profile.jsp'" class="btn cerrar">X</button>
 	</div>
 </header>
 	<!-- Formulario oculto para enviar el ID del usuario -->
@@ -151,7 +152,7 @@
 	  "${puntosOR1}", // Separo (Hacking Web)
 	  "${puntosBAC1}",  // Hacking_community (Hacking Web)
 	  "${puntosRCE1}",  // RCE (DockerPwned)
-	  "${puntosLFI1}",  // LFI (DockerPwned)
+	  "${puntosR00tless}",  // r00tless (DockerPwned)
 	  "${puntosIDOR1}"  // IDOR (OvaLabs)
 	].map(Number); // Convertimos a números
 	
@@ -165,7 +166,7 @@
 	      'separo (Hacking Web)',
 	      'hacking_community (Hacking Web)',
 	      'RCE (DockerPwned)',
-	      'LFI (DockerPwned)',
+	      'r00tless (DockerPwned)',
 	      'IDOR (OvaLabs)'
 	    ],
 	    datasets: [{
