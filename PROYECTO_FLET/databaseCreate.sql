@@ -117,7 +117,7 @@ CREATE TABLE writeups_dockerpwned (
 );
 
 ALTER TABLE writeups_dockerpwned
-ADD CONSTRAINT unique_lab_user UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
+ADD CONSTRAINT unique_lab_user_dockerpwned UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
 
 ALTER TABLE writeups_dockerpwned
 ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
