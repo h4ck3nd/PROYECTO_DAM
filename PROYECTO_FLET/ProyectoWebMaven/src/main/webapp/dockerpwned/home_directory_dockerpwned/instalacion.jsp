@@ -1,4 +1,18 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+    UsuarioJWT usuarioJWT = null;
+
+    try {
+        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+    } catch (Exception e) {
+        // Redirigir al servlet de logout en vez de al .jsp
+        response.sendRedirect(request.getContextPath() + "/logout");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -90,18 +104,27 @@
       border-top: 1px solid #333;
       margin-top: 40px;
     }
+    .typewriter-cursor::after {
+      content: '_';
+      animation: blink 1s step-start infinite;
+      display: inline-block;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
   </style>
 </head>
 <body>
 
 <header>
   <div class="header-left">
-    <h1>¿Como instalo los CTFs?</h1>
+    <h1 class="typewriter" data-text="¿Como instalo los CTFs?"></h1>
   </div>
   <div class="header-right">
     <button class="window-btn">🗕</button>
     <button class="window-btn">🗖</button>
-    <button class="window-btn">✖</button>
+    <button class="window-btn" onclick="window.location.href='<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0'">✖</button>
   </div>
 </header>
 
@@ -121,14 +144,14 @@
   <div class="paso">
     <h3>3. Descomprimir el archivo</h3>
     <p>Desde una terminal Linux, descomprime el contenido del archivo ZIP:</p>
-    <code>$ unzip &lt;FILE&gt;.zip</code>
-    <p>Obtendrás dos archivos: un <code>.tar</code> con la máquina y un script llamado <code>auto_mount.sh</code>.</p>
+    <code class="typewriter" data-text="$ unzip &lt;FILE&gt;.zip"></code>
+    <p>Obtendrás dos archivos un: <code class="typewriter" data-text=".tar"></code> con la máquina y un script llamado <code class="typewriter" data-text="auto_mount.sh"></code>.</p>
   </div>
 
   <div class="paso">
     <h3>4. Montar la máquina en Docker</h3>
-    <p>Ejecuta el script <code>auto_mount.sh</code> seguido del nombre del archivo <code>.tar</code> para lanzar la máquina:</p>
-    <code>$ bash auto_mount.sh &lt;FILE&gt;.tar</code>
+    <p>Ejecuta el script <code class="typewriter" data-text="auto_mount.sh"></code> seguido del nombre del archivo <code class="typewriter" data-text=".tar"></code> para lanzar la máquina:</p>
+    <code class="typewriter" data-text="$ bash auto_mount.sh &lt;FILE&gt;.tar"></code>
   </div>
 
   <div class="paso">
@@ -150,6 +173,29 @@
 <footer>
   <p>© 2025 DockerPwned. Todos los derechos reservados.</p>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".typewriter");
 
+    elements.forEach((el) => {
+      const text = el.getAttribute("data-text");
+      let index = 0;
+
+      const cursorSpan = document.createElement("span");
+      cursorSpan.className = "typewriter-cursor";
+      el.appendChild(cursorSpan);
+
+      const type = () => {
+        if (index < text.length) {
+          el.insertBefore(document.createTextNode(text.charAt(index)), cursorSpan);
+          index++;
+          setTimeout(type, 70); // velocidad de escritura
+        }
+      };
+
+      type();
+    });
+  });
+</script>
 </body>
 </html>
