@@ -1,0 +1,73 @@
+body {
+	font-family: 'Courier New', Courier, monospace;
+	background: #2d2d2d;
+	color: #f0f0f0;
+	padding: 20px;
+	margin: 0;
+}
+
+h1 {
+	text-align: center;
+	color: #f0f0f0;
+	font-size: 2em;
+	margin-bottom: 30px;
+}
+
+.panel {
+	background-color: #333;
+	border: 1px solid #444;
+	border-radius: 10px;
+	padding: 25px;
+	margin: 20px auto;
+	max-width: 800px;
+}
+
+.panel h2 {
+	font-size: 1.4em;
+	margin-bottom: 15px;
+	color: #f0f0f0;
+}
+
+.btn-container {
+	text-align: center;
+	margin-top: 10px;
+}
+
+.panel form {
+	margin: 0;
+}
+
+button {
+	background-color: #4f4f4f;
+	color: #f0f0f0;
+	font-family: 'Courier New', Courier, monospace;
+	padding: 10px 20px;
+	border: 1px solid #444;
+	border-radius: 5px;
+	font-size: 1em;
+	cursor: pointer;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	margin-top: 5px;
+}
+
+button:hover {
+	background-color: #777;
+	transform: translateY(-2px);
+}
+
+button:active {
+	background-color: #333;
+	transform: translateY(0);
+}
+
+.error-message {
+	text-align: center;
+	color: #ff6f6f;
+	font-size: 1.2em;
+	margin-top: 20px;
+}
+
+.back-button {
+	display: block;
+	margin: 30px auto 0;
+}
