@@ -35,25 +35,36 @@
       margin-right: 10px;
     }
 
-    /* Botones tipo ventana */
-.window-buttons {
+   .window-buttons {
 	display: flex;
-	gap: 10px;
+	gap: 8px;
+	position: absolute;
+	right: 20px;
 }
 
-.window-buttons .btn {
-	background: #21262d;
+.window-buttons button {
+	background: transparent;
 	border: none;
-	color: #e6edf3;
-	width: 30px;
-	height: 30px;
-	font-size: 1rem;
+	color: #ccc;
+	font-size: 16px;
 	cursor: pointer;
+	padding: 4px 8px;
+	transition: background 0.2s ease, color 0.2s ease;
 	border-radius: 4px;
 }
 
-.btn:hover {
-	background-color: #30363d;
+.window-buttons button:hover {
+	background-color: #333;
+}
+
+.window-buttons .close:hover {
+	background-color: #c0392b;
+	color: #fff;
+}
+
+.window-buttons .minimize:hover, .window-buttons .maximize:hover {
+	background-color: #555;
+	color: #fff;
 }
 
     section {
@@ -143,9 +154,9 @@
       DOCKERPWNED
     </div>
     <div class="window-buttons">
-		<button class="btn minimizar">-</button>
-		<button class="btn maximizar">O</button>
-		<button onclick="window.location.href='<%= request.getContextPath() %>/dockerpwned/dockerpwned_home.jsp'" class="btn cerrar">X</button>
+		<button class="minimize" title="Minimizar">🗕</button>
+		<button class="maximize" title="Maximizar">🗖</button>
+		<button onclick="window.location.href='<%= request.getContextPath() %>/dockerpwned/dockerpwned_home.jsp'" class="close" title="Cerrar">✕</button>
 	</div>
   </header>
 
