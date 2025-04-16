@@ -57,5 +57,3 @@ Usa contraseñas hasheadas (con bcrypt, por ejemplo) en la tabla de usuarios.
 Crea un usuario PostgreSQL dedicado para la app, con permisos limitados.
 
 Usa variables de entorno para manejar tus credenciales (en vez de ponerlas en código plano).
-
-¿Querés que te prepare el archivo .sql listo para descargar o incluso que te genere ejemplos de inserciones dummy (de prueba)? También te puedo hacer una validación de seguridad para las tablas si querés orientarlo a producción 🔐
