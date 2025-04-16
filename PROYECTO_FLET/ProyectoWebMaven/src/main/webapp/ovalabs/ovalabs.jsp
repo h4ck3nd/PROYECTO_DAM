@@ -1,3 +1,4 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -151,6 +152,15 @@ footer {
 	font-size: 0.9em;
 	margin-top: 80px;
 }
+.typewriter-cursor::after {
+      content: '_';
+      animation: blink 1s step-start infinite;
+      display: inline-block;
+    }
+
+    @keyframes blink {
+      50% { opacity: 0; }
+    }
 </style>
 </head>
 <body>
@@ -161,13 +171,13 @@ footer {
 		<div class="window-buttons">
 			<button class="minimize" title="Minimizar">🗕</button>
 			<button class="maximize" title="Maximizar">🗖</button>
-			<button class="close" title="Cerrar">✕</button>
+			<button onclick="window.location.href='<%= request.getContextPath() %>/ovalabs/ovalabs_home.jsp'" class="close" title="Cerrar">✕</button>
 		</div>
 	</header>
 
 	<main>
 		<section class="intro">
-			<h1>Máquinas Virtuales para Hacking Web</h1>
+			<h1 class="typewriter" data-text="Máquinas Virtuales para Hacking Web"></h1>
 			<p>DOCKERPWNED te ofrece un catálogo de máquinas virtuales (.ova)
 				diseñadas para entrenar tus habilidades en ciberseguridad ofensiva.
 				Importa, lanza, explora y aprende en entornos realistas creados
@@ -182,7 +192,7 @@ footer {
 		</section>
 
 		<section class="benefits">
-			<h2>¿Qué obtienes con nuestras máquinas .OVA?</h2>
+			<h2 class="typewriter" data-text="¿Qué obtienes con nuestras máquinas .OVA?"></h2>
 			<ul>
 				<li>✅ Entornos realistas y reproducibles para práctica libre.</li>
 				<li>✅ Escenarios enfocados en OWASP Top 10, bypasses de
@@ -194,10 +204,8 @@ footer {
 		</section>
 
 		<section class="cta">
-			<img
-				src="https://cdn.pixabay.com/photo/2020/06/07/08/44/hacker-5271548_1280.jpg"
-				alt="Máquina virtual para ciberseguridad" />
-			<h2>Explora, aprende y domina el hacking web</h2>
+			<img src="https://cdn.pixabay.com/photo/2019/12/18/05/19/hacker-4703109_640.jpg" alt="Máquina virtual para ciberseguridad" width="380px" height="300px"/>
+			<h2 class="typewriter" data-text="Explora, aprende y domina el hacking web"></h2>
 			<p>Las máquinas estarán disponibles muy pronto. Prepárate para
 				importar .ova directamente en tu VirtualBox y comenzar a
 				experimentar con configuraciones vulnerables sin afectar tu equipo
@@ -209,5 +217,29 @@ footer {
 	</main>
 
 	<footer> © HACKEND 2025 | OVALABS </footer>
+	<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const elements = document.querySelectorAll(".typewriter");
+
+    elements.forEach((el) => {
+      const text = el.getAttribute("data-text");
+      let index = 0;
+
+      const cursorSpan = document.createElement("span");
+      cursorSpan.className = "typewriter-cursor";
+      el.appendChild(cursorSpan);
+
+      const type = () => {
+        if (index < text.length) {
+          el.insertBefore(document.createTextNode(text.charAt(index)), cursorSpan);
+          index++;
+          setTimeout(type, 70); // velocidad de escritura
+        }
+      };
+
+      type();
+    });
+  });
+</script>
 </body>
 </html>
