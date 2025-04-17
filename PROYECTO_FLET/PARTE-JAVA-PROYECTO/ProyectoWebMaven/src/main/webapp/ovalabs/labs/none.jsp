@@ -17,7 +17,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned.ico">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_ovalabs/logo-ovalabs.ico">
     <title>CONSTRUCCION...</title>
     <style>
         body {

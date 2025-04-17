@@ -18,7 +18,7 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned.ico">
+<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_ovalabs/logo-ovalabs.ico">
 <title>OVALABS - Máquinas Virtuales para Hacking Web</title>
 <style>
 body {
