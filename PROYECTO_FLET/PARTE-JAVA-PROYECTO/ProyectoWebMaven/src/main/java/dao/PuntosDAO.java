@@ -305,31 +305,31 @@ public class PuntosDAO {
         return puntosR00tless;
     }
     
-    // Método para obtener los puntos de IDOR LAB 1 del usuario
-    public int obtenerPuntosIDOR1(int userId) throws SQLException {
-        int puntosIDOR1 = 0;
+    // Método para obtener los puntos de goodness LAB 1 del usuario
+    public int obtenerPuntosGoodness(int userId) throws SQLException {
+        int puntosGoodness = 0;
         
         // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
         ConexionDDBB conexionDB = new ConexionDDBB();
         Connection conn = conexionDB.conectar();
         
-        String sql = "SELECT SUM(puntos) AS puntosIDOR1 FROM validate_flag_ovalabs WHERE user_id = ? AND lab_id = 1";
+        String sql = "SELECT SUM(puntos) AS puntosGoodness FROM validate_flag_ovalabs WHERE user_id = ? AND lab_id = 1";
         
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, userId);
             
             try (ResultSet rs = stmt.executeQuery()) {
                 if (rs.next()) {
-                	puntosIDOR1 = rs.getInt("puntosIDOR1");
+                	puntosGoodness = rs.getInt("puntosGoodness");
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Error al obtener puntos IDOR1: " + e.getMessage());
+            System.err.println("Error al obtener puntos goodness: " + e.getMessage());
             throw e;
         } finally {
             conexionDB.cerrarConexion(); // Cerramos la conexión
         }
         
-        return puntosIDOR1;
+        return puntosGoodness;
     }
 }
