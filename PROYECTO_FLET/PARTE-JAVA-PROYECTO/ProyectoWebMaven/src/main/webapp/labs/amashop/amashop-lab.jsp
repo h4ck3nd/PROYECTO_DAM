@@ -579,7 +579,7 @@
     <div class="lab-info">
       <h2 class="typewriter" data-text="AMASHOP LAB: HACKING WEB"></h2>
       <p><strong>Autor:</strong> D1se0</p>
-      <p><strong>Descripción:</strong> Aprende a hackear paginas web en este caso un SQLi.</p>
+      <p><strong>Descripción:</strong> Compra y venta de productos, un pagina donde todo lo que quieras lo tendras con un click, aprender a realizar un SQLi.</p>
       <p><strong>Fecha de creación:</strong> 06/04/2025</p>
       <button class="nivel-btn">Medio</button>
     </div>
@@ -590,7 +590,9 @@
     <h3 class="tecnica-titulo">Técnicas Utilizadas</h3>
     <ul class="tecnica-grid">
       <li>🔍 Escaneo de Puertos</li>
-      <li>🔑 SQLi</li>
+      <li>💉 SQLi</li>
+      <li>🖥️ WEB</li>
+      <li>📜 Fuzzing</li>
     </ul>
   </section>
 

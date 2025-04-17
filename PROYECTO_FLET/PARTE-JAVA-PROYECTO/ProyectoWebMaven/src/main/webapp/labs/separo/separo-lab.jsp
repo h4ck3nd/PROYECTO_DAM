@@ -579,7 +579,7 @@
     <div class="lab-info">
       <h2 class="typewriter" data-text="SEPARO LAB: HACKING WEB"></h2>
       <p><strong>Autor:</strong> D1se0</p>
-      <p><strong>Descripción:</strong> Aprende a hackear paginas web en este caso un Open Redirect.</p>
+      <p><strong>Descripción:</strong> Estas cansado de buscar empleo, en Separo encontraras lo que quieras al lado de tu casa, aprende a realizar un Open Redirect.</p>
       <p><strong>Fecha de creación:</strong> 09/04/2025</p>
       <button class="nivel-btn">Facil</button>
     </div>
@@ -590,7 +590,10 @@
     <h3 class="tecnica-titulo">Técnicas Utilizadas</h3>
     <ul class="tecnica-grid">
       <li>🔍 Escaneo de Puertos</li>
-      <li>🔑 Open Redirect</li>
+      <li>🔄 Open Redirect</li>
+      <li>🖥️ WEB</li>
+      <li>📜 Fuzzing</li>
+      <li>🔓 Bypass</li>
     </ul>
   </section>
 

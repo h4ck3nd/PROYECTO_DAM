@@ -579,7 +579,7 @@
     <div class="lab-info">
       <h2 class="typewriter" data-text="HACKING COMMUNITY LAB: HACKING WEB"></h2>
       <p><strong>Autor:</strong> D1se0</p>
-      <p><strong>Descripción:</strong> Aprende a hackear paginas web en este caso un BAC.</p>
+      <p><strong>Descripción:</strong> Comparte tus conocimientos con la comunidad de hacking mas grande del mundo, aprende a realizar un BAC.</p>
       <p><strong>Fecha de creación:</strong> 06/04/2025</p>
       <button class="nivel-btn">Facil</button>
     </div>
@@ -591,6 +591,9 @@
     <ul class="tecnica-grid">
       <li>🔍 Escaneo de Puertos</li>
       <li>🔑 BAC</li>
+      <li>🖥️ WEB</li>
+      <li>📜 Fuzzing</li>
+      <li>🔓 Bypass</li>
     </ul>
   </section>
 

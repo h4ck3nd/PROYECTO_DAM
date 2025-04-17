@@ -590,7 +590,7 @@
     <div class="lab-info">
       <h2 class="typewriter" data-text="FORO XSS LAB: HACKING WEB"></h2>
       <p><strong>Autor:</strong> D1se0</p>
-      <p><strong>Descripción:</strong> Aprende a hackear paginas web en este caso un XSS.</p>
+      <p><strong>Descripción:</strong> Una comunidad dedicada a un foro para comentar y divertirte entre amigos, aprender a explotar una vulnerabilidad XSS.</p>
       <p><strong>Fecha de creación:</strong> 03/04/2025</p>
       <button class="nivel-btn">Facil</button>
     </div>
@@ -602,6 +602,9 @@
     <ul class="tecnica-grid">
       <li>🔍 Escaneo de Puertos</li>
       <li>🔑 XSS</li>
+      <li>🖥️ WEB</li>
+      <li>📜 Fuzzing</li>
+      <li>💉 Inyeccion de Alerta</li>
     </ul>
   </section>
 
