@@ -636,7 +636,7 @@
   <section class="download-section">
   	<h3>============================DOWNLOAD============================</h3>
   	<br><br>
-    <button class="download-btn" onclick="window.open('https://drive.google.com/file/d/19JeGAZUDswHKwCMeI_2qpqn6aZKDZa7V/view?usp=sharing', '_blank')">⬇️ Descargar Máquina</button>
+    <button class="download-btn" onclick="window.open('https://drive.google.com/file/d/1ZfCHQlCeloiXfcwoz4iXhbsv3e2mY0oM/view?usp=sharing', '_blank')">⬇️ Descargar Máquina</button>
     <br><br>
     <h3>================================================================</h3>
   </section>

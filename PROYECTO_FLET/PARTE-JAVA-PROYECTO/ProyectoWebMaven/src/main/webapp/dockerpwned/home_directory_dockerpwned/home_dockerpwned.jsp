@@ -40,10 +40,9 @@
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_dockerpwned/home_dockerpwned.css">
 	<style>
 		.logo-image {
-		  width: 125px;
+		  width: 105px;
 		  height: 50px;
 		  position: relative;
-		  top: -10px; /* Ajusta el valor segÃÂºn sea necesario */
 		}
 		.profile-image-update {
 			width: 40px;
@@ -129,7 +128,7 @@
 		        }
 		    </style>
 		<% } %>
-	   <img src="<%= request.getContextPath() %>/img/hackendLogoUpdate.png" class="logo-image" alt="Imagen Logo">
+	   <img src="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned-1.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
 
