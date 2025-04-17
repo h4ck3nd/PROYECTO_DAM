@@ -515,6 +515,10 @@
 		.message-popup.show {
 		    display: block; /* Se muestra cuando tiene la clase .show */
 		}
+		.img-plataform {
+			object-fit: contain;
+  		  	vertical-align: middle;
+		}
   </style>
 </head>
 <body>
@@ -581,6 +585,7 @@
       <p><strong>Autor:</strong> D1se0</p>
       <p><strong>Descripción:</strong> Aprende a hackear maquinas mas profesionales en Ovalabs.</p>
       <p><strong>Fecha de creación:</strong> 15/05/2025</p>
+      <p><strong>Plataformas:</strong> <img alt="VMWare" src="<%= request.getContextPath() %>/img/img_dockerpwned/vmware.png" width="30px" height="30px" class="img-plataform"></p>
       <button class="nivel-btn">Facil</button>
     </div>
   </section>
