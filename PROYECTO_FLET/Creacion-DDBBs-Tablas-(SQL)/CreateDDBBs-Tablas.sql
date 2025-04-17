@@ -130,3 +130,18 @@ ADD CONSTRAINT unique_lab_user_dockerpwned UNIQUE (lab_id, user_id); -- Esto ase
 
 ALTER TABLE writeups_dockerpwned
 ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
+
+-- Crear Tabla de Writeups Ovalabs (URL)
+
+CREATE TABLE writeups_ovalabs (
+    id SERIAL PRIMARY KEY,
+    lab_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    url_writeup TEXT NOT NULL
+);
+
+ALTER TABLE writeups_ovalabs
+ADD CONSTRAINT unique_lab_user_dockerpwned UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
+
+ALTER TABLE writeups_ovalabs
+ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
