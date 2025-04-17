@@ -52,6 +52,7 @@ CREATE TABLE validate_flag (
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('foro-xss', 'FLAG{lo_lograste}', 10); -- ID 1
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('amashop', 'FLAG{amashop_flag}', 20); -- ID 2
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('hacking_community', 'FLAG{flag_bac}', 10); -- ID 3
+INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('separo', 'FLAG{separo_flag}', 15); -- ID 4
 
 -- Crear Tablas para DockerPwned y OvaLabs
 
@@ -85,12 +86,20 @@ CREATE TABLE validate_flag_ovalabs (
     puntos INT NOT NULL
 );
 
--- Inserts de prueba para testeo
-INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('test_docker', 'FLAG{test_flag}', 30);
-INSERT INTO laboratorios_ovalabs (nombre, flag, puntos) VALUES ('test_ova', 'FLAG{test_flag}', 50);
+-- Insertar Datos en "laboratorios" de Dockerpwned y Ovalabs (CTFs)
 
-INSERT INTO validate_flag_dockerpwned (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 30);
-INSERT INTO validate_flag_ovalabs (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 50);
+-- Dockerpwned
+
+INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('r00tless', 'FLAG{r00tless_flag}', 50); -- ID 1
+
+-- Ovalabs
+
+INSERT INTO laboratorios_ovalabs (nombre, flag, puntos) VALUES ('goodness', 'FLAG{goodness_flag}', 25); -- ID 1
+
+-- Inserts de prueba para testeo
+
+INSERT INTO validate_flag_dockerpwned (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{r00tless_flag}', 50); -- No hace falta añadir (Solamente testeo Dockerpwned)
+INSERT INTO validate_flag_ovalabs (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{goodness_flag}', 25); -- No hace falta añadir (Solamente testeo Ovalabs)
 
 -- Crear Tabla de Writeups (URL)
 
