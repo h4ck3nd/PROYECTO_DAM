@@ -153,7 +153,8 @@
 	  "${puntosBAC1}",  // Hacking_community (Hacking Web)
 	  "${puntosRCE1}",  // RCE (DockerPwned)
 	  "${puntosR00tless}",  // r00tless (DockerPwned)
-	  "${puntosIDOR1}"  // IDOR (OvaLabs)
+	  "${puntosCrackoff}",	// crackoff (DockerPwned)
+	  "${puntosGoodness}"  // Goodness (OvaLabs)
 	].map(Number); // Convertimos a números
 	
 	const ctx = document.getElementById('labChart').getContext('2d');
@@ -167,15 +168,16 @@
 	      'hacking_community (Hacking Web)',
 	      'RCE (DockerPwned)',
 	      'r00tless (DockerPwned)',
-	      'IDOR (OvaLabs)'
+	      'crackoff (DockerPwned)',
+	      'goodness (OvaLabs)'
 	    ],
 	    datasets: [{
 	      label: 'Distribución de Laboratorios',
 	      data: puntosPorLaboratorio,
 	      backgroundColor: [
 	        '#66bb6a', '#81c784', '#a5d6a7', '#48e05f',   // Hacking Web - VERDE
-	        '#64b5f6', '#24a5d5',             			// DockerPwned - AZUL
-	        '#ffb74d'               						// OvaLabs - NARANJA
+	        '#64b5f6', '#24a5d5', '#3c7e97',              // DockerPwned - AZUL
+	        '#ffb74d'               					  // OvaLabs - NARANJA
 	      ],
 	      borderColor: '#ffffff',
 	      borderWidth: 2
