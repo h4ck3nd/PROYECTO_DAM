@@ -583,7 +583,7 @@
     <div class="lab-info">
       <h2 class="typewriter" data-text="GOODNESS MACHINE: OVALABS"></h2>
       <p><strong>Autor:</strong> D1se0</p>
-      <p><strong>Descripción:</strong> Aprende a hackear maquinas mas profesionales en Ovalabs.</p>
+      <p><strong>Descripción:</strong> Aprende a sacar credenciales, fuerza bruta, fuzzing en la web, etc...</p>
       <p><strong>Fecha de creación:</strong> 15/05/2025</p>
       <p><strong>Plataformas:</strong> <img alt="VMWare" src="<%= request.getContextPath() %>/img/img_dockerpwned/vmware.png" width="30px" height="30px" class="img-plataform"></p>
       <button class="nivel-btn">Facil</button>

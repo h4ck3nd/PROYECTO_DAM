@@ -230,6 +230,97 @@
 	  </div>
 	</footer>
 	
+	<!-- BOTONES Y ESTILO DE PAYPAL -->
+	
+	<script src="https://www.paypal.com/sdk/js?client-id=AZhxo4ppFH_hdjNyNZHOY4Mal9NUtrh_kuyapQYgZNiejRweC-PuLGFCDJ_luaINIRdpYoTlu_Nag6zD"></script>
+	<!-- Botón flotante de PayPal -->
+	<button id="open-paypal" style="position: fixed; bottom: 20px; left: 20px; background-color: #003087; border: none; border-radius: 50%; width: 60px; height: 60px; cursor: pointer; box-shadow: 0 0 10px rgba(0,0,0,0.3); z-index: 1000;">
+	  <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="PayPal" style="width: 30px; height: 30px;">
+	</button>
+	
+	<!-- Overlay y Popup ocultos -->
+	<div id="paypal-overlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 999;">
+	  <div id="paypal-popup" style="
+	      position: relative;
+	      margin: 50px auto;
+	      background: #2b2b2b;
+	      padding: 40px;
+	      border-radius: 16px;
+	      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+	      width: 90%;
+	      max-width: 800px;
+	      color: white;
+	      display: flex;
+	      flex-direction: column;
+	      max-height: 80vh; /* Limita altura para activar scroll */
+	      overflow-y: auto; /* El scroll va aquí */
+	      text-align: center;
+	    ">
+	    <button id="close-paypal" style="
+	        position: absolute;
+	        top: 15px;
+	        right: 20px;
+	        background: none;
+	        border: none;
+	        font-size: 24px;
+	        color: white;
+	        cursor: pointer;
+	      ">✖</button>
+	    <h2 style="margin-top: 0; font-size: 1.8rem;">💸 Donativo con PayPal</h2>
+	    <p>¡Gracias por apoyar el proyecto!</p>
+	    <!-- Campo para introducir la cantidad -->
+	    <p>INTRODUCE LA CANTIDAD A DONAR (POR DEFECTO ES 1€)</p>
+		<input id="donation-amount" type="number" min="1" placeholder="Introduce el monto" style="padding: 10px; margin-bottom: 20px; border-radius: 6px; border: 1px solid #ccc; background: #b8b8b8;">
+	    <div id="paypal-button-container" style="margin-top: 30px;"></div>
+	  </div>
+	</div>
+
+	<!-- VIDEO DE REFERENCIA (https://www.youtube.com/watch?v=nAz8xRQaPZQ) -->
+	
+	<script>
+	  paypal.Buttons({
+	    style: {
+	    	shape: 'pill',
+	    	label: 'pay',
+	    },
+	    createOrder: function(data, actions) {
+	        // Obtenemos la cantidad introducida
+	        const amount = document.getElementById("donation-amount").value || "1.00";
+
+	        return actions.order.create({
+	          purchase_units: [{
+	            amount: {
+	              value: amount
+	            }
+	          }]
+	        });
+	      },
+	    onApprove: function(data, actions) {
+	    	  return actions.order.capture().then(function (detalles){
+	    	    // Guarda en localStorage los datos para usarlos luego en successful.jsp
+	    	    const paymentInfo = {
+	    	      id: detalles.id,
+	    	      buyer: detalles.payer.name.given_name + ' ' + detalles.payer.name.surname,
+	    	      email: detalles.payer.email_address,
+	    	      amount: detalles.purchase_units[0].amount.value + ' ' + detalles.purchase_units[0].amount.currency_code,
+	    	      date: new Date().toLocaleString()
+	    	    };
+
+	    	    localStorage.setItem('paypalDetails', JSON.stringify(paymentInfo));
+
+	    	    // Redirige
+	    	    window.location.href = "<%= request.getContextPath() %>/successful.jsp";
+	    	  });
+	    	},
+	    onCancel: function(data) {
+	    	alert("Pago cancelado");
+	    	console.log(data);
+	    }
+	  }).render('#paypal-button-container');
+	</script>
+	
+	<!-- SCRIPTS GENERALES -->
+	
 	<script>
 	window.onload = function() {
 	    const links = document.querySelectorAll("a[target='_blank']");
@@ -393,6 +484,18 @@
 		// AÃ±adir un manejador de eventos para el botÃ³n "Siguiente"
 		document.getElementById("nextPageButton").addEventListener("click", nextPage);
 	});
+	//PAYPAL BUTTON
+	const openBtn = document.getElementById("open-paypal");
+	  const overlay = document.getElementById("paypal-overlay");
+	  const closeBtn = document.getElementById("close-paypal");
+
+	  openBtn.addEventListener("click", () => {
+	    overlay.style.display = "block";
+	  });
+
+	  closeBtn.addEventListener("click", () => {
+	    overlay.style.display = "none";
+	  });
 	</script>
 	<script src="<%= request.getContextPath() %>/js/home.js"></script>
 
