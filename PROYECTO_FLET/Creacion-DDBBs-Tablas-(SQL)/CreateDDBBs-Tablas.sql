@@ -106,6 +106,7 @@ CREATE TABLE validate_flag_ovalabs (
 -- Dockerpwned
 
 INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('r00tless', 'FLAG{r00tless_flag}', 50); -- ID 1
+INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('crackoff', 'FLAG{crackoff_flag}', 55); -- ID 2
 
 -- Ovalabs
 
