@@ -305,6 +305,34 @@ public class PuntosDAO {
         return puntosR00tless;
     }
     
+    // Método para obtener los puntos de Crackoff LAB 2 del usuario
+    public int obtenerPuntosCrackoff(int userId) throws SQLException {
+        int puntosCrackoff = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosCrackoff FROM validate_flag_dockerpwned WHERE user_id = ? AND lab_id = 2";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosCrackoff = rs.getInt("puntosCrackoff");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos Crackoff: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosCrackoff;
+    }
+    
     // Método para obtener los puntos de goodness LAB 1 del usuario
     public int obtenerPuntosGoodness(int userId) throws SQLException {
         int puntosGoodness = 0;

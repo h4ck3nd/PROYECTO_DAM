@@ -58,6 +58,9 @@ public class ValidateFlagControladorDockerpwned extends HttpServlet {
             case 1:
                 redireccion = "/dockerpwned/labs/r00tless.jsp";
                 break;
+            case 2:
+                redireccion = "/dockerpwned/labs/crackoff.jsp";
+                break;
             default:
                 redireccion = "/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"; // Ruta por defecto si no coincide
                 break;

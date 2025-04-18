@@ -128,6 +128,25 @@ public class LaboratorioDAO {
         return labId;
     }
     
+    // Método para obtener el ID del laboratorio con nombre "crackoff" (fijo)
+    public static int obtenerIdLaboratorioCrackoff() {
+        int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
+        String query = "SELECT lab_id FROM laboratorios_dockerpwned WHERE nombre = 'crackoff'";  // Nombre fijo
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    labId = rs.getInt("lab_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return labId;
+    }
+    
     // Método para obtener el ID del laboratorio con nombre "goodness" (fijo)
     public static int obtenerIdLaboratorioGoodness() {
         int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
