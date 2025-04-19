@@ -95,6 +95,12 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosCrackoff", puntosCrackoff);
                 
+                // Obtener Puntos del laboratorio Hackmedaddy (DockerPwned)
+                int puntosHackmedaddy = puntosDAO.obtenerPuntosHackmedaddy(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosHackmedaddy", puntosHackmedaddy);
+                
                 // PUNTOS OVALABS
                 
                 // Obtener Puntos del laboratorio Goodness (OvaLabs)

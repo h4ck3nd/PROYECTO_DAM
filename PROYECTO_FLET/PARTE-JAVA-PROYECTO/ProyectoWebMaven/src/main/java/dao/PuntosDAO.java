@@ -333,6 +333,34 @@ public class PuntosDAO {
         return puntosCrackoff;
     }
     
+    // Método para obtener los puntos de Hackmedaddy LAB 3 del usuario
+    public int obtenerPuntosHackmedaddy(int userId) throws SQLException {
+        int puntosHackmedaddy = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosHackmedaddy FROM validate_flag_dockerpwned WHERE user_id = ? AND lab_id = 3";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosHackmedaddy = rs.getInt("puntosHackmedaddy");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos Hackmedaddy: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosHackmedaddy;
+    }
+    
     // Método para obtener los puntos de goodness LAB 1 del usuario
     public int obtenerPuntosGoodness(int userId) throws SQLException {
         int puntosGoodness = 0;
