@@ -519,6 +519,20 @@
 			object-fit: contain;
   		  	vertical-align: middle;
 		}
+		#startLabBtn {
+		    padding: 10px 20px;
+		    background-color: #00ffaa;
+		    color: #000;
+		    font-weight: bold;
+		    border: none;
+		    border-radius: 8px;
+		    cursor: pointer;
+		    transition: 0.3s;
+		  }
+		
+		  #startLabBtn:hover {
+		    background-color: #00cc88;
+		  }
   </style>
 </head>
 <body>
@@ -642,6 +656,17 @@
     <button class="download-btn" onclick="window.open('https://drive.google.com/file/d/19JeGAZUDswHKwCMeI_2qpqn6aZKDZa7V/view?usp=sharing', '_blank')">⬇️ Descargar Máquina</button>
     <br><br>
     <h3>================================================================</h3>
+    <!-- <button id="startLabBtn">🚀 Iniciar Laboratorio</button> -->
+    <!-- Modal estilo terminal -->
+	<!--<div id="terminalModal" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%, -50%);
+	  width:600px; height:400px; background:#1e1e1e; color:#00ff88; padding:20px; font-family:monospace;
+	  overflow-y:auto; border-radius:10px; box-shadow:0 0 15px rgba(0,0,0,0.6); z-index:999;">
+	  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+	    <strong>Terminal Docker</strong>
+	    <button onclick="closeTerminal()" style="background:none; border:none; color:#fff; font-size:18px; cursor:pointer;">✖</button>
+	  </div>
+	  <pre id="terminalOutput">Esperando respuesta...</pre>
+	</div>-->
   </section>
 
 </main>
@@ -714,6 +739,21 @@
 	      type();
 	    });
 	  });
+  // SCRIPT DOCKER DESPLIEGUE
+  //document.getElementById("startLabBtn").addEventListener("click", function() {
+    //document.getElementById("terminalModal").style.display = "block";
+    //const output = document.getElementById("terminalOutput");
+    //output.textContent = "⏳ Iniciando contenedor...\n";
+
+    //fetch("<%= request.getContextPath() %>/startLab") // para rutas correctas
+      //.then(res => res.text())
+      //.then(data => {
+        //output.textContent += data;
+        //})
+     // .catch(err => {
+       // output.textContent += "❌ Error: " + err;
+      //});
+  //});
 </script>
 
 </body>
