@@ -14,9 +14,9 @@
 	    return;
 	}
 
-    // Validar que userId no sea null ni vacÃ­o
+    // Validar que userId no sea null ni vacío
     if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
-        out.println("<p>Error: El ID de usuario no estÃ¡ disponible en el token.</p>");
+        out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
 
@@ -34,13 +34,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned.ico">
-    <title>DOCKER PWNED</title>
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <title>HACKEND</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
-	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_dockerpwned/home_dockerpwned.css">
+	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/home.css">
 	<style>
 		.logo-image {
-		  width: 105px;
+		  width: 125px;
 		  height: 50px;
 		  position: relative;
 		}
@@ -50,10 +50,10 @@
 			border-radius: 30px;
 		}
 		.result-icon {
-		  width: 25px; /* o el tamaÃÂ±o que quieras */
+		  width: 25px; /* o el tamaÃ±o que quieras */
 		  height: 25px;
 		  object-fit: contain; /* evita que se deforme */
-		  margin-right: 10px; /* opcional, para separaciÃÂ³n del texto */
+		  margin-right: 10px; /* opcional, para separaciÃ³n del texto */
 		}
 		.img-hackend {
 		  object-fit: contain;
@@ -71,7 +71,11 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
-		.img-install {
+		.img-document {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
+		.img-timelabs {
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
@@ -86,10 +90,59 @@
 			text-decoration: underline !important;
 			font-weight: bold !important;
 		}
+		/* FLIP CLOCK - ESTILO HORIZONTAL */
+		.flip-clock {
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    gap: 8px; /* Reduje el espacio entre los elementos */
+		    margin-top: 0px; /* Reduje el margen superior */
+		}
+		
+		.flip-unit {
+		    background-color: #2d2d2d;
+		    color: #fff;
+		    font-family: 'Courier New', Courier, monospace;
+		    font-size: 1.5em; /* Reduje el tamaño de la fuente */
+		    width: 40px; /* Reducí el ancho */
+		    height: 60px; /* Reduje la altura */
+		    display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    border-radius: 8px;
+		    border: 2px solid #444;
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6); /* Reducí el tamaño de la sombra */
+		}
+
+		/* Botón del diseñador */
+		.designer-button {
+		    background-color: #4f4f4f;
+		    color: #f0f0f0;
+		    font-family: 'Courier New', Courier, monospace;
+		    padding: 5px 10px;
+		    margin-top: 0px;
+		    border: 1px solid #444;
+		    border-radius: 5px;
+		    font-size: 1em;
+		    text-decoration: none;
+		    display: inline-block;
+		    font-weight: bold;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+		
+		.designer-button:hover {
+		    background-color: #777;
+		    transform: translateY(-2px);
+		}
+		
+		.designer-button:active {
+		    background-color: #333;
+		    transform: translateY(0);
+		}
 	</style>
 </head>
 <body>
-
+	<!-- <a href="?page=0&lang=es">🇪🇸 Español</a> | <a href="?page=0&lang=en">🇬🇧 English</a> -->
     <header class="header">
         <!--<div class="profile-icon"></div>-->
         <a href="<%= request.getContextPath() %>/profile.jsp">
@@ -128,89 +181,53 @@
 		        }
 		    </style>
 		<% } %>
-	   <img src="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned-1.png" class="logo-image" alt="Imagen Logo">
+		<!-- CONTADOR CUENTA ATRAS + BOTON -->
+		<% if ("designer".equalsIgnoreCase(usuarioJWT.getRol())) { %>
+		    <div style="text-align: center;">
+		        <button id="startCountdown" class="designer-button">Iniciar Cuenta Atrás</button>
+		    </div>
+		<% } %>
+		<!-- DIV DEL CONTADOR -->
+		<div id="countdown" class="flip-clock">
+		    <div class="flip-unit">
+		        <span id="hours">00</span>
+		    </div>
+		    <div class="flip-unit">
+		        <span id="minutes">00</span>
+		    </div>
+		    <div class="flip-unit">
+		        <span id="seconds">00</span>
+		    </div>
+		</div>
+		<!-- LOGO DE LA PAGINA -->
+	   <img src="<%= request.getContextPath() %>/img/timelabs/timelabs.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
 
     <div class="nav-container">
         <nav class="nav-menu">
-            <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
+            <a href="home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
             <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
             <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
+            <a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp"><img src="<%= request.getContextPath() %>/img/timelabs/timelabs-logo.png" class="img-timelabs" width="20px" height="20px"> TimeLabs</a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
-            <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/instalacion.jsp"><img src="<%= request.getContextPath() %>/img/img_dockerpwned/install.png" class="img-install" width="20px" height="20px"> Instalación</a>
-            <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
+            <a href="#" id="more-button"></a>
         </nav>
-
-        <div class="dropdown-menu" id="dropdown-menu">
-		    <div class="dropdown-item" id="types-dropdown">
-		        Tipos <i class="fas fa-chevron-down"></i>
-		        <div class="submenu-container">
-		            <div class="submenu">
-		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="xss">XSS</a>
-		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="sql">SQL INJECTION</a>
-		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="bac">BAC</a>
-		                <a href="#" class="filter-item " data-filter-type="tipo" data-filter-value="csrf">CSRF</a>
-		            </div>
-		        </div>
-		    </div>
-		
-		    <div class="dropdown-item">
-		        Dificultad <i class="fas fa-chevron-down"></i>
-		        <div class="submenu-container">
-		            <div class="submenu">
-		                <a href="#">Facil</a>
-		                <a href="#">Media</a>
-		                <a href="#">Dificil</a>
-		            </div>
-		        </div>
-		    </div>
-		
-		    <div class="dropdown-item" id="tags-dropdown">
-		        TAGS <i class="fas fa-chevron-down"></i>
-		        <div class="submenu-container">
-		            <div class="submenu">
-		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="ddbb">DDBB</a>
-		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="html">HTML</a>
-		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="xml">XML</a>
-		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="url">URL</a>
-		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="seguridad">SEGURIDAD</a>
-		                <a href="#" class="filter-item " data-filter-type="tag" data-filter-value="web">WEB</a>
-		            </div>
-		        </div>
-		    </div>
-		
-		    <div class="dropdown-item">
-		        Creadores <i class="fas fa-chevron-down"></i>
-		        <div class="submenu-container">
-		            <div class="submenu">
-		                <a href="#">Pinguino de Mario</a>
-		                <a href="#">S4vitar</a>
-		                <a href="#">D1se0</a>
-		            </div>
-		        </div>
-		    </div>
-		</div>
     </div>
     <nav class="search-bar">
-	    <input type="text" class="search-input" id="liveSearch" placeholder="Buscar en DockerPwned">
+	    <input type="text" class="search-input" id="liveSearch" placeholder="Buscar en HackEnd">
 	    <div class="search-icons">
 	        <a href="#" id="clearSearch"><i class="fas fa-times"></i></a>
 	        <a href="#"><i class="fas fa-microphone"></i></a>
 	        <a href="#"><i class="fas fa-camera"></i></a>
 	    </div>
 	</nav>
-    <div class="results"></div> <!-- AquÃÂÃÂ­ se inyecta el contenido dinÃÂÃÂ¡mico -->
-
-    <!-- PAGINACIÃÂÃ¢ÂÂN -->
+    <div class="results"></div> <!-- AquÃÂ­ se inyecta el contenido dinÃÂ¡mico -->
+	<br><br><br><br><br><br><br><br><br><br><br>
+    <!-- PAGINACIÃâN -->
     <div class="pagination">
-        <div class="google-logo">D<span>o</span><span>o</span><span>o</span><span>o</span><span>o</span><span>o</span>ckerpwned</div>
-        <a href="home_dockerpwned.jsp?page=0" class="page-link style-link-number">1</a>
-        <a href="Page1.jsp?page=1" class="page-link">2</a>
-        <a href="Page2.jsp?page=2" class="page-link">3</a>
-        <a href="Page3.jsp?page=3" class="page-link">4</a>
-        <a href="Page4.jsp?page=4" class="page-link">5</a>
-        <button class="next" id="nextPageButton">Siguiente</button>
+        <div class="google-logo">T<span>i</span><span>i</span><span>i</span><span>i</span><span>i</span><span>i</span>melabs</div>
+        <a href="timelabs.jsp" class="page-link style-link-number">1</a>
     </div>
 
     <!-- FOOTER -->
@@ -319,7 +336,6 @@
 	
 	<!-- SCRIPTS GENERALES -->
 	
-	
 	<script>
 	window.onload = function() {
 	    const links = document.querySelectorAll("a[target='_blank']");
@@ -328,25 +344,17 @@
 	    });
 	  };
 	  
-	// ÃÂ¢ÃÂ¬Ã¢ÂÂ¡ÃÂ¯ÃÂ¸ÃÂ Definimos estos dos globalmente para que estÃÂÃÂ©n disponibles en todo el script
+	// Ã¢Â¬â¡Ã¯Â¸Â Definimos estos dos globalmente para que estÃÂ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-		{ url: "../labs/dockerpwned.jsp", title: "DOCKERPWNED", description: "Pagina principal, donde se explica de que va todo esto.", image: "../../img/logo-test-13-update.png", tags: ["principal", "web", "dockerpwned", "CEO"] },
-		{ url: "../labs/r00tless.jsp", title: "r00tless", description: "Hackea la maquina r00tless...", image: "../../img/logo-test-14-update.png", tags: ["r00tless", "docker", "SMB", "crackeo", "sudo", "dificil", "d1se0"] },
-	    { url: "../labs/crackoff.jsp", title: "crackoff", description: "Hackea la maquina crackoff...", image: "../../img/logo-test-15-update.png", tags: ["crackoff", "docker", "SQLi", "crackeo", "tunelizacion", "dificil", "d1se0"] },
-	    { url: "../labs/hackmedaddy.jsp", title: "HackMeDaddy", description: "Hackea la maquina hackmedaddy...", image: "../../img/logo-test-16-update.png", tags: ["hackmedaddy", "docker", "SMB", "Crack ZIP", "sudo", "dificil", "d1se0"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] }
+		{ url: "inactive.jsp", title: "INACTIVE", description: "Espera hasta que el nuevo evento comience...", image: "../img/logo-test-17-update.png", tags: ["timelabs", "hacking", "lab", "facil","d1se0"] },
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
 	    console.log("DOM completamente cargado");
 
 	    if (!resultsContainer) {
-	        console.error("No se encontrÃÂÃÂ³ el contenedor .results");
+	        console.error("No se encontrÃÂ³ el contenedor .results");
 	        return;
 	    } else {
 	        console.log("Contenedor .results encontrado");
@@ -363,7 +371,7 @@
 	        const favicon = document.createElement('img');
 	        favicon.src = result.image;
 	        favicon.onerror = function () {
-	            favicon.src = '../../img/default-error.png';
+	            favicon.src = '../img/default-error.png';
 	        };
 	        favicon.alt = "favicon";
 	        favicon.classList.add('result-icon');
@@ -383,7 +391,7 @@
 	        const descriptionParagraph = document.createElement('p');
 	        descriptionParagraph.textContent = result.description;
 
-	        // Crear contenedor de tags debajo de la descripciÃÂÃÂ³n
+	        // Crear contenedor de tags debajo de la descripciÃÂ³n
 	        const tagsContainer = document.createElement('div');
 	        tagsContainer.classList.add('tags');
 	        
@@ -394,12 +402,12 @@
 	            tagsContainer.appendChild(tagSpan);
 	        });
 
-	        // AÃÂÃÂ±adir todos los elementos
+	        // AÃÂ±adir todos los elementos
 	        resultContent.appendChild(urlSpan);
 	        resultContent.appendChild(document.createElement('br'));
 	        resultContent.appendChild(titleLink);
 	        resultContent.appendChild(descriptionParagraph);
-	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripciÃÂÃÂ³n)
+	        resultContent.appendChild(tagsContainer); // Los tags se colocan al final (debajo de la descripciÃÂ³n)
 
 	        resultItem.appendChild(favicon);
 	        resultItem.appendChild(resultContent);
@@ -412,78 +420,7 @@
 
 	    console.log("Todos los resultados fueron agregados al DOM");
 	});
-
-	// FunciÃÂÃÂ³n para obtener el identificador de la pÃÂÃÂ¡gina actual desde la URL
-	function getPageIdentifier() {
-		const urlParams = new URLSearchParams(window.location.search);
-		const pageParam = urlParams.get('page');
-		// Si no existe el parÃÂÃÂ¡metro 'page', asumimos que estamos en home.jsp y comenzamos desde la pÃÂÃÂ¡gina 1
-		return pageParam ? parseInt(pageParam) : 'home';
-	}
-
-	// FunciÃÂÃÂ³n para actualizar el estilo del nÃÂÃÂºmero de pÃÂÃÂ¡gina activo
-	function highlightCurrentPage() {
-		const currentPage = getPageIdentifier();
-		const pageLinks = document.querySelectorAll(".pagination a");
-
-		// Resaltar el nÃÂÃÂºmero de pÃÂÃÂ¡gina activo con subrayado
-		pageLinks.forEach(link => {
-			if (parseInt(link.textContent) === currentPage) {
-				link.classList.add("active-page"); // AÃÂÃÂ±ade la clase de subrayado
-			} else {
-				link.classList.remove("active-page");
-			}
-		});
-
-		// Cambiar solo la letra "O" correspondiente a la pÃÂÃÂ¡gina activa
-		const logoSpans = document.querySelectorAll(".google-logo span");
-		logoSpans.forEach((span, index) => {
-			if (index + 1 === currentPage) {
-				span.classList.add("active");
-			} else {
-				span.classList.remove("active");
-			}
-		});
-	}
-
-	// FunciÃÂÃÂ³n para redirigir a la siguiente pÃÂÃÂ¡gina
-	function nextPage() {
-		const currentPage = getPageIdentifier();
-		let nextPageNumber;
-
-		// Si estamos en home.jsp, redirige a Page1.jsp
-		if (currentPage === 0) {
-			nextPageNumber = 1;
-			window.location.href = `Page1.jsp?page=1`;
-		}
-		// Si estamos en Page1.jsp, redirige a Page2.jsp
-		else if (currentPage === 1) {
-			nextPageNumber = 2;
-			window.location.href = `Page2.jsp?page=2`;
-		}
-		// Si estamos en Page2.jsp, redirige a Page3.jsp
-		else if (currentPage === 2) {
-			nextPageNumber = 3;
-			window.location.href = `Page3.jsp?page=3`;
-		}
-		// Si estamos en Page3.jsp, redirige a Page4.jsp
-		else if (currentPage === 3) {
-			nextPageNumber = 4;
-			window.location.href = `Page4.jsp?page=4`;
-		}
-		// Si estamos en Page4.jsp, redirige a home.jsp
-		else if (currentPage === 4) {
-			window.location.href = `home_dockerpwned.jsp?page=0`;
-		}
-	}
-
-	// Llamar a la funciÃÂÃÂ³n al cargar la pÃÂÃÂ¡gina para resaltar la letra correspondiente
-	document.addEventListener("DOMContentLoaded", function() {
-		highlightCurrentPage();
-
-		// AÃÂÃÂ±adir un manejador de eventos para el botÃÂÃÂ³n "Siguiente"
-		document.getElementById("nextPageButton").addEventListener("click", nextPage);
-	});
+	
 	//PAYPAL BUTTON
 	const openBtn = document.getElementById("open-paypal");
 	  const overlay = document.getElementById("paypal-overlay");
@@ -496,8 +433,94 @@
 	  closeBtn.addEventListener("click", () => {
 	    overlay.style.display = "none";
 	  });
+	  
+	// CUENTA DE LA PAGINA LOGICA
+	  const DEFAULT_COUNTDOWN_SECONDS = 2 * 60 * 60 + 3 * 60 + 5; // 2h 3m 5s
+	  let countdownInterval;
+
+	  // Recuperar o reiniciar cuenta regresiva
+	  function getTargetTime() {
+	      const saved = localStorage.getItem('dropTargetTime');
+	      if (saved) return new Date(parseInt(saved));
+	      return null;
+	  }
+
+	  // Establecer nuevo tiempo objetivo
+	  function setTargetTimeFromNow(seconds) {
+	      const now = new Date();
+	      const target = new Date(now.getTime() + seconds * 1000);
+	      localStorage.setItem('dropTargetTime', target.getTime());
+	      return target;
+	  }
+
+	  // Mostrar tiempo en formato 2 dígitos
+	  function pad(n) {
+	      return n.toString().padStart(2, '0');
+	  }
+
+	  // Actualizar visualmente los números
+	  function updateDisplay(h, m, s) {
+	      document.getElementById('hours').textContent = pad(h);
+	      document.getElementById('minutes').textContent = pad(m);
+	      document.getElementById('seconds').textContent = pad(s);
+	  }
+
+	  // Iniciar la cuenta regresiva
+	  function startCountdown(targetTime) {
+	      // Cambiar texto del botón cuando comienza la cuenta atrás
+	      const btn = document.getElementById('startCountdown');
+	      if (btn) {
+	          btn.textContent = "Cuenta Atrás Iniciada"; // Cambiar el texto
+	          btn.disabled = true; // Deshabilitar el botón para evitar múltiples clics
+	      }
+
+	      clearInterval(countdownInterval);
+	      countdownInterval = setInterval(() => {
+	          const now = new Date();
+	          let diff = Math.floor((targetTime - now) / 1000);
+
+	          if (diff <= 0) {
+	              // Reiniciar cuando termina
+	              targetTime = setTargetTimeFromNow(DEFAULT_COUNTDOWN_SECONDS);
+	              diff = DEFAULT_COUNTDOWN_SECONDS;
+	              restoreCounter(); // Restaurar contador cuando llegue a 0
+	          }
+
+	          const h = Math.floor(diff / 3600);
+	          const m = Math.floor((diff % 3600) / 60);
+	          const s = diff % 60;
+	          updateDisplay(h, m, s);
+	      }, 1000);
+	  }
+
+	  // Restaurar el contador a su valor original
+	  function restoreCounter() {
+	      const btn = document.getElementById('startCountdown');
+	      if (btn) {
+	          btn.textContent = "Iniciar Cuenta Atrás"; // Restaurar el texto original
+	          btn.disabled = false; // Volver a habilitar el botón
+	      }
+	      // Restaurar visualmente los valores del contador
+	      updateDisplay(0, 0, 0);
+	      localStorage.removeItem('dropTargetTime'); // Eliminar el valor guardado en localStorage
+	  }
+
+	  // Iniciar al cargar si ya hay una cuenta activa
+	  document.addEventListener('DOMContentLoaded', () => {
+	      const savedTarget = getTargetTime();
+	      if (savedTarget) {
+	          startCountdown(savedTarget);
+	      }
+
+	      const btn = document.getElementById('startCountdown');
+	      if (btn) {
+	          btn.addEventListener('click', () => {
+	              const newTarget = setTargetTimeFromNow(DEFAULT_COUNTDOWN_SECONDS);
+	              startCountdown(newTarget);
+	          });
+	      }
+	  });
 	</script>
 	<script src="<%= request.getContextPath() %>/js/home.js"></script>
-	
 </body>
 </html>
