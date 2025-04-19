@@ -15,7 +15,7 @@
     }
 
     // Obtener el lab_id de "foro-xss" desde la base de datos
-    int labId = LaboratorioDAO.obtenerIdLaboratorioR00tless();
+    int labId = LaboratorioDAO.obtenerIdLaboratorioHackmedaddy();
     String mensaje = "";
 
     // Recuperamos el mensaje desde la URL
@@ -574,11 +574,11 @@
   <!-- INTRO -->
   <section class="lab-intro">
     <div class="lab-img">
-      <img src="<%= request.getContextPath() %>/img/img_dockerpwned/r00tless.png" alt="Máquina CTF">
+      <img src="<%= request.getContextPath() %>/img/img_dockerpwned/hackmedaddy.png" alt="Máquina CTF">
     </div>
     <div class="lab-info">
       <h2 class="typewriter" data-text="HACK ME DADDY MACHINE: DOCKERPWNED"></h2>
-      <p><strong>Autor:</strong> D1se0 & Manu</p>
+      <p><strong>Autor:</strong> D1se0</p>
       <p><strong>Descripción:</strong> Domina los retos CTF con técnicas como enumeración de puertos, fuerza bruta, reverse shell y escalada de privilegios con sudo en Docker.</p>
       <p><strong>Fecha de creación:</strong> 10/02/2025</p>
       <button class="nivel-btn">Difícil</button>

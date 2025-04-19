@@ -242,7 +242,7 @@
 		{ url: "../labs/dockerpwned.jsp", title: "DOCKERPWNED", description: "Pagina principal, donde se explica de que va todo esto.", image: "../../img/logo-test-13-update.png", tags: ["principal", "web", "dockerpwned", "CEO"] },
 		{ url: "../labs/r00tless.jsp", title: "r00tless", description: "Hackea la maquina r00tless...", image: "../../img/logo-test-14-update.png", tags: ["r00tless", "docker", "SMB", "crackeo", "sudo", "dificil", "d1se0"] },
 	    { url: "../labs/crackoff.jsp", title: "crackoff", description: "Hackea la maquina crackoff...", image: "../../img/logo-test-15-update.png", tags: ["crackoff", "docker", "SQLi", "crackeo", "tunelizacion", "dificil", "d1se0"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/hackmedaddy.jsp", title: "HackMeDaddy", description: "Hackea la maquina hackmedaddy...", image: "../../img/logo-test-16-update.png", tags: ["hackmedaddy", "docker", "SMB", "Crack ZIP", "sudo", "dificil", "d1se0"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../../img/default-error.png", tags: ["construccion"] },

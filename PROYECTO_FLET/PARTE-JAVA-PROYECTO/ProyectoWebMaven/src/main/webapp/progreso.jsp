@@ -154,6 +154,7 @@
 	  "${puntosRCE1}",  // RCE (DockerPwned)
 	  "${puntosR00tless}",  // r00tless (DockerPwned)
 	  "${puntosCrackoff}",	// crackoff (DockerPwned)
+	  "${puntosHackmedaddy}",	// hackmedaddy (DockerPwned)
 	  "${puntosGoodness}"  // Goodness (OvaLabs)
 	].map(Number); // Convertimos a números
 	
@@ -169,6 +170,7 @@
 	      'RCE (DockerPwned)',
 	      'r00tless (DockerPwned)',
 	      'crackoff (DockerPwned)',
+	      'hackmedaddy (DockerPwned)',
 	      'goodness (OvaLabs)'
 	    ],
 	    datasets: [{
@@ -176,7 +178,7 @@
 	      data: puntosPorLaboratorio,
 	      backgroundColor: [
 	        '#66bb6a', '#81c784', '#a5d6a7', '#48e05f',   // Hacking Web - VERDE
-	        '#64b5f6', '#24a5d5', '#3c7e97',              // DockerPwned - AZUL
+	        '#64b5f6', '#24a5d5', '#3c7e97', '#71b8d3',   // DockerPwned - AZUL
 	        '#ffb74d'               					  // OvaLabs - NARANJA
 	      ],
 	      borderColor: '#ffffff',
