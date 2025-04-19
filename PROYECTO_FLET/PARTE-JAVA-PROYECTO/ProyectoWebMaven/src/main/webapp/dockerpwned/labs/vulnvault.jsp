@@ -139,8 +139,8 @@
     .nivel-btn {
       width: 100px;
       padding: 10px;
-      background-color: #ff3333;
-      color: #ffff00;
+      background-color: #ffff00;
+      color: #ffffff;
       border: none;
       border-radius: 6px;
       text-align: center;
