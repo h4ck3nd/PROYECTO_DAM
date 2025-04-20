@@ -71,6 +71,10 @@
 		  object-fit: contain;
   		  vertical-align: middle;
 		}
+		.img-timelabs {
+		  object-fit: contain;
+  		  vertical-align: middle;
+		}
 		.results {
 			max-width: 800px;
 			margin: auto;
@@ -97,6 +101,21 @@
 		    font-family: Arial, sans-serif;
 		    margin: 0;
 		    padding: 0;
+		}
+		.drop-word {
+		    color: gray;
+		    transition: all 0.5s ease;
+		}
+		
+		.drop-word.active {
+		    color: red;
+		    font-weight: bold;
+		    animation: blink 1s infinite;
+		}
+		
+		@keyframes blink {
+		    0%, 100% { opacity: 1; }
+		    50% { opacity: 0.3; }
 		}
 	</style>
 </head>
@@ -149,6 +168,7 @@
             <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
             <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
             <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
+            <a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp"><img src="<%= request.getContextPath() %>/img/timelabs/timelabs-logo.png" class="img-timelabs" width="20px" height="20px"> <span id="dropStatus" class="drop-word">TimeLabs</span></a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
             <a href="#" id="more-button">Herramientas<i class="fas fa-plus"></i></a>
         </nav>
@@ -507,6 +527,30 @@
 	  closeBtn.addEventListener("click", () => {
 	    overlay.style.display = "none";
 	  });
+	  
+	// SABER SI EL TIEMPO ESTA A NULL O CON UN VALOR
+	  
+	  async function verificarEstadoCountdown() {
+		    try {
+		        const res = await fetch('<%= request.getContextPath() %>/countdown?status=true');
+		        const data = await res.json();
+		        const dropEl = document.getElementById('dropStatus');
+		        if (dropEl) {
+		            if (data.activo) {
+		                dropEl.classList.add('active');
+		            } else {
+		                dropEl.classList.remove('active');
+		            }
+		        }
+		    } catch (err) {
+		        console.error("Error consultando estado del countdown", err);
+		    }
+		}
+
+		document.addEventListener("DOMContentLoaded", () => {
+		    verificarEstadoCountdown();
+		    setInterval(verificarEstadoCountdown, 5000); // Revisa cada 5 seg si ha cambiado
+		});
 	</script>
 	<script src="<%= request.getContextPath() %>/js/home.js"></script>
 	

@@ -1,5 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="dao.FotoDAO" %>
+<%@ page import="dao.LaboratorioDAO" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
 
@@ -28,6 +29,13 @@
     if (photoPath == null || photoPath.isEmpty()) {
         photoPath = "img/Profile.png";  // Ruta de la imagen por defecto
     }
+    
+ 	// Obtener el lab_id de "test" desde la base de datos
+    int labId = LaboratorioDAO.obtenerIdLaboratorioTest();
+    String mensaje = "";
+
+    // Recuperamos el mensaje desde la URL
+    String resultadoFlag = request.getParameter("mensaje");
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -139,6 +147,282 @@
 		    background-color: #333;
 		    transform: translateY(0);
 		}
+		.drop-word {
+		    color: gray;
+		    transition: all 0.5s ease;
+		}
+		
+		.drop-word.active {
+		    color: red;
+		    font-weight: bold;
+		    animation: blink 1s infinite;
+		}
+		
+		@keyframes blink {
+		    0%, 100% { opacity: 1; }
+		    50% { opacity: 0.3; }
+		}
+		.tiempo-agotado-banner {
+		    position: absolute;
+		    top: 70px;
+		    left: 0;
+		    right: 0; /* Aseguramos que ocupe todo el ancho del contenedor */
+		    background: rgba(231, 76, 60, 0.8); /* Rojo semi-transparente */
+		    color: white;
+		    font-weight: bold;
+		    padding: 10px 40px;
+		    transform: rotate(8deg);
+		    font-size: 16px;
+		    z-index: 1000;
+		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+		    text-align: center;
+		    max-width: 60%;  /* Limita el ancho al 100% del contenedor */
+		    width: 150%;  /* Hacemos que sea 1.5 veces el ancho del contenedor */
+		    left: -8%; /* Lo movemos un poco hacia la izquierda para que se alargue */
+		    clip-path: inset(0 0 0 0); /* Evita que sobresalga del contenedor */
+		    border-radius: 20px;
+		}
+		  .tiempo-agotado-disabled {
+		    pointer-events: none;
+		    background-color: #999 !important;
+		    color: white !important;
+		    opacity: 0.6;
+		    cursor: not-allowed;
+		  }
+		  /* Estilo del mensaje emergente */
+		.message-popup {
+		    position: fixed;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    background-color: rgba(0, 0, 0, 0.85); /* Un poco más oscuro para más énfasis */
+		    padding: 25px 40px; /* Más espacio alrededor del mensaje */
+		    border-radius: 10px; /* Bordes más redondeados */
+		    color: white;
+		    max-width: 90%;
+		    min-width: 300px;
+		    display: none;
+		    z-index: 1000;
+		    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); /* Agregar sombra para dar profundidad */
+		    font-family: Arial, sans-serif;
+		}
+		
+		/* Estilo del contenido dentro del popup */
+		.message-popup .message-popup-content {
+		    font-size: 16px;
+		    padding: 10px;
+		    text-align: center; /* Centrar el texto */
+		}
+		
+		/* Estilo del encabezado dentro del popup */
+		.message-popup .message-popup-header {
+		    font-size: 20px;
+		    font-weight: bold;
+		    margin-bottom: 15px;
+		    text-align: center;
+		    color: #f5f5f5;
+		}
+		
+		/* Estilo del botón para cerrar el popup */
+		.message-popup .message-popup-close-btn {
+		    background: #ff5e57;
+		    border: none;
+		    color: white;
+		    padding: 8px 16px;
+		    font-size: 18px;
+		    cursor: pointer;
+		    border-radius: 5px;
+		    display: block;
+		    margin: 20px auto 0; /* Centrar y separar de la parte superior */
+		    text-align: center;
+		}
+		
+		/* Cambio de color al pasar el ratón sobre el botón de cerrar */
+		.message-popup .message-popup-close-btn:hover {
+		    background: #ff3830;
+		}
+		
+		/* Ocultar el popup por defecto */
+		.message-popup {
+		    display: none; /* Asegúrate de que esté oculto por defecto */
+		}
+		
+		/* Mostrar el popup cuando tiene la clase .show */
+		.message-popup.show {
+		    display: block; /* Se muestra cuando tiene la clase .show */
+		}
+		/* Estilo para el modal */
+		.custom-popup-modal {
+		    display: none;
+		    position: fixed;
+		    z-index: 9999;
+		    left: 0;
+		    top: 0;
+		    width: 100vw;
+		    height: 100vh;
+		    background-color: rgba(0, 0, 0, 0.6);
+		    justify-content: center;
+		    align-items: center;
+		}
+		
+		/* Estilo para el contenido del modal */
+		.custom-popup-content {
+		    background-color: #2d2d2d;
+		    padding: 30px;
+		    border-radius: 10px;
+		    width: 90%;
+		    max-width: 600px;
+		    box-shadow: 0 0 10px #000;
+		    position: relative;
+		}
+		
+		/* Estilo para el botón de cierre */
+		.custom-popup-close {
+		    color: #aaa;
+		    position: absolute;
+		    top: 15px;
+		    right: 20px;
+		    font-size: 28px;
+		    font-weight: bold;
+		    cursor: pointer;
+		}
+		
+		.custom-popup-close:hover {
+		    color: #fff;
+		}
+		
+		/* Estilo para el contenedor */
+		.custom-popup-wrapper {
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		}
+		
+		/* Estilo para el formulario */
+		.custom-popup-form {
+		    width: 100%;
+		    display: flex;
+		    flex-direction: column;
+		    gap: 10px;
+		    margin-bottom: 25px;
+		}
+		
+		/* Estilo para las etiquetas del formulario */
+		.custom-popup-form label {
+		    color: #f0f0f0;
+		    font-weight: bold;
+		}
+		
+		/* Estilo para los inputs del formulario */
+		.custom-popup-form input {
+		    padding: 10px;
+		    background: #222;
+		    border: 1px solid #555;
+		    border-radius: 5px;
+		    color: #fff;
+		}
+		
+		/* Estilo para el botón del formulario */
+		.custom-popup-btn {
+		    background-color: #4f4f4f;
+		    color: #f0f0f0;
+		    padding: 10px 20px;
+		    border: 1px solid #444;
+		    border-radius: 5px;
+		    cursor: pointer;
+		    font-family: 'Courier New', Courier, monospace;
+		    transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+		
+		.custom-popup-btn:hover {
+		    background-color: #777;
+		    transform: translateY(-2px);
+		}
+		
+		.custom-popup-btn:active {
+		    background-color: #333;
+		    transform: translateY(0);
+		}
+		.hidden {
+		  display: none;
+		}
+		.botones {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .botones button {
+	  position: relative;
+	  background-color: #1a1a1a;
+	  color: transparent;
+	  border: 1px solid #00ffff33;
+	  padding: 12px 28px;
+	  font-family: 'Share Tech Mono', monospace;
+	  font-size: 1rem;
+	  border-radius: 6px;
+	  cursor: pointer;
+	  overflow: hidden;
+	  transition: all 0.3s ease;
+	}
+	
+	/* Capa base del texto glitch */
+	.botones button::before,
+	.botones button::after,
+	.botones button::after {
+	  content: attr(data-text);
+	  position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;
+	  text-align: center;
+	  line-height: 2.5em;
+	  font-weight: bold;
+	  font-size: 1rem;
+	  font-family: 'Share Tech Mono', monospace;
+	  pointer-events: none;
+	}
+	
+	/* Glitch principal */
+	.botones button::before {
+	  color: #00ffff;
+	  z-index: 1;
+	}
+	
+	/* Glitch en rojo desplazado */
+	.botones button::after {
+	  color: red;
+	  z-index: 2;
+	  animation: glitchRed 1s infinite linear alternate-reverse;
+	}
+	
+	/* Glitch en azul desplazado */
+	.botones button::after:nth-of-type(2) {
+	  color: blue;
+	  z-index: 3;
+	  animation: glitchBlue 1s infinite linear alternate-reverse;
+	}
+	
+	/* Animaciones glitch */
+	@keyframes glitchRed {
+	  0% { transform: translate(1px, -1px); opacity: 0.8; }
+	  20% { transform: translate(-1px, 1px); }
+	  40% { transform: translate(-1px, -1px); }
+	  60% { transform: translate(1px, 1px); }
+	  80% { transform: translate(0, -2px); }
+	  100% { transform: translate(0, 0); opacity: 0.6; }
+	}
+	
+	@keyframes glitchBlue {
+	  0% { transform: translate(-1px, 1px); opacity: 0.8; }
+	  20% { transform: translate(1px, -1px); }
+	  40% { transform: translate(2px, 0); }
+	  60% { transform: translate(-1px, -2px); }
+	  80% { transform: translate(1px, 2px); }
+	  100% { transform: translate(0, 0); opacity: 0.6; }
+	}
 	</style>
 </head>
 <body>
@@ -181,13 +465,14 @@
 		        }
 		    </style>
 		<% } %>
-		<!-- CONTADOR CUENTA ATRAS + BOTON -->
+		<!-- CONTADOR CUENTA ATRÁS -->
 		<% if ("designer".equalsIgnoreCase(usuarioJWT.getRol())) { %>
-		    <div style="text-align: center;">
+		    <div>
 		        <button id="startCountdown" class="designer-button">Iniciar Cuenta Atrás</button>
+		        <button id="resetCountdown" class="designer-button" style="background-color: #d9534f;">Resetear</button>
 		    </div>
 		<% } %>
-		<!-- DIV DEL CONTADOR -->
+		
 		<div id="countdown" class="flip-clock">
 		    <div class="flip-unit">
 		        <span id="hours">00</span>
@@ -206,10 +491,10 @@
 
     <div class="nav-container">
         <nav class="nav-menu">
-            <a href="home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
+            <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
             <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
             <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
-            <a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp"><img src="<%= request.getContextPath() %>/img/timelabs/timelabs-logo.png" class="img-timelabs" width="20px" height="20px"> TimeLabs</a>
+            <a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp"><img src="<%= request.getContextPath() %>/img/timelabs/timelabs-logo.png" class="img-timelabs" width="20px" height="20px"> <span id="dropStatus" class="drop-word">TimeLabs</span></a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
             <a href="#" id="more-button"></a>
         </nav>
@@ -222,8 +507,61 @@
 	        <a href="#"><i class="fas fa-camera"></i></a>
 	    </div>
 	</nav>
-    <div class="results"></div> <!-- AquÃÂ­ se inyecta el contenido dinÃÂ¡mico -->
-	<br><br><br><br><br><br><br><br><br><br><br>
+	<!-- Popup para mostrar el mensaje -->
+    <div id="popupMessage" class="message-popup">
+        <div class="message-popup-header">Mensaje</div>
+        <div class="message-popup-content" id="popupContent">
+            <p><%= request.getAttribute("mensaje") %></p>
+        </div>
+        <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
+    </div>
+    <br>
+	<!-- POPUP MODAL -->
+	<div id="custom-popup-modal" class="custom-popup-modal">
+	    <div class="custom-popup-content">
+	        <span class="custom-popup-close" id="custom-popup-closeBtn">&times;</span>
+	
+	        <!-- CONTENIDO -->
+	        <div class="custom-popup-wrapper">
+	
+	            <!-- FORMULARIO PARA ENVIAR WRITEUP -->
+	            <form class="custom-popup-form" action="<%= request.getContextPath() %>/WriteupControladorTimelabs" method="post">
+	                <input type="hidden" name="lab_id" value="<%= labId %>">
+	                <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+	                <input type="hidden" name="username" value="<%= usuarioJWT.getUsuario() %>">
+	                <label for="url_writeup">Enviar enlace del Writeup:</label>
+	                <input type="url" name="url_writeup" id="url_writeup" required>
+	                <button class="custom-popup-btn" type="submit">Enviar Writeup</button>
+	            </form>
+	
+	            <!-- FORMULARIO PARA INGRESAR FLAG -->
+	            <form class="custom-popup-form" action="<%= request.getContextPath() %>/validarFlagTimelabs" method="get">
+	                <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+	                <input type="hidden" name="lab_id" value="<%= labId %>">
+	                <label for="flag">Ingrese la FLAG:</label>
+	                <input type="text" id="flag" name="flag" required>
+	                <button class="custom-popup-btn" type="submit">Enviar FLAG</button>
+	            </form>
+	
+	        </div>
+	    </div>
+	</div>
+    <div class="results">
+    	
+    </div> <!-- AquÃÂ­ se inyecta el contenido dinÃÂ¡mico -->
+    <div class="botones">
+	  <button id="custom-popup-openBtn" data-text="Enviar Writeup / FLAG">ㅤㅤㅤㅤㅤ</button>
+	  <button data-text="Ver Writeups"><a href="<%= request.getContextPath() %>/verWriteupsTimelabs?lab_id=<%= labId %>" style="text-decoration: none;">ㅤㅤㅤㅤㅤㅤ</a></button>
+	</div>
+    <!--  <div class="search-result-container">
+	  <div class="search-result">
+	    <img src="../img/logo-test-17-update.png" alt="INACTIVE" width="30px" height="30px"/>
+	    <h3>INACTIVE</h3>
+	    <p>Espera hasta que el nuevo evento comience...</p>
+	  </div>
+	</div>
+	<button id="labPopup-openBtn" data-text="Enviar Writeup / FLAG">ㅤㅤㅤㅤㅤ</button>-->
+	<br><br><br><br><br><br><br>
     <!-- PAGINACIÃâN -->
     <div class="pagination">
         <div class="google-logo">T<span>i</span><span>i</span><span>i</span><span>i</span><span>i</span><span>i</span>melabs</div>
@@ -352,7 +690,10 @@
 
 	document.addEventListener("DOMContentLoaded", function () {
 	    console.log("DOM completamente cargado");
-
+		
+	 	// Forzar la cinta para test
+	    //mostrarTiempoAgotado(); // 👈 añade esto arriba del resto
+	    
 	    if (!resultsContainer) {
 	        console.error("No se encontrÃÂ³ el contenedor .results");
 	        return;
@@ -422,104 +763,250 @@
 	});
 	
 	//PAYPAL BUTTON
-	const openBtn = document.getElementById("open-paypal");
-	  const overlay = document.getElementById("paypal-overlay");
-	  const closeBtn = document.getElementById("close-paypal");
-
-	  openBtn.addEventListener("click", () => {
-	    overlay.style.display = "block";
-	  });
-
-	  closeBtn.addEventListener("click", () => {
-	    overlay.style.display = "none";
-	  });
+		const paypalOpenBtn = document.getElementById("open-paypal");
+		const overlay = document.getElementById("paypal-overlay");
+		const paypalcloseBtn = document.getElementById("close-paypal");
+		
+		paypalOpenBtn.addEventListener("click", () => {
+		  overlay.style.display = "block";
+		});
+		
+		paypalcloseBtn.addEventListener("click", () => {
+		  overlay.style.display = "none";
+		});
 	  
-	// CUENTA DE LA PAGINA LOGICA
-	  const DEFAULT_COUNTDOWN_SECONDS = 2 * 60 * 60 + 3 * 60 + 5; // 2h 3m 5s
-	  let countdownInterval;
+	  // LOGICA CONTADOR
 
-	  // Recuperar o reiniciar cuenta regresiva
-	  function getTargetTime() {
-	      const saved = localStorage.getItem('dropTargetTime');
-	      if (saved) return new Date(parseInt(saved));
-	      return null;
-	  }
+	const DEFAULT_COUNTDOWN_SECONDS = 24 * 60 * 60 + 0 * 60 + 0; // 24h 0m 0s
+		let countdownInterval = null;
+		
+		function pad(n) {
+		    return n.toString().padStart(2, '0');
+		}
+		
+		function updateDisplay(h, m, s) {
+		    document.getElementById('hours').textContent = pad(h);
+		    document.getElementById('minutes').textContent = pad(m);
+		    document.getElementById('seconds').textContent = pad(s);
+		}
+		
+		function startCountdown(targetTime) {
+		    clearInterval(countdownInterval);
+		    countdownInterval = setInterval(() => {
+		        const now = new Date();
+		        const diff = Math.floor((targetTime - now) / 1000);
+		
+		        if (diff <= 0) {
+		            clearInterval(countdownInterval);
+		            updateDisplay(0, 0, 0);
+		            //mostrarTiempoAgotado(); // 🧠 nueva función
+		            resetCountdownEnServidor();  // Llamar al servidor para poner target_time en null
+		            return;
+		        }
+		
+		        const h = Math.floor(diff / 3600);
+		        const m = Math.floor((diff % 3600) / 60);
+		        const s = diff % 60;
+		        updateDisplay(h, m, s);
+		    }, 1000);
+		}
+		
+		async function fetchTargetTime() {
+		    try {
+		        const res = await fetch('<%= request.getContextPath() %>/countdown');
+		        if (!res.ok) throw new Error("No countdown set");
+		        const data = await res.json();
+		        if (!data.targetTime || data.targetTime === 0) return null;
+		        return new Date(data.targetTime);
+		    } catch (err) {
+		        console.warn("Error al obtener countdown:", err);
+		        return null;
+		    }
+		}
+		
+		async function iniciarCountdownEnServidor() {
+		    const res = await fetch('<%= request.getContextPath() %>/countdown', {
+		        method: 'POST',
+		        headers: { 'Content-Type': 'application/json' },
+		        body: JSON.stringify({ durationSeconds: DEFAULT_COUNTDOWN_SECONDS })
+		    });
+		    const data = await res.json();
+		    return new Date(data.targetTime);
+		}
+		
+		async function resetCountdownEnServidor() {
+		    const res = await fetch('<%= request.getContextPath() %>/countdown', {
+		        method: 'DELETE'
+		    });
+		
+		    if (res.ok) {
+		        updateDisplay(0, 0, 0);
+		        clearInterval(countdownInterval);
+		
+		        const startBtn = document.getElementById('startCountdown');
+		        if (startBtn) {
+		            startBtn.textContent = "Iniciar Cuenta Atrás";
+		            startBtn.disabled = false;
+		        }
+		        
+		        //ocultarTiempoAgotado(); // 👈 Opcional: limpia visualmente la cinta y botones
+		    } else {
+		        console.error("Error al resetear el contador");
+		    }
+		}
+		
+		document.addEventListener('DOMContentLoaded', async () => {
+		    // Inicializar el contador con el valor actual si ya está configurado
+		    const existingTarget = await fetchTargetTime();
+		    if (existingTarget) {
+		        startCountdown(existingTarget);
+		    }
+		
+		    // Botón de iniciar la cuenta atrás
+		    const startBtn = document.getElementById('startCountdown');
+		    if (startBtn) {
+		        startBtn.addEventListener('click', async () => {
+		            const newTarget = await iniciarCountdownEnServidor();
+		            startCountdown(newTarget);
+		            startBtn.textContent = "Cuenta Atrás Iniciada";
+		            startBtn.disabled = true;
+		        });
+		    }
+		
+		    // Botón de reiniciar la cuenta atrás
+		    const resetBtn = document.getElementById('resetCountdown');
+		    if (resetBtn) {
+		        resetBtn.addEventListener('click', async () => {
+		            const confirmReset = confirm("¿Estás seguro de resetear la cuenta atrás?");
+		            if (confirmReset) {
+		                await resetCountdownEnServidor();
+		            }
+		        });
+		    }
+		});
+		
+		// SABER SI EL TIEMPO ESTA A NULL O CON UN VALOR
 
-	  // Establecer nuevo tiempo objetivo
-	  function setTargetTimeFromNow(seconds) {
-	      const now = new Date();
-	      const target = new Date(now.getTime() + seconds * 1000);
-	      localStorage.setItem('dropTargetTime', target.getTime());
-	      return target;
-	  }
+		async function verificarEstadoCountdown() {
+		    try {
+		        const res = await fetch('<%= request.getContextPath() %>/countdown?status=true');
+		        const data = await res.json();
+		        const dropEl = document.getElementById('dropStatus');
+		        const submitBtn = document.getElementById("custom-popup-openBtn");
 
-	  // Mostrar tiempo en formato 2 dígitos
-	  function pad(n) {
-	      return n.toString().padStart(2, '0');
-	  }
+		        if (dropEl) {
+		            if (data.activo) {
+		                dropEl.classList.add('active');
+		                ocultarTiempoAgotado(submitBtn);
+		            } else {
+		                dropEl.classList.remove('active');
+		                mostrarTiempoAgotado(submitBtn);
+		            }
+		        }
+		    } catch (err) {
+		        console.error("Error consultando estado del countdown", err);
+		    }
+		}
 
-	  // Actualizar visualmente los números
-	  function updateDisplay(h, m, s) {
-	      document.getElementById('hours').textContent = pad(h);
-	      document.getElementById('minutes').textContent = pad(m);
-	      document.getElementById('seconds').textContent = pad(s);
-	  }
+		document.addEventListener("DOMContentLoaded", () => {
+		    verificarEstadoCountdown();
+		    setInterval(verificarEstadoCountdown, 5000);
+		});
 
-	  // Iniciar la cuenta regresiva
-	  function startCountdown(targetTime) {
-	      // Cambiar texto del botón cuando comienza la cuenta atrás
-	      const btn = document.getElementById('startCountdown');
-	      if (btn) {
-	          btn.textContent = "Cuenta Atrás Iniciada"; // Cambiar el texto
-	          btn.disabled = true; // Deshabilitar el botón para evitar múltiples clics
-	      }
+		// MOSTRAR CINTA ROJA CUANDO SE AGOTA EL TIEMPO
 
-	      clearInterval(countdownInterval);
-	      countdownInterval = setInterval(() => {
-	          const now = new Date();
-	          let diff = Math.floor((targetTime - now) / 1000);
+		function mostrarTiempoAgotado(submitBtn) {
+		    const container = document.querySelector(".results");
+		    if (container && !document.querySelector('.tiempo-agotado-banner')) {
+		        const banner = document.createElement("div");
+		        banner.classList.add("tiempo-agotado-banner");
+		        banner.textContent = "TIEMPO AGOTADO";
+		        container.style.position = "relative";
+		        container.appendChild(banner);
+		    }
 
-	          if (diff <= 0) {
-	              // Reiniciar cuando termina
-	              targetTime = setTargetTimeFromNow(DEFAULT_COUNTDOWN_SECONDS);
-	              diff = DEFAULT_COUNTDOWN_SECONDS;
-	              restoreCounter(); // Restaurar contador cuando llegue a 0
-	          }
+		    if (submitBtn) {
+		        submitBtn.setAttribute("data-text", "TIEMPO AGOTADO");
+		        submitBtn.textContent = "TIEMPO AGOTADO";
+		        submitBtn.classList.add("tiempo-agotado-disabled");
+		        submitBtn.setAttribute("disabled", "true");
+		    }
 
-	          const h = Math.floor(diff / 3600);
-	          const m = Math.floor((diff % 3600) / 60);
-	          const s = diff % 60;
-	          updateDisplay(h, m, s);
-	      }, 1000);
-	  }
+		    const flagSection = document.querySelector('[data-text]');
+		    if (flagSection) {
+		        flagSection.classList.add("disabled");
+		        flagSection.querySelectorAll("textarea, input, button").forEach(el => {
+		            el.disabled = true;
+		        });
+		    }
+		}
 
-	  // Restaurar el contador a su valor original
-	  function restoreCounter() {
-	      const btn = document.getElementById('startCountdown');
-	      if (btn) {
-	          btn.textContent = "Iniciar Cuenta Atrás"; // Restaurar el texto original
-	          btn.disabled = false; // Volver a habilitar el botón
-	      }
-	      // Restaurar visualmente los valores del contador
-	      updateDisplay(0, 0, 0);
-	      localStorage.removeItem('dropTargetTime'); // Eliminar el valor guardado en localStorage
-	  }
+		// RESTAURAR LA FUNCIONALIDAD CUANDO EL TIEMPO ESTÁ ACTIVO
 
-	  // Iniciar al cargar si ya hay una cuenta activa
-	  document.addEventListener('DOMContentLoaded', () => {
-	      const savedTarget = getTargetTime();
-	      if (savedTarget) {
-	          startCountdown(savedTarget);
-	      }
+		function ocultarTiempoAgotado(submitBtn) {
+		    const banner = document.querySelector('.tiempo-agotado-banner');
+		    if (banner) banner.remove();
 
-	      const btn = document.getElementById('startCountdown');
-	      if (btn) {
-	          btn.addEventListener('click', () => {
-	              const newTarget = setTargetTimeFromNow(DEFAULT_COUNTDOWN_SECONDS);
-	              startCountdown(newTarget);
-	          });
-	      }
-	  });
+		    if (submitBtn) {
+		        submitBtn.setAttribute("data-text", "Enviar Writeup / FLAG");
+		        submitBtn.textContent = "Enviar Writeup / FLAG";
+		        submitBtn.classList.remove("tiempo-agotado-disabled");
+		        submitBtn.removeAttribute("disabled");
+		    }
+
+		    const flagSection = document.querySelector('[data-text]');
+		    if (flagSection) {
+		        flagSection.classList.remove("disabled");
+		        flagSection.querySelectorAll("textarea, input, button").forEach(el => {
+		            el.disabled = false;
+		        });
+		    }
+		}
+
+		// Lógica para abrir el popup solo si el tiempo está activo
+		const openBtn = document.getElementById("custom-popup-openBtn");
+		const popup = document.getElementById("custom-popup-modal");
+		const closeBtn = document.getElementById("custom-popup-closeBtn");
+
+		openBtn.addEventListener('click', function () {
+		    if (!openBtn.classList.contains("tiempo-agotado-disabled")) {
+		        popup.style.display = "flex";
+		    }
+		});
+
+		closeBtn.addEventListener('click', function () {
+		    popup.style.display = "none";
+		});
+
+		window.addEventListener('click', function (e) {
+		    if (e.target === popup) {
+		        popup.style.display = "none";
+		    }
+		});
+
+		// Función para mostrar el popup
+	    function showPopup(message) {
+	        var popup = document.getElementById("popupMessage");
+	        var content = document.getElementById("popupContent");
+	        content.innerHTML = message; // Ponemos el mensaje en el popup
+	        popup.classList.add('show'); // Hacemos visible el popup
+	    }
+
+	    // Función para cerrar el popup
+	    function closePopup() {
+	        var popup = document.getElementById("popupMessage");
+	        popup.classList.remove('show'); // Ocultamos el popup
+	        window.location.href = "<%= request.getContextPath() %>/timelabs/timelabs.jsp"; // Redirigimos
+	    }
+
+	    // Si el mensaje no es nulo, mostramos el popup con el mensaje
+	    <%
+	        if (resultadoFlag != null) { 
+	    %>
+	        showPopup("<%= resultadoFlag %>"); // Mostrar el mensaje en el popup
+	    <% 
+	        }
+	    %>
 	</script>
 	<script src="<%= request.getContextPath() %>/js/home.js"></script>
 </body>
