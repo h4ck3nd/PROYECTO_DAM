@@ -83,6 +83,14 @@ CREATE TABLE laboratorios_ovalabs (
     puntos INT NOT NULL
 );
 
+DROP TABLE laboratorios_timelabs;
+CREATE TABLE laboratorios_timelabs (
+    lab_id SERIAL PRIMARY KEY,
+    nombre VARCHAR(255) NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
 DROP TABLE validate_flag_dockerpwned;
 CREATE TABLE validate_flag_dockerpwned (
     id SERIAL PRIMARY KEY,
@@ -101,6 +109,15 @@ CREATE TABLE validate_flag_ovalabs (
     puntos INT NOT NULL
 );
 
+DROP TABLE validate_flag_timelabs;
+CREATE TABLE validate_flag_timelabs (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    lab_id INT NOT NULL,
+    flag VARCHAR(255) NOT NULL,
+    puntos INT NOT NULL
+);
+
 -- Insertar Datos en "laboratorios" de Dockerpwned y Ovalabs (CTFs)
 
 -- Dockerpwned
@@ -112,10 +129,15 @@ INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('crackoff', 
 
 INSERT INTO laboratorios_ovalabs (nombre, flag, puntos) VALUES ('goodness', 'FLAG{goodness_flag}', 25); -- ID 1
 
+-- Timelabs
+
+INSERT INTO laboratorios_timelabs (nombre, flag, puntos) VALUES ('test', 'FLAG{test_flag}', 10); -- ID 1
+
 -- Inserts de prueba para testeo
 
 INSERT INTO validate_flag_dockerpwned (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{r00tless_flag}', 50); -- No hace falta añadir (Solamente testeo Dockerpwned)
 INSERT INTO validate_flag_ovalabs (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{goodness_flag}', 25); -- No hace falta añadir (Solamente testeo Ovalabs)
+INSERT INTO validate_flag_timelabs (user_id, lab_id, flag, puntos) VALUES (1, 1, 'FLAG{test_flag}', 10); -- No hace falta añadir (Solamente testeo Timelabs)
 
 -- Crear Tabla de Writeups (URL)
 
@@ -163,4 +185,20 @@ ALTER TABLE writeups_ovalabs
 ADD CONSTRAINT unique_lab_user_ovalabs UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
 
 ALTER TABLE writeups_ovalabs
+ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
+
+-- Crear Tabla de Writeups Timelabs (URL)
+
+DROP TABLE writeups_timelabs;
+CREATE TABLE writeups_timelabs (
+    id SERIAL PRIMARY KEY,
+    lab_id INTEGER NOT NULL,
+    user_id INTEGER NOT NULL,
+    url_writeup TEXT NOT NULL
+);
+
+ALTER TABLE writeups_timelabs
+ADD CONSTRAINT unique_lab_user_timelabs UNIQUE (lab_id, user_id); -- Esto asegura que para un mismo usuario y lab no existan múltiples entradas.
+
+ALTER TABLE writeups_timelabs
 ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
