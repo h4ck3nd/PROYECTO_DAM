@@ -89,7 +89,26 @@ public class ValidateFlagDAO {
         
         return result;
     }
-
+    
+    // Verificar si el usuario ya ha validado la flag para el laboratorio (timelabs)
+    public static boolean hasFlagBeenValidatedTimelabs(int userId, int labId) throws SQLException {
+        boolean result = false;
+        String query = "SELECT COUNT(*) FROM validate_flag_timelabs WHERE user_id = ? AND lab_id = ?";
+        
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, labId);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next() && rs.getInt(1) > 0) {
+                result = true;
+            }
+        }
+        
+        return result;
+    }
+    
     // Registrar la validación de la flag para el usuario
     public static void registerFlagValidation(int userId, int labId, String flag, int puntos) throws SQLException {
         String query = "INSERT INTO validate_flag (user_id, lab_id, flag, puntos) VALUES (?, ?, ?, ?)";
@@ -123,6 +142,21 @@ public class ValidateFlagDAO {
     // Registrar la validación de la flag para el usuario (Ovalabs)
     public static void registerFlagValidationOvalabs(int userId, int labId, String flag, int puntos) throws SQLException {
         String query = "INSERT INTO validate_flag_ovalabs (user_id, lab_id, flag, puntos) VALUES (?, ?, ?, ?)";
+        
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, userId);
+            ps.setInt(2, labId);
+            ps.setString(3, flag);
+            ps.setInt(4, puntos);
+            
+            ps.executeUpdate();
+        }
+    }
+    
+    // Registrar la validación de la flag para el usuario (timelabs)
+    public static void registerFlagValidationTimelabs(int userId, int labId, String flag, int puntos) throws SQLException {
+        String query = "INSERT INTO validate_flag_timelabs (user_id, lab_id, flag, puntos) VALUES (?, ?, ?, ?)";
         
         try (Connection conn = new ConexionDDBB().conectar();
              PreparedStatement ps = conn.prepareStatement(query)) {

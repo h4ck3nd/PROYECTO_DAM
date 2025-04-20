@@ -185,6 +185,25 @@ public class LaboratorioDAO {
         return labId;
     }
     
+    // Método para obtener el ID del laboratorio con nombre "test" (fijo) [Timelabs]
+    public static int obtenerIdLaboratorioTest() {
+        int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
+        String query = "SELECT lab_id FROM laboratorios_timelabs WHERE nombre = 'test'";  // Nombre fijo
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    labId = rs.getInt("lab_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return labId;
+    }
+    
     // Método para agregar un nuevo laboratorio a la base de datos
     public static boolean agregarLaboratorio(String nombre, String flag, int puntos) {
         boolean exito = false;
@@ -338,7 +357,7 @@ public class LaboratorioDAO {
         return puntos;
     }
     
- // Obtener la flag del laboratorio (Dockerpwned)
+    // Obtener la flag del laboratorio (Dockerpwned)
     public static String obtenerFlagPorLaboratorioOvalabs(int labId) {
         String flag = null;
         String query = "SELECT flag FROM laboratorios_ovalabs WHERE lab_id = ?";
@@ -380,10 +399,75 @@ public class LaboratorioDAO {
         return nombre;
     }
     
-    // Obtener los puntos del laboratorio (Dockerpwned)
+    // Obtener los puntos del laboratorio (ovalabs)
     public static int obtenerPuntosPorLaboratorioOvalabs(int labId) {
         int puntos = 0;
         String query = "SELECT puntos FROM laboratorios_ovalabs WHERE lab_id = ?";
+        
+        // Crea una instancia de ConexionDDBB
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        
+        try (Connection conn = conexionDB.conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, labId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    puntos = rs.getInt("puntos");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return puntos;
+    }
+    
+ // Obtener la flag del laboratorio (Timelabs)
+    public static String obtenerFlagPorLaboratorioTimelabs(int labId) {
+        String flag = null;
+        String query = "SELECT flag FROM laboratorios_timelabs WHERE lab_id = ?";
+        
+        // Crea una instancia de ConexionDDBB
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        
+        try (Connection conn = conexionDB.conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, labId);
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    flag = rs.getString("flag");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return flag;
+    }
+    
+    public static String obtenerNombreLaboratorioTimelabs(int labId) {
+        String nombre = "";
+        String query = "SELECT nombre FROM laboratorios_timelabs WHERE lab_id = ?";
+        
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, labId);
+            
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                nombre = rs.getString("nombre");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return nombre;
+    }
+    
+    // Obtener los puntos del laboratorio (timelabs)
+    public static int obtenerPuntosPorLaboratorioTimelabs(int labId) {
+        int puntos = 0;
+        String query = "SELECT puntos FROM laboratorios_timelabs WHERE lab_id = ?";
         
         // Crea una instancia de ConexionDDBB
         ConexionDDBB conexionDB = new ConexionDDBB();

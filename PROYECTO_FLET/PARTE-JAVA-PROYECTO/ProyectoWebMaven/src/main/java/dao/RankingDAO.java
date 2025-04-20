@@ -10,7 +10,7 @@ public class RankingDAO {
     public List<RankingEntry> getRankingFromAllTables(Connection conn) throws SQLException {
         Map<Integer, Integer> puntosPorUsuario = new HashMap<>();
 
-        String[] tablas = { "validate_flag", "validate_flag_dockerpwned", "validate_flag_ovalabs" };
+        String[] tablas = { "validate_flag", "validate_flag_dockerpwned", "validate_flag_ovalabs", "validate_flag_timelabs" };
 
         for (String tabla : tablas) {
             String query = "SELECT user_id, SUM(puntos) as total FROM " + tabla + " GROUP BY user_id";
