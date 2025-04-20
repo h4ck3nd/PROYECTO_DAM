@@ -202,3 +202,12 @@ ADD CONSTRAINT unique_lab_user_timelabs UNIQUE (lab_id, user_id); -- Esto asegur
 
 ALTER TABLE writeups_timelabs
 ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
+
+-- Crear tabla para el contador de Timelabs (Control de tiempo)
+
+CREATE TABLE countdown (
+    id SERIAL PRIMARY KEY,
+    target_time BIGINT
+);
+
+INSERT INTO countdown (id, target_time) VALUES (1, NULL); -- Insertar el primer valor (Obligatorio)
