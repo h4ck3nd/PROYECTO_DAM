@@ -20,7 +20,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned.ico">
   <title>DOCKERPWNED</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
+  * {
+			font-family: 'VT323', monospace !important;
+			font-size: 25px;
+		}
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -164,7 +169,7 @@
 <body>
 
   <header>
-    <div class="logo-text">
+    <div class="logo-text" style="font-size: 30px !important">
       <img src="https://www.docker.com/wp-content/uploads/2022/03/vertical-logo-monochromatic.png" alt="logo" />
       DOCKERPWNED
     </div>
@@ -176,19 +181,19 @@
   </header>
 
   <section>
-  <h1 class="typewriter" data-text="DOCKERPWNED"></h1>
-  <p>
+  <h1 class="typewriter" style="font-size: 30px !important" data-text="DOCKERPWNED"></h1>
+  <p style="font-size: 25px !important">
     DOCKERPWNED es una plataforma centrada en la formación práctica en seguridad web ofensiva, con laboratorios reproducibles en contenedores Docker.
     Nos inspiramos en la simplicidad, flexibilidad y potencia de Docker para crear entornos controlados donde puedas aprender hacking ético de forma responsable.
   </p>
-  <p>
+  <p style="font-size: 25px !important">
     Desde laboratorios de iniciación hasta escenarios avanzados, cada entorno está diseñado con una única misión:
     enseñarte a identificar y explotar vulnerabilidades reales en un entorno seguro, legal y educativo.
   </p>
 </section>
 
 <section>
-  <h2 class="typewriter" data-text="🗂️ ¿Por qué usar DOCKERPWNED?"></h2>
+  <h2 class="typewriter" style="font-size: 30px !important" data-text="🗂️ ¿Por qué usar DOCKERPWNED?"></h2>
   <ul>
     <li>Laboratorios 100% aislados, sin riesgos para tu equipo ni red local.</li>
     <li>Escenarios realistas y actualizados con tecnologías modernas.</li>
@@ -199,7 +204,7 @@
 </section>
 
 <section>
-  <h2 class="typewriter" data-text="🛠️ ¿Cómo funciona?"></h2>
+  <h2 class="typewriter" style="font-size: 30px !important" data-text="🛠️ ¿Cómo funciona?"></h2>
   <ol>
     <li>Explora el catálogo de laboratorios (disponible próximamente).</li>
     <li>Descarga el contenedor con un solo clic.</li>
@@ -210,12 +215,12 @@
 </section>
 
 <section>
-  <h2 class="typewriter" data-text="Empieza tu viaje en el hacking ético"></h2>
-  <p>
+  <h2 class="typewriter" style="font-size: 30px !important" data-text="Empieza tu viaje en el hacking ético"></h2>
+  <p style="font-size: 25px !important">
     <strong>DOCKERPWNED</strong> está diseñado para que puedas practicar técnicas de hacking web en un entorno completamente seguro y controlado.
     Aprende cómo piensan los atacantes, mejora tus habilidades defensivas y experimenta con entornos realistas desde tu propio equipo.
   </p>
-  <p>
+  <p style="font-size: 25px !important">
     Próximamente podrás descargar los primeros laboratorios desde esta misma página.
     Mantente atento y prepárate para poner a prueba tu conocimiento.
   </p>

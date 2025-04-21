@@ -177,7 +177,7 @@
 		    color: white;
 		    font-weight: bold;
 		    padding: 10px 40px;
-		    transform: rotate(8deg);
+		    transform: rotate(10deg);
 		    font-size: 16px;
 		    z-index: 1000;
 		    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);

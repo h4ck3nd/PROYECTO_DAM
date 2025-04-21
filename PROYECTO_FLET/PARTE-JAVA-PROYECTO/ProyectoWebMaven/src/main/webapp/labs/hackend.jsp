@@ -19,8 +19,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
   <title>HACKEND - PAGINA PRINCIPAL</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
     * {
+    font-family: 'VT323', monospace !important;
+			font-size: 22px;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -200,7 +203,7 @@ footer {
       <div class="hero-content">
         <h1>HACKEND</h1>
         <p>Domina el Hacking Web Ético desde cero hasta experto en entornos CTF controlados.</p>
-        <a href="#cursos" class="btn-cta">Ver Cursos</a>
+        <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0" class="btn-cta">Ver Cursos</a>
       </div>
     </header>
   

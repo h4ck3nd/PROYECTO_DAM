@@ -20,7 +20,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_ovalabs/logo-ovalabs.ico">
 <title>OVALABS - Máquinas Virtuales para Hacking Web</title>
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 <style>
+* {
+			font-family: 'VT323', monospace !important;
+			font-size: 22px;
+		}
 body {
 	background-color: #111;
 	color: #ff9933;
@@ -207,7 +212,7 @@ footer {
 		</section>
 
 		<section class="benefits">
-			<h2 class="typewriter" data-text="¿Qué obtienes con nuestras máquinas .OVA?"></h2>
+			<h2 class="typewriter" style="font-size: 30px !important" data-text="¿Qué obtienes con nuestras máquinas .OVA?"></h2>
 			<ul>
 				<li>✅ Entornos realistas y reproducibles para práctica libre.</li>
 				<li>✅ Escenarios enfocados en OWASP Top 10, bypasses de

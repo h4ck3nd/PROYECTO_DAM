@@ -19,7 +19,12 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
     <title>CONSTRUCCION...</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+    * {
+			font-family: 'VT323', monospace !important;
+			font-size: 22px;
+		}
         body {
             margin: 0;
             padding: 0;
