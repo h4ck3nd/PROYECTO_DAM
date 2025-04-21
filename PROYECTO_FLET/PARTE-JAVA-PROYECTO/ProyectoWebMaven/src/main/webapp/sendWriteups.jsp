@@ -18,61 +18,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Writeup Enviado</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- Fuente estilo retro -->
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            background-color: #1e1e1e;
-            color: #d4d4d4;
-            font-family: 'Courier New', Courier, monospace;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             height: 100vh;
+            font-family: 'VT323', monospace;
+            background-color: #16161c;
+            color: #f4f4f4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .lab-confirm-container {
-            background-color: #2d2d2d;
-            padding: 40px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 0 20px rgba(0, 255, 128, 0.2);
-            border: 1px solid #444;
-        }
+		    background-color: #1e1e26;
+		    border: 2px solid #00ff99;
+		    padding: 50px;
+		    border-radius: 20px;
+		    box-shadow: 0 0 40px rgba(0, 255, 153, 0.4); /* Cambiado a verde */
+		    text-align: center;
+		    max-width: 500px;
+		}
 
         .lab-confirm-container h1 {
-            color: #87ff87;
-            font-size: 2rem;
+            color: #00ffcc;
+            font-size: 2.5rem;
             margin-bottom: 30px;
+            text-shadow: 0 0 5px #00ffcc;
         }
 
         .lab-btn-back {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #4f4f4f;
-            color: #f0f0f0;
-            text-decoration: none;
-            font-family: 'Courier New', Courier, monospace;
-            border-radius: 6px;
-            border: 1px solid #555;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .lab-btn-back:hover {
-            background-color: #777;
-            transform: translateY(-2px);
-        }
+		    display: inline-block;
+		    padding: 12px 30px;
+		    background-color: transparent;
+		    color: #00ff99;
+		    border: 2px solid #00ff99;
+		    border-radius: 10px;
+		    text-decoration: none;
+		    font-size: 1.2rem;
+		    transition: all 0.3s ease;
+		}
+		
+		.lab-btn-back:hover {
+		    background-color: #00ff99;
+		    color: #1e1e26;
+		    box-shadow: 0 0 10px #00ff99;
+		}
 
         .lab-btn-back:active {
-            background-color: #333;
-            transform: translateY(0);
+            transform: scale(0.95);
         }
     </style>
 </head>
 <body>
 
 <div class="lab-confirm-container">
-    <h1>✅ ¡WRITEUP ENVIADO CON ÉXITO!</h1>
+    <h1>✔ WRITEUP ENVIADO</h1>
     <a class="lab-btn-back" href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0">← Volver al Home</a>
 </div>
 

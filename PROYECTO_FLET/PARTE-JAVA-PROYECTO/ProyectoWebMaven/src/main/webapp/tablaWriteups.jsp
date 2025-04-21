@@ -25,7 +25,12 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
     <title>WRITEUPS DE <%= nombreLaboratorio %></title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+    * {
+			font-family: 'VT323', monospace;
+			font-size: 22px;
+		}
         body {
             font-family: 'Courier New', Courier, monospace;
             background: #2d2d2d;
@@ -93,7 +98,6 @@
             color: #f0f0f0;
             text-decoration: none;
             text-align: center;
-            font-family: 'Courier New', Courier, monospace;
             padding: 10px 20px;
             border: 1px solid #444;
             border-radius: 5px;

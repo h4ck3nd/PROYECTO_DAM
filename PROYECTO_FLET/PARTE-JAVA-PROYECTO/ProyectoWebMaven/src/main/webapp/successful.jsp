@@ -17,7 +17,12 @@
 <head>
   <meta charset="UTF-8">
   <title>✅ Pago Exitoso</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
+  * {
+			font-family: 'VT323', monospace !important;
+			font-size: 20px;
+		}
     body {
       background-color: #121212;
       font-family: 'Segoe UI', sans-serif;

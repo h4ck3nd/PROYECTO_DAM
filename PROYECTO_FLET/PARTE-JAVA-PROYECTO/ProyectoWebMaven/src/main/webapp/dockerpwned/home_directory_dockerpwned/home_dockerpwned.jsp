@@ -38,7 +38,12 @@
     <title>DOCKER PWNED</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_dockerpwned/home_dockerpwned.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 	<style>
+	* {
+			font-family: 'VT323', monospace !important;
+			font-size: 18px !important;
+		}
 		.logo-image {
 		  width: 105px;
 		  height: 50px;
@@ -104,6 +109,32 @@
 		@keyframes blink {
 		    0%, 100% { opacity: 1; }
 		    50% { opacity: 0.3; }
+		}
+		.google-logo {
+			font-size: 45px !important;
+			font-weight: bold;
+			color: white;
+			letter-spacing: 2px;
+		}
+		.google-logo span {
+			font-size: 45px !important;
+		}
+		.pagination .page-link {
+			font-size: 25px !important;
+		}
+		.pagination .next {
+			font-size: 25px !important;
+		}
+		.result-item a {
+			font-size: 22px !important;
+		}
+		
+		.result-item .url {
+			font-size: 17px !important;
+		}
+		
+		.result-item p {
+			font-size: 17px !important;
 		}
 	</style>
 </head>

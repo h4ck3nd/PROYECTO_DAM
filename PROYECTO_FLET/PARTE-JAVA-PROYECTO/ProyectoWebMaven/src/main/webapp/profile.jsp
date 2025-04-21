@@ -38,7 +38,12 @@
     <title>PERFIL DE <%= usuarioJWT.getUsuario() %></title>
 	<link rel="stylesheet" href="css/profileUpdate.css">
 	<link rel="stylesheet" href="css/editarPerfilUpdate.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 	<style>
+	* {
+			font-family: 'VT323', monospace;
+			font-size: 20px;
+		}
 	body, html {
 	  height: 100%;
 	  font-family: sans-serif;
@@ -153,6 +158,16 @@
 	
 	.btn.danger:hover {
 	  background-color: #4e1000;
+	}
+	.username {
+	  font-size: 22px !important;
+	  color: #00aaff;
+	  margin: 0;
+	}
+	
+	.role {
+	  font-size: 22px !important;
+	  color: #aaa;
 	}
 </style>
 </head>

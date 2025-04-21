@@ -26,18 +26,7 @@
 
 .user-info {
   display: flex;
-  flex-direction: column;
-}
-
-.username {
-  font-size: 20px;
-  color: #00aaff;
-  margin: 0;
-}
-
-.role {
-  font-size: 14px;
-  color: #aaa;
+  flex-direction: column; 
 }
 
 .profile-details {

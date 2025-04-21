@@ -39,7 +39,12 @@
 <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
 <title>HACKEND - PROGRESO PERFIL</title>
 <link rel="stylesheet" href="<%= request.getContextPath() %>/css/progreso.css">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 <style>
+* {
+			font-family: 'VT323', monospace !important;
+			font-size: 20px;
+		}
 	.btn-exportar-update {
 		color: white;
 		border: none;
@@ -66,13 +71,38 @@
 	.form-exportar-update:hover {
 		background-color: #0056b3 !important;
 	}
+	.btn-update {
+		display: block;
+		background-color: #4f4f4f;
+		color: #f0f0f0;
+		text-decoration: none;
+		text-align: center;
+		padding: 10px 20px;
+		border: 1px solid #444;
+		font-family: 'VT323', monospace;
+		font-size: 30px !important;
+		border-radius: 5px;
+		width: fit-content;
+		margin: 0 auto;
+		transition: background-color 0.3s ease, transform 0.2s ease;
+	}
+	.grafico-container {
+		font-family: 'VT323', monospace !important;
+		max-width: 600px;
+		margin: 60px auto;
+		padding: 20px;
+		background: #333;
+		border: 1px solid #eaeaea;
+		border-radius: 12px;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
 	<header class="main-header">
 	<img src="<%= request.getContextPath() %>/<%= photoPath %>" alt="Foto de perfil" class="profile-image-update">
-	<div class="left-text">PROGRESO</div>
-	<h1 class="titulo">HACKEND</h1>
+	<div class="left-text" style="font-size: 42px !important;">PROGRESO</div>
+	<h1 class="titulo" style="font-size: 42px !important;">HACKEND</h1>
 	<div class="window-buttons">
 		<button class="btn minimizar">-</button>
 		<button class="btn maximizar">O</button>

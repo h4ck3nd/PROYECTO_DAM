@@ -46,7 +46,12 @@
     <title>HACKEND</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/home.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 	<style>
+	* {
+			font-family: 'VT323', monospace !important;
+			font-size: 18px !important;
+		}
 		.logo-image {
 		  width: 165px;
 		  height: 50px;
@@ -424,6 +429,33 @@
 	  80% { transform: translate(1px, 2px); }
 	  100% { transform: translate(0, 0); opacity: 0.6; }
 	}
+	.google-logo {
+			font-size: 45px !important;
+			font-weight: bold;
+			color: white;
+			letter-spacing: 2px;
+		}
+		.google-logo span {
+			font-size: 45px !important;
+			color: #8ab4f8;
+		}
+		.pagination .page-link {
+			font-size: 25px !important;
+		}
+		.pagination .next {
+			font-size: 25px !important;
+		}
+		.result-item a {
+			font-size: 22px !important;
+		}
+		
+		.result-item .url {
+			font-size: 17px !important;
+		}
+		
+		.result-item p {
+			font-size: 17px !important;
+		}
 	</style>
 </head>
 <body>
@@ -476,13 +508,13 @@
 		
 		<div id="countdown" class="flip-clock">
 		    <div class="flip-unit">
-		        <span id="hours">00</span>
+		        <span id="hours" style="font-size: 40px !important">00</span>
 		    </div>
 		    <div class="flip-unit">
-		        <span id="minutes">00</span>
+		        <span id="minutes" style="font-size: 40px !important">00</span>
 		    </div>
 		    <div class="flip-unit">
-		        <span id="seconds">00</span>
+		        <span id="seconds" style="font-size: 40px !important">00</span>
 		    </div>
 		</div>
 		<!-- LOGO DE LA PAGINA -->
@@ -551,7 +583,7 @@
     	
     </div> <!-- AquÃÂ­ se inyecta el contenido dinÃÂ¡mico -->
     <div class="botones">
-	  <button id="custom-popup-openBtn" data-text="Enviar Writeup / FLAG">ㅤㅤㅤㅤㅤ</button>
+	  <button id="custom-popup-openBtn" data-text="Enviar Writeup / FLAG" style="font-size: 20px !important;">ㅤㅤㅤㅤㅤ</button>
 	  <button data-text="Ver Writeups"><a href="<%= request.getContextPath() %>/verWriteupsTimelabs?lab_id=<%= labId %>" style="text-decoration: none;">ㅤㅤㅤㅤㅤㅤ</a></button>
 	</div>
     <!--  <div class="search-result-container">
@@ -562,7 +594,7 @@
 	  </div>
 	</div>
 	<button id="labPopup-openBtn" data-text="Enviar Writeup / FLAG">ㅤㅤㅤㅤㅤ</button>-->
-	<br><br><br><br><br><br><br>
+	<br><br><br><br><br><br>
     <!-- PAGINACIÃâN -->
     <div class="pagination">
         <div class="google-logo">T<span>i</span><span>i</span><span>i</span><span>i</span><span>i</span><span>i</span>melabs</div>

@@ -38,7 +38,12 @@
     <title>OVALABS</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/css_ovalabs/home_ovalabs.css">
+	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 	<style>
+	* {
+			font-family: 'VT323', monospace !important;
+			font-size: 18px !important;
+		}
 		.logo-image {
 		  width: 70px;
 		  height: 50px;
@@ -116,6 +121,33 @@
 		@keyframes blink {
 		    0%, 100% { opacity: 1; }
 		    50% { opacity: 0.3; }
+		}
+		.google-logo {
+			font-size: 45px !important;
+			font-weight: bold;
+			color: white;
+			letter-spacing: 2px;
+		}
+		.google-logo span {
+			font-size: 45px !important;
+			color: #8ab4f8;
+		}
+		.pagination .page-link {
+			font-size: 25px !important;
+		}
+		.pagination .next {
+			font-size: 25px !important;
+		}
+		.result-item a {
+			font-size: 22px !important;
+		}
+		
+		.result-item .url {
+			font-size: 17px !important;
+		}
+		
+		.result-item p {
+			font-size: 17px !important;
 		}
 	</style>
 </head>
@@ -235,7 +267,7 @@
 
     <!-- PAGINACIÃÂÃ¢ÂÂN -->
     <div class="pagination">
-        <div class="google-logo">H<span>a</span><span>a</span><span>a</span><span>a</span><span>a</span><span>a</span>ckend</div>
+        <div class="google-logo">O<span>v</span><span>v</span><span>v</span><span>v</span><span>v</span><span>v</span>alabs</div>
         <a href="home_dockerpwned.jsp?page=0" class="page-link style-link-number">1</a>
         <a href="Page1.jsp?page=1" class="page-link">2</a>
         <a href="Page2.jsp?page=2" class="page-link">3</a>

@@ -20,11 +20,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>DockerPwned - Instrucciones de Instalación</title>
   <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/img_dockerpwned/logo-dockerpwned.ico">
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
+  * {
+			font-family: 'VT323', monospace;
+			
+		}
     body {
       background-color: #121212;
       color: #e0e0e0;
       font-family: 'Share Tech Mono', monospace;
+      font-size: 20px;
       margin: 0;
       padding: 0;
     }

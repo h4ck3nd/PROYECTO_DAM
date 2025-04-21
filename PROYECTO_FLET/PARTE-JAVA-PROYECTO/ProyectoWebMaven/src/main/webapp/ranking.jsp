@@ -24,7 +24,12 @@
 <head>
 	<link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
     <title>RANKING DE USUARIOS</title>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
+    * {
+			font-family: 'VT323', monospace;
+			font-size: 22px !important;
+		}
         body {
             background: linear-gradient(to right, #1e1e2f, #2b2b3c);
             font-family: 'Segoe UI', sans-serif;
@@ -44,6 +49,7 @@
 
         h1 {
             text-align: center;
+            font-size: 40px !important;
             color: #ffd700;
         }
 

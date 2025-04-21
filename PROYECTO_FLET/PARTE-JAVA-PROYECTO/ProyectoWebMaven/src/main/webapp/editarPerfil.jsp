@@ -38,7 +38,12 @@
 <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
 <title>EDITAR PERFIL</title>
 <link rel="stylesheet" href="css/editarPerfilUpdate.css">
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
 <style>
+* {
+			font-family: 'VT323', monospace !important;
+			font-size: 20px;
+		}
 	body, html {
 	  height: 100%;
 	  font-family: sans-serif;
@@ -109,7 +114,7 @@
             <span class="boton verde"></span>
           </div>
 		  <br>
-          <h2>Editar Perfil</h2>
+          <h2 style="font-size: 30px !important">Editar Perfil</h2>
 	        <input type="hidden" name="token" value="<%= usuarioJWT.getToken() %>">
 	        
 	        <label for="nombre">Nombre: </label>
@@ -145,7 +150,7 @@
             <span class="boton verde"></span>
           </div>
           <br>
-          <h2>Cambiar Foto de Perfil</h2>
+          <h2 style="font-size: 30px !important">Cambiar Foto de Perfil</h2>
           <br>
 		  <input type="file" name="profilePhoto">
 		  <button type="submit">Subir Foto</button>
