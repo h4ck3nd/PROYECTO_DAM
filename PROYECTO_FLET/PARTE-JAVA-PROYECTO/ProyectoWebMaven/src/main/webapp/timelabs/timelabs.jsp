@@ -456,6 +456,10 @@
 		.result-item p {
 			font-size: 17px !important;
 		}
+		.log-entry:hover {
+		  transform: scale(1.02);
+		  box-shadow: 0 0 12px rgba(0,255,204,0.2);
+		}
 	</style>
 </head>
 <body>
@@ -586,6 +590,22 @@
 	  <button id="custom-popup-openBtn" data-text="Enviar Writeup / FLAG" style="font-size: 20px !important;">ㅤㅤㅤㅤㅤ</button>
 	  <button data-text="Ver Writeups"><a href="<%= request.getContextPath() %>/verWriteupsTimelabs?lab_id=<%= labId %>" style="text-decoration: none;">ㅤㅤㅤㅤㅤㅤ</a></button>
 	</div>
+	<!-- COMPROBACIONES CTF -->
+  
+  <div style="margin-left: 170px; padding-right: 50px; margin-top: -300px;">
+    <p style="text-shadow: 1px 1px 2px gray;"><strong>MD5:</strong> NULL</p> <!-- OBTENER HASH MD5 UTILIZANDO UN COMANDO EN CMD EN WINDOWS (CertUtil -hashfile C:\<PATH>\machine.ova MD5) / EN LINUX (md5sum machine.iso) -->
+    <p style="text-shadow: 1px 1px 2px gray;"><strong>Root:</strong> <span id="flagCount">Cargando...</span></p>
+  </div>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div>
+  	<h3 style="margin-left: 520px; padding-right: 50px;">======================================================LOGS FLAGS======================================================</h3>
+  	<br>
+  	<div id="logs-container">
+  	</div>
+  	<br>
+  	<h3 style="margin-left: 520px; padding-right: 50px;">======================================================================================================================</h3>
+  </div>
+  
     <!--  <div class="search-result-container">
 	  <div class="search-result">
 	    <img src="../img/logo-test-17-update.png" alt="INACTIVE" width="30px" height="30px"/>
@@ -594,7 +614,7 @@
 	  </div>
 	</div>
 	<button id="labPopup-openBtn" data-text="Enviar Writeup / FLAG">ㅤㅤㅤㅤㅤ</button>-->
-	<br><br><br><br><br><br>
+	<br><br>
     <!-- PAGINACIÃâN -->
     <div class="pagination">
         <div class="google-logo">T<span>i</span><span>i</span><span>i</span><span>i</span><span>i</span><span>i</span>melabs</div>
@@ -1040,6 +1060,41 @@
 	    <% 
 	        }
 	    %>
+	    
+	 // ENVIAR PETICION PARA OBTENER TODAS LAS FLAGS DE ROOT
+	    
+	    document.addEventListener("DOMContentLoaded", function () {
+	      const labId = <%= labId %>;  // Asegúrate de que labId esté correctamente inyectado aquí.
+
+	      fetch(`<%= request.getContextPath() %>/getFlagRootTimelabsCount?lab_id=<%= labId %>`)
+	          .then(response => {
+	              if (!response.ok) {
+	                  throw new Error("Error al obtener el número de flags.");
+	              }
+	              return response.text(); // La respuesta ahora es un texto (número).
+	          })
+	          .then(data => {
+	              document.getElementById("flagCount").innerText = data; // Mostrar el número de flags
+
+	          })
+	          .catch(error => {
+	              document.getElementById("flagCount").innerText = "Error"; // Mensaje de error en caso de fallo
+	              console.error(error);
+	          });
+	  });
+	 
+	 // OBTENER LA INFORMACION DE LOS LOGS DE LOS WRITEUPS
+	    
+	    window.addEventListener('DOMContentLoaded', () => {
+	        fetch('<%= request.getContextPath() %>/FlagLogTimelabsControlador?lab_id=<%= labId %>')
+	            .then(response => response.text())
+	            .then(html => {
+	                document.getElementById('logs-container').innerHTML = html;
+	            })
+	            .catch(error => {
+	                console.error("Error al cargar los logs:", error);
+	            });
+	    });
 	</script>
 	<script src="<%= request.getContextPath() %>/js/home.js"></script>
 </body>

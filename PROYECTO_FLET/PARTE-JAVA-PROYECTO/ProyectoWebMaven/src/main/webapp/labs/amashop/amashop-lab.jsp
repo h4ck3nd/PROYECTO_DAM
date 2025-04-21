@@ -515,6 +515,10 @@
 		.message-popup.show {
 		    display: block; /* Se muestra cuando tiene la clase .show */
 		}
+		.log-entry:hover {
+		  transform: scale(1.02);
+		  box-shadow: 0 0 12px rgba(0,255,204,0.2);
+		}
   </style>
 </head>
 <body>
@@ -584,6 +588,21 @@
       <button class="nivel-btn">Medio</button>
     </div>
   </section>
+  
+  <!-- COMPROBACIONES CTF -->
+  
+  <div style="margin-left: 470px; padding-right: 50px; margin-top: -40px;">
+    <p style="text-shadow: 1px 1px 2px gray;"><strong>Root:</strong> <span id="flagCount">Cargando...</span></p>
+  </div>
+  
+  <div>
+  	<h3 style="margin-left: 475px; padding-right: 50px;">======================================LOGS FLAGS======================================</h3>
+  	<br>
+  	<div id="logs-container">
+  	</div>
+  	<br>
+  	<h3 style="margin-left: 475px; padding-right: 50px;">======================================================================================</h3>
+  </div>
 
   <!-- TECNICAS -->
   <section class="lab-tecnica">
@@ -705,6 +724,41 @@
 	      type();
 	    });
 	  });
+  
+	// ENVIAR PETICION PARA OBTENER TODAS LAS FLAGS DE ROOT
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const labId = <%= labId %>;  // Asegúrate de que labId esté correctamente inyectado aquí.
+
+    fetch(`<%= request.getContextPath() %>/getFlagRootCount?lab_id=<%= labId %>`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al obtener el número de flags.");
+            }
+            return response.text(); // La respuesta ahora es un texto (número).
+        })
+        .then(data => {
+            document.getElementById("flagCount").innerText = data; // Mostrar el número de flags
+
+        })
+        .catch(error => {
+            document.getElementById("flagCount").innerText = "Error"; // Mensaje de error en caso de fallo
+            console.error(error);
+        });
+});
+	
+//OBTENER LA INFORMACION DE LOS LOGS DE LOS WRITEUPS
+  
+  window.addEventListener('DOMContentLoaded', () => {
+      fetch('<%= request.getContextPath() %>/FlagLogControlador?lab_id=<%= labId %>')
+          .then(response => response.text())
+          .then(html => {
+              document.getElementById('logs-container').innerHTML = html;
+          })
+          .catch(error => {
+              console.error("Error al cargar los logs:", error);
+          });
+  });
 </script>
 
 </body>

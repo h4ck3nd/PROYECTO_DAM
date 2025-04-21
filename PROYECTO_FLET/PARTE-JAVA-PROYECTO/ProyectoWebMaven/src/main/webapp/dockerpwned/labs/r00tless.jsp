@@ -533,6 +533,10 @@
 		  #startLabBtn:hover {
 		    background-color: #00cc88;
 		  }
+		  .log-entry:hover {
+		  transform: scale(1.02);
+		  box-shadow: 0 0 12px rgba(0,255,204,0.2);
+		}
   </style>
 </head>
 <body>
@@ -596,14 +600,30 @@
     </div>
     <div class="lab-info">
       <h2 class="typewriter" data-text="R00TLESS MACHINE: DOCKERPWNED"></h2>
-      <p><strong>Autor:</strong> D1se0 & Manu</p>
-      <p><strong>Descripción:</strong> Aprende a encontrar credenciales por servidores SMB, crear diccionarios de fuerza bruta, crackeo de contraseñas, etc...</p>
-      <p><strong>Fecha de creación:</strong> 10/02/2025</p>
-      <p><strong>Plataformas:</strong> <img alt="VMWare" src="<%= request.getContextPath() %>/img/img_dockerpwned/vmware.png" width="30px" height="30px" class="img-plataform"> <img alt="Virtual Box" src="<%= request.getContextPath() %>/img/img_dockerpwned/virtualbox.png" width="30px" height="30px" class="img-plataform"></p>
+      <p style="text-shadow: 1px 1px 2px gray;"><strong>Autor:</strong> D1se0 & Manu</p>
+      <p style="text-shadow: 1px 1px 2px gray;"><strong>Descripción:</strong> Aprende a encontrar credenciales por servidores SMB, crear diccionarios de fuerza bruta, crackeo de contraseñas, etc...</p>
+      <p style="text-shadow: 1px 1px 2px gray;"><strong>Fecha de creación:</strong> 10/02/2025</p>
+      <p style="text-shadow: 1px 1px 2px gray;"><strong>Plataformas:</strong> <img alt="VMWare" src="<%= request.getContextPath() %>/img/img_dockerpwned/vmware.png" width="30px" height="30px" class="img-plataform"> <img alt="Virtual Box" src="<%= request.getContextPath() %>/img/img_dockerpwned/virtualbox.png" width="30px" height="30px" class="img-plataform"></p>
       <button class="nivel-btn">Difícil</button>
     </div>
   </section>
-
+  
+  <!-- COMPROBACIONES CTF -->
+  
+  <div style="margin-left: 470px; padding-right: 50px; margin-top: -40px;">
+    <p style="text-shadow: 1px 1px 2px gray;"><strong>MD5:</strong> 7ffd4f0fae8210d33376626bb992d58c</p> <!-- OBTENER HASH MD5 UTILIZANDO UN COMANDO EN CMD EN WINDOWS (CertUtil -hashfile C:\<PATH>\machine.ova MD5) / EN LINUX (md5sum machine.iso) -->
+    <p style="text-shadow: 1px 1px 2px gray;"><strong>Root:</strong> <span id="flagCount">Cargando...</span></p>
+  </div>
+  
+  <div>
+  	<h3 style="margin-left: 475px; padding-right: 50px;">======================================LOGS FLAGS======================================</h3>
+  	<br>
+  	<div id="logs-container">
+  	</div>
+  	<br>
+  	<h3 style="margin-left: 475px; padding-right: 50px;">======================================================================================</h3>
+  </div>
+  
   <!-- TECNICAS -->
   <section class="lab-tecnica">
     <h3 class="tecnica-titulo">Técnicas Utilizadas</h3>
@@ -739,6 +759,42 @@
 	      type();
 	    });
 	  });
+  
+  // ENVIAR PETICION PARA OBTENER TODAS LAS FLAGS DE ROOT
+  
+  document.addEventListener("DOMContentLoaded", function () {
+    const labId = <%= labId %>;  // Asegúrate de que labId esté correctamente inyectado aquí.
+
+    fetch(`<%= request.getContextPath() %>/getFlagRootDockerpwnedCount?lab_id=<%= labId %>`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al obtener el número de flags.");
+            }
+            return response.text(); // La respuesta ahora es un texto (número).
+        })
+        .then(data => {
+            document.getElementById("flagCount").innerText = data; // Mostrar el número de flags
+
+        })
+        .catch(error => {
+            document.getElementById("flagCount").innerText = "Error"; // Mensaje de error en caso de fallo
+            console.error(error);
+        });
+});
+
+  // OBTENER LA INFORMACION DE LOS LOGS DE LOS WRITEUPS
+  
+  window.addEventListener('DOMContentLoaded', () => {
+      fetch('<%= request.getContextPath() %>/FlagLogDockerpwnedControlador?lab_id=<%= labId %>')
+          .then(response => response.text())
+          .then(html => {
+              document.getElementById('logs-container').innerHTML = html;
+          })
+          .catch(error => {
+              console.error("Error al cargar los logs:", error);
+          });
+  });
+  
   // SCRIPT DOCKER DESPLIEGUE
   //document.getElementById("startLabBtn").addEventListener("click", function() {
     //document.getElementById("terminalModal").style.display = "block";
