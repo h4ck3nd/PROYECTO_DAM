@@ -42,15 +42,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/timelabs/timelabs-logo-update.ico">
     <title>HACKEND</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="<%= request.getContextPath() %>/css/home.css">
 	<style>
 		.logo-image {
-		  width: 125px;
+		  width: 165px;
 		  height: 50px;
 		  position: relative;
+		  left: 20px;
 		}
 		.profile-image-update {
 			width: 40px;
@@ -485,7 +486,7 @@
 		    </div>
 		</div>
 		<!-- LOGO DE LA PAGINA -->
-	   <img src="<%= request.getContextPath() %>/img/timelabs/timelabs.png" class="logo-image" alt="Imagen Logo">
+	   <img src="<%= request.getContextPath() %>/img/timelabs/banner-timelabs.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
 
@@ -494,7 +495,7 @@
             <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0"><img src="<%= request.getContextPath() %>/img/logo-test-6-update.png" class="img-hackend" width="22px" height="22px"> Hackend</a>
             <a href="<%= request.getContextPath() %>/dockerpwned/home_directory_dockerpwned/home_dockerpwned.jsp?page=0"><img src="<%= request.getContextPath() %>/img/dockerpwned.png" class="img-dockerpwned" width="25px" height="15px"> DockerPwned</a>
             <a href="<%= request.getContextPath() %>/ovalabs/home_directory_ovalabs/home_ovalabs.jsp?page=0"><img src="<%= request.getContextPath() %>/img/ovalabs.png" class="img-ovalabs" width="20px" height="20px"> OVAlabs</a>
-            <a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp"><img src="<%= request.getContextPath() %>/img/timelabs/timelabs-logo.png" class="img-timelabs" width="20px" height="20px"> <span id="dropStatus" class="drop-word">TimeLabs</span></a>
+            <a href="<%= request.getContextPath() %>/timelabs/timelabs.jsp"><img src="<%= request.getContextPath() %>/img/timelabs/timelabs-logo-update.png" class="img-timelabs" width="20px" height="20px"> <span id="dropStatus" class="drop-word">TimeLabs</span></a>
             <a href="<%= request.getContextPath() %>/ranking.jsp"><img src="<%= request.getContextPath() %>/img/ranking-logo.png" class="img-ranking" width="20px" height="20px"> Ranking</a>
             <a href="#" id="more-button"></a>
         </nav>
