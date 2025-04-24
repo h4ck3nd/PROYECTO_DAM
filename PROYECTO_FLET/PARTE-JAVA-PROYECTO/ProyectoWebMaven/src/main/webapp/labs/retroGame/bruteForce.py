@@ -91,3 +91,5 @@ if __name__ == '__main__':
 
     # Ejecutar la prueba de combinaciones
     probar_combinaciones(usuarios, contrasenas)
+
+# python3 .\bruteForce.py -u users.txt -w pass.txt
