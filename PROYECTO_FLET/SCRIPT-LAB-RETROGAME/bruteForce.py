@@ -1,13 +1,15 @@
 import requests
 import argparse
 
+# CAMBIAR TODO LO QUE ESTE ENTRE "<>" HA VUESTRAS NECESIDADES
+
 # URL de login de la web
-login_url = "http://localhost:8080/ProyectoWebMaven/LoginGameRetroControlador" # Poner la ruta del HTTP
+login_url = "http://<PATH_HTTP>/LoginGameRetroControlador" # Poner la ruta del HTTP
 # EJEMPLO: http://<PATH_HTTP>/LoginGameRetroControlador
 
 cookies = {
-    "JSESSIONID": "3C555D0B6185A4E7CC3B7ED607C513AE", # Poner la Cookie del "JSESSIONID" de tu navegador
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoxLCJ1c3VhcmlvIjoidXNlciIsImVtYWlsIjoidXNlckB0ZXN0LmNvbSIsIm5vbWJyZSI6IlVzdWFyaW8iLCJhcGVsbGlkb3MiOiJBcGVsbGlkbyIsImNvb2tpZSI6Ijk4OWNiMDZmLTA2N2YtNGRiNi1hZTQzLWE5ZGYyZmYwOTk3YSIsInJvbCI6InVzZXIiLCJ1bHRpbW9fbG9naW4iOm51bGwsImV4cCI6MTc0NTUyNjAzMX0.Ldw-I7Vdpwl53v5ekFwpdUF5qZOGBnHGLnTnSIEBIfc" # Poner la Cookie del "token" de tu navegador
+    "JSESSIONID": "<JSESSIONID>", # Poner la Cookie del "JSESSIONID" de tu navegador
+    "token": "<TOKEN>" # Poner la Cookie del "token" de tu navegador
 }
 
 # Cabecera de la solicitud
