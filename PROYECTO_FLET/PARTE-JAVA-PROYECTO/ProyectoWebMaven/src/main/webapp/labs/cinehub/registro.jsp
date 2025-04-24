@@ -41,6 +41,83 @@ body {
   height: 100vh;
 }
 
+/* Modal de advertencia reutiliza estilos de .popup y .popup-content */
+
+#warningModal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1002;
+}
+
+#warningModal .popup-content {
+  background-color: #1a1a1a;
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+  text-align: center;
+  position: relative;
+}
+
+#understoodBtn {
+  margin-top: 2rem;
+  padding: 12px 24px;
+  background-color: #ff0050;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#understoodBtn:hover {
+  background-color: #e60045;
+}
+
+#understoodBtn:hover {
+  background-color: #e60045;
+}
+
+#warningModal h3 {
+  color: #ff0050;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#warningModal p {
+  font-size: 1rem;
+  color: #ccc;
+  line-height: 1.5;
+}
+
+#understoodBtn {
+  margin-top: 2rem;
+  padding: 12px 24px;
+  background-color: #ff0050;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+#understoodBtn:hover {
+  background-color: #e60045;
+}
+
 .container {
   width: 100%;
   max-width: 400px;
@@ -192,18 +269,41 @@ form .link a:hover {
   </style>
 </head>
 <body>
+<!-- Modal de advertencia -->
+<div id="warningModal">
+  <div class="popup-content">
+    <h3>⚠️ Advertencia</h3>
+    <p>
+      Este es un laboratorio de hacking web ético controlado. <br>
+      Por favor, <strong>no introduzcas datos personales reales</strong>. <br><br>
+      El objetivo es simular una experiencia realista para fines educativos.
+    </p>
+    <button id="understoodBtn">Entendido</button>
+  </div>
+</div>
+
   <div class="container">
     <div class="register-box">
       <h1>CINEHUB+</h1>
       <h2>Crear cuenta</h2>
       <form>
-        <input type="text" placeholder="Nombre completo" required />
-        <input type="email" placeholder="Correo electrónico" required />
-        <input type="password" placeholder="Contraseña" required />
-        <input type="password" placeholder="Repetir contraseña" required />
-        <button type="submit">Registrarse</button>
-        <p class="link">¿Ya tienes cuenta? <a href="<%= request.getContextPath() %>/labs/cinehub/login.jsp">Inicia sesión</a></p>
-      </form>
+  <input type="text" placeholder="Nombre completo" required />
+  <input type="email" placeholder="Correo electrónico" required />
+  <input type="password" id="password" placeholder="Contraseña" required />
+  <input type="password" id="confirmPassword" placeholder="Repetir contraseña" required />
+
+  <br>
+  <h2>Datos de la tarjeta 
+  <span class="tooltip-icon" title="Este es un entorno de laboratorio. No introduzcas una tarjeta real.">⚠️</span>
+</h2>
+  <input type="text" id="card-number" placeholder="Número de tarjeta" required />
+  <input type="text" id="card-name" placeholder="Nombre del titular" required />
+  <input type="text" id="card-expiry" placeholder="Fecha de expiración (MM/AA)" required />
+  <input type="text" id="card-cvc" placeholder="CVC" required />
+
+  <button type="button" id="registerBtn">Registrarse</button>
+  <p class="link">¿Ya tienes cuenta? <a href="login.jsp">Inicia sesión</a></p>
+</form>
     </div>
   </div>
   <button id="infoBtn" class="info-btn" type="button">
@@ -236,7 +336,52 @@ form .link a:hover {
         popup.style.display = "none";
       }
     });
-  </script>
-  
+    
+    // validacion de la tarjeta
+    document.querySelector("form").addEventListener("submit", function (e) {
+    const cardNumber = document.getElementById("card-number").value.trim();
+    const cardName = document.getElementById("card-name").value.trim();
+    const cardExpiry = document.getElementById("card-expiry").value.trim();
+    const cardCVC = document.getElementById("card-cvc").value.trim();
+
+    if (!cardNumber || !cardName || !cardExpiry || !cardCVC) {
+      e.preventDefault();
+      alert("Por favor, completa todos los campos de la tarjeta (recuerda que es solo para pruebas).");
+    }
+  });
+    
+    // validacion del formulario de registro
+     document.getElementById("registerBtn").addEventListener("click", function () {
+    const name = document.querySelector("input[placeholder='Nombre completo']").value.trim();
+    const email = document.querySelector("input[placeholder='Correo electr贸nico']").value.trim();
+    const pass = document.querySelector("input[placeholder='Contrase帽a']").value.trim();
+    const repeatPass = document.querySelector("input[placeholder='Repetir contrase帽a']").value.trim();
+
+    const cardNumber = document.getElementById("card-number").value.trim();
+    const cardName = document.getElementById("card-name").value.trim();
+    const cardExpiry = document.getElementById("card-expiry").value.trim();
+    const cardCVC = document.getElementById("card-cvc").value.trim();
+
+    if (!name || !email || !pass || !repeatPass || !cardNumber || !cardName || !cardExpiry || !cardCVC) {
+      alert("Por favor, completa todos los campos, incluyendo los de la tarjeta (es un entorno de pruebas).");
+    } else {
+      window.location.href = "login.jsp"; // Redirección
+    }
+  });
+    
+    // abrir modal cuando cargue la pagina
+  window.addEventListener("load", () => {
+    const modal = document.getElementById("warningModal");
+    const btn = document.getElementById("understoodBtn");
+
+    // Mostrar el modal al cargar la página
+    modal.style.display = "flex";
+
+    // Cerrar el modal al hacer clic en "Entendido"
+    btn.addEventListener("click", () => {
+      modal.style.display = "none";
+    });
+  });
+</script>
 </body>
 </html>
