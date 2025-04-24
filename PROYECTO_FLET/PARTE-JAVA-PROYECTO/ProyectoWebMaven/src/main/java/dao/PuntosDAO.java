@@ -277,6 +277,62 @@ public class PuntosDAO {
         return puntosBAC1;
     }
     
+    // Método para obtener los puntos de XPATH LAB 1 del usuario
+    public int obtenerPuntosXPATH1(int userId) throws SQLException {
+        int puntosXPATH1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosXPATH1 FROM validate_flag WHERE user_id = ? AND lab_id = 5";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosXPATH1 = rs.getInt("puntosXPATH1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos XPATH1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosXPATH1;
+    }
+    
+    // Método para obtener los puntos de ForceBrute LAB 1 del usuario
+    public int obtenerPuntosForceBrute1(int userId) throws SQLException {
+        int puntosForceBrute1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosForceBrute1 FROM validate_flag WHERE user_id = ? AND lab_id = 6";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosForceBrute1 = rs.getInt("puntosForceBrute1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos ForceBrute1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosForceBrute1;
+    }
+    
     // Método para obtener los puntos de R00tless LAB 1 del usuario
     public int obtenerPuntosR00tless(int userId) throws SQLException {
         int puntosR00tless = 0;

@@ -109,6 +109,44 @@ public class LaboratorioDAO {
         return labId;
     }
     
+    // Método para obtener el ID del laboratorio con nombre "CineHub" (fijo)
+    public static int obtenerIdLaboratorioCineHub() {
+        int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
+        String query = "SELECT lab_id FROM laboratorios WHERE nombre = 'cinehub'";  // Nombre fijo
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    labId = rs.getInt("lab_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return labId;
+    }
+    
+    // Método para obtener el ID del laboratorio con nombre "RetroGame" (fijo)
+    public static int obtenerIdLaboratorioRetroGame() {
+        int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
+        String query = "SELECT lab_id FROM laboratorios WHERE nombre = 'retrogame'";  // Nombre fijo
+
+        try (Connection conn = new ConexionDDBB().conectar();
+             PreparedStatement stmt = conn.prepareStatement(query)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                    labId = rs.getInt("lab_id");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return labId;
+    }
+    
     // Método para obtener el ID del laboratorio con nombre "r00tless" (fijo)
     public static int obtenerIdLaboratorioR00tless() {
         int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio

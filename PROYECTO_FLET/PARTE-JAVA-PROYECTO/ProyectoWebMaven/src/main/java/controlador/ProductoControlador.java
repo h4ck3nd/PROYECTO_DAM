@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
@@ -45,37 +44,13 @@ public class ProductoControlador extends HttpServlet {
             if (productoDAO.createTable()) {
                 System.out.println("Tabla PRODUCTO creada correctamente!!");
             }
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/index.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("vistas/index.jsp");
             requestDispatcher.forward(request, response);
         }
         // Si la opción es insertar, redirigimos a insertar.jsp
         else if (opcion.equalsIgnoreCase("insertar")) {
         	System.out.println("HAS PULSADO LA OPCION INSERTAR");
-            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/insertar.jsp");
-            requestDispatcher.forward(request, response);
-        }
-        else if(opcion.equalsIgnoreCase("consultar")) {
-        	ProductoDAO productoDAO = new ProductoDAO();
-        	ArrayList<Producto> lista = new ArrayList<Producto>();
-        	lista = productoDAO.consultarProductos();
-        	for(Producto producto : lista) 
-        		System.out.println(producto);
-        	request.setAttribute("lista", lista);
-        	productoDAO.getConexion().cerrarConexion();
-        	RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/consultar.jsp");
-            requestDispatcher.forward(request, response);
-        }
-        else if(opcion.equalsIgnoreCase("editar")) {
-        	int idProducto = Integer.parseInt(request.getParameter("idProducto"));
-        	System.out.println("Editar idProducto: " + idProducto);
-        	ProductoDAO productoDAO = new ProductoDAO();
-        	Producto producto = new Producto();
-        	
-        	producto = productoDAO.obtenerProductos(idProducto);
-        	System.out.println(producto);
-        	request.setAttribute("producto", producto);
-        	productoDAO.getConexion().cerrarConexion();
-        	RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/editar.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("vistas/insertar.jsp");
             requestDispatcher.forward(request, response);
         }
     }
@@ -103,7 +78,7 @@ public class ProductoControlador extends HttpServlet {
 			if(productoDAO.insertar(producto)) {
 				System.out.println("Producto insertado correctamente");
 			}
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("/vistas/index.jsp");
+			RequestDispatcher requestDispatcher = request.getRequestDispatcher("vistas/index.jsp");
 			requestDispatcher.forward(request, response);
 		}
 	}
