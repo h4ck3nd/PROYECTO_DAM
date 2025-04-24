@@ -15,7 +15,7 @@
 	}
 	
 	// Obtener el lab_id de "Separo" desde la base de datos
-    int labId = LaboratorioDAO.obtenerIdLaboratorioSeparo();
+    int labId = LaboratorioDAO.obtenerIdLaboratorioCineHub();
     String mensaje = "";
 
     // Recuperamos el mensaje desde la URL
@@ -684,7 +684,7 @@
     function closePopup() {
         var popup = document.getElementById("popupMessage");
         popup.classList.remove('show'); // Ocultamos el popup
-        window.location.href = "<%= request.getContextPath() %>/labs/separo/separo-lab.jsp"; // Redirigimos
+        window.location.href = "<%= request.getContextPath() %>/labs/cinehub/cinehub-lab.jsp"; // Redirigimos
     }
 
     // Si el mensaje no es nulo, mostramos el popup con el mensaje
