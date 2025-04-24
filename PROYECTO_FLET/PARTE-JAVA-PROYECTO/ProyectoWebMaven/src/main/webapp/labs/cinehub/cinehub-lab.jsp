@@ -27,7 +27,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
-  <title>SEPARO LAB</title>
+  <title>CINEHUB LAB</title>
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <style>
     * {
@@ -525,7 +525,7 @@
 
 <header>
   <div class="header-left">
-    <h1 class="typewriter" data-text="SEPARO LAB"></h1>
+    <h1 class="typewriter" data-text="CINEHUB+ LAB"></h1>
   </div>
   <div class="window-buttons">
     <button class="minimize">🗕</button>
@@ -541,7 +541,7 @@
         <div class="message-popup-content" id="popupContent">
             <p><%= request.getAttribute("mensaje") %></p>
         </div>
-        <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/separo/separo-lab.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
+        <button class="message-popup-close-btn"><a href="<%= request.getContextPath() %>/labs/cinehub/cinehub-lab.jsp" style="text-decoration: none; color: white;">Cerrar</a></button>
     </div>
     <br>
 		<!-- POPUP MODAL -->
@@ -581,8 +581,8 @@
       <img src="<%= request.getContextPath() %>/img/logo-test-3-update.png" alt="Máquina CTF">
     </div>
     <div class="lab-info">
-      <h2 class="typewriter" data-text="SEPARO LAB: HACKING WEB"></h2>
-      <p><strong>Autor:</strong> D1se0</p>
+      <h2 class="typewriter" data-text="CINEHUB+ LAB: HACKING WEB"></h2>
+      <p><strong>Autor:</strong> D1se0 & M4nu</p>
       <p><strong>Descripción:</strong> Estas cansado de buscar empleo, en Separo encontraras lo que quieras al lado de tu casa, aprende a realizar un Open Redirect.</p>
       <p><strong>Fecha de creación:</strong> 09/04/2025</p>
       <button class="nivel-btn">Facil</button>
@@ -650,7 +650,7 @@
   <section class="download-section">
   	<h3>============================LABORATORIO============================</h3>
   	<br><br>
-    <button class="download-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/separo/separo.jsp'">⬇️ Ir a Separo (LAB)</button>
+    <button class="download-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/cinehub.jsp'">⬇️ Ir a CineHub+(LAB)</button>
     <br><br>
     <h3>===================================================================</h3>
   </section>
@@ -658,7 +658,7 @@
 </main>
 
 <footer>
-  <p>© 2025 Foro XSS Labs. Todos los derechos reservados.</p>
+  <p>© 2025 CineHub+. Todos los derechos reservados.</p>
 </footer>
 
 <script>

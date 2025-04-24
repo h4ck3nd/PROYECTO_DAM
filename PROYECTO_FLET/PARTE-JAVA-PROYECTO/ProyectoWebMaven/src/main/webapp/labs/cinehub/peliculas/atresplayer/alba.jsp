@@ -197,7 +197,7 @@
       <h1>CINEHUB <span>+</span></h1>
       <nav>
         <ul>
-          <li>Inicio</li>
+          <li><a href="<%= request.getContextPath() %>/labs/cinehub/cinehub.jsp">Inicio</a></li>
           <li>Netflix</li>
           <li>HBO</li>
           <li>Amazon Prime</li>
@@ -209,7 +209,7 @@
     <!-- Contenido principal -->
     <main class="pelicula-container">
       <div class="video-container">
-	  <iframe width="560" height="315" src="https://www.youtube.com/embed/T_GqebtFfUE?si=vLHSsXH2_TG-b5Sg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/OHDTz6iCk3U?si=6B7BHmZ0YJnD7io-" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
 
  <section class="info-pelicula">

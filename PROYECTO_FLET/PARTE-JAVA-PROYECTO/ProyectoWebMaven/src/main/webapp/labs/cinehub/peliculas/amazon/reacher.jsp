@@ -197,7 +197,7 @@
       <h1>CINEHUB <span>+</span></h1>
       <nav>
         <ul>
-          <li>Inicio</li>
+          <li><a href="<%= request.getContextPath() %>/labs/cinehub/cinehub.jsp">Inicio</a></li>
           <li>Netflix</li>
           <li>HBO</li>
           <li>Amazon Prime</li>
