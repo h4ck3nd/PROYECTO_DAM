@@ -1,4 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+    UsuarioJWT usuarioJWT = null;
+
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+
+%>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -159,15 +175,15 @@ button:hover {
   <div class="bios-container">
     <img src="<%= request.getContextPath() %>/img/login-retro.png" alt="Logo Retro" class="retro-image">
     <div class="bios-header">SISTEMA DE ACCESO</div>
-    <form class="login-form">
-      <label for="username">USUARIO</label>
-      <input type="text" id="username" name="username" required>
-
-      <label for="password">CONTRASEÑA</label>
-      <input type="password" id="password" name="password" required>
-
-      <button type="submit">ENTRAR</button>
-    </form>
+    <form action="<%= request.getContextPath() %>/LoginGameRetroControlador" method="post" class="login-form">
+	    <label for="username">USUARIO</label>
+	    <input type="text" id="username" name="username" required>
+	
+	    <label for="password">CONTRASEÑA</label>
+	    <input type="password" id="password" name="password" required>
+	
+	    <button type="submit">ENTRAR</button>
+	</form>
     <div class="bios-footer">© 2025 Login Retro</div>
   </div>
   <button class="lightbulb-button" onclick="togglePopup()">
