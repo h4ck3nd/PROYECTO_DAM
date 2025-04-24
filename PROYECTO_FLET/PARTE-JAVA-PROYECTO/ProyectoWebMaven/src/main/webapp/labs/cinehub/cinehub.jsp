@@ -1,4 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+
+	UsuarioJWT usuarioJWT = null;
+	
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+
+	HttpSession session1 = request.getSession(false);
+    if (session1 == null || session1.getAttribute("user") == null) {
+        response.sendRedirect(request.getContextPath() + "/labs/cinehub/login.jsp");
+        return;
+    }
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -246,6 +267,7 @@ html, body {
                 <li data-filter="hbo">HBO</li>
                 <li data-filter="amazon">Amazon Prime</li>
                 <li data-filter="atresplayer">Atresplayer</li>
+                <a href="<%= request.getContextPath() %>/labs/cinehub/logout.jsp">Cerrar sesión</a>
               </ul>
             </nav>
           </header>

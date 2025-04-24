@@ -1,4 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+
+	UsuarioJWT usuarioJWT = null;
+	
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+	
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -158,12 +174,12 @@ form .link a {
     <div class="login-box">
       <h1>CINEHUB+</h1>
       <h2>Inicia sesión</h2>
-      <form>
-        <input type="email" placeholder="Correo electrónico" required />
-        <input type="password" placeholder="Contraseña" required />
-        <button type="submit">Entrar</button>
-        <p class="link">¿No tienes cuenta? <a href="registro.jsp">Regístrate</a></p>
-      </form>
+      <form action="<%= request.getContextPath() %>/LoginCinehubControlador" method="post">
+	    <input type="text" name="username" placeholder="Correo electrónico" required />
+	    <input type="password" name="password" placeholder="Contraseña" required />
+	    <button type="submit">Entrar</button>
+	    <p class="link">¿No tienes cuenta? <a href="<%= request.getContextPath() %>/labs/cinehub/registro.jsp">Regístrate</a></p>
+	</form>
     </div>
   </div>
   <button id="infoBtn" class="info-btn" type="button">
@@ -172,10 +188,13 @@ form .link a {
   
   <div id="popup" class="popup">
     <div class="popup-content">
-      <span id="closePopup" class="close-btn">&times;</span>
-      <h3>¿Qué es XPath?</h3>
-      <p>XPath es un lenguaje usado para navegar y seleccionar nodos en un documento XML. Se utiliza comúnmente para extraer información específica dentro de estructuras XML o para hacer consultas sobre los datos almacenados.</p>
-    </div>
+	    <span id="closePopup" class="close-btn">&times;</span>
+	    <h3>¿Qué es XPath?</h3>
+	    <p>XPath es un lenguaje para navegar documentos XML y buscar datos específicos. Por ejemplo, puedes buscar un nombre de usuario en un archivo XML.</p>
+	    <br>
+	    <h3>¿Qué es XPath Injection?</h3>
+	    <p>Es una vulnerabilidad donde un atacante manipula consultas XPath, como al poner <code>' or '1'='1</code> en el login, para entrar sin credenciales.</p>
+	</div>
   </div>
   <script>
     const infoBtn = document.getElementById("infoBtn");

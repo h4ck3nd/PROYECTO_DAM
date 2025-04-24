@@ -1,4 +1,20 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+
+	UsuarioJWT usuarioJWT = null;
+	
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+	
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -186,7 +202,7 @@ form .link a:hover {
         <input type="password" placeholder="Contraseña" required />
         <input type="password" placeholder="Repetir contraseña" required />
         <button type="submit">Registrarse</button>
-        <p class="link">¿Ya tienes cuenta? <a href="login.jsp">Inicia sesión</a></p>
+        <p class="link">¿Ya tienes cuenta? <a href="<%= request.getContextPath() %>/labs/cinehub/login.jsp">Inicia sesión</a></p>
       </form>
     </div>
   </div>
