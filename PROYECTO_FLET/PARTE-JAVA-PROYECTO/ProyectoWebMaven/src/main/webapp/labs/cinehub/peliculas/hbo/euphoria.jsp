@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CINEHUB+ | EL AGENTE NOCTURNO</title>
+  <title>CINEHUB+ | EUPHORIA</title>
   <style>
     body {
   margin: 0;
@@ -209,20 +209,19 @@
     <!-- Contenido principal -->
     <main class="pelicula-container">
       <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yU6t0YPYdVw?si=aclOmzlN0-r1fqxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/nqSQUrlnB9s?si=lkJPIyHc3pF5aw4D" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
 
-      <section class="info-pelicula">
-        <h2>EL AGENTE NOCTURNO</h2>
-        <p class="descripcion">
-          <strong>Sinopsis:</strong> 
-          Peter Sutherland, un agente del FBI de bajo nivel que trabaja en el sótano de la Casa Blanca, se ve envuelto en una conspiración masiva cuando recibe una llamada urgente. Pronto descubrirá secretos que podrían cambiar el destino del país mientras intenta proteger a una joven perseguida y destapar a un traidor en lo más alto del poder.
-        </p>
-        <p><strong>Director:</strong> Seth Gordon</p>
-        <p><strong>Actores:</strong> Gabriel Basso, Luciane Buchanan, Hong Chau, Fola Evans-Akingbola, Sarah Desjardins</p>
-      </section>      
-    </main>
-
+  <section class="info-pelicula">
+  <h2>SUCCESSION</h2>
+  <p class="descripcion">
+    <strong>Sinopsis:</strong> 
+    La poderosa familia Roy controla uno de los conglomerados de medios y entretenimiento más grandes del mundo. Pero cuando el patriarca, Logan Roy, comienza a perder el control de la empresa y su salud decae, estalla una guerra interna entre sus hijos y aliados para ver quién tomará las riendas del imperio, desatando luchas de poder, traiciones y ambición desmedida.
+  </p>
+  <p><strong>Creador:</strong> Jesse Armstrong</p>
+  <p><strong>Actores:</strong> Brian Cox, Jeremy Strong, Sarah Snook, Kieran Culkin, Matthew Macfadyen</p>
+</section>
+</main>
     <!-- Footer -->
     <footer class="footer">
         <p>© CINEHUB+ Todos los derechos reservados</p>

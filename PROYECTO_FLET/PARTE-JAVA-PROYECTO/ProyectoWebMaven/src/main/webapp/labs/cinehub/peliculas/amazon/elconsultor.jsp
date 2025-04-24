@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CINEHUB+ | EL AGENTE NOCTURNO</title>
+  <title>CINEHUB+ | EL CONSULTOR</title>
   <style>
     body {
   margin: 0;
@@ -209,19 +209,19 @@
     <!-- Contenido principal -->
     <main class="pelicula-container">
       <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yU6t0YPYdVw?si=aclOmzlN0-r1fqxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/T_GqebtFfUE?si=vLHSsXH2_TG-b5Sg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
 
-      <section class="info-pelicula">
-        <h2>EL AGENTE NOCTURNO</h2>
-        <p class="descripcion">
-          <strong>Sinopsis:</strong> 
-          Peter Sutherland, un agente del FBI de bajo nivel que trabaja en el sótano de la Casa Blanca, se ve envuelto en una conspiración masiva cuando recibe una llamada urgente. Pronto descubrirá secretos que podrían cambiar el destino del país mientras intenta proteger a una joven perseguida y destapar a un traidor en lo más alto del poder.
-        </p>
-        <p><strong>Director:</strong> Seth Gordon</p>
-        <p><strong>Actores:</strong> Gabriel Basso, Luciane Buchanan, Hong Chau, Fola Evans-Akingbola, Sarah Desjardins</p>
-      </section>      
-    </main>
+ <section class="info-pelicula">
+  <h2>EL CONSULTOR</h2>
+  <p class="descripcion">
+    <strong>Sinopsis:</strong> 
+    Cuando un misterioso consultor llamado Regus Patoff llega a una empresa de tecnología tras una tragedia, su presencia empieza a alterar drásticamente la dinámica laboral. A medida que su control se intensifica, los empleados descubren que nada es lo que parece, y que sus vidas personales y profesionales están en juego en un juego siniestro de manipulación y poder.
+  </p>
+  <p><strong>Creador:</strong> Tony Basgallop</p>
+  <p><strong>Actores:</strong> Christoph Waltz, Nat Wolff, Brittany O'Grady, Aimee Carrero</p>
+</section>
+</main>
 
     <!-- Footer -->
     <footer class="footer">

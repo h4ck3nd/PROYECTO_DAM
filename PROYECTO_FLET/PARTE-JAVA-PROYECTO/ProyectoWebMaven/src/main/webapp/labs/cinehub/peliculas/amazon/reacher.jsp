@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CINEHUB+ | EL AGENTE NOCTURNO</title>
+  <title>CINEHUB+ | REACHER</title>
   <style>
     body {
   margin: 0;
@@ -209,19 +209,19 @@
     <!-- Contenido principal -->
     <main class="pelicula-container">
       <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yU6t0YPYdVw?si=aclOmzlN0-r1fqxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/vMG5TFxCnL4?si=9Uxa1lNpKd0jDMSi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
 
-      <section class="info-pelicula">
-        <h2>EL AGENTE NOCTURNO</h2>
-        <p class="descripcion">
-          <strong>Sinopsis:</strong> 
-          Peter Sutherland, un agente del FBI de bajo nivel que trabaja en el sótano de la Casa Blanca, se ve envuelto en una conspiración masiva cuando recibe una llamada urgente. Pronto descubrirá secretos que podrían cambiar el destino del país mientras intenta proteger a una joven perseguida y destapar a un traidor en lo más alto del poder.
-        </p>
-        <p><strong>Director:</strong> Seth Gordon</p>
-        <p><strong>Actores:</strong> Gabriel Basso, Luciane Buchanan, Hong Chau, Fola Evans-Akingbola, Sarah Desjardins</p>
-      </section>      
-    </main>
+  <section class="info-pelicula">
+  <h2>REACHER</h2>
+  <p class="descripcion">
+    <strong>Sinopsis:</strong> 
+    Jack Reacher, un exmilitar convertido en nómada, llega a un pequeño pueblo donde es arrestado por un crimen que no cometió. Mientras lucha por limpiar su nombre, descubre una conspiración mortal que involucra a las altas esferas del poder. Con su intelecto agudo y fuerza imparable, Reacher enfrentará a criminales sin escrúpulos para hacer justicia.
+  </p>
+  <p><strong>Creador:</strong> Nick Santora</p>
+  <p><strong>Actores:</strong> Alan Ritchson, Malcolm Goodwin, Willa Fitzgerald, Chris Webster, Bruce McGill</p>
+</section>
+</main>
 
     <!-- Footer -->
     <footer class="footer">

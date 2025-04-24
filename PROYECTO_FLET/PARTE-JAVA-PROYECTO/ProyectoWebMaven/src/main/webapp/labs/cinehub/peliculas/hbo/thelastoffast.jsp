@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>CINEHUB+ | EL AGENTE NOCTURNO</title>
+  <title>CINEHUB+ | THE LAST OF FAST</title>
   <style>
     body {
   margin: 0;
@@ -209,20 +209,19 @@
     <!-- Contenido principal -->
     <main class="pelicula-container">
       <div class="video-container">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/yU6t0YPYdVw?si=aclOmzlN0-r1fqxg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+	  <iframe width="560" height="315" src="https://www.youtube.com/embed/yyGetSp7CIc?si=knOiUO4PVvmHW7i8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       </div>
 
       <section class="info-pelicula">
-        <h2>EL AGENTE NOCTURNO</h2>
-        <p class="descripcion">
-          <strong>Sinopsis:</strong> 
-          Peter Sutherland, un agente del FBI de bajo nivel que trabaja en el sótano de la Casa Blanca, se ve envuelto en una conspiración masiva cuando recibe una llamada urgente. Pronto descubrirá secretos que podrían cambiar el destino del país mientras intenta proteger a una joven perseguida y destapar a un traidor en lo más alto del poder.
-        </p>
-        <p><strong>Director:</strong> Seth Gordon</p>
-        <p><strong>Actores:</strong> Gabriel Basso, Luciane Buchanan, Hong Chau, Fola Evans-Akingbola, Sarah Desjardins</p>
-      </section>      
-    </main>
-
+  <h2>THE LAST OF US</h2>
+  <p class="descripcion">
+    <strong>Sinopsis:</strong> 
+    Veinte años después de que la civilización moderna colapsara por una pandemia causada por un hongo parásito, Joel, un sobreviviente endurecido, es contratado para sacar a Ellie, una adolescente aparentemente inmune, de una zona de cuarentena. Lo que comienza como un simple encargo pronto se convierte en un viaje brutal y desgarrador a través de los Estados Unidos.
+  </p>
+  <p><strong>Directores:</strong> Craig Mazin, Neil Druckmann</p>
+  <p><strong>Actores:</strong> Pedro Pascal, Bella Ramsey, Anna Torv, Gabriel Luna, Merle Dandridge</p>
+</section>
+</main>
     <!-- Footer -->
     <footer class="footer">
         <p>© CINEHUB+ Todos los derechos reservados</p>
