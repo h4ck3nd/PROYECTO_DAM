@@ -56,7 +56,8 @@ def probar_credenciales(usuario, contrasena):
             print(f"[+] Credenciales correctas: Usuario: {usuario}, Contraseña: {contrasena}")
             return True  # Si encontramos el panel de administrador, terminamos la búsqueda
         else:
-            print(f"[ERROR] Error inesperado: Usuario: {usuario}, Contraseña: {contrasena}, Código: {response.status_code}")
+            print(f"[+] Credenciales correctas: Usuario: {usuario}, Contraseña: {contrasena}")
+            return True  # Si encontramos el panel de administrador, terminamos la búsqueda
 
     except requests.exceptions.RequestException as e:
         print(f"[ERROR] Ocurrió un error: {e}")
