@@ -188,44 +188,47 @@ html, body {
 
 /* Popup */
 .popup {
-  display: none;
   position: fixed;
-  top: 0; left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.7);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-.popup.show {
-  display: flex;
-}
-
 .popup-content {
-  background: #1f1f1f;
-  padding: 30px;
-  border-radius: 15px;
+  background-color: #1a1a1a;
+  color: white;
+  padding: 2rem;
+  border-radius: 10px;
   width: 90%;
-  max-width: 500px;
+  max-width: 400px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.9);
+  position: relative;
   text-align: center;
-  color: white;
-  box-shadow: 0 0 20px rgba(255, 0, 80, 0.3);
 }
 
-.popup-content h2 {
-  margin-bottom: 15px;
+.popup-content h3 {
   color: #ff0050;
+  margin-bottom: 1rem;
 }
 
-.popup-content button {
-  margin-top: 20px;
-  padding: 10px 20px;
-  background: #ff0050;
-  border: none;
-  color: white;
-  border-radius: 8px;
+.popup-content p {
+  font-size: 1rem;
+  color: #ccc;
+}
+
+/* Botón cerrar */
+.close-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #ff0050;
   cursor: pointer;
 }
 
@@ -369,13 +372,13 @@ html, body {
         </footer>
       </div>
     
-      <div id="popup" class="popup">
-        <div class="popup-content">
-          <span id="closePopup" class="close-btn">&times;</span>
-          <h3>¿Qué es XPath?</h3>
-          <p>XPath es un lenguaje usado para navegar y seleccionar nodos en un documento XML. Se utiliza comúnmente para extraer información específica dentro de estructuras XML o para hacer consultas sobre los datos almacenados.</p>
-        </div>
-      </div>
+       <div id="popup" class="popup">
+    <div class="popup-content">
+      <span id="closePopup" class="close-btn">&times;</span>
+      <h3>¿Qué es XPath?</h3>
+      <p>XPath es un lenguaje usado para navegar y seleccionar nodos en un documento XML. Se utiliza comúnmente para extraer información específica dentro de estructuras XML o para hacer consultas sobre los datos almacenados.</p>
+    </div>
+  </div>
     
       <script>
         const infoBtn = document.getElementById("infoBtn");
