@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import conexionDDBB.ConexionDDBB;
 import modelo.Producto;
@@ -60,6 +61,68 @@ public class ProductoDAO {
 			}
 		}
 		return false;
+	}
+	
+	public ArrayList<Producto> consultarProductos() {
+		ArrayList<Producto> productos = new ArrayList<Producto>();
+		String querySelect = "SELECT * FROM producto ORDER BY idProducto;";
+		try {
+			sentencia = connection.createStatement();
+			resultSet = sentencia.executeQuery(querySelect);
+			while(resultSet.next()) {
+				productos.add(new Producto(
+						resultSet.getInt("idProducto"),
+						resultSet.getString("nombre"), 
+						resultSet.getInt("cantidad"),
+						resultSet.getDouble("precio"), 
+						resultSet.getDate("fechaCreacion"),
+						resultSet.getDate("fechaActualizacion")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return productos;
+	}
+	
+	public void editar(Producto producto) {
+		if(producto != null) {
+			String queryUpdate = "UPDATE producto SET nombre = ?, "
+					+ "cantidad = ?, precio = ? "
+					+ "WHERE idProducto = ?;";
+		try {
+			sentenciaParametrizada = connection.prepareStatement(queryUpdate);
+			sentenciaParametrizada.setString(1, producto.getNombre());
+			sentenciaParametrizada.setInt(1, producto.getCantidad());
+			sentenciaParametrizada.setDouble(1, producto.getPrecio());
+			sentenciaParametrizada.setInt(1, producto.getIdProducto());
+			
+			sentenciaParametrizada.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		}
+	}
+	
+	public Producto obtenerProductos(int idProducto) {
+		Producto producto = null;
+		String querySelect = "SELECT * FROM producto ORDER BY idProducto;";
+		try {
+			sentenciaParametrizada = connection.prepareStatement(querySelect);
+			sentenciaParametrizada.setInt(1, idProducto);
+			resultSet = sentenciaParametrizada.executeQuery();
+			while(resultSet.next()) {
+				producto = new Producto(
+						resultSet.getInt("idProducto"),
+						resultSet.getString("nombre"), 
+						resultSet.getInt("cantidad"),
+						resultSet.getDouble("precio"), 
+						resultSet.getDate("fechaCreacion"),
+						resultSet.getDate("fechaActualizacion"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return producto;
 	}
 	
 	public ConexionDDBB getConexion() {
