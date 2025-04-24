@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <usuarios>
     <usuario>
-        <nombre>admin</nombre>
-        <clave>admin123</clave>
-    </usuario>
-    <usuario>
-        <nombre>user</nombre>
-        <clave>userpass</clave>
+        <nombre>d1se0</nombre>
+        <clave>password88</clave>
     </usuario>
 </usuarios>
