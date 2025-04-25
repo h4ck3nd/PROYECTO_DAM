@@ -578,7 +578,7 @@
   <!-- INTRO -->
   <section class="lab-intro">
     <div class="lab-img">
-      <img src="<%= request.getContextPath() %>/img/logo-test-3-update.png" alt="Máquina CTF">
+      <img src="<%= request.getContextPath() %>/img/logo-test-32-update.png" alt="Máquina CTF">
     </div>
     <div class="lab-info">
       <h2 class="typewriter" data-text="CINEHUB+ LAB: HACKING WEB"></h2>
