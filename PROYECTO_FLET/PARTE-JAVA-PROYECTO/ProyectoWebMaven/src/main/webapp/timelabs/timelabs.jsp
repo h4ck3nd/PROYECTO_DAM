@@ -53,10 +53,9 @@
 			font-size: 18px !important;
 		}
 		.logo-image {
-		  width: 195px;
+		  width: 165px;
 		  height: 70px;
 		  position: relative;
-		  left: 20px;
 		}
 		.profile-image-update {
 			width: 40px;
@@ -522,7 +521,7 @@
 		    </div>
 		</div>
 		<!-- LOGO DE LA PAGINA -->
-	   <img src="<%= request.getContextPath() %>/img/timelabs/texto_update_1_timelabs.png" class="logo-image" alt="Imagen Logo">
+	   <img src="<%= request.getContextPath() %>/img/timelabs/banner-update-timelabs.png" class="logo-image" alt="Imagen Logo">
        <!--<div class="logo">Google</div>-->
     </header>
 
