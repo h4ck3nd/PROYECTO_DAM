@@ -235,7 +235,7 @@
   <div class="flag-lab">
     <h2>Flag-Lab</h2>
     <p>Este es un espacio donde se puede encontrar la bandera para desafíos de hacking ético.</p>
-    <p><strong>FLAG:</strong> Flag{retro-game_flag}</p>
+    <p><strong>FLAG:</strong> FLAG{retrogame_flag}</p>
     <br>
     <button onclick="window.location.href='<%= request.getContextPath() %>/labs/retroGame/retroGame-lab.jsp'">
       ENVIAR WRITEUP
