@@ -228,11 +228,11 @@ form .link a:hover {
 <!-- Modal de advertencia -->
 <div id="warningModal" class="popup" style="display: flex;">
   <div class="popup-content">
-    <h3>鈿狅笍 Aviso Importante</h3>
+    <h3>⚠️ Aviso Importante</h3>
     <p>
       Esto es un <strong>laboratorio de hacking web 茅tico controlado</strong>. <br><br>
       Por favor, <strong>no introduzcas datos personales reales</strong>. <br><br>
-      Este entorno es para hacerlo m谩s realista y simularlo lo m谩s parecido posible a la vida real.
+      Este entorno es para hacerlo más realista y simularlo lo más parecido posible a la vida real.
     </p>
     <button id="closeWarningBtn" class="info-btn" style="margin-top: 1rem; position: relative;">Entendido</button>
   </div>
@@ -243,33 +243,33 @@ form .link a:hover {
       <h2>Crear cuenta</h2>
       <form>
   <input type="text" placeholder="Nombre completo" required />
-  <input type="email" placeholder="Correo electr贸nico" required />
-  <input type="password" placeholder="Contrase帽a" required />
-  <input type="password" placeholder="Repetir contrase帽a" required />
+  <input type="email" placeholder="Correo electrónico" required />
+  <input type="password" placeholder="Contraseña" required />
+  <input type="password" placeholder="Repetir contraseña" required />
   <br>
   <h2>Datos de la tarjeta 
-  <span class="tooltip-icon" title="Este es un entorno de laboratorio. No introduzcas una tarjeta real.">鈿狅笍</span>
+  <span class="tooltip-icon" title="Este es un entorno de laboratorio. No introduzcas una tarjeta real.">⚠️</span>
 </h2>
-  <input type="text" id="card-number" placeholder="N煤mero de tarjeta" required />
+  <input type="text" id="card-number" placeholder="Número de tarjeta" required />
   <input type="text" id="card-name" placeholder="Nombre del titular" required />
-  <input type="text" id="card-expiry" placeholder="Fecha de expiraci贸n (MM/AA)" required />
+  <input type="text" id="card-expiry" placeholder="Fecha de expiración (MM/AA)" required />
   <input type="text" id="card-cvc" placeholder="CVC" required />
 
   <button type="button" id="registerBtn">Registrarse</button>
-  <p class="link">驴Ya tienes cuenta? <a href="login.jsp">Inicia sesi贸n</a></p>
+  <p class="link">¿Ya tienes cuenta? <a href="login.jsp">Inicia sesión</a></p>
 </form>
     </div>
   </div>
   <button id="infoBtn" class="info-btn" type="button">
-    馃挕
+    💡
   </button>
   
   <!-- Popup de ayuda -->
 <div id="popup" class="popup">
     <div class="popup-content">
       <span id="closePopup" class="close-btn">&times;</span>
-      <h3>驴Qu茅 es XPath?</h3>
-      <p>XPath es un lenguaje usado para navegar y seleccionar nodos en un documento XML. Se utiliza com煤nmente para extraer informaci贸n espec铆fica dentro de estructuras XML o para hacer consultas sobre los datos almacenados.</p>
+      <h3>¿Qué es XPath?</h3>
+      <p>XPath es un lenguaje usado para navegar y seleccionar nodos en un documento XML. Se utiliza comúnmente para extraer información específica dentro de estructuras XML o para hacer consultas sobre los datos almacenados.</p>
     </div>
   </div>
   <script>
@@ -307,9 +307,9 @@ form .link a:hover {
     // validacion del formulario de registro
      document.getElementById("registerBtn").addEventListener("click", function () {
     const name = document.querySelector("input[placeholder='Nombre completo']").value.trim();
-    const email = document.querySelector("input[placeholder='Correo electr贸nico']").value.trim();
-    const pass = document.querySelector("input[placeholder='Contrase帽a']").value.trim();
-    const repeatPass = document.querySelector("input[placeholder='Repetir contrase帽a']").value.trim();
+    const email = document.querySelector("input[placeholder='Correo electrónico']").value.trim();
+    const pass = document.querySelector("input[placeholder='Contraseña']").value.trim();
+    const repeatPass = document.querySelector("input[placeholder='Repetir contraseña']").value.trim();
 
     const cardNumber = document.getElementById("card-number").value.trim();
     const cardName = document.getElementById("card-name").value.trim();
@@ -319,7 +319,7 @@ form .link a:hover {
     if (!name || !email || !pass || !repeatPass || !cardNumber || !cardName || !cardExpiry || !cardCVC) {
       alert("Por favor, completa todos los campos, incluyendo los de la tarjeta (es un entorno de pruebas).");
     } else {
-      window.location.href = "login.jsp"; // Redirecci贸n
+      window.location.href = "login.jsp"; // Redirección
     }
   });
     
