@@ -49,44 +49,22 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: none;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: none; /* Se muestra por JavaScript */
   justify-content: center;
   align-items: center;
-  z-index: 1002;
+  z-index: 2000; /* Superior a otros elementos */
 }
 
 #warningModal .popup-content {
   background-color: #1a1a1a;
-  color: white;
   padding: 2rem;
   border-radius: 10px;
-  width: 90%;
-  max-width: 400px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
-  text-align: center;
-  position: relative;
-}
-
-#understoodBtn {
-  margin-top: 2rem;
-  padding: 12px 24px;
-  background-color: #ff0050;
-  border: none;
-  border-radius: 5px;
   color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#understoodBtn:hover {
-  background-color: #e60045;
-}
-
-#understoodBtn:hover {
-  background-color: #e60045;
+  max-width: 420px;
+  width: 90%;
+  text-align: center;
 }
 
 #warningModal h3 {
@@ -99,23 +77,6 @@ body {
   font-size: 1rem;
   color: #ccc;
   line-height: 1.5;
-}
-
-#understoodBtn {
-  margin-top: 2rem;
-  padding: 12px 24px;
-  background-color: #ff0050;
-  border: none;
-  border-radius: 5px;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-#understoodBtn:hover {
-  background-color: #e60045;
 }
 
 .container {
@@ -144,6 +105,17 @@ body {
   margin-bottom: 1.5rem;
   text-align: center;
   color: #dddddd;
+}
+
+.register-box h2 span{
+  margin-top: 5px;
+}
+
+.tooltip-icon {
+  cursor: help;
+  font-size: 1rem;
+  margin-left: 8px;
+  color: #ff0050;
 }
 
 form input {
@@ -193,7 +165,7 @@ form .link a:hover {
   text-decoration: underline;
 }
 
-/* Botón de información */
+/* Bot贸n de informaci贸n */
 .info-btn {
   position: fixed;
   bottom: 20px;
@@ -255,7 +227,7 @@ form .link a:hover {
   color: #ccc;
 }
 
-/* Botón cerrar */
+/* Bot贸n cerrar */
 .close-btn {
   position: absolute;
   top: 10px;
@@ -270,28 +242,27 @@ form .link a:hover {
 </head>
 <body>
 <!-- Modal de advertencia -->
-<div id="warningModal">
+<div id="warningModal" class="popup" style="display: flex;">
   <div class="popup-content">
-    <h3>⚠️ Advertencia</h3>
+    <h3>⚠️ Aviso Importante</h3>
     <p>
-      Este es un laboratorio de hacking web ético controlado. <br>
+      Esto es un <strong>laboratorio de hacking web ético controlado</strong>. <br><br>
       Por favor, <strong>no introduzcas datos personales reales</strong>. <br><br>
-      El objetivo es simular una experiencia realista para fines educativos.
+      Este entorno es para hacerlo más realista y simularlo lo más parecido posible a la vida real.
     </p>
-    <button id="understoodBtn">Entendido</button>
+    <button id="closeWarningBtn" style="margin-top: 1rem; position: relative;">Entendido</button>
   </div>
 </div>
-
   <div class="container">
+  <br><br><br>
     <div class="register-box">
       <h1>CINEHUB+</h1>
       <h2>Crear cuenta</h2>
       <form>
   <input type="text" placeholder="Nombre completo" required />
   <input type="email" placeholder="Correo electrónico" required />
-  <input type="password" id="password" placeholder="Contraseña" required />
-  <input type="password" id="confirmPassword" placeholder="Repetir contraseña" required />
-
+  <input type="password" placeholder="Contraseña" required />
+  <input type="password" placeholder="Repetir contraseña" required />
   <br>
   <h2>Datos de la tarjeta 
   <span class="tooltip-icon" title="Este es un entorno de laboratorio. No introduzcas una tarjeta real.">⚠️</span>
@@ -313,10 +284,13 @@ form .link a:hover {
   <!-- Popup de ayuda -->
 <div id="popup" class="popup">
     <div class="popup-content">
-      <span id="closePopup" class="close-btn">&times;</span>
-      <h3>¿Qué es XPath?</h3>
-      <p>XPath es un lenguaje usado para navegar y seleccionar nodos en un documento XML. Se utiliza comúnmente para extraer información específica dentro de estructuras XML o para hacer consultas sobre los datos almacenados.</p>
-    </div>
+	    <span id="closePopup" class="close-btn">&times;</span>
+	    <h3>¿Qué es XPath?</h3>
+	    <p>XPath es un lenguaje para navegar documentos XML y buscar datos específicos. Por ejemplo, puedes buscar un nombre de usuario en un archivo XML.</p>
+	    <br>
+	    <h3>¿Qué es XPath Injection?</h3>
+	    <p>Es una vulnerabilidad donde un atacante manipula consultas XPath, como al poner <code>' or '1'='1</code> en el login, para entrar sin credenciales.</p>
+	</div>
   </div>
   <script>
     const infoBtn = document.getElementById("infoBtn");
@@ -327,7 +301,7 @@ form .link a:hover {
       popup.style.display = "flex";
     });
   
-    closePopup.addEventLidstener("click", () => {
+    closePopup.addEventListener("click", () => {
       popup.style.display = "none";
     });
   
@@ -353,9 +327,9 @@ form .link a:hover {
     // validacion del formulario de registro
      document.getElementById("registerBtn").addEventListener("click", function () {
     const name = document.querySelector("input[placeholder='Nombre completo']").value.trim();
-    const email = document.querySelector("input[placeholder='Correo electr贸nico']").value.trim();
-    const pass = document.querySelector("input[placeholder='Contrase帽a']").value.trim();
-    const repeatPass = document.querySelector("input[placeholder='Repetir contrase帽a']").value.trim();
+    const email = document.querySelector("input[placeholder='Correo electrónico']").value.trim();
+    const pass = document.querySelector("input[placeholder='Contraseña']").value.trim();
+    const repeatPass = document.querySelector("input[placeholder='Repetir contraseña']").value.trim();
 
     const cardNumber = document.getElementById("card-number").value.trim();
     const cardName = document.getElementById("card-name").value.trim();
@@ -370,18 +344,13 @@ form .link a:hover {
   });
     
     // abrir modal cuando cargue la pagina
-  window.addEventListener("load", () => {
-    const modal = document.getElementById("warningModal");
-    const btn = document.getElementById("understoodBtn");
+  const closeWarningBtn = document.getElementById("closeWarningBtn");
+  const warningModal = document.getElementById("warningModal");
 
-    // Mostrar el modal al cargar la página
-    modal.style.display = "flex";
-
-    // Cerrar el modal al hacer clic en "Entendido"
-    btn.addEventListener("click", () => {
-      modal.style.display = "none";
-    });
+  closeWarningBtn.addEventListener("click", () => {
+    warningModal.style.display = "none";
   });
 </script>
+  
 </body>
 </html>

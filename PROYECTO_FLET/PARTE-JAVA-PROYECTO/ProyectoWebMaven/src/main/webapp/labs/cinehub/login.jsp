@@ -166,10 +166,67 @@ form .link a {
   color: #ff0050;
   cursor: pointer;
 }
-
+header {
+	  display: flex;
+	  justify-content: space-between;
+	  align-items: center;
+	  padding: 8px 16px;
+	  border-bottom: 1px solid #1e1e1e;
+	  position: fixed;
+	  top: 0;
+	  width: 100%;
+	  z-index: 1000;
+	}
+	.window-controls {
+	  display: flex;
+	  margin-right: 30px;
+	  gap: 8px;
+	}
+	.win-btn {
+	  background: #21262d;
+	  border: none;
+	  color: #e6edf3;
+	  width: 30px;
+	  height: 30px;
+	  font-size: 1rem;
+	  cursor: pointer;
+	  border-radius: 4px;
+	  font-family: 'Press Start 2P', monospace;
+	  transition: background 0.2s ease;
+	}
+	.win-btn:hover {
+	  background-color: #30363d;
+	}
+	.win-btn {
+	  background: #21262d;
+	  border: none;
+	  color: #e6edf3;
+	  width: 30px;
+	  height: 30px;
+	  font-size: 1rem;
+	  cursor: pointer;
+	  border-radius: 4px;
+	  font-family: 'Press Start 2P', monospace;
+	  transition: background 0.2s ease;
+	  
+	  display: flex;
+	  align-items: center;
+	  justify-content: center;
+	  padding: 0; /* Opcional: asegura que no haya desplazamientos internos */
+	}
   </style>
 </head>
 <body>
+<header>
+	  <div class="left">
+	    <!-- Aquí podrías colocar un logo o nombre si quisieras -->
+	  </div>
+	  <div class="window-controls">
+	    <button class="win-btn minimize">—</button>
+	    <button class="win-btn maximize">□</button>
+	    <button onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/cinehub-lab.jsp'" class="win-btn close">✕</button>
+	  </div>
+	</header>
   <div class="container">
     <div class="login-box">
       <h1>CINEHUB+</h1>

@@ -139,7 +139,7 @@
     .nivel-btn {
       width: 100px;
       padding: 10px;
-      background-color: #5eff33;
+      background-color: #ffb833;
       color: #fff;
       border: none;
       border-radius: 6px;
@@ -585,7 +585,7 @@
       <p><strong>Autor:</strong> D1se0</p>
       <p><strong>Descripción:</strong> Comparte tus conocimientos con la comunidad de hacking mas grande del mundo, aprende a realizar una Fuerza Bruta.</p>
       <p><strong>Fecha de creación:</strong> 24/04/2025</p>
-      <button class="nivel-btn">Facil</button>
+      <button class="nivel-btn">Medio</button>
     </div>
   </section>
   
