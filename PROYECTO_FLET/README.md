@@ -14,6 +14,8 @@
 
 PROMPT = Generame un logo sobre hacking etico simple
 
+PROMPT = Generame un logo de hacking etico simple pero atractivo
+
 IMAGEN DE GUIA (35%) = logo-test-2.png
 
 ====================================================================
