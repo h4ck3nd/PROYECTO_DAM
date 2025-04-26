@@ -106,7 +106,7 @@
 	<div class="window-buttons">
 		<button class="btn minimizar">-</button>
 		<button class="btn maximizar">O</button>
-		<button onclick="window.location.href='<%= request.getContextPath() %>/profile.jsp'" class="btn cerrar">X</button>
+		<button onclick="window.location.href='/ProyectoWebMaven/profile.jsp'" class="btn cerrar">X</button>
 	</div>
 </header>
 	<!-- Formulario oculto para enviar el ID del usuario -->
@@ -154,6 +154,18 @@
 				<p>Pagina OvaLabs</p>
 			</div>
 		</section>
+		
+		<!-- Timelabs -->
+		<section class="lab-column">
+			<h2>Timelabs</h2>
+			<p id="puntos-timelabs" class="puntuacion-total">
+			  Puntuación: ${puntosTimelabs} / ${puntosTotalesLab4}
+			</p>
+			<div class="lab-card">
+				<h3>Timelabs</h3>
+				<p>Pagina Timelabs</p>
+			</div>
+		</section>
 	</main>
 	<div class="contenedor-exportar">
   <form method="get" action="<%= request.getContextPath() %>/exportarPDF" class="form-exportar-update">
@@ -166,6 +178,8 @@
     <input type="hidden" name="puntosTotalesLab2" value="${puntosTotalesLab2}">
     <input type="hidden" name="puntosOvaLabs" value="${puntosOvaLabs}">
     <input type="hidden" name="puntosTotalesLab3" value="${puntosTotalesLab3}">
+    <input type="hidden" name="puntosTimelabs" value="${puntosTimelabs}">
+    <input type="hidden" name="puntosTotalesLab4" value="${puntosTotalesLab4}">
     
     <button type="submit" class="btn-exportar-update">📄 Exportar a PDF</button>
 </form>
@@ -185,7 +199,8 @@
 	  "${puntosR00tless}",  // r00tless (DockerPwned)
 	  "${puntosCrackoff}",	// crackoff (DockerPwned)
 	  "${puntosHackmedaddy}",	// hackmedaddy (DockerPwned)
-	  "${puntosGoodness}"  // Goodness (OvaLabs)
+	  "${puntosGoodness}",  // Goodness (OvaLabs)
+	  "${puntosCineHack}",  // CineHack (Timelabs)
 	].map(Number); // Convertimos a números
 	
 	const ctx = document.getElementById('labChart').getContext('2d');
@@ -201,7 +216,8 @@
 	      'r00tless (DockerPwned)',
 	      'crackoff (DockerPwned)',
 	      'hackmedaddy (DockerPwned)',
-	      'goodness (OvaLabs)'
+	      'goodness (OvaLabs)',
+	      'cinehack (Timelabs)',
 	    ],
 	    datasets: [{
 	      label: 'Distribución de Laboratorios',
@@ -209,7 +225,8 @@
 	      backgroundColor: [
 	        '#66bb6a', '#81c784', '#a5d6a7', '#48e05f',   // Hacking Web - VERDE
 	        '#64b5f6', '#24a5d5', '#3c7e97', '#71b8d3',   // DockerPwned - AZUL
-	        '#ffb74d'               					  // OvaLabs - NARANJA
+	        '#ffb74d',               					  // OvaLabs - NARANJA
+	        '#d83333',               					  // Timelabs - ROJO
 	      ],
 	      borderColor: '#ffffff',
 	      borderWidth: 2

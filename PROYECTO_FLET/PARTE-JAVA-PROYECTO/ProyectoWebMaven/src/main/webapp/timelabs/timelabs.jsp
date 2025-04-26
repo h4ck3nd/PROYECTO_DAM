@@ -31,7 +31,7 @@
     }
     
  	// Obtener el lab_id de "test" desde la base de datos
-    int labId = LaboratorioDAO.obtenerIdLaboratorioTest();
+    int labId = LaboratorioDAO.obtenerIdLaboratorioCineHack();
     String mensaje = "";
 
     // Recuperamos el mensaje desde la URL
@@ -737,7 +737,8 @@
 	// Ã¢Â¬â¡Ã¯Â¸Â Definimos estos dos globalmente para que estÃÂ©n disponibles en todo el script
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
-		{ url: "inactive.jsp", title: "INACTIVE", description: "Espera hasta que el nuevo evento comience...", image: "../img/logo-test-17-update.png", tags: ["timelabs", "hacking", "lab", "facil","d1se0"] },
+		{ url: "cinehack.jsp", title: "CineHack", description: "Ponte a prueba en tiempo limita a hackear esta maravillosa maquina...", image: "../img/logo-test-17-update.png", tags: ["timelabs", "hacking", "cinehack", "tiempo limite", "lab", "medio","d1se0"] },
+		//{ url: "inactive.jsp", title: "INACTIVE", description: "Espera hasta que el nuevo evento comience...", image: "../img/logo-test-17-update.png", tags: ["timelabs", "hacking", "lab", "facil","d1se0"] },
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
