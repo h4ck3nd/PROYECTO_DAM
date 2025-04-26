@@ -101,6 +101,28 @@
 	  transition: box-shadow 0.3s, border-color 0.3s;
 	  cursor:default;
 	}
+	/* Capa para arrastrar archivo */
+	.drop-overlay {
+	    display: none;
+	    position: fixed;
+	    top: 0;
+	    left: 0;
+	    right: 0;
+	    bottom: 0;
+	    background: rgba(0, 0, 0, 0.7);
+	    z-index: 1000;
+	    align-items: center;
+	    justify-content: center;
+	    flex-direction: column;
+	    color: white;
+	    font-size: 24px;
+	    font-weight: bold;
+	}
+	
+	/* Estilo de texto dentro de la capa */
+	.drop-text {
+	    text-align: center;
+	}
 </style>
 </head>
 <body>
@@ -145,23 +167,56 @@
         <div class="screen" id="pantalla">
         <form action="SubirFotoPerfil?user_id=<%= usuarioJWT.getUserId() %>" method="post" class="formulario" enctype="multipart/form-data">
         <div class="ventana-macos">
-            <a href="profile.jsp" class="boton rojo"></a>
-            <span class="boton amarillo"></span>
-            <span class="boton verde"></span>
-          </div>
+		    <a href="profile.jsp" class="boton rojo"></a>
+		    <span class="boton amarillo"></span>
+		    <span class="boton verde"></span>
+		</div>
           <br>
           <h2 style="font-size: 30px !important">Cambiar Foto de Perfil</h2>
           <br>
-		  <input type="file" name="profilePhoto">
+		  <input type="file" id="profilePhoto" name="profilePhoto">
 		  <button type="submit">Subir Foto</button>
     	  <button type="submit" name="eliminar" value="true">Eliminar Foto de Perfil</button>
 		</form>
       </div>
       </div>
+      <!-- Capa de arrastrar -->
+	<div id="dropOverlay" class="drop-overlay">
+	    <div class="drop-text">Suelta la imagen aquí para subir</div>
+	</div>
       <div class="stand"></div>
       <div class="base"></div>
       <div class="ground"></div>
     </div>
   </div>
+  <script>
+	  const dropOverlay = document.getElementById('dropOverlay');
+	  const profilePhotoInput = document.getElementById('profilePhoto');
+	
+	  // Mostrar overlay cuando se arrastra algo
+	  document.addEventListener('dragover', (e) => {
+	      e.preventDefault();
+	      dropOverlay.style.display = 'flex';
+	  });
+	
+	  // Ocultar overlay si se sale
+	  document.addEventListener('dragleave', (e) => {
+	      if (e.clientX <= 0 || e.clientY <= 0 || e.clientX >= window.innerWidth || e.clientY >= window.innerHeight) {
+	          dropOverlay.style.display = 'none';
+	      }
+	  });
+	
+	  // Soltar archivo
+	  document.addEventListener('drop', (e) => {
+	      e.preventDefault();
+	      dropOverlay.style.display = 'none';
+	
+	      const files = e.dataTransfer.files;
+	      if (files.length > 0) {
+	          profilePhotoInput.files = files; // Cargamos archivo en el input
+	          // Ya no hacemos submit automático.
+	      }
+	  });
+  </script>
 </body>
 </html>
