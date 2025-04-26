@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 import time
 import requests
 
-from flask import Flask, request, jsonify, session, redirect, make_response
+from flask import Flask, request, jsonify, session, redirect, make_response, abort
 import threading
 
 # Clave secreta para JWT
@@ -400,6 +400,64 @@ def get_username(user_id):
     else:
         # Si no se encuentra el usuario, devolvemos un mensaje de error
         return jsonify({"username": "Desconocido"}), 404
+
+@app.route('/get_usuarios', methods=['GET'])
+def obtener_usuarios():
+    conn = connect_db()
+    cur = conn.cursor()
+    cur.execute('SELECT id, nombre, apellidos, email, usuario, fecha_nacimiento, rol FROM usuarios WHERE estado = TRUE;')
+    usuarios = cur.fetchall()
+    cur.close()
+    conn.close()
+
+    usuarios_list = []
+    for u in usuarios:
+        usuarios_list.append({
+            'id': u[0],
+            'nombre': u[1],
+            'apellidos': u[2],
+            'email': u[3],
+            'usuario': u[4],
+            'fecha_nacimiento': str(u[5]),
+            'rol': u[6]
+        })
+
+    return jsonify(usuarios_list)
+
+
+@app.route('/usuarios/<int:id_usuario>', methods=['GET'])
+def obtener_usuario(id_usuario):
+    conn = connect_db()
+    if not conn:
+        abort(500, description="Error de conexión a la base de datos")
+
+    cur = conn.cursor()
+    try:
+        # Ahora seleccionamos más columnas
+        cur.execute("""
+            SELECT id, nombre, apellidos, usuario, email, rol 
+            FROM usuarios 
+            WHERE id = %s
+        """, (id_usuario,))
+        user = cur.fetchone()
+
+        if user:
+            return jsonify({
+                "id": user[0],
+                "nombre": user[1],
+                "apellidos": user[2],
+                "usuario": user[3],
+                "email": user[4],
+                "rol": user[5],
+            })
+        else:
+            abort(404, description="Usuario no encontrado")
+    except Exception as e:
+        abort(500, description=f"Error al obtener los datos: {e}")
+    finally:
+        cur.close()
+        conn.close()
+
 
 threading.Thread(target=run_flask, daemon=True).start()
 
