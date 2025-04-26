@@ -62,7 +62,7 @@ public class PuntosDAO {
         return puntosDockerPwned;
     }
     
- // Método para obtener los puntos de Hacking Web del usuario
+    // Método para obtener los puntos de Hacking Web del usuario
     public int obtenerPuntosOvaLabs(int userId) throws SQLException {
         int puntosOvaLabs = 0;
         
@@ -88,6 +88,34 @@ public class PuntosDAO {
         }
         
         return puntosOvaLabs;
+    }
+    
+    // Método para obtener los puntos de Hacking Web del usuario
+    public int obtenerPuntosTimelabs(int userId) throws SQLException {
+        int puntosTimelabs = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS total_puntos FROM validate_flag_timelabs WHERE user_id = ?";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosTimelabs = rs.getInt("total_puntos");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos Timelabs: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosTimelabs;
     }
     
  // NUEVO: Obtener puntos totales del lab_id = 1 (sin importar el usuario)
@@ -140,7 +168,7 @@ public class PuntosDAO {
         return totalPuntosLab1;
     }
     
- // NUEVO: Obtener puntos totales del lab_id = 1 (sin importar el usuario)
+    // NUEVO: Obtener puntos totales del lab_id = 1 (sin importar el usuario)
     public int obtenerPuntosTotalesDeLab3() throws SQLException {
         int totalPuntosLab1 = 0;
 
@@ -163,6 +191,31 @@ public class PuntosDAO {
         }
 
         return totalPuntosLab1;
+    }
+    
+    // NUEVO: Obtener puntos totales del lab_id = 4 (sin importar el usuario)
+    public int obtenerPuntosTotalesDeLab4() throws SQLException {
+        int totalPuntosLab4 = 0;
+
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+
+        String sql = "SELECT SUM(puntos) AS total_puntos_timelabs FROM laboratorios_timelabs";
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	totalPuntosLab4 = rs.getInt("total_puntos_timelabs");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos totales del lab_id = 4: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion();
+        }
+
+        return totalPuntosLab4;
     }
     
     // Método para obtener los puntos de Hacking Web del usuario
@@ -443,5 +496,33 @@ public class PuntosDAO {
         }
         
         return puntosGoodness;
+    }
+    
+    // Método para obtener los puntos de goodness LAB 1 del usuario
+    public int obtenerPuntosCineHack(int userId) throws SQLException {
+        int puntosCineHack = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosCineHack FROM validate_flag_timelabs WHERE user_id = ? AND lab_id = 1";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosCineHack = rs.getInt("puntosCineHack");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos CineHack: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosCineHack;
     }
 }

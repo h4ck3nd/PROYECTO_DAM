@@ -223,10 +223,10 @@ public class LaboratorioDAO {
         return labId;
     }
     
-    // Método para obtener el ID del laboratorio con nombre "test" (fijo) [Timelabs]
-    public static int obtenerIdLaboratorioTest() {
+    // Método para obtener el ID del laboratorio con nombre "cinehack" (fijo) [Timelabs]
+    public static int obtenerIdLaboratorioCineHack() {
         int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
-        String query = "SELECT lab_id FROM laboratorios_timelabs WHERE nombre = 'test'";  // Nombre fijo
+        String query = "SELECT lab_id FROM laboratorios_timelabs WHERE nombre = 'cinehack'";  // Nombre fijo
 
         try (Connection conn = new ConexionDDBB().conectar();
              PreparedStatement stmt = conn.prepareStatement(query)) {
