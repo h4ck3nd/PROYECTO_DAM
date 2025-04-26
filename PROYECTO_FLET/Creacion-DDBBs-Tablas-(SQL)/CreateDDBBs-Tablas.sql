@@ -213,3 +213,13 @@ CREATE TABLE countdown (
 );
 
 INSERT INTO countdown (id, target_time) VALUES (1, NULL); -- Insertar el primer valor (Obligatorio)
+
+-- Tabla de amistad (solicitudes y amistades aceptadas)
+CREATE TABLE amistad (
+    id SERIAL PRIMARY KEY,
+    solicitante_id INT NOT NULL, -- Usuario que envía la solicitud
+    solicitado_id INT NOT NULL,  -- Usuario que recibe la solicitud
+    estado VARCHAR(20) NOT NULL DEFAULT 'pendiente', -- pendiente, aceptada, rechazada
+    fecha_creacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
