@@ -41,6 +41,12 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosOvaLabs", puntosOvaLabs);
                 
+                // Crear el objeto DAO y obtener los puntos de Timelabs
+                int puntosTimelabs = puntosDAO.obtenerPuntosTimelabs(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosTimelabs", puntosTimelabs);
+                
              	//============================================SECCIONES DE LABS TOTALES========================================================
                 
                 // También obtener los puntos totales del laboratorio 1
@@ -51,9 +57,13 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 int puntosTotalesLab2 = puntosDAO.obtenerPuntosTotalesDeLab2();
                 request.setAttribute("puntosTotalesLab2", puntosTotalesLab2);
                 
-                // También obtener los puntos totales del laboratorio 2
+                // También obtener los puntos totales del laboratorio 3
                 int puntosTotalesLab3 = puntosDAO.obtenerPuntosTotalesDeLab3();
                 request.setAttribute("puntosTotalesLab3", puntosTotalesLab3);
+                
+                // También obtener los puntos totales del laboratorio 4
+                int puntosTotalesLab4 = puntosDAO.obtenerPuntosTotalesDeLab4();
+                request.setAttribute("puntosTotalesLab4", puntosTotalesLab4);
                 
                 //============================================LABS POR SEPARADO========================================================
                 
@@ -120,6 +130,14 @@ public class PuntosUsuarioControlador extends HttpServlet {
 
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosGoodness", puntosGoodness);
+                
+                // PUNTOS TIMELABS
+                
+                // Obtener Puntos del laboratorio CineHack (Timelabs)
+                int puntosCineHack = puntosDAO.obtenerPuntosCineHack(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosCineHack", puntosCineHack);
                 
                 //============================================RESTO========================================================
 

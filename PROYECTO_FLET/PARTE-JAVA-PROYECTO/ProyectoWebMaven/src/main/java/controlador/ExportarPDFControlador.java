@@ -28,6 +28,8 @@ public class ExportarPDFControlador extends HttpServlet {
         int puntosTotalesLab2 = obtenerValorParametro(request, "puntosTotalesLab2");
         int puntosOvaLabs = obtenerValorParametro(request, "puntosOvaLabs");
         int puntosTotalesLab3 = obtenerValorParametro(request, "puntosTotalesLab3");
+        int puntosTimelabs = obtenerValorParametro(request, "puntosTimelabs");
+        int puntosTotalesLab4 = obtenerValorParametro(request, "puntosTotalesLab4");
 
         // Crear la plantilla HTML con los datos obtenidos del formulario
         String html = "<html><head><style>" +
@@ -49,6 +51,9 @@ public class ExportarPDFControlador extends HttpServlet {
 
                 "<div class='lab'><h2>OvaLabs</h2>" +
                 "<p>Puntuación: " + puntosOvaLabs + " / " + puntosTotalesLab3 + "</p></div>" +
+                
+				"<div class='lab'><h2>Timelabs</h2>" +
+				"<p>Puntuación: " + puntosTimelabs + " / " + puntosTotalesLab4 + "</p></div>" +
 
                 "</body></html>";
 
