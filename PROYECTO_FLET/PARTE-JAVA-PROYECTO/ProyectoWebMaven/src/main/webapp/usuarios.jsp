@@ -290,7 +290,7 @@
 <body>
 
 <header class="site-header">
-    <h1 class="logo">🌟 Zona de Usuarios</h1>
+    <h1 class="logo"><a href="<%= request.getContextPath() %>/profile.jsp" style="text-decoration: none; color: #09f;">🌟 Zona de Usuarios</a></h1>
     <!-- Botón de Bandeja de Entrada (actualizado) -->
 	<button class="bandeja-btn" onclick="abrirBandeja()" title="Bandeja de Entrada">
 	    <div class="bandeja-contenido">
