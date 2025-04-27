@@ -205,6 +205,21 @@
 	.rechazar-btn:hover {
 	    background-color: darkred;
 	}
+	.spinner {
+	    border: 4px solid rgba(0, 0, 0, 0.1);
+	    width: 36px;
+	    height: 36px;
+	    border-radius: 50%;
+	    border-left-color: #09f;
+	    animation: spin 1s linear infinite;
+	    margin: auto;
+	    margin-top: 10px;
+	    margin-bottom: 10px;
+	}
+	
+	@keyframes spin {
+	    to { transform: rotate(360deg); }
+	}
 </style>
 
 <!-- Botón de Bandeja de Entrada -->
@@ -278,33 +293,48 @@ function abrirPopup(nombre, apellidos, usuario, email, rol, foto, idUsuario, est
     document.getElementById('popupFoto').src = foto;
 
     let popupBotonDiv = document.getElementById('popupAmistadBoton');
-    let botonHtml = "";
 
-    if (estadoAmistad === "pendiente") {
-        botonHtml = `<button type="button" disabled style="background-color: gray;">Solicitud enviada</button>`;
-    } else if (estadoAmistad === "aceptada") {
-        botonHtml = `<button type="button" disabled style="background-color: green;">Ya es tu amigo</button>`;
-    } else {
-        botonHtml = `
-            <form action="<%= request.getContextPath() %>/amistad" method="GET" style="margin-top: 10px;">
-                <input type="hidden" name="accion" value="enviar">
-                <input type="hidden" name="solicitadoId" value="` + idUsuario + `">
-                <input type="hidden" name="userId" value="<%= usuarioJWT.getUserId() %>">
-                <button type="submit">Enviar Solicitud de Amistad</button>
-            </form>
-        `;
-    }
+    // Mostrar un spinner mientras carga
+    popupBotonDiv.innerHTML = `
+        <div class="spinner"></div>
+    `;
 
-    console.log("solicitadoId: " + idUsuario);  // Verifica el valor de solicitadoId en la consola
-	
-    popupBotonDiv.innerHTML = botonHtml;
+    fetch('<%= request.getContextPath() %>/amistadEstado?userId=<%= usuarioJWT.getUserId() %>&userIdDestino=' + idUsuario)
+        .then(response => response.json())
+        .then(data => {
+            let estadoAmistad = data.estado;
+            let botonHtml = "";
+
+            if (estadoAmistad === "pendiente") {
+                botonHtml = `<button type="button" disabled style="background-color: gray;">Solicitud enviada</button>`;
+            } else if (estadoAmistad === "aceptada") {
+                botonHtml = `<button type="button" disabled style="background-color: green;">Ya es tu amigo</button>`;
+            } else {
+                botonHtml = `
+                    <form action="<%= request.getContextPath() %>/amistad" method="GET" style="margin-top: 10px;">
+                        <input type="hidden" name="accion" value="enviar">
+                        <input type="hidden" name="solicitadoId" value="` + idUsuario + `">
+                        <input type="hidden" name="userId" value="<%= usuarioJWT.getUserId() %>">
+                        <button type="submit">Enviar Solicitud de Amistad</button>
+                    </form>
+                `;
+            }
+
+            popupBotonDiv.innerHTML = botonHtml;
+        })
+        .catch(error => {
+            console.error('Error al obtener el estado de amistad:', error);
+            popupBotonDiv.innerHTML = '<p style="color: red;">Error cargando el estado</p>';
+        });
+
     document.getElementById('popupPerfil').style.display = 'block';
 }
 
-//Función para cerrar el popup de usuarios
+// Función para cerrar el popup
 function cerrarPopup() {
     document.getElementById('popupPerfil').style.display = 'none';
 }
+
 
 //Función para abrir la bandeja de entrada
 function abrirBandeja() {
