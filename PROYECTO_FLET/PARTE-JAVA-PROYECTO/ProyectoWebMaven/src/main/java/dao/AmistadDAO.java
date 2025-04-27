@@ -12,9 +12,11 @@ import java.util.Map;
 import conexionDDBB.ConexionDDBB;
 
 public class AmistadDAO {
+	private ConexionDDBB conexionDDBB;
     private Connection conn;
 
     public AmistadDAO() {
+    	conexionDDBB = new ConexionDDBB();
         conn = new ConexionDDBB().conectar();
     }
 
@@ -39,20 +41,43 @@ public class AmistadDAO {
         ps.setInt(1, idAmistad);
         ps.executeUpdate();
     }
+    
+    public String obtenerEstadoAmistad(int usuarioId, int usuarioDestinoId) throws SQLException {
+        String estado = "ninguna"; // Estado por defecto
+        String sql = "SELECT estado FROM amistad " +
+                     "WHERE (solicitante_id = ? AND solicitado_id = ?) " +
+                     "   OR (solicitante_id = ? AND solicitado_id = ?) " +
+                     "ORDER BY fecha_creacion DESC LIMIT 1"; // <-- añadimos esto
 
-    public String obtenerEstadoAmistad(int usuarioLogueadoId, int usuarioId) throws SQLException {
-        String sql = "SELECT estado FROM amistad WHERE (solicitante_id = ? AND solicitado_id = ?) OR (solicitante_id = ? AND solicitado_id = ?)";
-        PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setInt(1, usuarioLogueadoId);
-        ps.setInt(2, usuarioId);
-        ps.setInt(3, usuarioId);
-        ps.setInt(4, usuarioLogueadoId);
-        ResultSet rs = ps.executeQuery();
-        if (rs.next()) {
-            return rs.getString("estado");
+        Connection localConn = null;
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            localConn = conexionDDBB.conectar();
+            stmt = localConn.prepareStatement(sql);
+            stmt.setInt(1, usuarioId);
+            stmt.setInt(2, usuarioDestinoId);
+            stmt.setInt(3, usuarioDestinoId);
+            stmt.setInt(4, usuarioId);
+
+            rs = stmt.executeQuery();
+            if (rs.next()) {
+                estado = rs.getString("estado");
+            }
+        } catch (SQLException e) {
+            System.err.println("Error obteniendo estado de amistad:");
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (rs != null) try { rs.close(); } catch (SQLException ignored) {}
+            if (stmt != null) try { stmt.close(); } catch (SQLException ignored) {}
+            if (localConn != null) conexionDDBB.cerrarConexion();
         }
-        return "no_solicitado";
+
+        return estado;
     }
+
     
     private Map<String, String> obtenerDatosUsuarioDesdeFlask(int usuarioId) throws Exception {
         String endpoint = "http://localhost:5000/usuarios/" + usuarioId; // Cambia el puerto si es diferente
