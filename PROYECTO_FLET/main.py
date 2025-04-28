@@ -458,6 +458,36 @@ def obtener_usuario(id_usuario):
         cur.close()
         conn.close()
 
+# Endpoint para obtener el estado de conexión de un usuario
+@app.route('/estado_conexion/<int:user_id>', methods=['GET'])
+def obtener_estado_conexion(user_id):
+    try:
+        connection = connect_db()
+        cursor = connection.cursor()
+
+        # Consulta SQL para obtener el valor de la cookie del usuario
+        cursor.execute("SELECT cookie FROM usuarios WHERE id = %s", (user_id,))
+        result = cursor.fetchone()
+
+        # Verifica si el campo 'cookie' es null o no
+        if result:
+            cookie = result[0]
+            if cookie:
+                estado = "Conectado"
+            else:
+                estado = "Desconectado"
+        else:
+            estado = "Usuario no encontrado"
+
+        cursor.close()
+        connection.close()
+
+        # Devuelve siempre el estado como un JSON
+        return jsonify({"estado": estado})
+    except Exception as e:
+        print(f"Error: {e}")
+        return jsonify({"estado": "Error al obtener el estado"})
+
 
 threading.Thread(target=run_flask, daemon=True).start()
 
