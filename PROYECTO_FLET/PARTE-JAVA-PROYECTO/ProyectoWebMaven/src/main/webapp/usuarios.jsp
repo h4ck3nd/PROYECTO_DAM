@@ -285,6 +285,37 @@
 		    left: 0;
 		    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.5);
 		}
+		 /* Estilo general para el estado de conexión */
+		    .estado-conexion {
+		        font-size: 1.1rem;
+		        font-weight: bold;
+		        padding: 10px;
+		        border-radius: 5px;
+		        margin-top: 10px;
+		        text-align: center;
+		        transition: background-color 0.3s, color 0.3s;
+		        max-width: 300px; /* Limitar el ancho */
+		        margin-left: auto;
+		        margin-right: auto;
+		    }
+		
+		    /* Estilo para cuando el usuario está Conectado */
+		    .estado-conexion.conectado {
+		        background-color: #4CAF50; /* Verde */
+		        color: white;
+		    }
+		
+		    /* Estilo para cuando el usuario está Desconectado */
+		    .estado-conexion.desconectado {
+		        background-color: #f44336; /* Rojo */
+		        color: white;
+		    }
+		
+		    /* Estilo cuando hay un estado desconocido o en espera */
+		    .estado-conexion.cargando {
+		        background-color: #ff9800; /* Naranja */
+		        color: white;
+		    }
     </style>
 </head>
 <body>
@@ -322,7 +353,7 @@
                 estadoAmistad = "ninguna";
             }
 %>
-    <div class="usuario-card" onclick="abrirPopup(
+    <div class="usuario-card" data-user-id="<%= usuario.get("id") %>" onclick="abrirPopup(
         '<%= usuario.get("nombre") %>', 
         '<%= usuario.get("apellidos") %>', 
         '<%= usuario.get("usuario") %>', 
@@ -337,6 +368,9 @@
         <p>Usuario: <%= usuario.get("usuario") %></p>
         <p>Email: <%= usuario.get("email") %></p>
         <p>Rol: <%= usuario.get("rol") %></p>
+        <br>
+        <!-- Nuevo elemento para mostrar el estado de conexión -->
+    	<p id="estado-conexion-<%= usuario.get("id") %>" class="estado-conexion">Cargando estado...</p>
     </div>
 <%
         }
@@ -493,6 +527,62 @@ function cerrarPopupSolicitudes() {
     document.getElementById('popupSolicitudes').style.display = 'none';
 }
 
+//Función para obtener el estado de conexión y actualizar la tarjeta del usuario
+function obtenerEstadoConexion(userId) {
+    var url = "http://localhost:5000/estado_conexion/" + userId;
+    console.log("Realizando solicitud GET a: " + url);  // Depuración
+
+    fetch(url)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Error al obtener el estado de conexión: " + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log("Respuesta de servidor:", data);  // Depuración
+            if (data.estado) {
+                // Encuentra el elemento con el id correspondiente
+                var estadoElemento = document.getElementById('estado-conexion-' + userId);
+                if (estadoElemento) {
+                    console.log("Elemento encontrado con id estado-conexion-" + userId);  // Depuración
+                    
+                    // Cambiar el texto del estado y la clase CSS según el estado
+                    if (data.estado === 'Conectado') {
+                        estadoElemento.textContent = data.estado;
+                        estadoElemento.classList.remove('desconectado', 'cargando');
+                        estadoElemento.classList.add('conectado');
+                    } else if (data.estado === 'Desconectado') {
+                        estadoElemento.textContent = data.estado;
+                        estadoElemento.classList.remove('conectado', 'cargando');
+                        estadoElemento.classList.add('desconectado');
+                    } else {
+                        estadoElemento.textContent = data.estado;
+                        estadoElemento.classList.remove('conectado', 'desconectado');
+                        estadoElemento.classList.add('cargando');
+                    }
+                }
+            }
+        })
+        .catch(error => {
+            console.error("Error al obtener el estado de conexión:", error);
+        });
+}
+
+// Llamar a la función para cada tarjeta de usuario al cargar la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Obtener todas las tarjetas de usuario
+    let usuarioCards = document.querySelectorAll('.usuario-card');
+    
+    // Obtener el estado de conexión de cada usuario
+    usuarioCards.forEach(function(card) {
+        let userId = card.getAttribute('data-user-id');
+        console.log("Obteniendo estado para el usuario con ID: " + userId);  // Depuración
+        if (userId) {
+            obtenerEstadoConexion(userId);
+        }
+    });
+});
 </script>
 </body>
 </html>
