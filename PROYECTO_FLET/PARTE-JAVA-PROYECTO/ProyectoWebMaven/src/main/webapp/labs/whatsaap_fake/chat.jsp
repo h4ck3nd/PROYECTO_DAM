@@ -337,7 +337,7 @@
     <div class="whatsapp-ui">
       <div class="chat-header">
         <div class="header-left">
-          <span class="back"><a href="contactos.html">←</a></span>
+          <span class="back"><a href="contactos.jsp">←</a></span>
           <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto de perfil">
           <div class="contact-info">
             <strong>Sra.Jonshon</strong>
