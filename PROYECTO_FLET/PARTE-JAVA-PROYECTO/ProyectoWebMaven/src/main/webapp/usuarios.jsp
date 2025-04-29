@@ -31,7 +31,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Usuarios - Sección de Amistades</title>
-    
+    <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
     <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
     <style>
         * {
@@ -42,14 +42,16 @@
         }
 
         body {
-            background: linear-gradient(135deg, #1f1f1f, #3a3a3a);
-            min-height: 100vh;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 30px;
-        }
+		    background: linear-gradient(135deg, #0f0f0f, #2e2e2e); /* De negro profundo a gris oscuro */
+		    min-height: 100vh;
+		    color: #e0e0e0; /* Un gris muy claro para que no sea blanco puro */
+		    font-family: 'Poppins', 'Segoe UI', 'Roboto', sans-serif; /* Tipografías más modernas */
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    padding: 40px;
+		    margin: 0;
+		}
 
         h1 {
             margin-bottom: 20px;
