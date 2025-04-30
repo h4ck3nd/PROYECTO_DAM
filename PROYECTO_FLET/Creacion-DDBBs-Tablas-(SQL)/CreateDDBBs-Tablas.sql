@@ -7,7 +7,7 @@ CREATE DATABASE appusers;
 -- \c appusers; -- (Desde Terminal)
 
 -- Crea la tabla de usuarios
-DROP TABLE usuarios;
+DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
     nombre VARCHAR(50) NOT NULL,
@@ -32,7 +32,7 @@ CREATE DATABASE hackend;
 
 -- Crear Tabla en la DDBB de hackend para el cambio de la foto de perfil
 
-DROP TABLE profile;
+DROP TABLE IF EXISTS profile;
 CREATE TABLE profile (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,  -- ID del usuario, que proviene de la validación con el token
@@ -40,7 +40,7 @@ CREATE TABLE profile (
 );
 
 -- Tabla Laboratorios
-DROP TABLE laboratorios;
+DROP TABLE IF EXISTS laboratorios;
 CREATE TABLE laboratorios (
     lab_id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE laboratorios (
 );
 
 -- Tabla ValidateFlag (sin clave foránea)
-DROP TABLE validate_flag;
+DROP TABLE IF EXISTS validate_flag;
 CREATE TABLE validate_flag (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -69,7 +69,7 @@ INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('retrogame', 'FLAG{retro
 
 -- Crear Tablas para DockerPwned y OvaLabs
 
-DROP TABLE laboratorios_dockerpwned;
+DROP TABLE IF EXISTS laboratorios_dockerpwned;
 CREATE TABLE laboratorios_dockerpwned (
     lab_id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE laboratorios_dockerpwned (
     puntos INT NOT NULL
 );
 
-DROP TABLE laboratorios_ovalabs;
+DROP TABLE IF EXISTS laboratorios_ovalabs;
 CREATE TABLE laboratorios_ovalabs (
     lab_id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -85,7 +85,7 @@ CREATE TABLE laboratorios_ovalabs (
     puntos INT NOT NULL
 );
 
-DROP TABLE laboratorios_timelabs;
+DROP TABLE IF EXISTS laboratorios_timelabs;
 CREATE TABLE laboratorios_timelabs (
     lab_id SERIAL PRIMARY KEY,
     nombre VARCHAR(255) NOT NULL,
@@ -93,7 +93,7 @@ CREATE TABLE laboratorios_timelabs (
     puntos INT NOT NULL
 );
 
-DROP TABLE validate_flag_dockerpwned;
+DROP TABLE IF EXISTS validate_flag_dockerpwned;
 CREATE TABLE validate_flag_dockerpwned (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -102,7 +102,7 @@ CREATE TABLE validate_flag_dockerpwned (
     puntos INT NOT NULL
 );
 
-DROP TABLE validate_flag_ovalabs;
+DROP TABLE IF EXISTS validate_flag_ovalabs;
 CREATE TABLE validate_flag_ovalabs (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -111,7 +111,7 @@ CREATE TABLE validate_flag_ovalabs (
     puntos INT NOT NULL
 );
 
-DROP TABLE validate_flag_timelabs;
+DROP TABLE IF EXISTS validate_flag_timelabs;
 CREATE TABLE validate_flag_timelabs (
     id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
@@ -143,7 +143,7 @@ INSERT INTO validate_flag_timelabs (user_id, lab_id, flag, puntos) VALUES (1, 1,
 
 -- Crear Tabla de Writeups (URL)
 
-DROP TABLE writeups;
+DROP TABLE IF EXISTS writeups;
 CREATE TABLE writeups (
     id SERIAL PRIMARY KEY,
     lab_id INTEGER NOT NULL,
@@ -159,7 +159,7 @@ ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
 
 -- Crear Tabla de Writeups Dockerpwned (URL)
 
-DROP TABLE writeups_dockerpwned;
+DROP TABLE IF EXISTS writeups_dockerpwned;
 CREATE TABLE writeups_dockerpwned (
     id SERIAL PRIMARY KEY,
     lab_id INTEGER NOT NULL,
@@ -175,7 +175,7 @@ ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
 
 -- Crear Tabla de Writeups Ovalabs (URL)
 
-DROP TABLE writeups_ovalabs;
+DROP TABLE IF EXISTS writeups_ovalabs;
 CREATE TABLE writeups_ovalabs (
     id SERIAL PRIMARY KEY,
     lab_id INTEGER NOT NULL,
@@ -191,7 +191,7 @@ ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
 
 -- Crear Tabla de Writeups Timelabs (URL)
 
-DROP TABLE writeups_timelabs;
+DROP TABLE IF EXISTS writeups_timelabs;
 CREATE TABLE writeups_timelabs (
     id SERIAL PRIMARY KEY,
     lab_id INTEGER NOT NULL,
@@ -207,6 +207,7 @@ ADD COLUMN username TEXT NOT NULL DEFAULT 'desconocido';
 
 -- Crear tabla para el contador de Timelabs (Control de tiempo)
 
+DROP TABLE IF EXISTS countdown;
 CREATE TABLE countdown (
     id SERIAL PRIMARY KEY,
     target_time BIGINT
@@ -215,6 +216,8 @@ CREATE TABLE countdown (
 INSERT INTO countdown (id, target_time) VALUES (1, NULL); -- Insertar el primer valor (Obligatorio)
 
 -- Tabla de amistad (solicitudes y amistades aceptadas)
+
+DROP TABLE IF EXISTS amistad;
 CREATE TABLE amistad (
     id SERIAL PRIMARY KEY,
     solicitante_id INT NOT NULL, -- Usuario que envía la solicitud
