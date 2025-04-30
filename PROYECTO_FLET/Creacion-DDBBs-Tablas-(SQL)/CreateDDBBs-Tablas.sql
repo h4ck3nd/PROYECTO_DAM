@@ -66,6 +66,7 @@ INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('hacking_community', 'FL
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('separo', 'FLAG{separo_flag}', 15); -- ID 4
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('cinehub', 'FLAG{cinehub_flag}', 10); -- ID 5
 INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('retrogame', 'FLAG{retrogame_flag}', 25); -- ID 6
+INSERT INTO laboratorios (nombre, flag, puntos) VALUES ('whatsappfake', 'FLAG{whatsapp_fake_flag}', 30); -- ID 7
 
 -- Crear Tablas para DockerPwned y OvaLabs
 
