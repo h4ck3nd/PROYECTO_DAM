@@ -126,6 +126,7 @@ CREATE TABLE validate_flag_timelabs (
 
 INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('r00tless', 'FLAG{r00tless_flag}', 50); -- ID 1
 INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('crackoff', 'FLAG{crackoff_flag}', 55); -- ID 2
+INSERT INTO laboratorios_dockerpwned (nombre, flag, puntos) VALUES ('hackmedaddy', 'FLAG{hackmedaddy_flag}', 60); -- ID 3
 
 -- Ovalabs
 
