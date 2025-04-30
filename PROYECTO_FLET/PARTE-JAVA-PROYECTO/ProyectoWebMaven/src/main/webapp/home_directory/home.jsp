@@ -391,7 +391,7 @@
 	    { url: "../labs/hacking_community/hacking_community-lab.jsp", title: "Hacking_community", description: "Apuntes de hacking para principiantes.", image: "../img/logo-test-4-update.png", tags: ["seguridad", "admin", "web", "hacking", "bac", "facil", "d1se0"] },
 	    { url: "../labs/cinehub/cinehub-lab.jsp", title: "CineHub", description: "Pagina para ver tus peliculas y series favoritas pagando al mes...", image: "../img/logo-test-32-update.png", tags: ["web", "xml", "xpath", "cinehub", "facil", "d1se0", "manu"] },
 	    { url: "../labs/retroGame/retroGame-lab.jsp", title: "RetroGame Plataforma", description: "Una plataforma en la que descargarte juegos de forma segura...", image: "../img/logo-test-33-update.png", tags: ["web", "credenciales", "bruta", "fuerza", "fuerza bruta", "retrogame", "medio", "d1se0", "manu"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] }
+	    { url: "../labs/whatsapp_fake/whatsapp_fake_lab.jsp", title: "WhatsApp FAKE", description: "Pagina para chatear de forma libre con tus amigos...", image: "../img/logo-test-35-update.png", tags: ["web", "reverse shell", "pyz", "whatsapp fake", "fake", "whatsapp", "medio", "d1se0", "manu"] }
 	];
 
 	document.addEventListener("DOMContentLoaded", function () {
