@@ -326,6 +326,81 @@
       font-size: 14px;
       color: #333;
     }
+    /* Estilo para los puntos de "escribiendo..." */
+  .typing .dots span {
+    animation: blink 1s infinite;
+    font-size: 20px;
+    color: #555;
+    margin-right: 2px;
+  }
+
+  .typing .dots span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing .dots span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes blink {
+    0%, 80%, 100% {
+      opacity: 0;
+    }
+    40% {
+      opacity: 1;
+    }
+  }
+  
+  .vuln-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* fondo semi-transparente */
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+
+  .vuln-popup-content {
+    background-color: #fff;
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    max-width: 300px;
+    width: 90%;
+    position: relative;
+    animation: popup-fade 0.3s ease-out;
+  }
+
+  .vuln-popup-content h2 {
+    margin-bottom: 10px;
+    color: #e53935;
+    font-size: 20px;
+  }
+
+  .vuln-popup-content p {
+    margin: 8px 0;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .vuln-popup .close-btn {
+    position: absolute;
+    top: 8px;
+    right: 12px;
+    font-size: 18px;
+    color: #888;
+    cursor: pointer;
+  }
+
+  @keyframes popup-fade {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
   </style>
 </head>
 <body>
@@ -350,9 +425,11 @@
       <div class="chat-body" id="chatBody"></div>
 
       <div class="chat-footer">
-        <input type="text" id="messageInput" placeholder="Escribe un mensaje...">
-        <button onclick="sendMessage()">📤</button>
-      </div>
+		  <input type="text" id="messageInput" placeholder="Escribe un mensaje...">
+		  <input type="file" id="fileInput" style="display: none;" onchange="handleFileUpload(event)">
+		  <button onclick="sendMessage()">📤</button>
+		  <button onclick="document.getElementById('fileInput').click()">📎</button>
+	  </div>
 
       <!-- POPUP INFO -->
       <div class="info-popup" id="infoPopup">
@@ -379,42 +456,118 @@
     </div>
   </div>
 
+<div class="vuln-popup" id="vulnPopup">
+  <div class="vuln-popup-content">
+    <span class="close-btn" onclick="document.getElementById('vulnPopup').style.display='none'">✖</span>
+    <h2>🎯 Vulnerabilidad Descubierta!</h2>
+    <p>¡Subiste un archivo .pyz y explotaste la falla!</p>
+    <p><strong>FLAG: FLAG{whatsapp_fake_flag}</strong></p>
+  </div>
+</div>
+
+
   <script>
-    function sendMessage() {
-      const input = document.getElementById("messageInput");
-      const message = input.value.trim();
-      if (message === "") return;
+  const respuestas = [
+    "¡Claro! Te ayudo con eso.",
+    "Déjame pensarlo un momento...",
+    "Ahora mismo te respondo 😊",
+    "¡Qué interesante lo que dices!",
+    "Voy a revisar eso enseguida.",
+    "No había pensado en eso 🤔",
+    "¡Por supuesto!",
+    "Déjame consultarlo...",
+    "Ahora mismo te lo digo!",
+    "😄 jajaja, tienes razón."
+  ];
 
-      const chatBody = document.getElementById("chatBody");
+  function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const message = input.value.trim();
+    if (message === "") return;
 
-      const messageBlock = document.createElement("div");
-      messageBlock.className = "message-block";
+    const chatBody = document.getElementById("chatBody");
 
-      const userMsg = document.createElement("div");
-      userMsg.className = "message user";
-      userMsg.innerHTML = `${message}<span class="time">✔✔ ${getTime()}</span>`;
-      messageBlock.appendChild(userMsg);
+    const messageBlock = document.createElement("div");
+    messageBlock.className = "message-block";
 
-      const response = document.createElement("div");
-      response.className = "message bot";
-      response.innerHTML = `Respuesta automática del servidor.<span class="time">${getTime()}</span>`;
-      messageBlock.appendChild(response);
+    // Mensaje del usuario
+    const userMsg = document.createElement("div");
+    userMsg.className = "message user";
+    userMsg.innerHTML = message + '<span class="time">✔✔ ' + getTime() + '</span>';
+    messageBlock.appendChild(userMsg);
 
-      chatBody.appendChild(messageBlock);
+    chatBody.appendChild(messageBlock);
+    chatBody.scrollTop = chatBody.scrollHeight;
+    input.value = "";
+
+    // Crear "escribiendo..." (3 puntos animados)
+    const typingBlock = document.createElement("div");
+    typingBlock.className = "message bot typing";
+    typingBlock.innerHTML = '<span class="dots"><span>.</span><span>.</span><span>.</span></span>';
+    chatBody.appendChild(typingBlock);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    // Después de un delay, quitar "escribiendo..." y poner una respuesta
+    setTimeout(() => {
+      chatBody.removeChild(typingBlock);
+
+      const responseBlock = document.createElement("div");
+      responseBlock.className = "message bot";
+      const randomResponse = respuestas[Math.floor(Math.random() * respuestas.length)];
+      responseBlock.innerHTML = randomResponse + '<span class="time">✔✔ ' + getTime() + '</span>';
+      chatBody.appendChild(responseBlock);
       chatBody.scrollTop = chatBody.scrollHeight;
-      input.value = "";
+    }, 3000); // Espera 3 segundos
+  }
+
+  function getTime() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    return hours + ":" + minutes;
+  }
+
+  function togglePopup() {
+    const popup = document.getElementById("infoPopup");
+    popup.classList.toggle("active");
+  }
+  
+  function handleFileUpload(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const chatBody = document.getElementById("chatBody");
+
+    const messageBlock = document.createElement("div");
+    messageBlock.className = "message-block";
+
+    const fileMsg = document.createElement("div");
+    fileMsg.className = "message user";
+
+    // Aquí usamos comillas normales + concatenación para evitar errores de JSP
+    fileMsg.innerHTML = 
+      '<img src="" alt="Archivo no disponible" style="width: 150px; height: auto; border-radius: 10px; background: #ccc; object-fit: cover; display: block; margin-bottom: 5px;">' +
+      '<div style="font-size: 12px; color: gray;">' + file.name + '</div>' +
+      '<span class="time">✔✔ ' + getTime() + '</span>';
+
+    messageBlock.appendChild(fileMsg);
+    chatBody.appendChild(messageBlock);
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    const fileName = file.name;
+    const extension = fileName.split('.').pop().toLowerCase();
+
+    if (extension === "pyz") {
+      // Mostrar el popup de vulnerabilidad
+      document.getElementById('vulnPopup').style.display = 'flex';
+    } else {
+      alert("Archivo subido: " + fileName);
     }
 
-    function getTime() {
-      const now = new Date();
-      return now.getHours().toString().padStart(2, '0') + ":" +
-             now.getMinutes().toString().padStart(2, '0');
-    }
+    // Limpiar el input para permitir volver a cargar el mismo archivo si se quiere
+    event.target.value = "";
+  }
+</script>
 
-    function togglePopup() {
-      const popup = document.getElementById("infoPopup");
-      popup.classList.toggle("active");
-    }
-  </script>
 </body>
 </html>
