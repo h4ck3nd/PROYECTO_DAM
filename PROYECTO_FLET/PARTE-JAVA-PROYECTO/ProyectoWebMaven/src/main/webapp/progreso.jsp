@@ -106,7 +106,7 @@
 	<div class="window-buttons">
 		<button class="btn minimizar">-</button>
 		<button class="btn maximizar">O</button>
-		<button onclick="window.location.href='/ProyectoWebMaven/profile.jsp'" class="btn cerrar">X</button>
+		<button onclick="window.location.href='<%= request.getContextPath() %>/profile.jsp'" class="btn cerrar">X</button>
 	</div>
 </header>
 	<!-- Formulario oculto para enviar el ID del usuario -->
