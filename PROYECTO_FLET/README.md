@@ -4,7 +4,7 @@
 
 ====================================================================
 
-------------> [Link GitHub Page ZIP RUTE](https://download-directory.github.io/)
+------------> [Link GitHub Page ZIP RUTE](https://download-directory.github.io/) o [Compresor Carpetas GitHub Propio](https://h4ck3nd.github.io/COMPRESOR_CARPETAS_GITHUB/)
 
 ====================================================================
 
