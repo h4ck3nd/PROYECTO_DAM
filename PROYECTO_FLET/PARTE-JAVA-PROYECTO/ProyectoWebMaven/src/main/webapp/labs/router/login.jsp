@@ -1,4 +1,33 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+
+	String lang = request.getHeader("Accept-Language");
+	
+	if (lang != null && lang.toLowerCase().startsWith("ru")) {
+	    // Simulamos un fallo de idioma: la traducción da un string vacío
+	    String mensaje = ""; // aquí estaría el error de codificación real
+	
+	    // Vulnerabilidad lógica: si el mensaje está vacío, asume login válido
+	    if (mensaje.isEmpty()) {
+	        session.setAttribute("auth", true); // 🔓 acceso otorgado sin autenticación
+	        response.sendRedirect(request.getContextPath() + "/labs/router/dashboard.jsp");
+	        return;
+	    }
+	}
+
+    UsuarioJWT usuarioJWT = null;
+
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
