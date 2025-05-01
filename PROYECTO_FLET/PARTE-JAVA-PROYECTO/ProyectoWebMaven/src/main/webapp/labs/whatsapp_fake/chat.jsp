@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WhatsApp Mockup</title>
+  <title>WhatsApp Fake</title>
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
     * {
@@ -30,6 +31,8 @@
       padding: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       position: relative;
+      /* ✅ Añade esto: */
+  	  margin-top: 110px;
     }
 
     .notch {
@@ -474,7 +477,7 @@
     <div class="whatsapp-ui">
       <div class="chat-header">
         <div class="header-left">
-          <span class="back"><a href="contactos.jsp">←</a></span>
+          <span class="back"><a href="<%= request.getContextPath() %>/labs/whatsapp_fake/contactos.jsp">←</a></span>
           <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Foto de perfil">
           <div class="contact-info">
             <strong>Sra.Jonshon</strong>

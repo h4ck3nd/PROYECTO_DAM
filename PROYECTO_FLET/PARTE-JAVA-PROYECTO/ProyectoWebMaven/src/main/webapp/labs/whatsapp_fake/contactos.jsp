@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>WhatsApp Mockup</title>
+  <title>WhatsApp Fake</title>
+  <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/img/icono/icono_cinco_hackend.ico">
   <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
   <style>
     * {
@@ -30,8 +31,16 @@
       padding: 16px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
       position: relative;
+      /* ✅ Añade esto: */
+  	  margin-top: 110px;
     }
-
+	
+	.back {
+	  margin-left: 200px;
+	  text-decoration: none;
+	  color: white;
+	}
+	
     .notch {
       position: absolute;
       top: 12px;
@@ -173,11 +182,14 @@
     </div>
     <div class="whatsapp-ui">
       <!-- Header -->
-      <div class="header">Contactos</div>
-
+      <div class="header">
+      Contactos
+      <span><a class="back" href="<%= request.getContextPath() %>/labs/whatsapp_fake/whatsapp_fake_lab.jsp">←</a></span>
+      </div>
+	
       <!-- Vista de Contactos -->
       <div class="contacts-view" id="contactsView">
-        <div class="contact-item" onclick="window.location.href='chat.jsp'">
+        <div class="contact-item" onclick="window.location.href='<%= request.getContextPath() %>/labs/whatsapp_fake/chat.jsp'">
           <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sra. Jonshon">
           <div>
             <strong>Sra. Jonshon</strong>
