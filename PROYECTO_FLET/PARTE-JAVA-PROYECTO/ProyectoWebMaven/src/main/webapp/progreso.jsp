@@ -195,7 +195,10 @@
 	  "${puntosSQLi1}", // Amashop (Hacking Web)
 	  "${puntosOR1}", // Separo (Hacking Web)
 	  "${puntosBAC1}",  // Hacking_community (Hacking Web)
-	  "${puntosRCE1}",  // RCE (DockerPwned)
+	  "${puntosXPATH1}",  // CineHub (Hacking Web)
+	  "${puntosForceBrute1}",  // RetroGame (Hacking Web)
+	  "${puntosPyz1}",  // WhatsApp Fake (Hacking Web)
+	  "${puntosLenguaje1}",  // RouterOS (DockerPwned)
 	  "${puntosR00tless}",  // r00tless (DockerPwned)
 	  "${puntosCrackoff}",	// crackoff (DockerPwned)
 	  "${puntosHackmedaddy}",	// hackmedaddy (DockerPwned)
@@ -212,6 +215,10 @@
 	      'amashop (Hacking Web)',
 	      'separo (Hacking Web)',
 	      'hacking_community (Hacking Web)',
+	      'CineHub (Hacking Web)',
+	      'RetroGame (Hacking Web)',
+	      'WhatsApp Fake (Hacking Web)',
+	      'RouterOS (Hacking Web)',
 	      'RCE (DockerPwned)',
 	      'r00tless (DockerPwned)',
 	      'crackoff (DockerPwned)',
@@ -223,7 +230,7 @@
 	      label: 'Distribución de Laboratorios',
 	      data: puntosPorLaboratorio,
 	      backgroundColor: [
-	        '#66bb6a', '#81c784', '#a5d6a7', '#48e05f',   // Hacking Web - VERDE
+	        '#66bb6a', '#81c784', '#a5d6a7', '#48e05f', '#14be2e', '#7ebd88', '#2b7136', '#31f550',   // Hacking Web - VERDE
 	        '#64b5f6', '#24a5d5', '#3c7e97', '#71b8d3',   // DockerPwned - AZUL
 	        '#ffb74d',               					  // OvaLabs - NARANJA
 	        '#d83333',               					  // Timelabs - ROJO
