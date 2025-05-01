@@ -177,7 +177,7 @@
 
       <!-- Vista de Contactos -->
       <div class="contacts-view" id="contactsView">
-        <div class="contact-item" onclick="openChat('Sra. Jonshon')">
+        <div class="contact-item" onclick="window.location.href='chat.jsp'">
           <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sra. Jonshon">
           <div>
             <strong>Sra. Jonshon</strong>

