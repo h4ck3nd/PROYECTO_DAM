@@ -1,4 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+	//Obtener el header 'Accept-Language' de la solicitud
+	String lang = request.getHeader("Accept-Language");
+	
+	// Verificar si el idioma es 'ru'
+	if (lang == null || !lang.toLowerCase().startsWith("ru")) {
+	    // Si no es ruso, redirigir a otra página (por ejemplo, login.jsp)
+	    response.sendRedirect(request.getContextPath() + "/labs/router/login.jsp");
+	    return;
+	}
+
+    UsuarioJWT usuarioJWT = null;
+
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>

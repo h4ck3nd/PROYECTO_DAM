@@ -159,18 +159,32 @@ body {
         <p>UNA MARCA DE HACKEND</p>
         <p>© RouterOS de España S.A.U. Todos los derechos reservados. | 2.0</p>
         <!-- Botón de solución -->
-<button id="solucionBtn" style="position: fixed; bottom: 20px; right: 20px; background-color: #fff; border: 2px solid #70b21c; color: #70b21c; font-size: 24px; padding: 15px 15px; border-radius: 50%; cursor: pointer;" title="Ver solución">💡</button>
-
-<!-- Popup de solución -->
-<div id="popupSolucion" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 2px solid #70b21c; padding: 30px; z-index: 1000; max-width: 400px; text-align: center; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);">
-    <p style="font-size: 16px; color: #333;">Este laboratorio debe realizarse con <strong>Burp Suite</strong>. Asegúrate de interceptar la petición correctamente.</p>
-    <button onclick="document.getElementById('popupSolucion').style.display='none'" style="margin-top: 20px; padding: 8px 20px; background-color: #70b21c; color: white; border: none; border-radius: 5px; cursor: pointer;">Cerrar</button>
-</div>
-<script>
-    document.getElementById('solucionBtn').addEventListener('click', function() {
-        document.getElementById('popupSolucion').style.display = 'block';
-    });
-</script>
+		<button id="solucionBtn" style="position: fixed; bottom: 20px; right: 20px; background-color: #fff; border: 2px solid #70b21c; color: #70b21c; font-size: 24px; padding: 15px 15px; border-radius: 50%; cursor: pointer;" title="Ver solución">💡</button>
+        
+        <!-- Popup de solución -->
+		<div id="popupSolucion" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border: 2px solid #70b21c; padding: 30px; z-index: 1000; max-width: 400px; text-align: center; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); font-family: Arial, sans-serif;">
+		    <p style="font-size: 16px; color: #333;">
+		        Este laboratorio debe realizarse con <strong>Burp Suite</strong>.<br><br>
+		        La validación de acceso se basa incorrectamente en la cabecera 
+		        <code style="background-color:#f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace;">Accept-Language</code>.
+		        Si se establece en 
+		        <code style="background-color:#f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace;">ru</code>, el sistema omite la autenticación y concede acceso al panel.
+		        <br><br>
+		        <strong>Pasos:</strong><br>
+		        1. Intercepta la petición a 
+		        <code style="background-color:#f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace;">login.jsp</code>.<br>
+		        2. Añade o modifica el header: 
+		        <code style="background-color:#f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace;">Accept-Language: ru</code>. (2 veces)<br>
+		        3. Reenvía la petición y serás redirigido a 
+		        <code style="background-color:#f4f4f4; padding: 2px 4px; border-radius: 4px; font-family: monospace;">dashboard.jsp</code> con la flag.
+		    </p>
+		    <button onclick="document.getElementById('popupSolucion').style.display='none'" style="margin-top: 20px; padding: 8px 20px; background-color: #70b21c; color: white; border: none; border-radius: 5px; cursor: pointer;">Cerrar</button>
+		</div>
+		<script>
+		    document.getElementById('solucionBtn').addEventListener('click', function() {
+		        document.getElementById('popupSolucion').style.display = 'block';
+		    });
+		</script>
     </footer>
 </body>
 </html>

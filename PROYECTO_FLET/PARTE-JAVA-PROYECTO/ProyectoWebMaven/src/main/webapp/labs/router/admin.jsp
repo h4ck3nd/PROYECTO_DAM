@@ -1,4 +1,28 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
+<%@ page import="utils.JWTUtils" %>
+<%@ page import="utils.UsuarioJWT" %>
+
+<%
+	//Obtener el header 'Accept-Language' de la solicitud
+	String lang = request.getHeader("Accept-Language");
+	
+	// Verificar si el idioma es 'ru'
+	if (lang == null || !lang.toLowerCase().startsWith("ru")) {
+	    // Si no es ruso, redirigir a otra página (por ejemplo, login.jsp)
+	    response.sendRedirect(request.getContextPath() + "/labs/router/login.jsp");
+	    return;
+	}
+
+    UsuarioJWT usuarioJWT = null;
+
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -185,6 +209,14 @@ table tbody tr:hover {
     align-items: flex-start;
   }
 }
+.flag{
+	align-content: center;
+	align-items: center;
+	text-align: center;
+	margin-left: 550px;
+	font-weight: bold;
+	font-size: 40px;
+}
   </style>
 </head>
 <body class="dashboard-body">
@@ -253,6 +285,8 @@ table tbody tr:hover {
           </tr>
         </tbody>
       </table>
+      <br><br><br>
+      <a class="flag">FLAG: FLAG{idor_flag}</a>
     </section>
   </div>
 </body>
