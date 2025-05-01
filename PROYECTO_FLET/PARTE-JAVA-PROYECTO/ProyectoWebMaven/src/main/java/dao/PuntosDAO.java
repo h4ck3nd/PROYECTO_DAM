@@ -414,6 +414,34 @@ public class PuntosDAO {
         return puntosPyz1;
     }
     
+    // Método para obtener los puntos de Lenguaje LAB 8 del usuario
+    public int obtenerPuntosLenguaje1(int userId) throws SQLException {
+        int puntosLenguaje1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosLenguaje1 FROM validate_flag WHERE user_id = ? AND lab_id = 8";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosLenguaje1 = rs.getInt("puntosLenguaje1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos Lenguaje1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosLenguaje1;
+    }
+    
     // Método para obtener los puntos de R00tless LAB 1 del usuario
     public int obtenerPuntosR00tless(int userId) throws SQLException {
         int puntosR00tless = 0;

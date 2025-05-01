@@ -109,6 +109,12 @@ public class PuntosUsuarioControlador extends HttpServlet {
                 // Pasar los puntos al JSP
                 request.setAttribute("puntosPyz1", puntosPyz1);
                 
+                // Obtener Puntos del laboratorio PYZ
+                int puntosLenguaje1 = puntosDAO.obtenerPuntosLenguaje1(userId);
+
+                // Pasar los puntos al JSP
+                request.setAttribute("puntosLenguaje1", puntosLenguaje1);
+                
                 // PUNTOS DOCKERPWNED
                 
                 // Obtener Puntos del laboratorio R00tless (DockerPwned)
