@@ -519,6 +519,11 @@
 			object-fit: contain;
   		  	vertical-align: middle;
 		}
+		.img-so {
+			object-fit: contain;
+  		  	vertical-align: middle;
+  		  	margin-top: -5px;
+		}
 		.log-entry:hover {
 		  transform: scale(1.02);
 		  box-shadow: 0 0 12px rgba(0,255,204,0.2);
@@ -599,6 +604,8 @@
   <div style="margin-left: 470px; padding-right: 50px; margin-top: -40px;">
     <p style="text-shadow: 1px 1px 2px gray;"><strong>MD5:</strong> 9f73d8f0e1a008c1e10a3d89d29ab4fc</p> <!-- OBTENER HASH MD5 UTILIZANDO UN COMANDO EN CMD EN WINDOWS (CertUtil -hashfile C:\<PATH>\machine.ova MD5) / EN LINUX (md5sum machine.iso) -->
     <p style="text-shadow: 1px 1px 2px gray;"><strong>Root:</strong> <span id="flagCount">Cargando...</span></p>
+    <br>
+    <p style="text-shadow: 1px 1px 2px gray;"><strong>S.O.:</strong> <img alt="Linux" src="<%= request.getContextPath() %>/img/img_ovalabs/linux.png" width="30px" height="30px" class="img-so"></p>
   </div>
   
   <div>
