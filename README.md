@@ -23,14 +23,23 @@ Este repositorio contiene un proyecto web completo orientado a la creación de u
 ## 🧪 Arquitectura general
 
 ┌────────────┐     Token JWT      ┌──────────────┐
+
 │ Flask API  │ ─────────────────▶ │  Backend Java│
+
 │ (Python)   │                    │ (Tomcat)     │
+
 └────┬───────┘                    └────┬─────────┘
+
 │  DB usuarios (tokens)           │ DB app: retos, perfiles, flags
+
 ▼                                 ▼
+
 ┌──────────┐                     ┌─────────────┐
+
 │ SQLite / │                     │  MySQL /    │
+
 │ Postgre  │                     │ PostgreSQL  │
+
 └──────────┘                     └─────────────┘
 
 ---
@@ -85,9 +94,8 @@ Este repositorio contiene un proyecto web completo orientado a la creación de u
 1. **Python backend (Flask)**:
 
 ```bash
-cd backend-python
 pip install -r requirements.txt
-python main.py
+python3.11 main.py
 ```
 
 2. **Java backend (Tomcat)**:
@@ -99,8 +107,7 @@ python main.py
 3. **Frontend (Flet)**:
 
 ```bash
-cd frontend
-python app.py
+python3.11 main.py
 ```
 
 ## 🧪 Requisitos
