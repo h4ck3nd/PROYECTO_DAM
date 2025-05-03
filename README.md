@@ -32,7 +32,7 @@ Este repositorio contiene un proyecto web completo orientado a la creación de u
 
 │  DB usuarios (tokens)           │ DB app: retos, perfiles, flags
 
-    ▼                                  ▼
+  ▼                                  ▼
 
 ┌──────────┐                     ┌─────────────┐
 
