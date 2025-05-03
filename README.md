@@ -1,5 +1,3 @@
-📄 README.md
-
 # Plataforma CTF para Laboratorios de Hacking
 
 Este repositorio contiene un proyecto web completo orientado a la creación de una **plataforma CTF (Capture The Flag)**, diseñada para entornos de laboratorio donde los usuarios pueden poner en práctica sus habilidades en hacking web, retos con Docker, máquinas virtuales (OVAs) y más.
