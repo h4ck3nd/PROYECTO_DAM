@@ -87,18 +87,20 @@ Asegúrate de tener una base de datos `PostgreSQL` llamada `appusers` con una ta
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
     id SERIAL PRIMARY KEY,
-    nombre VARCHAR(100),
-    apellidos VARCHAR(100),
-    email VARCHAR(100) UNIQUE,
-    usuario VARCHAR(50) UNIQUE,
-    password_hash TEXT,
-    fecha_nacimiento DATE,
-    estado BOOLEAN,
-    fecha_registro TIMESTAMP,
-    rol VARCHAR(50),
-    cookie TEXT,
+    nombre VARCHAR(50) NOT NULL,
+    apellidos VARCHAR(50) NOT NULL,
+    email VARCHAR(120) UNIQUE NOT NULL,
+    usuario VARCHAR(128) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    fecha_nacimiento DATE NOT NULL,
+    estado BOOLEAN DEFAULT TRUE,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    rol VARCHAR(10) DEFAULT 'user',
     ultimo_login TIMESTAMP
 );
+
+-- Añadir la columna "Cookie" a la tabla usuarios
+ALTER TABLE usuarios ADD COLUMN cookie VARCHAR(255) UNIQUE;
 ```
 
 ### 6. Ejecuta la aplicación
