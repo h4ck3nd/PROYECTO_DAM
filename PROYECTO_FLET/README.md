@@ -49,8 +49,8 @@ Este proyecto (Parte de Python) es una aplicación web y de escritorio híbrida 
 ### 1. Clona el repositorio
 
 ```bash
-git clone https://github.com/tuusuario/tu-repo.git
-cd tu-repo
+git clone https://github.com/h4ck3nd/PROYECTO_DAM.git
+cd PROYECTO_DAM/PROYECTO_FLET/
 ```
 
 ## 2. Crea un entorno virtual con Python 3.11
