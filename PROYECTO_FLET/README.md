@@ -53,13 +53,13 @@ git clone https://github.com/h4ck3nd/PROYECTO_DAM.git
 cd PROYECTO_DAM/PROYECTO_FLET/
 ```
 
-## 2. Crea un entorno virtual con Python 3.11
+### 2. Crea un entorno virtual con Python 3.11
 
 ```bash
 python3.11 -m venv .venv
 ```
 
-## 3. Activa el entorno virtual
+### 3. Activa el entorno virtual
 
 En Linux/macOS:
 
@@ -73,13 +73,13 @@ En Windows:
 .venv\Scripts\activate
 ```
 
-## 4. Instala las dependencias
+### 4. Instala las dependencias
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## 5. Configura la base de datos
+### 5. Configura la base de datos
 
 Asegúrate de tener una base de datos `PostgreSQL` llamada `appusers` con una tabla `usuarios` con las siguientes columnas:
 
@@ -101,7 +101,7 @@ CREATE TABLE usuarios (
 );
 ```
 
-## 6. Ejecuta la aplicación
+### 6. Ejecuta la aplicación
 
 ```bash
 python main.py
