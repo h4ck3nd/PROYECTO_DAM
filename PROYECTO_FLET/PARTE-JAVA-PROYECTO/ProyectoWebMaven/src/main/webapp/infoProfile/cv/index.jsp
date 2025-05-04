@@ -267,13 +267,13 @@ jQuery(document).ready(function ($) {
             term.echo(`unknown command: ${command}\nplease type 'help' for a list of available commands`);
         }
     }, {
-        prompt: "[[;green;]cristian@4z4z3l][[;blue;]:~$] ",
+        prompt: "[[;green;]d1se0@h4ckend][[;blue;]:~$] ",
         greetings: `[[b;white;]This is 4z4z3l\n\nType 'help' for a list of available commands]`,
         keydown: function (event, term) {
             if (isLoading && event.which === 68 && event.ctrlKey) {
                 clearTimeout();
                 isLoading = false;
-                term.echo("[[b;red;]FAIL]").set_prompt("[[;green;]cristian@4z4z3l][[;blue;]:~$] ");
+                term.echo("[[b;red;]FAIL]").set_prompt("[[;green;]d1se0@h4ckend][[;blue;]:~$] ");
                 return false;
             }
         },

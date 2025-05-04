@@ -73,10 +73,9 @@
       &copy; Adrián <span id="thisyear">2025</span> | El blog de d1se0
     </p>
     <p class="text-center">
-      <a href="https://twitter.com/TFujiwara86">Twitter</a>
-      <a href="https://www.linkedin.com/in/cgarciaquevedo/">LinkedIn</a>
-      <a href="https://github.com/TFujiwara">GitHub</a>
-      <a href="https://gitlab.com/TFujiwara">GitLab</a>
+        <a href="https://www.linkedin.com/in/adriaangaarcialopez">LinkedIn</a>
+        <a href="https://github.com/D1se0">GitHub</a>
+        <a href="https://dise0.gitbook.io/h4cker_b00k">GitBook</a>
     </p>
   </footer>
 
