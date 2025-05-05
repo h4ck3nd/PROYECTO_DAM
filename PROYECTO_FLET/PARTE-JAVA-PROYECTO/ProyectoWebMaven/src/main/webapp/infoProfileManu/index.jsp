@@ -18,7 +18,7 @@
 <head>
   <link rel="icon" href="favicon.html" />
   <link rel="canonical" href="index.jsp" />
-  <title>El blog de d1se0</title>
+  <title>El blog de Manu</title>
 
   <link rel="stylesheet" href="css/bootstrap.css" />
   <link rel="stylesheet" href="css/bootstrap-responsive.css" />
@@ -30,11 +30,11 @@
     <div class="navbar-inner">
       <div class="container">
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></button>
-        <a class="brand" href="index.jsp">El blog de d1se0</a>
+        <a class="brand" href="index.jsp">El blog de Manu</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="cv/index.jsp"><span>Curriculum Vitae</span></a></li>
-            <li><a href="about/index.jsp"><span>Sobre mí</span></a></li>
+            <li><a href="cv/indexManu.jsp"><span>Curriculum Vitae</span></a></li>
+            <li><a href="about/indexManu.jsp"><span>Sobre mí</span></a></li>
           </ul>
         </div>
       </div>
