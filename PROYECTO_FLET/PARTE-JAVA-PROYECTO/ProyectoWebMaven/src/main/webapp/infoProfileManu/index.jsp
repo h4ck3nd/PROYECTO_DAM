@@ -44,20 +44,18 @@
   <div id="content" class="container">
     <div class="row-fluid navmargin">
       <div class="page-header">
-        <h1>El blog de d1se0</h1>
+        <h1>El blog de Manu</h1>
       </div>
     </div>
 
     <div class="row-fluid">
       <div class="span9 bs-docs-sidebar">
         <p class="lead">
-          Blog personal donde cuento algunas de las investigaciones que he hecho, además de algún que otro tutorial o recomendaciones varias.
+          Blog personal donde cuento algunos de mis proyectos y cosas que estoy aprendiendo a lo largo de mi carrera como desarrollador FrontEnd.
         </p>
         <hr class="soften" />
         <ul>
-          <li><a href="https://dise0.gitbook.io/h4cker_b00k">Sitio Web GitBook</a></li>
-          <li><a href="https://github.com/D1se0">GitHub Principal</a></li>
-          <li><a href="https://github.com/h4ck3nd">GitHub Secundario</a></li>
+          <li><a href="https://github.com/ManuDev664">GitHub Principal</a></li>
         </ul>
       </div>
 
@@ -75,13 +73,10 @@
   <footer class="container">
     <hr class="soften" />
     <p>
-      &copy; Adrián <span id="thisyear">2025</span> | El blog de d1se0
+      &copy; Manu <span id="thisyear">2025</span> | El blog de Manu
     </p>
     <p class="text-center">
-      <a href="https://twitter.com/TFujiwara86">Twitter</a>
-      <a href="https://www.linkedin.com/in/cgarciaquevedo/">LinkedIn</a>
       <a href="https://github.com/TFujiwara">GitHub</a>
-      <a href="https://gitlab.com/TFujiwara">GitLab</a>
     </p>
   </footer>
 
