@@ -386,7 +386,7 @@
 	const resultsContainer = document.querySelector('.results');
 	const searchResults = [
 	    { url: "../labs/router/router-lab.jsp", title: "RouterOS", description: "En esta parte podras administrar tu Router a distancia...", image: "../img/logo-test-36-update.png", tags: ["web", "login", "test", "routerOS", "os", "router", "facil", "d1se0", "manu"] },
-	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
+	    { url: "../labs/hackGame/hackGame-lab.jsp", title: "HackGame Retro", description: "Pagina donde vas a poder jugar los juegos tan famosos de los 80s", image: "../img/logo-test-32-update.png", tags: ["web", "commands", "terminal", "hackGame", "retro", "game", "medio", "d1se0", "manu"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
 	    { url: "../labs/none.jsp", title: "CONSTRUCCION... \u{1F6A7}", description: "Pagina en construccion...", image: "../img/default-error.png", tags: ["construccion"] },
