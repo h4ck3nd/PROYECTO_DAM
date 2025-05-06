@@ -79,6 +79,9 @@ public class ValidateFlagControlador extends HttpServlet {
             case 8:
                 redireccion = "/labs/router/router-lab.jsp";
                 break;
+            case 9:
+                redireccion = "/labs/hackGame/hackGame-lab.jsp";
+                break;
             default:
                 redireccion = "/home_directory/home.jsp?page=0"; // Ruta por defecto si no coincide
                 break;

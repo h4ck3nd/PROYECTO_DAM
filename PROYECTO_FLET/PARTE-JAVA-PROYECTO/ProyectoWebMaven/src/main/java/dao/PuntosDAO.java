@@ -442,6 +442,34 @@ public class PuntosDAO {
         return puntosLenguaje1;
     }
     
+    // Método para obtener los puntos de CommandInjection LAB 8 del usuario
+    public int obtenerPuntosCommandInjection1(int userId) throws SQLException {
+        int puntosCommandInjection1 = 0;
+        
+        // Usamos la clase ConexionDDBB para obtener la conexión a la base de datos
+        ConexionDDBB conexionDB = new ConexionDDBB();
+        Connection conn = conexionDB.conectar();
+        
+        String sql = "SELECT SUM(puntos) AS puntosCommandInjection1 FROM validate_flag WHERE user_id = ? AND lab_id = 9";
+        
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            
+            try (ResultSet rs = stmt.executeQuery()) {
+                if (rs.next()) {
+                	puntosCommandInjection1 = rs.getInt("puntosCommandInjection1");
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Error al obtener puntos CommandInjection1: " + e.getMessage());
+            throw e;
+        } finally {
+            conexionDB.cerrarConexion(); // Cerramos la conexión
+        }
+        
+        return puntosCommandInjection1;
+    }
+    
     // Método para obtener los puntos de R00tless LAB 1 del usuario
     public int obtenerPuntosR00tless(int userId) throws SQLException {
         int puntosR00tless = 0;
