@@ -166,7 +166,7 @@
     function typeLine() {
       if (lineIndex >= lines.length) {
         setTimeout(() => {
-          window.location.href = "<%= request.getContextPath() %>/infoProfile/indexManu.jsp";
+          window.location.href = "<%= request.getContextPath() %>/infoProfileManu/index.jsp";
         }, 1000);
         return;
       }
