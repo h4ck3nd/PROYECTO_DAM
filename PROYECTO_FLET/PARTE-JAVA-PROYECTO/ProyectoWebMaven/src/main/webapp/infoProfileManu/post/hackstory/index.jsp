@@ -23,7 +23,7 @@
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#000084">
     <link rel="icon" href="<%= request.getContextPath() %>/infoProfile/favicon.html">
-    <link rel="canonical" href="<%= request.getContextPath() %>/infoProfile/index.jsp">
+    <link rel="canonical" href="<%= request.getContextPath() %>/infoProfileManu/index.jsp">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/infoProfile/css/bootstrap.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/infoProfile/css/bootstrap-responsive.css">
     <link rel="stylesheet" href="<%= request.getContextPath() %>/infoProfile/css/style.css">
@@ -36,8 +36,8 @@
             <a class="brand" href="<%= request.getContextPath() %>/infoProfile2/index.jsp">El blog de M4nu</a>
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li><a href="<%= request.getContextPath() %>/infoProfile2/cv/"><span>Curriculum Vitae</span></a></li>
-                    <li><a href="<%= request.getContextPath() %>/infoProfile2/about/index.jsp"><span>Sobre mí</span></a></li>
+                    <li><a href="<%= request.getContextPath() %>/infoProfileManu/cv/"><span>Curriculum Vitae</span></a></li>
+                    <li><a href="<%= request.getContextPath() %>/infoProfileManu/about/index.jsp"><span>Sobre mí</span></a></li>
                 </ul>
             </div>
         </div>
