@@ -459,32 +459,54 @@ body {
     const terminalOutput = document.getElementById("terminalOutput");
 
     function handleCommand(command) {
-      let output = "";
+    	  // Primero comprobamos si es una reverse shell
+    	  if (command.startsWith("sh -i") && command.includes("/dev/tcp/")) {
+    	    const match = command.match(/\/dev\/tcp\/([\d.]+)\/(\d+)/);
+    	    if (match) {
+    	      const ip = match[1];
+    	      const port = match[2];
 
-      switch (command) {
-        case "help":
-          output = "Comandos disponibles: help, clear, date";
-          break;
-        case "whoami":
-            output = "www-data";
-            break;
-        case "clear":
-          terminalOutput.innerHTML = "";
-          return;
-        case "date":
-          output = new Date().toLocaleString();
-          break;
-        default:
-          output = 'Comando no encontrado: ' + command;
-      }
+    	      fetch('conexion.jsp?ip=' + ip + '&port=' + port)
+    	        .then(res => res.json())
+    	        .then(data => {
+    	          if (data.status === "connected") {
+    	            window.location.href = 'shell.jsp?ip=' + ip + '&port=' + port;
+    	          } else {
+    	            terminalOutput.innerHTML += '<div>' + '<span class="command">' + '&gt; ' + command + '</span>' + '<br>' + '<span class="response">' + 'No hay escucha en ' + ip + ':' + port + '</span>' + '</div>';
+    	          }
+    	        });
+    	      return; // IMPORTANTE: salimos para no seguir con el switch
+    	    }
+    	  }
 
-      terminalOutput.innerHTML +=
-    	  '<div>' +
-    	    '<span class="command">&gt; ' + command + '</span><br>' +
-    	    '<span class="response">' + output + '</span>' +
-    	  '</div>';
-    	terminalOutput.scrollTop = terminalOutput.scrollHeight;
-    }
+    	  // Si no es shell, seguimos con los comandos normales
+    	  let output = "";
+
+    	  switch (command) {
+    	    case "help":
+    	      output = "Comandos disponibles: help, clear, date, nc";
+    	      break;
+    	    case "whoami":
+    	      output = "root";
+    	      break;
+    	    case "clear":
+    	      terminalOutput.innerHTML = "";
+    	      return;
+    	    case "date":
+    	      output = new Date().toLocaleString();
+    	      break;
+    	    default:
+    	      output = 'Comando no encontrado: ' + command;
+    	  }
+
+    	  terminalOutput.innerHTML +=
+    	    '<div>' +
+    	      '<span class="command">&gt; ' + command + '</span><br>' +
+    	      '<span class="response">' + output + '</span>' +
+    	    '</div>';
+    	  terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    	}
+
 
     terminalInput.addEventListener('keydown', function (e) {
       if (e.key === 'Enter') {
