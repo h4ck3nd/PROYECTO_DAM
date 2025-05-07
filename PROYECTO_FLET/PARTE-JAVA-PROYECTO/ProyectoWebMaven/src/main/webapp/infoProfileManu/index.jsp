@@ -18,7 +18,7 @@
 <head>
   <link rel="icon" href="favicon.html" />
   <link rel="canonical" href="index.jsp" />
-  <title>El blog de Manu</title>
+  <title>El blog de M4nu</title>
 
   <link rel="stylesheet" href="css/bootstrap.css" />
   <link rel="stylesheet" href="css/bootstrap-responsive.css" />
@@ -30,11 +30,11 @@
     <div class="navbar-inner">
       <div class="container">
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></button>
-        <a class="brand" href="index.jsp">El blog de Manu</a>
+        <a class="brand" href="index.jsp">El blog de M4nu</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="cv/indexManu.jsp"><span>Curriculum Vitae</span></a></li>
-            <li><a href="about/indexManu.jsp"><span>Sobre mí</span></a></li>
+            <li><a href="cv/index.jsp"><span>Curriculum Vitae</span></a></li>
+            <li><a href="about/index.jsp"><span>Sobre mí</span></a></li>
           </ul>
         </div>
       </div>
@@ -44,7 +44,7 @@
   <div id="content" class="container">
     <div class="row-fluid navmargin">
       <div class="page-header">
-        <h1>El blog de Manu</h1>
+        <h1>El blog de M4nu</h1>
       </div>
     </div>
 
@@ -55,16 +55,13 @@
         </p>
         <hr class="soften" />
         <ul>
-          <li><a href="https://github.com/ManuDev664">GitHub Principal</a></li>
+          <li><a href="https://github.com/ManuDev664">GitHub</a></li>
         </ul>
       </div>
 
       <div class="span3 bs-docs-sidebar">
         <ul class="nav nav-list bs-docs-sidenav">
-          <li><a href="categories/writeups/index.html">Writeups</a></li>
-          <li><a href="categories/investigacion/index.html">Investigación</a></li>
-          <li><a href="categories/tutoriales/index.html">Tutoriales</a></li>
-          <li><a href="categories/libros/index.html">Libros</a></li>
+          <li><a href="categories/libros/index.jsp">Libros</a></li>
         </ul>
       </div>
     </div>
@@ -73,10 +70,10 @@
   <footer class="container">
     <hr class="soften" />
     <p>
-      &copy; Manu <span id="thisyear">2025</span> | El blog de Manu
+      &copy; M4nu <span id="thisyear">2025</span> | El blog de M4nu
     </p>
     <p class="text-center">
-      <a href="https://github.com/TFujiwara">GitHub</a>
+        <a href="https://github.com/ManuDev664">GitHub</a>
     </p>
   </footer>
 

@@ -17,8 +17,8 @@
 <html lang="es">
 <head>
   <link rel="icon" href="<%= request.getContextPath() %>/infoProfile/favicon.html" />
-  <link rel="canonical" href="<%= request.getContextPath() %>/infoProfile/index.jsp" />
-  <title>El blog de d1se0</title>
+  <link rel="canonical" href="<%= request.getContextPath() %>/infoProfileManu/index.jsp" />
+  <title>El blog de M4nu</title>
   <link rel="stylesheet" href="<%= request.getContextPath() %>/infoProfile/css/bootstrap.css" />
   <link rel="stylesheet" href="<%= request.getContextPath() %>/infoProfile/css/bootstrap-responsive.css" />
   <link rel="stylesheet" href="<%= request.getContextPath() %>/infoProfile/css/style.css" />
@@ -29,11 +29,11 @@
     <div class="navbar-inner">
       <div class="container">
         <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse"></button>
-        <a class="brand" href="<%= request.getContextPath() %>/infoProfile/index.jsp">El blog de d1se0</a>
+        <a class="brand" href="<%= request.getContextPath() %>/infoProfileManu/index.jsp">El blog de M4nu</a>
         <div class="nav-collapse collapse">
           <ul class="nav">
-            <li><a href="<%= request.getContextPath() %>/infoProfile/cv/index.jsp"><span>Curriculum Vitae</span></a></li>
-            <li><a href="<%= request.getContextPath() %>/infoProfile/about/index.jsp"><span>Sobre mí</span></a></li>
+            <li><a href="<%= request.getContextPath() %>/infoProfileManu/cv/index.jsp"><span>Curriculum Vitae</span></a></li>
+            <li><a href="<%= request.getContextPath() %>/infoProfileManu/about/index.jsp"><span>Sobre mí</span></a></li>
           </ul>
         </div>
       </div>
@@ -43,40 +43,31 @@
   <div id="content" class="container">
     <div class="row-fluid navmargin">
       <div class="page-header">
-        <h1>Sobre mí - Mon, Jun 8, 2020</h1>
+        <h1>Sobre mí - Miércoles, Mayo 7, 2025</h1>
       </div>
 
       <p class="lead">Sobre mí, quién soy, de dónde vengo y hacia dónde voy</p>
-      <p>Nací en el año del mundial de Estados Unidos, el de 1994, y a los dos o tres años me regalaron el balón del mundial de fútbol, el cual, acabé perdiendo o calándolo, no sé exactamente cuál de las dos.</p>
-      <p>Me gustaba la informática desde bien pequeñito, tendría unos cinco años cuando toqué mi primer ordenador, el viejo 386 de mi padre.</p>
-      <p>Hablando de videojuegos, tengo en posesión una NES, y me dejaron una Nintendo 64.</p>
-      <p>Vi el nacimiento de varias consolas actuales, como la Playstation (incluyendo la 3), la primera Xbox, la Nintendo Gamecube, la Wii…</p>
-      <p>Tengo guardado en el trastero la primera Playstation, y un Spectrum ZX+2 de mi padre que también le he dado uso.</p>
-      <p>Siempre he sido muy alegre, inquieto, curioso, algo soñador… De ahí que me llamen mucho la atención ciertas cosas, como por ejemplo saber cómo funcionaba un ordenador, cuáles eran sus componentes, etc.</p>
-      <p>Tengo un Grado Medio en SMR y el Grado Superior en Desarrollo de Aplicaciones Web.</p>
-      <p>Lo del hacking y demás cosas (programación, etc.) lo aprendí de forma autodidacta.</p>
-      <p>Formé parte de la comunidad sobre seguridad informática, Whihax Security, haciendo la labor de administrador de sistemas.</p>
-      <p>Dirigí el canal de Telegram sobre seguridad informática, Security News for Everyone, junto con otros miembros de Whihax Security.</p>
-      <p>Tras la disolución de Whihax Security, empecé un nuevo proyecto, Chaos as a Service, en el cual, he puesto de nuevo todos mis esfuerzos en él.</p>
-      <p>Me encanta leer, sobre todo libros técnicos o novelas de misterio. Sobre las series, he visto demasiadas, pero mi favorita es Mr. Robot.</p>
-      <p>También me gusta el anime y el manga, además de ser un gran aficionado al mundo del motor.</p>
+<p>Nací en el año 2004, un año emocionante para los fanáticos del automovilismo, marcado por el dominio de Michael Schumacher y Ferrari en la Fórmula 1. Desde muy pequeño sentí curiosidad por la tecnología; con apenas dos años ya cogía los teléfonos de mis familiares para jugar a Bounce Tales, uno de mis juegos favoritos de la infancia.</p>
+<p>Mi primera consola fue una Nintendo DS a los siete años. Con el tiempo llegaron nuevas etapas: una PSP, luego una PlayStation 3 —que se rompió tras una mudanza— y finalmente una PlayStation 4, que aún conservo junto a las otras, salvo la PS3. Aunque hoy en día juego menos, el boom de Fortnite marcó una etapa muy divertida con mis amigos.</p>
+<p>Mi primer contacto con un ordenador fue en 2010, usando el equipo de mi padre con Windows Vista para jugar al Buscaminas y al Paintball. En sexto de primaria recibí mi primer portátil para hacer trabajos escolares, y en 2020 obtuve mi primer ordenador de sobremesa gaming, con el que empecé a experimentar más en el mundo digital.</p>
+<p>Siempre me he considerado una persona curiosa, con ganas de aprender. Actualmente me interesan especialmente los avances en inteligencia artificial y las nuevas herramientas de desarrollo web. Me apasiona investigar sobre la creación de chatbots, GPTs y la automatización de procesos con plataformas como MAKE.</p>
+<p>En cuanto a formación, tengo el Grado Medio en Sistemas Microinformáticos y Redes (SMR), y actualmente curso el primer año del Grado Superior en Desarrollo de Aplicaciones Web.</p>
+<p>También disfruto leyendo libros técnicos y de desarrollo personal. Uno que me ha marcado es "Rompe la barrera del NO", el cual me ayudó a entender mejor la comunicación y la negociación. En cuanto a series, Mr. Robot me dejó una gran impresión; la vi en 2021 cuando estaba en mi primer año del Grado Medio, y me inspiró aún más a seguir aprendiendo sobre informática.</p>
+<p>En mi vida personal, siempre me han gustado los perros. De pequeño tuvimos un dóberman, y desde entonces mi raza favorita es el labrador. Además, soy un gran aficionado al mundo del motor, especialmente a marcas como Mercedes y Porsche.</p>
+
 
       <p><strong>Medios de contacto:</strong></p>
-      <p>Correo electrónico: ciberseguridad12345@gmail.com</p>
-      <p>Linkedin: <a href="https://www.linkedin.com/in/adriaangaarcialopez" target="_blank">Linkedin Mío</a></p>
+      <p>Correo electrónico: yta-manu@gmail.com</p>
     </div>
   </div>
 
   <footer class="container">
     <hr class="soften" />
     <p>
-      &copy; Adrián <span id="thisyear">2025</span> | El blog de d1se0
+      &copy; M4nu <span id="thisyear">2025</span> | El blog de M4nu
     </p>
     <p class="text-center">
-      <a href="https://twitter.com/TFujiwara86">Twitter</a>
-      <a href="https://www.linkedin.com/in/cgarciaquevedo/">LinkedIn</a>
-      <a href="https://github.com/TFujiwara">GitHub</a>
-      <a href="https://gitlab.com/TFujiwara">GitLab</a>
+        <a href="https://github.com/ManuDev664">GitHub</a>
     </p>
   </footer>
 
