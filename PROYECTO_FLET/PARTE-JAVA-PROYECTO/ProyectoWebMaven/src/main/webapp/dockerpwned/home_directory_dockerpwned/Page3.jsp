@@ -270,7 +270,7 @@
     <!-- FOOTER -->
 	<footer class="footer">
 	  <div class="footer-top">
-	    <p>Todos los derechos reservados <a href="#">d1se0 y m4nu</a></p>
+	    <p>Todos los derechos reservados <a href="<%= request.getContextPath() %>/animationStart.jsp">d1se0</a> y <a href="<%= request.getContextPath() %>/animationStartManu.jsp">m4nu</a></p>
 	  </div>
 	  <div class="footer-bottom">
 	    <a href="#">Ayuda</a>
