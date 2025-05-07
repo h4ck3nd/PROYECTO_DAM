@@ -215,8 +215,8 @@
 			    <p><strong>Nombre:</strong> <%= usuarioJWT.getNombre() %></p>
 			    <p><strong>Apellido:</strong> <%= usuarioJWT.getApellidos() %></p>
 			    <p><strong>Último Login:</strong> <%= usuarioJWT.getUltimoLogin() != null ? usuarioJWT.getUltimoLogin() : "Nunca ha iniciado sesión" %></p>
-			    <p><strong>Cookie:</strong> <%= usuarioJWT.getCookie() %></p>
-			    <p><strong>Token:</strong> <%= usuarioJWT.getToken() %></p>
+			    <!-- <p><strong>Cookie:</strong> <%= usuarioJWT.getCookie() %></p>
+			    <p><strong>Token:</strong> <%= usuarioJWT.getToken() %></p>-->
 			  </div>
 			
 			  <div class="profile-actions">
