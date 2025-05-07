@@ -35,6 +35,7 @@
           <ul class="nav">
             <li><a href="cv/index.jsp"><span>Curriculum Vitae</span></a></li>
             <li><a href="about/index.jsp"><span>Sobre mí</span></a></li>
+            <li><a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0"><span>volver</span></a></li>
           </ul>
         </div>
       </div>

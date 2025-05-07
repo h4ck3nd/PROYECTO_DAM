@@ -46,20 +46,13 @@
         <h1>Sobre mí - Mon, Jun 8, 2020</h1>
       </div>
 
-      <p class="lead">Sobre mí, quién soy, de dónde vengo y hacia dónde voy</p>
-      <p>Nací en el año del mundial de Estados Unidos, el de 1994, y a los dos o tres años me regalaron el balón del mundial de fútbol, el cual, acabé perdiendo o calándolo, no sé exactamente cuál de las dos.</p>
-      <p>Me gustaba la informática desde bien pequeñito, tendría unos cinco años cuando toqué mi primer ordenador, el viejo 386 de mi padre.</p>
-      <p>Hablando de videojuegos, tengo en posesión una NES, y me dejaron una Nintendo 64.</p>
-      <p>Vi el nacimiento de varias consolas actuales, como la Playstation (incluyendo la 3), la primera Xbox, la Nintendo Gamecube, la Wii…</p>
-      <p>Tengo guardado en el trastero la primera Playstation, y un Spectrum ZX+2 de mi padre que también le he dado uso.</p>
-      <p>Siempre he sido muy alegre, inquieto, curioso, algo soñador… De ahí que me llamen mucho la atención ciertas cosas, como por ejemplo saber cómo funcionaba un ordenador, cuáles eran sus componentes, etc.</p>
-      <p>Tengo un Grado Medio en SMR y el Grado Superior en Desarrollo de Aplicaciones Web.</p>
-      <p>Lo del hacking y demás cosas (programación, etc.) lo aprendí de forma autodidacta.</p>
-      <p>Formé parte de la comunidad sobre seguridad informática, Whihax Security, haciendo la labor de administrador de sistemas.</p>
-      <p>Dirigí el canal de Telegram sobre seguridad informática, Security News for Everyone, junto con otros miembros de Whihax Security.</p>
-      <p>Tras la disolución de Whihax Security, empecé un nuevo proyecto, Chaos as a Service, en el cual, he puesto de nuevo todos mis esfuerzos en él.</p>
-      <p>Me encanta leer, sobre todo libros técnicos o novelas de misterio. Sobre las series, he visto demasiadas, pero mi favorita es Mr. Robot.</p>
-      <p>También me gusta el anime y el manga, además de ser un gran aficionado al mundo del motor.</p>
+      <p class="lead">Sobre mí</p>
+		<p>Soy hacker ético y apasionado del mundo del hacking desde muy joven. Siempre me ha fascinado entender cómo funcionan los sistemas, explorar sus límites y descubrir vulnerabilidades de forma responsable.</p>
+		<p>Con el tiempo, he desarrollado múltiples proyectos relacionados con la ciberseguridad, tanto personales como colaborativos, y he adquirido diversas certificaciones que respaldan mis conocimientos en el área.</p>
+		<p>Me considero una persona autodidacta, inquieta y comprometida con la mejora continua. En mi día a día toco todos los aspectos del hacking: pentesting, análisis de malware, OSINT, ingeniería inversa, hardening, etc.</p>
+		<p>Además, produzco contenido educativo en forma de vídeos donde explico técnicas, herramientas y conceptos del mundo de la seguridad informática, contribuyendo así a la formación y concienciación de la comunidad.</p>
+		<p>Estoy constantemente involucrado en nuevos retos y proyectos que me permitan seguir aprendiendo y compartiendo lo que sé.</p>
+
 
       <p><strong>Medios de contacto:</strong></p>
       <p>Correo electrónico: ciberseguridad12345@gmail.com</p>

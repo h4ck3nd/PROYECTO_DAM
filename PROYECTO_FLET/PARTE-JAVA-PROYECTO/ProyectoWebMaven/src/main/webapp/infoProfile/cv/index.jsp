@@ -268,7 +268,7 @@ jQuery(document).ready(function ($) {
         }
     }, {
         prompt: "[[;green;]d1se0@h4ckend][[;blue;]:~$] ",
-        greetings: `[[b;white;]This is 4z4z3l\n\nType 'help' for a list of available commands]`,
+        greetings: `[[b;white;]This is h4ckend\n\nType 'help' for a list of available commands]`,
         keydown: function (event, term) {
             if (isLoading && event.which === 68 && event.ctrlKey) {
                 clearTimeout();
