@@ -22,6 +22,50 @@
       align-items: center;
       justify-content: center;
     }
+    
+  .header-main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: transparent;
+  color: #fff;
+  padding: 10px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.header-left {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.header-right {
+  display: flex;
+  gap: 5px;
+}
+
+.window-btn {
+  background-color: #2e2e2e;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: background-color 0.2s ease;
+}
+
+.window-btn:hover {
+  background-color: #444;
+}
+
+.window-btn.close:hover {
+  background-color: #e81123;
+}
 
     .iphone-container {
       width: 390px;
@@ -174,7 +218,16 @@
   </style>
 </head>
 <body>
+  <header class="header-main">
+  <div class="header-left">WHATSAPP FAKE</div>
+  <div class="header-right">
+    <button class="window-btn minimize">−</button>
+    <button class="window-btn maximize">☐</button>
+    <button class="window-btn close" onclick="window.location.href='<%= request.getContextPath() %>/labs/whatsapp_fake/whatsapp_fake_lab.jsp'">✕</button>
+  </div>
+</header>
 
+  
   <div class="iphone-container">
     <div class="notch">
       <div class="camera"></div>
@@ -184,7 +237,6 @@
       <!-- Header -->
       <div class="header">
       Contactos
-      <span><a class="back" href="<%= request.getContextPath() %>/labs/whatsapp_fake/whatsapp_fake_lab.jsp">←</a></span>
       </div>
 	
       <!-- Vista de Contactos -->
