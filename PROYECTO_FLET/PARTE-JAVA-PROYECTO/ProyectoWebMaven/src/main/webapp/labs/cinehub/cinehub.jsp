@@ -77,6 +77,18 @@ html, body {
   font-weight: 500;
 }
 
+.header ul li a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
+nav ul a {
+	text-decoration: none;
+	color: #fff;
+	font-weight: bold;
+}
+
 /*Barra de navegacion*/
 .search-section {
   display: flex;
@@ -281,105 +293,105 @@ html, body {
             <section class="estrenos-grid">
                 <!-- Card 1: Netflix -->
                 <article class="card netflix">
-                  <img src="https://via.placeholder.com/300x170?text=Netflix+Estreno" alt="Netflix">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/agentenocturno.jpg" alt="Netflix">
                   <p>Netflix: El Agente Nocturno</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/netflix/agentenocturno.jsp'">Ver ahora</button>
                 </article>
                 
                 <!-- Card 2: HBO -->
                 <article class="card hbo">
-                  <img src="https://via.placeholder.com/300x170?text=HBO+Estreno" alt="HBO">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/thelastoffast.jpg" alt="HBO">
                   <p>HBO: The Last of Us</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/hbo/thelastoffast.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 3: Amazon Prime -->
                 <article class="card amazon">
-                  <img src="https://via.placeholder.com/300x170?text=Amazon+Prime" alt="Amazon Prime">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/jackryan.jpg" alt="Amazon Prime">
                   <p>Amazon Prime: Jack Ryan</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/amazon/jack-ryan.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 4: Atresplayer -->
                 <article class="card atresplayer">
-                  <img src="https://via.placeholder.com/300x170?text=Atresplayer" alt="Atresplayer">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/sueñosdelibertad.jpg" alt="Atresplayer">
                   <p>Atresplayer: Sueños de Libertad</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/atresplayer/sueñosdelibertad.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 5: Netflix -->
                 <article class="card netflix">
-                  <img src="https://via.placeholder.com/300x170?text=Netflix+Estreno" alt="Netflix">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/ladiplomatica.jpg" alt="Netflix">
                   <p>Netflix: La Diplomática</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/netflix/ladiplomatica.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 6: HBO -->
                 <article class="card hbo">
-                  <img src="https://via.placeholder.com/300x170?text=HBO+Estreno" alt="HBO">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/succession.jpg" alt="HBO">
                   <p>HBO: Succession</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/hbo/succession.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 7: Amazon Prime -->
                 <article class="card amazon">
-                  <img src="https://via.placeholder.com/300x170?text=Amazon+Prime" alt="Amazon Prime">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/reacher.jpg" alt="Amazon Prime">
                   <p>Amazon Prime: Reacher</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/amazon/reacher.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 8: Atresplayer -->
                 <article class="card atresplayer">
-                  <img src="https://via.placeholder.com/300x170?text=Atresplayer" alt="Atresplayer">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/lanoviagitana.jpg" alt="Atresplayer">
                   <p>Atresplayer: La Novia Gitana</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/atresplayer/lanoviagitana.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 9: Netflix -->
                 <article class="card netflix">
-                  <img src="https://via.placeholder.com/300x170?text=Netflix+Estreno" alt="Netflix">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/bienvenidosaeden.jpg" alt="Netflix">
                   <p>Netflix: Bienvenidos a Edén</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/netflix/bienvenidosaeden.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 10: HBO -->
                 <article class="card hbo">
-                  <img src="https://via.placeholder.com/300x170?text=HBO+Estreno" alt="HBO">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/chernobyl.jpg" alt="HBO">
                   <p>HBO: Chernobyl</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/hbo/chernobyl.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 11: Amazon Prime -->
                 <article class="card amazon">
-                  <img src="https://via.placeholder.com/300x170?text=Amazon+Prime" alt="Amazon Prime">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/elconsultor.jpg" alt="Amazon Prime">
                   <p>Amazon Prime: El Consultor</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/amazon/elconsultor.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 12: Atresplayer -->
                 <article class="card atresplayer">
-                  <img src="https://via.placeholder.com/300x170?text=Atresplayer" alt="Atresplayer">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/alba.jpg" alt="Atresplayer">
                   <p>Atresplayer: Alba</p>
-                  <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub//peliculas/atresplayer/alba.jsp'">Ver ahora</button>
+                  <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/atresplayer/alba.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 13: Netflix -->
                 <article class="card netflix">
-                  <img src="https://via.placeholder.com/300x170?text=Netflix+Estreno" alt="Netflix">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/palpito.jpg" alt="Netflix">
                   <p>Netflix: Pálpito</p>
-                  <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub//peliculas/netflix/palpito.jsp'">Ver ahora</button>
+                  <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/netflix/palpito.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 14: HBO -->
                 <article class="card hbo">
-                  <img src="https://via.placeholder.com/300x170?text=HBO+Estreno" alt="HBO">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/euphoria.jpg" alt="HBO">
                   <p>HBO: Euphoria</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/hbo/euphoria.jsp'">Ver ahora</button>
                 </article>
               
                 <!-- Card 15: Amazon Prime -->
                 <article class="card amazon">
-                  <img src="https://via.placeholder.com/300x170?text=Amazon+Prime" alt="Amazon Prime">
+                  <img src="<%= request.getContextPath() %>/img/img-cinehub/hunters.jpg" alt="Amazon Prime">
                   <p>Amazon Prime: Hunters</p>
                   <button class="ver-btn" onclick="window.location.href='<%= request.getContextPath() %>/labs/cinehub/peliculas/amazon/hunters.jsp'">Ver ahora</button>
                 </article>
