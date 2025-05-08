@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
 	                { username: "admin", password: "admin123" },
 	                { username: "user", password: "userpass" }
 	            ],
-	            flag: [{ flag: "FLAG{sql_injection_lab1}" }]
+	            flag: [{ flag: "FLAG{amashop_flag}" }]
 	        }
 	    };
 
