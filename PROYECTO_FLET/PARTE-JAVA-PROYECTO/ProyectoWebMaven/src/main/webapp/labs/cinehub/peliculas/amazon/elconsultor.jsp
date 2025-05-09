@@ -33,6 +33,12 @@
   color: #fff;
 }
 
+.header nav ul li > a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
 .header h1 span {
   color: #ff0000;
 }

@@ -28,6 +28,12 @@
   flex-wrap: wrap;
 }
 
+.header nav ul li > a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
 .header h1 {
   font-size: 28px;
   color: #fff;

@@ -43,6 +43,12 @@
   gap: 20px;
 }
 
+.header nav ul li > a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
 .header nav li {
   cursor: pointer;
   font-size: 16px;

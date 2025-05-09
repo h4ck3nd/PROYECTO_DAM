@@ -54,6 +54,12 @@ body {
 	color: #fff;
 }
 
+.header nav ul li > a {
+  text-decoration: none;
+  color: #fff;
+  font-weight: bold;
+}
+
 .pelicula-container {
 	padding: 40px 20px;
 	max-width: 900px;
