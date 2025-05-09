@@ -1,8 +1,25 @@
+<%
+/**
+ * Declaración del tipo de contenido de la página y configuración de codificación.
+ */
+%>
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
-
 <%
+/**
+ * Importación de clases necesarias para:
+ * - Decodificación y validación de JWT (JWTUtils)
+ * - Representación del usuario autenticado (UsuarioJWT)
+ */
+%>
+<%
+
+   /**
+   * Se intenta obtener la información del usuario a partir del token JWT presente en la solicitud.
+   * Si falla, se redirige al servlet de logout para cerrar la sesión y evitar acceso no autorizado.
+   */
+
     UsuarioJWT usuarioJWT = null;
 
 	try {
@@ -18,6 +35,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>Starting System...</title>
+  <!-- Estilos CSS que simulan una consola de sistema retro estilo BIOS/terminal -->
   <style>
     html, body {
       margin: 0;
@@ -128,6 +146,7 @@
   </style>
 </head>
 <body>
+  <!-- Contenedor principal de la pantalla simulada -->
   <div class="screen">
     <div class="terminal">
       <div class="glitch"></div>
@@ -135,7 +154,7 @@
       <div id="output"></div><span class="cursor"></span>
     </div>
   </div>
-
+  <!-- Script de simulación de texto estilo boot de BIOS -->
   <script>
     const lines = [
       "Phoenix BIOS v4.0 Release 6.0    ",
@@ -163,6 +182,11 @@
     let lineIndex = 0;
     let charIndex = 0;
 
+    /**
+     * Función recursiva que simula la escritura línea por línea
+     * como si se tratara de un sistema arrancando.
+     */
+
     function typeLine() {
       if (lineIndex >= lines.length) {
         setTimeout(() => {
@@ -183,7 +207,7 @@
         setTimeout(typeLine, 150); // pausa entre líneas
       }
     }
-
+    // Inicia la animación cuando se carga la ventana
     window.onload = () => {
       typeLine();
     };
