@@ -1,16 +1,18 @@
+<%
 /**
  * Importación de clases utilitarias necesarias para:
  * - Manejo de tokens JWT (JWTUtils)
  * - Representación del usuario autenticado (UsuarioJWT)
  */
+%>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
-
+<%
 /**
  * Se declara una variable de tipo UsuarioJWT para almacenar la información
  * del usuario que será extraída desde el token JWT presente en la solicitud.
  */
-
+%>
 <%
     UsuarioJWT usuarioJWT = null;
 
@@ -34,7 +36,7 @@
 	 */
 
 %>
-
+<%
 /**
  * Estructura HTML principal de la página. Se configura:
  * - Codificación UTF-8
@@ -43,7 +45,7 @@
  * - Fuente de estilo retro (VT323)
  * - Redirección automática luego de 4 segundos al home.jsp
  */
-
+%>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -62,28 +64,31 @@
 </style>
 </head>
 <body>
-
+	<!--
+        Sección de video de fondo opcional, actualmente comentado.
+        Puede utilizarse para mostrar animación retro tipo Windows XP.
+    	-->
 	<!-- Video de fondo -->
 	<!--<video class="background-video" autoplay loop muted>
 		<source src="img/WINXPANIMATED.mp4" type="video/mp4">
 		Tu navegador no soporta este tipo de archivo de video.
 	</video>-->
 
-
+	<!-- Icono tipo escritorio que simula acceso directo al navegador -->
 	<div class="desktop-icon" id="icono-navegador">
 		<img
 			src="img/chrome.png"
 			alt="Icono navegador">
 		<div>Navegador</div>
 	</div>
-
+	<!-- Elemento personalizado que representa el cursor animado -->
 	<div class="cursor" id="cursor"></div>
-
+	<!-- Ventana de navegador ficticia con encabezado y contenido -->
 	<div class="browser-window" id="navegador">
 		<div class="browser-header">Mi Navegador</div>
 		<div style="padding: 20px;">Cargando...</div>
 	</div>
-	 
+	 <!-- Inclusión del script de animación para simular el entorno gráfico -->
 	 <script src="<%= request.getContextPath() %>/js/animation.js"></script>
 	 
 </body>
