@@ -3,6 +3,19 @@
 <%@ page import="utils.UsuarioJWT" %>
 
 <%
+/**
+ * Importación de clases necesarias para:
+ * - Decodificación y validación de JWT (JWTUtils)
+ * - Representación del usuario autenticado (UsuarioJWT)
+ */
+%>
+<%
+
+   /**
+   * Se intenta obtener la información del usuario a partir del token JWT presente en la solicitud.
+   * Si falla, se redirige al servlet de logout para cerrar la sesión y evitar acceso no autorizado.
+   */
+
     UsuarioJWT usuarioJWT = null;
 
 	try {
