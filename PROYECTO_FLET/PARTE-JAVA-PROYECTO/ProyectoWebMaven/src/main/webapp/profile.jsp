@@ -1,9 +1,29 @@
+<%
+/**
+ * Configuración de la página:
+ * - Tipo de contenido: HTML con codificación UTF-8
+ * - Lenguaje: Java
+ */
+%>
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="dao.FotoDAO" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
-
 <%
+/**
+ * Importación de clases necesarias:
+ * - FotoDAO: Acceso a datos para gestión de fotos de perfil
+ * - JWTUtils: Utilidades para manejo de tokens JWT
+ * - UsuarioJWT: Representación del usuario autenticado
+ */
+%>
+<%
+
+    /**
+    * Extracción y validación del usuario a partir del token JWT.
+    * En caso de error o token inválido, redirige al servlet de logout.
+    */
+
     UsuarioJWT usuarioJWT = null;
 
 	try {
@@ -14,11 +34,21 @@
 	    return;
 	}
 
+     /**
+     * Validación adicional para asegurarse de que el ID de usuario esté presente en el token.
+     * Si no está, se muestra un mensaje de error.
+     */
+
     // Validar que userId no sea null ni vacío
     if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
         out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
+
+     /**
+     * Uso del DAO para obtener la ruta de la foto de perfil del usuario.
+     * Si no tiene foto, se asigna una imagen por defecto.
+     */
 
     // Crear una instancia del DAO y obtener la foto de perfil
     FotoDAO fotoDAO = new FotoDAO();
@@ -39,6 +69,7 @@
 	<link rel="stylesheet" href="css/profileUpdate.css">
 	<link rel="stylesheet" href="css/editarPerfilUpdate.css">
 	<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+        <!-- Estilos generales y visuales del formulario de edición -->
 	<style>
 	* {
 			font-family: 'VT323', monospace;
@@ -191,6 +222,7 @@
 </style>
 </head>
 <body>
+
 <!-- Popup personalizado para confirmar eliminación de cuenta -->
 				<div id="popup-confirm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.75); z-index:9999; justify-content:center; align-items:center;">
 				  <div style="background:#111; padding:30px; border:2px solid #ff5f57; border-radius:10px; text-align:center; max-width:400px;">
@@ -199,9 +231,11 @@
 				    <button id="cancel-btn" style="padding:8px 20px; background-color:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancelar</button>
 				  </div>
 				</div>
+	<!-- Estructura de pantalla editable -->
 	<div class="background">
     <div class="monitor">
       <div class="screen" id="pantalla">
+	<!-- Formulario de edición de información de usuario -->
         <form class="formulario" id="formulario">
           <div class="ventana-macos">
             <a href="<%= request.getContextPath() %>/home_directory/home.jsp?page=0" class="boton rojo"></a>
