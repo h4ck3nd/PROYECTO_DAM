@@ -263,7 +263,7 @@ def handle_login():
         token = generate_token(user_data)
 
         # Establecer la cookie con el token
-        response = make_response(redirect("http://localhost:8080/ProyectoMaven/animation.jsp"))
+        response = make_response(redirect("http://localhost:8080/ProyectoWebMaven/animation.jsp"))
         response.set_cookie(
             "token",
             token,
