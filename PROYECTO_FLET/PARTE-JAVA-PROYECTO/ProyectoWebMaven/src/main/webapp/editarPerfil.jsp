@@ -1,9 +1,29 @@
+<%
+/**
+ * Configuración de la página:
+ * - Tipo de contenido: HTML con codificación UTF-8
+ * - Lenguaje: Java
+ */
+%>
 <%@ page contentType="text/html; charset=UTF-8" language="java"%>
 <%@ page import="dao.FotoDAO" %>
 <%@ page import="utils.JWTUtils" %>
 <%@ page import="utils.UsuarioJWT" %>
-
 <%
+/**
+ * Importación de clases necesarias:
+ * - FotoDAO: Acceso a datos para gestión de fotos de perfil
+ * - JWTUtils: Utilidades para manejo de tokens JWT
+ * - UsuarioJWT: Representación del usuario autenticado
+ */
+%>
+<%
+
+/**
+ * Extracción y validación del usuario a partir del token JWT.
+ * En caso de error o token inválido, redirige al servlet de logout.
+ */
+
     UsuarioJWT usuarioJWT = null;
 
 	try {
@@ -14,11 +34,21 @@
 	    return;
 	}
 
+     /**
+     * Validación adicional para asegurarse de que el ID de usuario esté presente en el token.
+     * Si no está, se muestra un mensaje de error.
+     */
+
     // Validar que userId no sea null ni vacío
     if (usuarioJWT.getUserId() == null || usuarioJWT.getUserId().isEmpty()) {
         out.println("<p>Error: El ID de usuario no está disponible en el token.</p>");
         return;
     }
+
+    /**
+     * Uso del DAO para obtener la ruta de la foto de perfil del usuario.
+     * Si no tiene foto, se asigna una imagen por defecto.
+     */
 
     // Crear una instancia del DAO y obtener la foto de perfil
     FotoDAO fotoDAO = new FotoDAO();
@@ -39,6 +69,7 @@
 <title>EDITAR PERFIL</title>
 <link rel="stylesheet" href="css/editarPerfilUpdate.css">
 <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+<!-- Estilos generales y visuales del formulario de edición -->
 <style>
 * {
 			font-family: 'VT323', monospace !important;
@@ -126,6 +157,7 @@
 </style>
 </head>
 <body>
+<!-- Estructura de pantalla editable -->
   <div class="background">
     <div class="monitor">
       <div class="screen" id="pantalla">
@@ -181,14 +213,17 @@
       </div>
       </div>
       <!-- Capa de arrastrar -->
+	<!-- Capa de sobreposición visual al arrastrar archivo -->
 	<div id="dropOverlay" class="drop-overlay">
 	    <div class="drop-text">Suelta la imagen aquí para subir</div>
 	</div>
+	<!-- Elementos decorativos de base -->
       <div class="stand"></div>
       <div class="base"></div>
       <div class="ground"></div>
     </div>
   </div>
+<!-- Script para manejar subida arrastrando imagen -->
   <script>
 	  const dropOverlay = document.getElementById('dropOverlay');
 	  const profilePhotoInput = document.getElementById('profilePhoto');
