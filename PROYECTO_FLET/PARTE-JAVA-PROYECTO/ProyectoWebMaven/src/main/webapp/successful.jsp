@@ -3,14 +3,28 @@
 <%@ page import="utils.UsuarioJWT" %>
 
 <%
+/**
+ * Importación de clases necesarias para:
+ * - Decodificación y validación de JWT (JWTUtils)
+ * - Representación del usuario autenticado (UsuarioJWT)
+ */
+%>
+<%
+
+   /**
+   * Se intenta obtener la información del usuario a partir del token JWT presente en la solicitud.
+   * Si falla, se redirige al servlet de logout para cerrar la sesión y evitar acceso no autorizado.
+   */
+
     UsuarioJWT usuarioJWT = null;
 
-    try {
-        usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
-    } catch (Exception e) {
-        response.sendRedirect(request.getContextPath() + "/logout");
-        return;
-    }
+	try {
+	    usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
+	} catch (Exception e) {
+	    // Redirigir al servlet de logout en vez de al .jsp
+	    response.sendRedirect(request.getContextPath() + "/logout");
+	    return;
+	}
 %>
 <!DOCTYPE html>
 <html lang="es">
