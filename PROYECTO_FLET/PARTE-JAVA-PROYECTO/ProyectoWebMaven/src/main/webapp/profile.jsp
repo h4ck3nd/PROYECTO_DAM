@@ -191,6 +191,14 @@
 </style>
 </head>
 <body>
+<!-- Popup personalizado para confirmar eliminación de cuenta -->
+				<div id="popup-confirm" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background-color:rgba(0,0,0,0.75); z-index:9999; justify-content:center; align-items:center;">
+				  <div style="background:#111; padding:30px; border:2px solid #ff5f57; border-radius:10px; text-align:center; max-width:400px;">
+				    <p style="color:white; margin-bottom:20px;">¿Estás seguro de que deseas eliminar tu cuenta?<br>Esta acción es irreversible.</p>
+				    <button id="confirm-btn" style="margin-right:10px; padding:8px 20px; background-color:#b92500; color:white; border:none; border-radius:5px; cursor:pointer;">Confirmar</button>
+				    <button id="cancel-btn" style="padding:8px 20px; background-color:#333; color:white; border:none; border-radius:5px; cursor:pointer;">Cancelar</button>
+				  </div>
+				</div>
 	<div class="background">
     <div class="monitor">
       <div class="screen" id="pantalla">
@@ -228,21 +236,10 @@
 			  </div>
 				<!-- Botón sin anidaciones raras -->
 				<button type="button" class="btn danger" data-userid="<%= usuarioJWT.getUserId() %>" onclick="eliminarCuenta(event)">
-				  Eliminar Cuenta
+				  Eliminar cuenta
 				</button>
-				<script>
-				  function eliminarCuenta(event) {
-				    event.preventDefault(); // Evita comportamiento por defecto
-				    const button = event.currentTarget;
-				    const userId = button.getAttribute("data-userid");
 				
-				    if (confirm("¿Estás seguro de que deseas eliminar tu cuenta? Esta acción es irreversible.")) {
-				      const url = "http://localhost:5000/eliminar-cuenta?userId=" + encodeURIComponent(userId);
-				      console.log("Redirigiendo a:", url); // Debug
-				      window.location.href = url;
-				    }
-				  }
-				</script>
+				
 			</div>
         </form>
       </div>
@@ -251,5 +248,41 @@
       <div class="ground"></div>
     </div>
   </div>
+  
+  <script>
+				  // Variable global para almacenar el userId temporalmente
+				  let userIdToDelete = null;
+				
+				  function eliminarCuenta(event) {
+				    event.preventDefault();
+				
+				    const button = event.currentTarget;
+				    userIdToDelete = button.getAttribute("data-userid"); // Guardamos el ID
+				
+				    // Mostramos el popup
+				    const popup = document.getElementById("popup-confirm");
+				    popup.style.display = "flex";
+				  }
+				
+				  // Asignamos eventos una sola vez al cargar la página
+				  window.addEventListener("DOMContentLoaded", () => {
+				    const confirmBtn = document.getElementById("confirm-btn");
+				    const cancelBtn = document.getElementById("cancel-btn");
+				    const popup = document.getElementById("popup-confirm");
+				
+				    confirmBtn.addEventListener("click", function () {
+				      if (userIdToDelete) {
+				        const url = "http://localhost:5000/eliminar-cuenta?userId=" + encodeURIComponent(userIdToDelete);
+				        console.log("Redirigiendo a:", url);
+				        window.location.href = url;
+				      }
+				    });
+				
+				    cancelBtn.addEventListener("click", function () {
+				      popup.style.display = "none";
+				      userIdToDelete = null; // Limpiamos el ID
+				    });
+				  });
+				</script>
 </body>
 </html>
