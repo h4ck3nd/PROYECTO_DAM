@@ -9,10 +9,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
-
+// Define la URL de acceso al servlet
 @WebServlet("/exportarPDF")
 public class ExportarPDFControlador extends HttpServlet {
-
+    // Método GET que genera y devuelve un PDF a partir de los parámetros del formulario
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
