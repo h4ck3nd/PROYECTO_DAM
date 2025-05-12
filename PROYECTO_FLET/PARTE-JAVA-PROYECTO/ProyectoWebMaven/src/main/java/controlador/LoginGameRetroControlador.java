@@ -6,10 +6,10 @@ import javax.servlet.http.*;
 import javax.xml.parsers.*;
 import org.w3c.dom.*;
 import java.io.*;
-
+// Anotación para registrar el servlet en la aplicación con el path "/LoginGameRetroControlador"
 @WebServlet("/LoginGameRetroControlador")
 public class LoginGameRetroControlador extends HttpServlet {
-
+	// Método que maneja las solicitudes POST de inicio de sesión
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    // Obtener las credenciales del formulario
@@ -46,7 +46,7 @@ public class LoginGameRetroControlador extends HttpServlet {
                 return false;
             }
 
-            // Parsear el archivo XML
+            // Mapear el archivo XML
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder = factory.newDocumentBuilder();
             Document document = builder.parse(xmlFile);
