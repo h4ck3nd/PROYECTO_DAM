@@ -6,13 +6,13 @@ import javax.servlet.http.*;
 import java.io.*;
 import java.nio.file.*;
 import java.util.concurrent.TimeUnit;
-// Define la ruta del servlet: /EjecutarBruteForceControlador
+
 @WebServlet("/EjecutarBruteForceControlador")
 public class EjecutarBruteForceControlador extends HttpServlet {
-    // Método GET que ejecuta el script con los parámetros de la URL
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Define la salida como texto plano UTF-8
+
         response.setContentType("text/plain");
         response.setCharacterEncoding("UTF-8");
         PrintWriter out = response.getWriter();
@@ -21,12 +21,12 @@ public class EjecutarBruteForceControlador extends HttpServlet {
         String path = request.getParameter("path");
         String jsession = request.getParameter("jsession");
         String token = request.getParameter("token");
-        // Imprimir los parámetros para depuración
+
         out.println("[DEBUG] Parámetro path: " + path);
         out.println("[DEBUG] Parámetro jsession: " + jsession);
         out.println("[DEBUG] Parámetro token: " + token);
         out.flush();
-        // Verificar si algún parámetro falta
+
         if (path == null || jsession == null || token == null) {
             out.println("[ERROR] Faltan parámetros en la URL.");
             return;
@@ -37,7 +37,7 @@ public class EjecutarBruteForceControlador extends HttpServlet {
         String scriptTemp = getServletContext().getRealPath("/labs/retroGame/tempBrute.py");
         String rutaUsuarios = getServletContext().getRealPath("/labs/retroGame/users.txt");
         String rutaContrasenas = getServletContext().getRealPath("/labs/retroGame/pass.txt");
-        // Depuración de rutas
+
         out.println("[DEBUG] Ruta script original: " + scriptOriginal);
         out.println("[DEBUG] Ruta script temporal: " + scriptTemp);
         out.flush();
@@ -73,19 +73,19 @@ public class EjecutarBruteForceControlador extends HttpServlet {
         // Paso 6: Ejecutar script
         ProcessBuilder pb = new ProcessBuilder("python", scriptTemp, "-u", rutaUsuarios, "-w", rutaContrasenas);
         pb.redirectErrorStream(true);
-        
+
         out.println("[DEBUG] Ejecutando script con Python...");
         out.flush();
-        // Ejecutar el proceso
+
         Process p = pb.start();
         BufferedReader reader = new BufferedReader(new InputStreamReader(p.getInputStream()));
-        // Leer la salida del script línea a línea y escribir en la respuesta
+
         String line;
         while ((line = reader.readLine()) != null) {
             out.println(line);
             out.flush();
         }
-        // Mensaje final
+
         out.println("[DEBUG] Script finalizado.");
     }
 }

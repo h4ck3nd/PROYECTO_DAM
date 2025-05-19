@@ -7,12 +7,9 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-// Define la ruta que activará este servlet
 @WebServlet("/amistad")
 public class AmistadControlador extends HttpServlet {
-    // Maneja las solicitudes GET al endpoint "/amistad"
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Obtiene el parámetro "accion" desde la URL
         String accion = request.getParameter("accion");
         
         // Depuración: Mostrar el valor de la acción recibida
@@ -23,18 +20,18 @@ public class AmistadControlador extends HttpServlet {
 
         // Depuración: Verificar si el userIdParam está llegando correctamente
         System.out.println("Valor de userIdParam: " + userIdParam);
-        // Si no hay ID, redirige al login
+
         if (userIdParam == null || userIdParam.isEmpty()) {
             response.sendRedirect(request.getContextPath() + "/login"); // Redirigir al login si no se proporciona el ID de usuario
             return;
         }
-        // Intenta convertir el ID del usuario a entero y ejecutar acciones
+
         try {
             int usuarioLogueadoId = Integer.parseInt(userIdParam); // Convertir el parámetro a entero
             System.out.println("ID de usuario logueado: " + usuarioLogueadoId); // Depuración: Verificar el ID del usuario logueado
-            // Instancia DAO para manejar acciones de amistad
+
             AmistadDAO dao = new AmistadDAO();
-            // Procesa la acción solicitada
+
             switch (accion) {
                 case "enviar":
                     String solicitadoIdParam = request.getParameter("solicitadoId");
@@ -88,7 +85,7 @@ public class AmistadControlador extends HttpServlet {
             e.printStackTrace();
         }
 
-        // Redirige al listado de usuarios después de completar la acción
+        // Redirigir después de la acción
         response.sendRedirect(request.getContextPath() + "/usuarios");
     }
 }

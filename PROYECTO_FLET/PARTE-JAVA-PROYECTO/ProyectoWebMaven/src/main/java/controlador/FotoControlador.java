@@ -10,11 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
-// Definición del servlet con URL y configuración para manejar multipart/form-data (archivos)
+
 @WebServlet("/SubirFotoPerfil")
 @MultipartConfig
 public class FotoControlador extends HttpServlet {
-    // Versión serial para mantener compatibilidad en la serialización del servlet
     private static final long serialVersionUID = 1L;
 
     // POST: Recibe imagen y obtiene user_id desde la URL (GET)
@@ -24,7 +23,7 @@ public class FotoControlador extends HttpServlet {
         // user_id viene por GET, como parámetro en la URL
         String userId = request.getParameter("user_id");
         System.out.println("POST - user_id (por GET): " + userId);
-        // Validación: Si no se proporciona el user_id, se retorna error
+
         if (userId == null || userId.isEmpty()) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "ID de usuario no proporcionado.");
             return;
@@ -68,7 +67,7 @@ public class FotoControlador extends HttpServlet {
 
         // Ruta completa del archivo a guardar
         String uploadPath = absolutePath + File.separator + fileName;
-        // Guardar el archivo en disco
+
         try {
             filePart.write(uploadPath);  // Guardar archivo
             System.out.println("Archivo guardado en: " + uploadPath);
@@ -80,7 +79,7 @@ public class FotoControlador extends HttpServlet {
 
         // Llamada al DAO para actualizar la foto en la base de datos
         FotoPerfilDAO.actualizarFoto(userId, "uploads/" + fileName);
-        // Redireccionar al perfil luego de guardar la foto
+
         response.sendRedirect("profile.jsp");
     }
 

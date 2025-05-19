@@ -8,18 +8,16 @@ import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-// Anotación que define la ruta para el servlet, en este caso, "/logout"
+
 @WebServlet("/logout")
 public class LogoutServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    // Método que maneja las solicitudes GET para cerrar sesión
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Obtener el token de la cookie
         String token = null;
-        // Obtener todas las cookies enviadas con la solicitud
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
-            // Buscar la cookie con el nombre "token"
             for (Cookie cookie : cookies) {
                 if ("token".equals(cookie.getName())) {
                     token = cookie.getValue();
@@ -27,7 +25,7 @@ public class LogoutServlet extends HttpServlet {
                 }
             }
         }
-        // Verificar si el token existe y no está vacío
+
         if (token != null && !token.isEmpty()) {
             // Invalidar sesión actual
             HttpSession session = request.getSession(false);
@@ -51,14 +49,13 @@ public class LogoutServlet extends HttpServlet {
                         .build();
 
                 HttpResponse<String> flaskResponse = client.send(flaskRequest, HttpResponse.BodyHandlers.ofString());
-                // Verificar el código de estado de la respuesta
+
                 if (flaskResponse.statusCode() == 200) {
                     System.out.println("Sesión cerrada correctamente en backend Flask.");
-                // Si ocurre un error al llamar al backend, imprimir el mensaje de error
                 } else {
                     System.out.println("Error al cerrar sesión en Flask: código " + flaskResponse.statusCode());
                 }
-            
+
             } catch (Exception e) {
                 System.out.println("Error llamando al backend Flask: " + e.getMessage());
             }
