@@ -168,22 +168,15 @@
 		</section>
 	</main>
 	<div class="contenedor-exportar">
-  <form method="get" action="<%= request.getContextPath() %>/exportarPDF" class="form-exportar-update">
-    <input type="hidden" name="usuarioNombre" value="<%= usuarioJWT.getNombre() %>">
-    <input type="hidden" name="usuarioApellidos" value="<%= usuarioJWT.getApellidos() %>">
-    <input type="hidden" name="usuarioEmail" value="<%= usuarioJWT.getEmail() %>">
-    <input type="hidden" name="puntosHackingWeb" value="${puntosHackingWeb}">
-    <input type="hidden" name="puntosTotalesLab1" value="${puntosTotalesLab1}">
-    <input type="hidden" name="puntosDockerPwned" value="${puntosDockerPwned}">
-    <input type="hidden" name="puntosTotalesLab2" value="${puntosTotalesLab2}">
-    <input type="hidden" name="puntosOvaLabs" value="${puntosOvaLabs}">
-    <input type="hidden" name="puntosTotalesLab3" value="${puntosTotalesLab3}">
-    <input type="hidden" name="puntosTimelabs" value="${puntosTimelabs}">
-    <input type="hidden" name="puntosTotalesLab4" value="${puntosTotalesLab4}">
-    
-    <button type="submit" class="btn-exportar-update">📄 Exportar a PDF</button>
-</form>
-</div>
+	  <form method="get" action="http://localhost:8089/exportarPDF" class="form-exportar-update">
+	    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
+	    <input type="hidden" name="usuarioNombre" value="<%= usuarioJWT.getNombre() %>">
+	    <input type="hidden" name="usuarioApellidos" value="<%= usuarioJWT.getApellidos() %>">
+	    <input type="hidden" name="usuarioEmail" value="<%= usuarioJWT.getEmail() %>">
+	
+	    <button type="submit" class="btn-exportar-update">📄 Exportar a PDF</button>
+	  </form>
+	</div>
 	<footer class="footer"> &copy; 2025 Hackend. Todos los
 		derechos reservados. 
 	</footer>
