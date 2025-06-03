@@ -1,0 +1,7 @@
+flet==0.14.0
+flask==2.3.3
+flask-cors==4.0.0
+PyJWT==2.8.0
+psycopg2-binary==2.9.9
+werkzeug==3.0.1
+requests==2.31.0
