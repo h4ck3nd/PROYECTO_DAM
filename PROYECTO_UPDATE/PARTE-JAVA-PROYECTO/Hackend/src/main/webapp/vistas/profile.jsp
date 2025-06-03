@@ -254,39 +254,55 @@
   </div>
   
   <script>
-				  // Variable global para almacenar el userId temporalmente
-				  let userIdToDelete = null;
-				
-				  function eliminarCuenta(event) {
-				    event.preventDefault();
-				
-				    const button = event.currentTarget;
-				    userIdToDelete = button.getAttribute("data-userid"); // Guardamos el ID
-				
-				    // Mostramos el popup
-				    const popup = document.getElementById("popup-confirm");
-				    popup.style.display = "flex";
-				  }
-				
-				  // Asignamos eventos una sola vez al cargar la página
-				  window.addEventListener("DOMContentLoaded", () => {
-				    const confirmBtn = document.getElementById("confirm-btn");
-				    const cancelBtn = document.getElementById("cancel-btn");
-				    const popup = document.getElementById("popup-confirm");
-				
-				    confirmBtn.addEventListener("click", function () {
-				      if (userIdToDelete) {
-				        const url = "http://localhost:5000/eliminar-cuenta?userId=" + encodeURIComponent(userIdToDelete);
-				        console.log("Redirigiendo a:", url);
-				        window.location.href = url;
-				      }
-				    });
-				
-				    cancelBtn.addEventListener("click", function () {
-				      popup.style.display = "none";
-				      userIdToDelete = null; // Limpiamos el ID
-				    });
-				  });
-				</script>
+	  // Variable global para almacenar el userId temporalmente
+	  let userIdToDelete = null;
+	
+	  function eliminarCuenta(event) {
+	    event.preventDefault();
+	
+	    const button = event.currentTarget;
+	    userIdToDelete = button.getAttribute("data-userid");
+	
+	    // Mostramos el popup
+	    const popup = document.getElementById("popup-confirm");
+	    popup.style.display = "flex";
+	  }
+	
+	  window.addEventListener("DOMContentLoaded", () => {
+	    const confirmBtn = document.getElementById("confirm-btn");
+	    const cancelBtn = document.getElementById("cancel-btn");
+	    const popup = document.getElementById("popup-confirm");
+	
+	    confirmBtn.addEventListener("click", function () {
+	      if (userIdToDelete) {
+	        // Hacemos la llamada al servlet Java
+	        fetch('<%= request.getContextPath() %>/eliminar-cuenta-cascade', {
+	          method: "POST",
+	          headers: {
+	            "Content-Type": "application/json"
+	          },
+	          body: JSON.stringify({ userId: userIdToDelete })
+	        })
+	        .then(response => response.json())
+	        .then(data => {
+	          if (data.mensaje) {
+	            window.location.href = "http://localhost:30050/"; // Redirección a home o login
+	          } else {
+	            alert("Error al eliminar la cuenta: " + (data.error || "desconocido"));
+	          }
+	        })
+	        .catch(error => {
+	          console.error("Error en la solicitud:", error);
+	          alert("Error al comunicarse con el servidor.");
+	        });
+	      }
+	    });
+	
+	    cancelBtn.addEventListener("click", function () {
+	      popup.style.display = "none";
+	      userIdToDelete = null;
+	    });
+	  });
+</script>
 </body>
 </html>
