@@ -411,20 +411,26 @@ def logout():
 @app.route("/eliminar-cuenta", methods=["GET"])
 def eliminar_cuenta():
     try:
-        # Obtener el userId del parámetro de la URL
-        user_id = request.args.get("userId")
-        if not user_id:
-            return jsonify({"error": "userId no proporcionado en la URL"}), 400
+        # Si viene una bandera especial desde Java, saltamos la verificación de token
+        if request.args.get("internal") == "true":
+            user_id = request.args.get("userId", type=int)
+            if not user_id:
+                return jsonify({"error": "userId no válido o ausente"}), 400
+        else:
+            # Obtener el userId del parámetro de la URL
+            user_id = request.args.get("userId", type=int)
+            if not user_id:
+                return jsonify({"error": "userId no proporcionado en la URL"}), 400
 
-        # Obtener el token directamente desde la cookie
-        token = request.cookies.get("token")
-        if not token:
-            return jsonify({"error": "Token no proporcionado en la cookie"}), 400
+            # Obtener el token directamente desde la cookie
+            token = request.cookies.get("token")
+            if not token:
+                return jsonify({"error": "Token no proporcionado en la cookie"}), 400
 
-        # Verificar y decodificar el token
-        payload = verify_token(token)
-        if not payload:
-            return jsonify({"error": "Token inválido o expirado"}), 403
+            # Verificar y decodificar el token
+            payload = verify_token(token)
+            if not payload:
+                return jsonify({"error": "Token inválido o expirado"}), 403
 
         # Conectar a la base de datos PostgreSQL
         conn = connect_db()
@@ -436,7 +442,7 @@ def eliminar_cuenta():
 
         # Comprobar si la eliminación fue exitosa
         if cursor.rowcount > 0:
-            # Eliminar cookie
+            # Eliminar cookie si viene desde navegador (opcional)
             response = make_response(redirect("http://localhost:30050/"))
             response.set_cookie("token", "", max_age=0)
             cursor.close()
