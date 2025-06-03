@@ -1,0 +1,163 @@
+/* Reset general */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.background {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.monitor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.stand {
+  width: 20px;
+  height: 100px;
+  background-color: #222;
+  margin-top: -4px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+}
+
+.base {
+  width: 120px;
+  height: 20px;
+  background-color: #111;
+  border-radius: 4px;
+  margin-top: 0px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 20px;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  font-size: 14px;
+  background-color: rgba(0, 0, 0, 0.6);
+  overflow-y: auto;
+  box-sizing: border-box;
+  border-radius: 4px;
+  pointer-events: auto; /* Habilitar interacciones dentro del formulario */
+}
+
+.formulario h2 {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 18px;
+  color: #00aaff;
+}
+
+.formulario label {
+  margin: 8px 0 4px;
+}
+
+.formulario input {
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  background-color: #1e1e1e;
+  color: #fff;
+  outline: none;
+  border: 1px solid #333;
+}
+
+.formulario input:focus {
+  border-color: #00aaff;
+}
+
+.formulario button {
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #00aaff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.formulario button:hover {
+  background-color: #007acc;
+}
+
+/* Scroll personalizado */
+.formulario::-webkit-scrollbar {
+  width: 10px;
+}
+
+.formulario::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+.formulario::-webkit-scrollbar-thumb {
+  background-color: #00aaff;
+  border-radius: 10px;
+  border: 2px solid #111;
+}
+
+.formulario::-webkit-scrollbar-thumb:hover {
+  background-color: #007acc;
+}
+
+.formulario {
+  scrollbar-width: thin;
+  scrollbar-color: #00aaff rgba(0, 0, 0, 0.3);
+}
+
+/* Botones estilo MacOS */
+.ventana-macos {
+  display: flex;
+  gap: 8px;
+  padding: 10px 10px 0 10px;
+}
+
+.boton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+  background-color: gray;
+  box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.boton.rojo {
+  background-color: #ff5f57;
+}
+
+.boton.amarillo {
+  background-color: #ffbd2e;
+}
+
+.boton.verde {
+  background-color: #28c840;
+}
+
+/* Modo inmersivo - Bloquear puntero dentro del área */
+/* Bloquea el cursor al entrar al formulario */
+body.cursor-locked {
+  cursor: none;  /* No se muestra el cursor */
+  pointer-events: none; /* Bloquea la interacción */
+}
+
+/* Cuando el formulario es interactuable, permite el cursor y la interacción */
+body.cursor-enabled {
+  cursor: auto; /* Restablece el cursor predeterminado del sistema */
+  pointer-events: auto; /* Permite la interacción */
+}
+
+.screen.show-cursor {
+  cursor: default;
+}
