@@ -64,15 +64,6 @@
 </style>
 </head>
 <body>
-	<!--
-        Sección de video de fondo opcional, actualmente comentado.
-        Puede utilizarse para mostrar animación retro tipo Windows XP.
-    	-->
-	<!-- Video de fondo -->
-	<!--<video class="background-video" autoplay loop muted>
-		<source src="img/WINXPANIMATED.mp4" type="video/mp4">
-		Tu navegador no soporta este tipo de archivo de video.
-	</video>-->
 
 	<!-- Icono tipo escritorio que simula acceso directo al navegador -->
 	<div class="desktop-icon" id="icono-navegador">

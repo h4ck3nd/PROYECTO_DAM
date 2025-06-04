@@ -25,10 +25,10 @@
     <meta charset="UTF-8">
     <link rel="icon" type="image/png" href="<%= request.getContextPath() %>/vistas/img/icono/icono_cinco_hackend.ico">
     <title>WRITEUPS DE <%= nombreLaboratorio %></title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/vistas/css/dynamicFonts.jsp" />
     <style>
     * {
-			font-family: 'VT323', monospace;
+			font-family: 'Press Start 2P', monospace;
 			font-size: 22px;
 		}
         body {

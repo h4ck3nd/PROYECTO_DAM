@@ -18,7 +18,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Writeup Enviado</title>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- Fuente estilo retro -->
+    <link rel="stylesheet" href="<%= request.getContextPath() %>/vistas/css/dynamicFonts.jsp" />
     <style>
         * {
             box-sizing: border-box;
@@ -28,7 +28,7 @@
             margin: 0;
             padding: 0;
             height: 100vh;
-            font-family: 'VT323', monospace;
+            font-family: 'Press Start 2P', monospace;
             background-color: #16161c;
             color: #f4f4f4;
             display: flex;
