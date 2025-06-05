@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="87aefe9a-3592-44b6-95ce-d633e48460b7">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<parameter name="user_id" class="java.lang.Integer"/>
+	<parameter name="usuarioNombre" class="java.lang.String"/>
+	<parameter name="usuarioApellidos" class="java.lang.String"/>
+	<parameter name="usuarioEmail" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    w.total_writeups,
+    v.total_puntos,
+    l.total_laboratorios
+FROM 
+    (SELECT COUNT(*) AS total_writeups
+     FROM writeups
+     WHERE user_id = $P{user_id}) w,
+    
+    (SELECT COALESCE(SUM(puntos), 0) AS total_puntos
+     FROM validate_flag
+     WHERE user_id = $P{user_id}) v,
+    
+    (SELECT COUNT(*) AS total_laboratorios
+     FROM laboratorios) l]]>
+	</queryString>
+	<field name="total_writeups" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total_writeups"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_writeups"/>
+	</field>
+	<field name="total_puntos" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total_puntos"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_puntos"/>
+	</field>
+	<field name="total_laboratorios" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="total_laboratorios"/>
+		<property name="com.jaspersoft.studio.field.label" value="total_laboratorios"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="80" splitType="Stretch">
+			<staticText>
+				<reportElement x="30" y="0" width="200" height="50" uuid="a8c1d668-075b-43e9-9275-0c010180d873"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="30"/>
+				</textElement>
+				<text><![CDATA[HACKEND]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="50" width="100" height="20" uuid="6e5a4a10-7a19-4bbe-945f-3c7a595155d3"/>
+				<text><![CDATA[Plataforma de CTFs]]></text>
+			</staticText>
+			<image>
+				<reportElement x="310" y="-14" width="250" height="79" uuid="0884b797-a14b-4cca-b05c-ac9b1946c2a1"/>
+				<imageExpression><![CDATA["C:/Users/clipd/eclipse-workspace/Hackend/src/main/webapp/vistas/img/jasperImg/logoPDF.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="105" splitType="Stretch">
+			<rectangle>
+				<reportElement x="340" y="37" width="180" height="30" forecolor="#FFFFFF" backcolor="#C9C9C9" uuid="fbb1595c-6397-4ef0-ac5b-bf33010185ac"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="37" width="120" height="30" forecolor="#FFFFFF" backcolor="#C9C9C9" uuid="277cb1cb-ac9e-4fd8-88b6-302661a112b5"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="37" width="180" height="30" forecolor="#FFFFFF" backcolor="#C9C9C9" uuid="2b60ef98-3c99-492d-8d69-ac782131c1a0"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="67" width="180" height="30" forecolor="#FFFFFF" backcolor="#E6E6E6" uuid="eba37bb9-1bc2-447c-9f7e-081482c1facd"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="340" y="67" width="180" height="30" forecolor="#FFFFFF" backcolor="#E6E6E6" uuid="d6ed9544-2479-487e-9793-95734b904068"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="67" width="120" height="30" forecolor="#FFFFFF" backcolor="#E6E6E6" uuid="79155184-b075-486f-9996-84309bcc03fd"/>
+			</rectangle>
+			<textField>
+				<reportElement x="40" y="67" width="180" height="30" uuid="a08c1d53-934b-46d6-a29c-28be09620016"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{usuarioNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="67" width="120" height="30" uuid="e5d4372e-6efa-439a-9d18-bba32d8fb853"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{usuarioApellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="67" width="180" height="30" uuid="1efa736c-646c-4dd8-9c86-c0cc8533c8fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{usuarioEmail}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="40" y="37" width="180" height="30" forecolor="#000000" backcolor="#A6A6A6" uuid="6900b0f7-e1cd-4a56-b125-9802614882b7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="60a3198b-03a1-4a43-8538-6d9976f468f6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE DE USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="37" width="120" height="30" forecolor="#000000" backcolor="#A6A6A6" uuid="8e060f57-89f8-42f3-8c1e-986ee3c31b98">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da184317-1331-4f79-bdbc-a9d6c12f7fe5"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOMBRE Y APELLIDOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="37" width="180" height="30" forecolor="#000000" backcolor="#A6A6A6" uuid="21ec11ba-3433-4640-9779-f3fb658b1ea7">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88dfe896-240c-408c-948f-c417bc5442cf"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[EMAIL DEL USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="210" y="0" width="140" height="30" uuid="a03dcebb-9d25-48cf-81aa-9c14723c3c4d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[INFORMACION PERSONAL]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="172" splitType="Stretch">
+			<rectangle>
+				<reportElement x="340" y="70" width="180" height="30" forecolor="#FFFFFF" backcolor="#E0E0E0" uuid="608c62b3-f83a-481b-92b9-bfb933f4362a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="70" width="120" height="30" forecolor="#FFFFFF" backcolor="#E0E0E0" uuid="6f3fe266-fcfc-4136-a2a4-da20163a5081"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="70" width="180" height="30" forecolor="#FFFFFF" backcolor="#E0E0E0" uuid="116741ed-c933-483d-808a-237a11277cf6"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="220" y="40" width="120" height="30" forecolor="#FFFFFF" backcolor="#969696" uuid="2afbd3c2-4832-4ba1-b05c-21c85c6e0e8a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="40" y="40" width="180" height="30" forecolor="#FFFFFF" backcolor="#969696" uuid="3ff6c0c4-f74a-4743-aa9b-243925ec737a"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="340" y="40" width="180" height="30" forecolor="#FFFFFF" backcolor="#969696" uuid="7c244f5f-0aea-4cc0-b54d-3b6e0eecfb7b"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="40" y="40" width="180" height="30" forecolor="#000000" backcolor="#A6A6A6" uuid="1fec923a-8337-48d1-8088-7eda86d419bf">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="60a3198b-03a1-4a43-8538-6d9976f468f6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[TOTAL WRITEUPS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="220" y="40" width="120" height="30" forecolor="#000000" backcolor="#A6A6A6" uuid="a8704167-deec-44e9-8017-075e5f94dc34">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da184317-1331-4f79-bdbc-a9d6c12f7fe5"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[PUNTOS DEL USUARIO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="340" y="40" width="180" height="30" forecolor="#000000" backcolor="#A6A6A6" uuid="53b14d2a-6bc9-4de7-a0bc-43794059d648">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88dfe896-240c-408c-948f-c417bc5442cf"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[LABs TOTALES]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="70" width="180" height="30" uuid="d89858f9-a790-444a-97db-6dce4b152893">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="60a3198b-03a1-4a43-8538-6d9976f468f6"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_writeups}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="220" y="70" width="120" height="30" uuid="a19ad79e-4bd0-4eaa-a67f-e532a98b39c9">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="da184317-1331-4f79-bdbc-a9d6c12f7fe5"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_puntos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="70" width="180" height="30" uuid="e5ba792d-230e-4498-8514-2dad2976e24b">
+					<property name="com.jaspersoft.studio.spreadsheet.connectionID" value="88dfe896-240c-408c-948f-c417bc5442cf"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{total_laboratorios}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="0" width="300" height="30" uuid="59bfc4d9-ad05-4010-a8c0-2bbc80bfe188"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[INFORMACION DE LAS ESTADISTICAS DEL USUARIO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

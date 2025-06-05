@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.20.5.final using JasperReports Library version 6.20.5-3efcf2e67f959db3888d79f73dde2dbd7acb4f8e  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Blank_A4_1" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b525b47d-40b7-4bb6-861e-a46b12f7f59d">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DataAdapter.jrdax"/>
+	<parameter name="user_id" class="java.lang.Integer"/>
+	<parameter name="nombre" class="java.lang.String"/>
+	<parameter name="apellidos" class="java.lang.String"/>
+	<parameter name="rol" class="java.lang.String"/>
+	<parameter name="fecha_registro" class="java.lang.String"/>
+	<parameter name="usuario" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT 
+    COALESCE(SUM(v.puntos), 0) AS puntos_total,
+    (SELECT COUNT(*) FROM writeups w WHERE w.user_id = $P{user_id}) AS writeups_total
+FROM 
+    validate_flag v
+WHERE 
+    v.user_id = $P{user_id}]]>
+	</queryString>
+	<field name="puntos_total" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="puntos_total"/>
+		<property name="com.jaspersoft.studio.field.label" value="puntos_total"/>
+	</field>
+	<field name="writeups_total" class="java.lang.Long">
+		<property name="com.jaspersoft.studio.field.name" value="writeups_total"/>
+		<property name="com.jaspersoft.studio.field.label" value="writeups_total"/>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="70" splitType="Stretch">
+			<textField>
+				<reportElement x="-10" y="14" width="100" height="30" uuid="4284f27a-1120-464b-85c1-c17e44b95ebd"/>
+				<textFieldExpression><![CDATA[$P{user_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="10" width="100" height="30" uuid="d1d0537a-892c-4e9a-afd8-b0d644818894"/>
+				<textFieldExpression><![CDATA[$P{nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="275" y="10" width="100" height="30" uuid="18d93ef4-b39c-4b56-9bc0-32c257fc4f2a"/>
+				<textFieldExpression><![CDATA[$P{apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="10" width="100" height="30" uuid="ba991db4-5325-45aa-a10f-8badbe76f21c"/>
+				<textFieldExpression><![CDATA[$P{rol}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="475" y="14" width="100" height="30" uuid="d090ec3f-cb57-4a47-8bbe-4bf69ea7f5ea"/>
+				<textFieldExpression><![CDATA[$P{fecha_registro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="14" width="80" height="30" uuid="30538596-2d1b-4f07-9346-4245c3f81c1c"/>
+				<textFieldExpression><![CDATA[$P{usuario}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="63" splitType="Stretch">
+			<textField>
+				<reportElement x="168" y="23" width="100" height="30" uuid="e37b2440-446e-484e-96b1-ecebe9a2a5c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{puntos_total}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="23" width="100" height="30" uuid="8aaba549-b883-46d8-a7cd-560474b30641"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{writeups_total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

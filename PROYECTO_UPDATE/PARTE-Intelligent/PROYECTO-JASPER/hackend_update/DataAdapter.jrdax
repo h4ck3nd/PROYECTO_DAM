@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jdbcDataAdapter class="net.sf.jasperreports.data.jdbc.JdbcDataAdapterImpl">
+  <name>New Data Adapter 1</name>
+  <driver>org.postgresql.Driver</driver>
+  <username>postgres</username>
+  <password>1234</password>
+  <url>jdbc:postgresql://localhost:5432/hackend_update</url>
+  <database></database>
+  <savePassword>true</savePassword>
+  <serverAddress></serverAddress>
+</jdbcDataAdapter>
