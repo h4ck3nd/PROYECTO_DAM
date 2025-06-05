@@ -1,10 +1,11 @@
 package dao;
 
-import conexionDDBB.ConexionDDBB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import conexionDDBB.ConexionDDBB;
 
 public class FotoDAO {
 
@@ -12,18 +13,18 @@ public class FotoDAO {
     public String obtenerRutaFotoPerfil(String userId) {
         String photoPath = null;
         Connection conexion = null;
-        
+
         try {
             // Usar la clase ConexionDDBB para obtener la conexión
             ConexionDDBB conexionDDBB = new ConexionDDBB();
             conexion = conexionDDBB.conectar();
-            
+
             String query = "SELECT photo_path FROM profile WHERE user_id = ?";
             PreparedStatement stmt = conexion.prepareStatement(query);
-            
+
             // Cambiar setString a setInt si el tipo de user_id en la base de datos es INTEGER
             stmt.setInt(1, Integer.parseInt(userId));  // Convierte el String a Integer
-            
+
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {

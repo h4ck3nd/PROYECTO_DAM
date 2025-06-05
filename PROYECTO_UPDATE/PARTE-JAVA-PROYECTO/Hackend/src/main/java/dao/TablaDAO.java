@@ -1,9 +1,18 @@
 package dao;
 
-import conexionDDBB.ConexionDDBB;
+import java.sql.Connection;
+import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
+import java.sql.Types;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
-import java.sql.*;
-import java.util.*;
+import conexionDDBB.ConexionDDBB;
 
 public class TablaDAO {
 

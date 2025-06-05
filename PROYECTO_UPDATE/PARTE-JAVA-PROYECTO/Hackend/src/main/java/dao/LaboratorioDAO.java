@@ -9,7 +9,7 @@ import java.sql.Statement;
 import conexionDDBB.ConexionDDBB;
 
 public class LaboratorioDAO {
-	
+
 	// Método para asegurarse de que la tabla 'laboratorios' exista, si no la crea
     public static void ensureTableExists() throws SQLException {
         String checkTableQuery = "SELECT COUNT(*) FROM information_schema.tables WHERE table_name = 'laboratorios'";
@@ -24,7 +24,7 @@ public class LaboratorioDAO {
                         + "nombre VARCHAR(255) NOT NULL, "
                         + "flag VARCHAR(255) NOT NULL, "
                         + "puntos INT NOT NULL)";
-                
+
                 try (Statement stmt = conn.createStatement()) {
                     stmt.executeUpdate(createTableQuery);
                     System.out.println("Tabla 'laboratorios' creada exitosamente.");
@@ -32,7 +32,7 @@ public class LaboratorioDAO {
             }
         }
     }
-	
+
 	// Método para obtener el ID del laboratorio con nombre "foro-xss" (fijo)
     public static int obtenerIdLaboratorioForoXss() {
         int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
@@ -51,7 +51,7 @@ public class LaboratorioDAO {
 
         return labId;
     }
-    
+
     // Método para obtener el ID del laboratorio con nombre "Separo" (fijo)
     public static int obtenerIdLaboratorioSeparo() {
         int labId = -1;  // Valor predeterminado si no se encuentra el laboratorio
@@ -71,7 +71,7 @@ public class LaboratorioDAO {
         return labId;
     }
 
-    
+
     // Método para agregar un nuevo laboratorio a la base de datos
     public static boolean agregarLaboratorio(String nombre, String flag, int puntos) {
         boolean exito = false;
@@ -94,15 +94,15 @@ public class LaboratorioDAO {
 
         return exito;
     }
-	
+
     // Obtener la flag del laboratorio
     public static String obtenerFlagPorLaboratorio(int labId) {
         String flag = null;
         String query = "SELECT flag FROM laboratorios WHERE lab_id = ?";
-        
+
         // Crea una instancia de ConexionDDBB
         ConexionDDBB conexionDB = new ConexionDDBB();
-        
+
         try (Connection conn = conexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, labId);
@@ -114,18 +114,18 @@ public class LaboratorioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return flag;
     }
-    
+
     public static String obtenerNombreLaboratorio(int labId) {
         String nombre = "";
         String query = "SELECT nombre FROM laboratorios WHERE lab_id = ?";
-        
+
         try (Connection conn = new ConexionDDBB().conectar();
              PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setInt(1, labId);
-            
+
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 nombre = rs.getString("nombre");
@@ -133,18 +133,18 @@ public class LaboratorioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return nombre;
     }
-    
+
     // Obtener los puntos del laboratorio
     public static int obtenerPuntosPorLaboratorio(int labId) {
         int puntos = 0;
         String query = "SELECT puntos FROM laboratorios WHERE lab_id = ?";
-        
+
         // Crea una instancia de ConexionDDBB
         ConexionDDBB conexionDB = new ConexionDDBB();
-        
+
         try (Connection conn = conexionDB.conectar();
              PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, labId);
@@ -156,7 +156,7 @@ public class LaboratorioDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        
+
         return puntos;
     }
 }

@@ -1,17 +1,23 @@
 package controlador;
 
-import dao.TablaDAO;
+import java.io.IOException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
-import java.io.IOException;
-import java.util.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import dao.TablaDAO;
 
 @WebServlet("/TablaController")
 public class TablaControlador extends HttpServlet {
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tabla = request.getParameter("tabla");
         String accion = request.getParameter("accion");
         TablaDAO dao = new TablaDAO();
@@ -48,7 +54,7 @@ public class TablaControlador extends HttpServlet {
                 String valorClaveUpdate = request.getParameter(columnaClave); // Obtén la clave primaria
                 if (valorClaveUpdate != null) {
                     Map<String, String> valoresUpdate = new HashMap<>();
-                    
+
                     // Extraer los parámetros del formulario, excepto la clave primaria, tabla y acción
                     Enumeration<String> nombresUpdate = request.getParameterNames();
                     while (nombresUpdate.hasMoreElements()) {

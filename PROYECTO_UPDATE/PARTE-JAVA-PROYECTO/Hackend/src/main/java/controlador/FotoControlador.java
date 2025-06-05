@@ -1,6 +1,8 @@
 package controlador;
 
-import dao.FotoPerfilDAO;  // Importar el DAO
+import java.io.File;
+import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
-import java.io.File;
-import java.io.IOException;
+
+import dao.FotoPerfilDAO;  // Importar el DAO
 
 @WebServlet("/SubirFotoPerfil")
 @MultipartConfig
@@ -17,7 +19,8 @@ public class FotoControlador extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     // POST: Recibe imagen y obtiene user_id desde la URL (GET)
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("POST - Procesando subida de foto...");
 
         // user_id viene por GET, como parámetro en la URL
@@ -45,7 +48,7 @@ public class FotoControlador extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST, "No se proporcionó una foto de perfil.");
             return;
         }
-        
+
         // Validar extensión del archivo
         String fileExtension = getFileExtension(fileName).toLowerCase();
         if (!fileExtension.equals("png") && !fileExtension.equals("jpg") && !fileExtension.equals("jpeg")) {
@@ -53,7 +56,7 @@ public class FotoControlador extends HttpServlet {
             return;
         }
 
-        
+
         // Definir la carpeta "uploads" dentro del contexto de la aplicación
         String relativePath = "vistas/uploads";
         String absolutePath = getServletContext().getRealPath(relativePath);  // Ruta absoluta relativa a /webapp/uploads
@@ -93,11 +96,13 @@ public class FotoControlador extends HttpServlet {
         }
         return null;
     }
-    
+
     // Obtener la extensión del archivo
     private String getFileExtension(String fileName) {
         int dotIndex = fileName.lastIndexOf('.');
-        if (dotIndex == -1) return "";  // No tiene extensión
+        if (dotIndex == -1) {
+			return "";  // No tiene extensión
+		}
         return fileName.substring(dotIndex + 1);
     }
 

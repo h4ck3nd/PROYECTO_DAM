@@ -1,11 +1,11 @@
 package controlador;
 
+import java.sql.Connection;
+import java.util.List;
+
 import conexionDDBB.ConexionDDBB;
 import dao.RankingDAO;
 import modelo.RankingEntry;
-
-import java.sql.Connection;
-import java.util.List;
 
 public class RankingControlador {
 

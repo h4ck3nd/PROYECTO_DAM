@@ -1,6 +1,5 @@
 package dao;
 
-import conexionDDBB.ConexionDDBB;
 import java.io.File;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.servlet.ServletContext;
+
+import conexionDDBB.ConexionDDBB;
 
 public class FotoPerfilDAO {
 

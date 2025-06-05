@@ -12,7 +12,8 @@ import dao.WriteupDAO;
 
 @WebServlet("/WriteupControlador")
 public class WriteupControlador extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int labId = Integer.parseInt(request.getParameter("lab_id"));
         int userId = Integer.parseInt(request.getParameter("user_id"));
         String username = request.getParameter("username");

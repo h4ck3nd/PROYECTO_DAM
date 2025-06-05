@@ -1,9 +1,9 @@
 package dao;
 
-import conexionDDBB.ConexionDDBB;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+
+import conexionDDBB.ConexionDDBB;
 
 public class CuentaDAO {
 
@@ -30,10 +30,18 @@ public class CuentaDAO {
             ps3.executeUpdate();
 
         } finally {
-            if (ps1 != null) ps1.close();
-            if (ps2 != null) ps2.close();
-            if (ps3 != null) ps3.close();
-            if (conn != null) conexionDDBB.cerrarConexion();
+            if (ps1 != null) {
+				ps1.close();
+			}
+            if (ps2 != null) {
+				ps2.close();
+			}
+            if (ps3 != null) {
+				ps3.close();
+			}
+            if (conn != null) {
+				conexionDDBB.cerrarConexion();
+			}
         }
     }
 }
