@@ -6,6 +6,7 @@ import flet as ft
 from flask_cors import CORS
 from flet import Page
 import psycopg2
+import psycopg2.extras
 import uuid
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
@@ -481,11 +482,41 @@ def get_username(user_id):
         # Si no se encuentra el usuario, devolvemos un mensaje de error
         return jsonify({"username": "Desconocido"}), 404
 
+###########################################################################
+#         Endpoint para extraer toda la informacion de los usuarios       #
+###########################################################################
+
+@app.route("/usuariosPDF", methods=["GET"])
+def obtener_usuarios():
+    conn = None
+    cursor = None
+    try:
+        conn = connect_db()
+        cursor = conn.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
+        cursor.execute("""
+            SELECT id, nombre, apellidos, usuario, fecha_registro, rol 
+            FROM usuarios
+        """)
+        usuarios = cursor.fetchall()
+        return jsonify(usuarios), 200
+
+
+    except Exception as e:
+        print("ERROR en /usuariosPDF:", e)
+        return jsonify({"error": str(e)}), 500
+
+    finally:
+        if cursor:
+            cursor.close()
+        if conn:
+            conn.close()
+
 #############################################################################################
 # Función que lanza el servidor Flask en segundo plano para que no bloquee la interfaz Flet #
 #############################################################################################
 
 def run_flask():
+    CORS(app)
     app.run(port=5000, debug=False, use_reloader=False)
 
 threading.Thread(target=run_flask, daemon=True).start()
