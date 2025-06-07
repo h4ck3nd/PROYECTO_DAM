@@ -17,56 +17,57 @@ import dao.TablaDAO;
 public class TablaControlador extends HttpServlet {
 
     @Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String tabla = request.getParameter("tabla");
         String accion = request.getParameter("accion");
         TablaDAO dao = new TablaDAO();
 
-        Map<String, String> valores = new HashMap<>();
-        Enumeration<String> nombres = request.getParameterNames();
-        while (nombres.hasMoreElements()) {
-            String param = nombres.nextElement();
-            if (!param.equals("accion") && !param.equals("tabla")) {
-                valores.put(param, request.getParameter(param));
-            }
-        }
-
-        // Determinamos la columna clave según el nombre de la tabla
-        String columnaClave = "id"; // Valor predeterminado
+        // Determinar la columna clave primaria según la tabla
+        String columnaClave = "id";
         if ("laboratorios".equalsIgnoreCase(tabla)) {
-            columnaClave = "lab_id";  // Si la tabla es 'laboratorios', la columna clave es 'lab_id'
+            columnaClave = "lab_id";
         }
 
         switch (accion) {
             case "insert":
-                dao.insertar(tabla, valores);
+                Map<String, String> valoresInsert = new HashMap<>();
+                Enumeration<String> nombresInsert = request.getParameterNames();
+                while (nombresInsert.hasMoreElements()) {
+                    String param = nombresInsert.nextElement();
+                    // Excluir acción, tabla y la clave primaria para que el ID se asigne automáticamente
+                    if (!param.equals("accion") && !param.equals("tabla") && !param.equals(columnaClave)) {
+                        valoresInsert.put(param, request.getParameter(param));
+                    }
+                }
+                dao.insertar(tabla, valoresInsert);
                 break;
+
             case "delete":
-                String valorClave = valores.get(columnaClave); // Obtén el valor de la clave primaria
+                String valorClave = request.getParameter(columnaClave);
                 if (valorClave != null) {
-                    dao.eliminar(tabla, columnaClave, valorClave); // Llamamos a eliminar pasando la tabla, columna clave y valor clave
+                    dao.eliminar(tabla, columnaClave, valorClave);
                 } else {
                     response.getWriter().write("No se ha proporcionado el valor de la clave primaria para eliminar.");
                     return;
                 }
                 break;
+
             case "update":
-                String valorClaveUpdate = request.getParameter(columnaClave); // Obtén la clave primaria
+                String valorClaveUpdate = request.getParameter(columnaClave);
                 if (valorClaveUpdate != null) {
                     Map<String, String> valoresUpdate = new HashMap<>();
-
-                    // Extraer los parámetros del formulario, excepto la clave primaria, tabla y acción
                     Enumeration<String> nombresUpdate = request.getParameterNames();
                     while (nombresUpdate.hasMoreElements()) {
                         String param = nombresUpdate.nextElement();
+                        // Excluir acción, tabla y la clave primaria
                         if (!param.equals("accion") && !param.equals("tabla") && !param.equals(columnaClave)) {
                             valoresUpdate.put(param, request.getParameter(param));
                         }
                     }
-
-                    dao.actualizar(tabla, valoresUpdate, valorClaveUpdate); // Llamada al método actualizar
+                    dao.actualizar(tabla, valoresUpdate, valorClaveUpdate);
                 } else {
                     response.getWriter().write("No se proporcionó la clave primaria para la actualización.");
+                    return;
                 }
                 break;
         }
