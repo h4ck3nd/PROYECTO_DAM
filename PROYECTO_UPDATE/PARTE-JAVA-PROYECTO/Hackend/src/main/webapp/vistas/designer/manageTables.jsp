@@ -6,14 +6,14 @@
 
 <%
     UsuarioJWT usuarioJWT = null;
-    
+
     try {
         usuarioJWT = JWTUtils.obtenerUsuarioDesdeRequest(request);
     } catch (Exception e) {
         response.sendRedirect(request.getContextPath() + "/logout");
         return;
     }
-    
+
     String rol = usuarioJWT.getRol();
     if (!"designer".equals(rol)) {
         out.println("<div class='error-message'>No autorizado.</div>");
@@ -31,11 +31,10 @@
         columnas = dao.getColumnas(tablaSeleccionada);
         datosTabla = dao.getDatos(tablaSeleccionada);
     }
-    
-    // Determinar el nombre de la clave primaria según la tabla seleccionada
-    String clavePrimaria = "id";  // Valor por defecto
+
+    String clavePrimaria = "id";
     if ("laboratorios".equals(tablaSeleccionada)) {
-        clavePrimaria = "lab_id";  // Clave primaria específica para la tabla "laboratorios"
+        clavePrimaria = "lab_id";
     }
 %>
 
@@ -64,6 +63,11 @@
             border: 1px solid #555;
             background-color: #444;
             color: #f0f0f0;
+        }
+
+        input[readonly] {
+            background-color: #666;
+            color: #ccc;
         }
 
         table {
@@ -97,6 +101,7 @@
         .btn:hover {
             background-color: #777;
         }
+
         .btn-volver {
             display: block;
             background-color: #4f4f4f;
@@ -128,7 +133,7 @@
 <h1>Gestión de Tablas</h1>
 
 <form method="post" action="<%= request.getContextPath() %>/vistas/designer/admin-panel.jsp" class="btn-container">
-	<button type="submit" class="btn-volver">Volver</button>
+    <button type="submit" class="btn-volver">Volver</button>
 </form>
 
 <!-- Selección de tabla -->
@@ -144,7 +149,6 @@
 
 <% if (tablaSeleccionada != null && columnas != null) { %>
 
-<!-- Mostrar datos actuales -->
 <h3>Contenido actual de <%= tablaSeleccionada %></h3>
 <table>
     <tr>
@@ -159,52 +163,52 @@
                 <td><%= fila.get(col) %></td>
             <% } %>
             <td>
-                <!-- Formulario para eliminar -->
+                <!-- Eliminar -->
                 <form action="<%= request.getContextPath() %>/TablaController" method="post" style="display:inline;">
-                    <% 
-                        // Obtener el valor de la clave primaria según la tabla seleccionada
-                        String valorClave = fila.get(clavePrimaria); 
-                    %>
-                    <input type="hidden" name="<%= clavePrimaria %>" value="<%= valorClave %>" /> <!-- Valor clave primaria -->
+                    <input type="hidden" name="<%= clavePrimaria %>" value="<%= fila.get(clavePrimaria) %>" />
                     <% for (String col : columnas) { %>
-                        <input type="hidden" name="<%= col %>" value="<%= fila.get(col) %>"/>
+                        <input type="hidden" name="<%= col %>" value="<%= fila.get(col) %>" />
                     <% } %>
-                    <input type="hidden" name="tabla" value="<%= tablaSeleccionada %>"/>
-                    <input type="hidden" name="accion" value="delete"/>
+                    <input type="hidden" name="tabla" value="<%= tablaSeleccionada %>" />
+                    <input type="hidden" name="accion" value="delete" />
                     <button class="btn" type="submit">Eliminar</button>
                 </form>
 
-                <!-- Formulario para actualizar -->
-				<form action="<%= request.getContextPath() %>/TablaController" method="post" style="display:inline;">
-				    <% 
-				        // Prellenar el formulario con los valores actuales de la fila
-				        for (String col : columnas) {
-				            String valorColumna = fila.get(col);
-				    %>
-				        <label><%= col %>:</label>
-				        <input type="text" name="<%= col %>" value="<%= valorColumna %>" /> <!-- Prellenar con los valores actuales -->
-				    <% } %>
-				    
-				    <input type="hidden" name="<%= clavePrimaria %>" value="<%= fila.get(clavePrimaria) %>" /> <!-- Valor clave primaria -->
-				    <input type="hidden" name="tabla" value="<%= tablaSeleccionada %>"/> <!-- Tabla seleccionada -->
-				    <input type="hidden" name="accion" value="update"/> <!-- Acción update -->
-				    
-				    <button class="btn" type="submit">Actualizar</button>
-				</form>
+                <!-- Actualizar -->
+                <form action="<%= request.getContextPath() %>/TablaController" method="post" style="display:inline;">
+                    <% for (String col : columnas) {
+                           String valorColumna = fila.get(col);
+                           boolean esClave = col.equals(clavePrimaria);
+                    %>
+                        <label><%= col %>:</label>
+                        <input 
+                            type="text" 
+                            name="<%= col %>" 
+                            value="<%= valorColumna %>" 
+                            <%= esClave ? "readonly" : "" %> />
+                    <% } %>
+                    <input type="hidden" name="<%= clavePrimaria %>" value="<%= fila.get(clavePrimaria) %>" />
+                    <input type="hidden" name="tabla" value="<%= tablaSeleccionada %>" />
+                    <input type="hidden" name="accion" value="update" />
+                    <button class="btn" type="submit">Actualizar</button>
+                </form>
             </td>
         </tr>
     <% } %>
 </table>
 
-<!-- Formulario para insertar nuevo -->
+<!-- Insertar nuevo -->
 <h3>Insertar nuevo registro</h3>
 <form action="<%= request.getContextPath() %>/TablaController" method="post">
-    <input type="hidden" name="tabla" value="<%= tablaSeleccionada %>"/>
-    <input type="hidden" name="accion" value="insert"/>
-    <% for (String col : columnas) { %>
+    <input type="hidden" name="tabla" value="<%= tablaSeleccionada %>" />
+    <input type="hidden" name="accion" value="insert" />
+    <% for (String col : columnas) {
+           if (!col.equals(clavePrimaria)) {
+    %>
         <label><%= col %>: </label>
         <input type="text" name="<%= col %>" />
-    <% } %>
+    <%   } 
+       } %>
     <br>
     <button class="btn" type="submit">Insertar</button>
 </form>
