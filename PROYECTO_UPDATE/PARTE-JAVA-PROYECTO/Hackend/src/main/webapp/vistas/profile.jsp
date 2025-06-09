@@ -88,7 +88,7 @@
         </form>
         
         <div class="contenedor-exportar">
-				  <form method="get" action="http://localhost:8089/exportarPDF" class="form-exportar-update">
+				  <form method="get" action="http://localhost:8090/exportarPDF" class="form-exportar-update">
 				    <input type="hidden" name="user_id" value="<%= usuarioJWT.getUserId() %>">
 				    <input type="hidden" name="usuarioNombre" value="<%= usuarioJWT.getNombre() %>">
 				    <input type="hidden" name="usuarioApellidos" value="<%= usuarioJWT.getApellidos() %>">
